@@ -53,6 +53,7 @@ public class PlayerControllerScript : MonoBehaviour
 
 	private void MoveHorizontally()
 	{
+		// Takes input from the user along the y axis and moves the Player accordingly.
 		float move = Input.GetAxis("Horizontal");
 		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
 
