@@ -40,7 +40,7 @@ public class PlayerControllerScript : MonoBehaviour
 	private void FlipDirection()
 	{
 		facingRight = !facingRight;
-		Vector3 scale = transform.localScale;
+		Vector2 scale = transform.localScale;
 		scale.x *= -1;
 		transform.localScale = scale;
 	}
