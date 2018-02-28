@@ -8,6 +8,7 @@ public class PlayerControllerScript : MonoBehaviour
 	#region Attributes
 	public float maxSpeed = 5f;
 	public float jumpForce = 300f;
+    public float groundDistance;
 
 	// If the character begins the level facing left, this needs to be modified
 	private bool facingRight = true;
@@ -30,10 +31,16 @@ public class PlayerControllerScript : MonoBehaviour
 		// Empty
 	}
 
-	// Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
-	void FixedUpdate()
+    bool IsGrounded(){
+       return Physics.Raycast(transform.position, -Vector3.down, groundDistance + 0.1f);
+    }
+
+// Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
+void FixedUpdate()
 	{
 		CheckForInput();
+        Debug.Log(Physics.Raycast(transform.position, -Vector3.down, groundDistance + 0.1f));
+        Debug.Log(Physics.Raycast(transform.position, -Vector3.up, groundDistance + 0.1f));
 	}
 
 	#region Movement Functions
@@ -72,7 +79,7 @@ public class PlayerControllerScript : MonoBehaviour
 	#region Logic Functions
 	private void CheckForInput()
 	{
-		if (Input.GetButton("Jump") && isGrounded) Jump();
+		if (Input.GetButton("Jump") && IsGrounded()) Jump();
 		MoveHorizontally();
 	}
 	#endregion
