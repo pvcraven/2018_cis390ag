@@ -19,12 +19,18 @@ public class PlayerControllerScript : MonoBehaviour
 
 	#region Components
 	Rigidbody2D rigidbody2D;
+    Collider2D collider2D;
 	#endregion
 
 	void Start()
 	{
 		rigidbody2D = GetComponent<Rigidbody2D>();
-	}
+        collider2D = GetComponent<Collider2D>();
+
+        GameObject[] food = GameObject.FindGameObjectsWithTag("Food");
+        GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+    }
 
 	// Use when applying non-physics-related functions. Runs once per frame.
 	void Update()
@@ -34,6 +40,7 @@ public class PlayerControllerScript : MonoBehaviour
 		// Falling
 		CheckIfGrounded();
 		ApplyFallMultipliers();
+        CheckForItems();
 	}
 
     bool IsGrounded(){
@@ -131,7 +138,7 @@ public class PlayerControllerScript : MonoBehaviour
 		}
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Trigger Entered");
         if (Input.GetButton("Interact"))
@@ -139,10 +146,17 @@ public class PlayerControllerScript : MonoBehaviour
             Debug.Log("Interact button clicked");
             if (other.gameObject.CompareTag("Food") || other.gameObject.CompareTag("Weapon") || other.gameObject.CompareTag("Item"))
             {
-                other.gameObject.SetActive(false);
+                Destroy(other.gameObject);
                 Debug.Log("Picked up " + other.gameObject.tag);
             }
         }
+    }
+
+    void CheckForItems()
+    {
+        GameObject[] food = GameObject.FindGameObjectsWithTag("Food");
+        GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
     }
     #endregion
 }
