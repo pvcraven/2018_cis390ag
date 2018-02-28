@@ -8,7 +8,7 @@ public class PauseController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButton("Pause"))
+        if (Input.GetButtonDown("Pause"))
         {
             if (!gamePaused)
             {
