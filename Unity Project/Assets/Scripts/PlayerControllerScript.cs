@@ -7,53 +7,123 @@ public class PlayerControllerScript : MonoBehaviour
 {
 	#region Attributes
 	public float maxSpeed = 5f;
-	public float jumpForce = 300f;
+	public float jumpForce = 5f;
+    public float groundDistance;
+	public float fallMultiplier = 2f;
+	public float lowJumpMultiplier = 2f;
 
-	// If the character begins the level facing left, this needs to be modified
+	// If the character begins the level facing left, this needs to be changed to false.
 	private bool facingRight = true;
-	// TODO: Add a more sophisticated "ground" checker
 	private bool isGrounded = true;
 	#endregion
 
 	#region Components
 	Rigidbody2D rigidbody2D;
+    Collider2D collider2D;
 	#endregion
 
 	void Start()
 	{
 		rigidbody2D = GetComponent<Rigidbody2D>();
-	}
+        collider2D = GetComponent<Collider2D>();
+
+        GameObject[] food = GameObject.FindGameObjectsWithTag("Food");
+        GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+    }
 
 	// Use when applying non-physics-related functions. Runs once per frame.
 	void Update()
 	{
-		// Empty
+		CheckForInput();
+		
+		// Falling
+		CheckIfGrounded();
+		ApplyFallMultipliers();
+        CheckForItems();
 	}
 
-	// Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
-	void FixedUpdate()
+    bool IsGrounded(){
+       return Physics.Raycast(transform.position, -Vector3.down, groundDistance + 0.1f);
+    }
+
+// Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
+    void FixedUpdate()
 	{
 		CheckForInput();
 	}
 
+	#region Logic Functions
+	/// <summary>
+	/// Checks for user input.
+	/// </summary>
+	private void CheckForInput()
+	{
+		if (Input.GetButton("Jump") && isGrounded)
+		{
+			Jump();
+		}
+		
+		MoveHorizontally();
+	}
+	
+	/// <summary>
+	/// Checks if the user is on the ground or not and modifies the isGrounded field accordingly.
+	/// </summary>
+	private void CheckIfGrounded()
+	{
+		if (rigidbody2D.velocity.y.Equals(0))
+		{
+			isGrounded = true;
+		}
+		else
+		{
+			isGrounded = false;
+		}
+	}
+	#endregion
+	
 	#region Movement Functions
+	/// <summary>
+	/// Flips the player's sprite's direction.
+	/// </summary>
 	private void FlipDirection()
 	{
 		facingRight = !facingRight;
-		Vector3 scale = transform.localScale;
+		Vector2 scale = transform.localScale;
 		scale.x *= -1;
 		transform.localScale = scale;
 	}
 
+	/// <summary>
+	/// Causes the player to jump.
+	/// </summary>
 	private void Jump()
 	{
-		rigidbody2D.AddForce(new Vector2(0, jumpForce));
-		isGrounded = false;
+		rigidbody2D.velocity = Vector2.up * jumpForce;
 	}
 
+	/// <summary>
+	/// Causes the player to fall. The speed of the player's fall depends on how long they hold the Jump key. This allows
+	/// the user to either "short" jump or "long" jump. 
+	/// </summary>
+	private void ApplyFallMultipliers()
+	{
+		if (rigidbody2D.velocity.y < 0)
+		{
+			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+		}
+		else if (rigidbody2D.velocity.y > 0 && !Input.GetButton("Jump"))
+		{
+			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+		}
+	}
+
+	/// <summary>
+	/// Takes input from the user along the y axis and moves the player accordingly.
+	/// </summary>
 	private void MoveHorizontally()
 	{
-		// Takes input from the user along the y axis and moves the Player accordingly.
 		float move = Input.GetAxis("Horizontal");
 		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
 
@@ -67,13 +137,26 @@ public class PlayerControllerScript : MonoBehaviour
 			FlipDirection();
 		}
 	}
-	#endregion
 
-	#region Logic Functions
-	private void CheckForInput()
-	{
-		if (Input.GetButton("Jump") && isGrounded) Jump();
-		MoveHorizontally();
-	}
-	#endregion
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Trigger Entered");
+        if (Input.GetButton("Interact"))
+        {
+            Debug.Log("Interact button clicked");
+            if (other.gameObject.CompareTag("Food") || other.gameObject.CompareTag("Weapon") || other.gameObject.CompareTag("Item"))
+            {
+                Destroy(other.gameObject);
+                Debug.Log("Picked up " + other.gameObject.tag);
+            }
+        }
+    }
+
+    void CheckForItems()
+    {
+        GameObject[] food = GameObject.FindGameObjectsWithTag("Food");
+        GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+    }
+    #endregion
 }
