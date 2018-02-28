@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AlertSystem : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class AlertSystem : MonoBehaviour
         public string alertMessage;
     }
 
+    public Text displayMessage;
     public List<Event> events;
     private List<bool> eventsHappened;
-
     private Rigidbody2D rb;
 
 	// Use this for initialization
@@ -24,6 +25,7 @@ public class AlertSystem : MonoBehaviour
         {
             eventsHappened.Add(false);
         }
+        displayMessage.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -39,7 +41,8 @@ public class AlertSystem : MonoBehaviour
             if (events[i].alertPosition <= transform.position.x && !eventsHappened[i])
             {
                 eventsHappened[i] = true;
-                Debug.Log(events[i].alertMessage);
+                displayMessage.text = events[i].alertMessage;
+                displayMessage.enabled = true;
             }
         }
     }
