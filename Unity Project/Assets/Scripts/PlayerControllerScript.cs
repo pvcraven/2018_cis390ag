@@ -9,10 +9,11 @@ public class PlayerControllerScript : MonoBehaviour
 	public float maxSpeed = 5f;
 	public float jumpForce = 300f;
     public float groundDistance;
+	public float fallMultiplier = 2f;
+	public float lowJumpMultiplier = 2f;
 
-	// If the character begins the level facing left, this needs to be modified
+	// If the character begins the level facing left, this needs to be changed to false.
 	private bool facingRight = true;
-	// TODO: Add a more sophisticated "ground" checker
 	private bool isGrounded = true;
 	#endregion
 
@@ -28,7 +29,11 @@ public class PlayerControllerScript : MonoBehaviour
 	// Use when applying non-physics-related functions. Runs once per frame.
 	void Update()
 	{
-		// Empty
+		CheckForInput();
+		
+		// Falling
+		CheckIfGrounded();
+		ApplyFallMultipliers();
 	}
 
     bool IsGrounded(){
@@ -39,28 +44,80 @@ public class PlayerControllerScript : MonoBehaviour
 void FixedUpdate()
 	{
 		CheckForInput();
-        Debug.Log(Physics.Raycast(transform.position, -Vector3.down, groundDistance + 0.1f));
-        Debug.Log(Physics.Raycast(transform.position, -Vector3.up, groundDistance + 0.1f));
 	}
 
+	#region Logic Functions
+	/// <summary>
+	/// Checks for user input.
+	/// </summary>
+	private void CheckForInput()
+	{
+		if (Input.GetButton("Jump") && isGrounded)
+		{
+			Jump();
+		}
+		
+		MoveHorizontally();
+	}
+	
+	/// <summary>
+	/// Checks if the user is on the ground or not and modifies the isGrounded field accordingly.
+	/// </summary>
+	private void CheckIfGrounded()
+	{
+		if (rigidbody2D.velocity.y.Equals(0))
+		{
+			isGrounded = true;
+		}
+		else
+		{
+			isGrounded = false;
+		}
+	}
+	#endregion
+	
 	#region Movement Functions
+	/// <summary>
+	/// Flips the player's sprite's direction.
+	/// </summary>
 	private void FlipDirection()
 	{
 		facingRight = !facingRight;
-		Vector3 scale = transform.localScale;
+		Vector2 scale = transform.localScale;
 		scale.x *= -1;
 		transform.localScale = scale;
 	}
 
+	/// <summary>
+	/// Causes the player to jump.
+	/// </summary>
 	private void Jump()
 	{
-		rigidbody2D.AddForce(new Vector2(0, jumpForce));
+		rigidbody2D.velocity = Vector2.up * jumpForce;
 		isGrounded = false;
 	}
 
+	/// <summary>
+	/// Causes the player to fall. The speed of the player's fall depends on how long they hold the Jump key. This allows
+	/// the user to either "short" jump or "long" jump. 
+	/// </summary>
+	private void ApplyFallMultipliers()
+	{
+		if (rigidbody2D.velocity.y < 0)
+		{
+			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+		}
+		else if (rigidbody2D.velocity.y > 0 && !Input.GetButton("Jump"))
+		{
+			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+		}
+	}
+
+	/// <summary>
+	/// Takes input from the user along the y axis and moves the player accordingly.
+	/// </summary>
 	private void MoveHorizontally()
 	{
-		// Takes input from the user along the y axis and moves the Player accordingly.
 		float move = Input.GetAxis("Horizontal");
 		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
 
@@ -73,14 +130,6 @@ void FixedUpdate()
 		{
 			FlipDirection();
 		}
-	}
-	#endregion
-
-	#region Logic Functions
-	private void CheckForInput()
-	{
-		if (Input.GetButton("Jump") && IsGrounded()) Jump();
-		MoveHorizontally();
 	}
 	#endregion
 }
