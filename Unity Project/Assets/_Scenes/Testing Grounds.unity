@@ -1454,6 +1454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 215388328}
   - component: {fileID: 215388329}
+  - component: {fileID: 215388330}
   m_Layer: 0
   m_Name: R1C1 (2)
   m_TagString: Untagged
@@ -1518,6 +1519,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!68 &215388330
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 215388327}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -10.817846, y: 0.32156777}
+  - {x: -0.30872726, y: 0.3300972}
+  - {x: 0.23960829, y: 0.20097971}
 --- !u!1 &262750100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3490,6 +3509,7 @@ GameObject:
   - component: {fileID: 830274169}
   - component: {fileID: 830274168}
   - component: {fileID: 830274167}
+  - component: {fileID: 830274170}
   m_Layer: 0
   m_Name: LoVan_Zombie2_64x128
   m_TagString: Untagged
@@ -3602,8 +3622,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 5
   jumpForce: 5
+  groundDistance: 0
   fallMultiplier: 2
   lowJumpMultiplier: 2
+--- !u!114 &830274170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 830274164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e6b0a8fc6d96743a9fb582c83e2ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &833732928
 GameObject:
   m_ObjectHideFlags: 0
@@ -10746,6 +10778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2062281592}
   - component: {fileID: 2062281593}
+  - component: {fileID: 2062281594}
   m_Layer: 0
   m_Name: R1C2 (2)
   m_TagString: Untagged
@@ -10810,6 +10843,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!68 &2062281594
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2062281591}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.9593265, y: 0.3264649}
+  - {x: 4.1273823, y: -0.9324324}
+  - {x: 7.270979, y: -0.15643096}
 --- !u!1 &2067193606
 GameObject:
   m_ObjectHideFlags: 0

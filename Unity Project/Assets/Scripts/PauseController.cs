@@ -6,6 +6,21 @@ public class PauseController : MonoBehaviour
 {
     private bool gamePaused = false;
 
+    private void Update()
+    {
+        if (Input.GetButton("Pause"))
+        {
+            if (!gamePaused)
+            {
+                PauseGame();
+            }
+            else if (gamePaused)
+            {
+                UnPauseGame();
+            }
+        }
+    }
+
     public void PauseGame()
     {
         Time.timeScale = 0;
