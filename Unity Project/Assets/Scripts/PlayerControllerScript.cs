@@ -7,7 +7,8 @@ public class PlayerControllerScript : MonoBehaviour
 {
 	#region Attributes
 	public float maxSpeed = 5f;
-	public float jumpForce = 5f;
+	public float jumpForce = 300f;
+    public float groundDistance;
 	public float fallMultiplier = 2f;
 	public float lowJumpMultiplier = 2f;
 
@@ -35,10 +36,14 @@ public class PlayerControllerScript : MonoBehaviour
 		ApplyFallMultipliers();
 	}
 
-	// Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
-	void FixedUpdate()
+    bool IsGrounded(){
+       return Physics.Raycast(transform.position, -Vector3.down, groundDistance + 0.1f);
+    }
+
+// Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
+void FixedUpdate()
 	{
-		// Empty
+		CheckForInput();
 	}
 
 	#region Logic Functions
