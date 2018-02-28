@@ -7,7 +7,7 @@ public class PlayerControllerScript : MonoBehaviour
 {
 	#region Attributes
 	public float maxSpeed = 5f;
-	public float jumpForce = 300f;
+	public float jumpForce = 5f;
     public float groundDistance;
 	public float fallMultiplier = 2f;
 	public float lowJumpMultiplier = 2f;
