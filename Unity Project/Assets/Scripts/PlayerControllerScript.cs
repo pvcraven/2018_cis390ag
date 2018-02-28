@@ -94,7 +94,6 @@ void FixedUpdate()
 	private void Jump()
 	{
 		rigidbody2D.velocity = Vector2.up * jumpForce;
-		isGrounded = false;
 	}
 
 	/// <summary>
