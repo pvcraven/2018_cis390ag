@@ -41,7 +41,7 @@ public class PlayerControllerScript : MonoBehaviour
     }
 
 // Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
-void FixedUpdate()
+    void FixedUpdate()
 	{
 		CheckForInput();
 	}
@@ -130,5 +130,19 @@ void FixedUpdate()
 			FlipDirection();
 		}
 	}
-	#endregion
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger Entered");
+        if (Input.GetButton("Interact"))
+        {
+            Debug.Log("Interact button clicked");
+            if (other.gameObject.CompareTag("Food") || other.gameObject.CompareTag("Weapon") || other.gameObject.CompareTag("Item"))
+            {
+                other.gameObject.SetActive(false);
+                Debug.Log("Picked up " + other.gameObject.tag);
+            }
+        }
+    }
+    #endregion
 }
