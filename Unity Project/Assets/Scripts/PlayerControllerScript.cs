@@ -23,6 +23,7 @@ public class PlayerControllerScript : MonoBehaviour
     GameObject[] food;
     GameObject[] weapons;
     GameObject[] items;
+    GameObject[] enemies;
     #endregion
 
     void Start()
@@ -33,6 +34,7 @@ public class PlayerControllerScript : MonoBehaviour
         food = GameObject.FindGameObjectsWithTag("Food");
         weapons = GameObject.FindGameObjectsWithTag("Weapon");
         items = GameObject.FindGameObjectsWithTag("Item");
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
 	// Use when applying non-physics-related functions. Runs once per frame.
@@ -44,6 +46,7 @@ public class PlayerControllerScript : MonoBehaviour
 		CheckIfGrounded();
 		ApplyFallMultipliers();
         CheckIfTouchingItems();
+        CheckIfTouchingEnemy();
 	}
 
     bool IsGrounded(){
@@ -69,11 +72,58 @@ public class PlayerControllerScript : MonoBehaviour
 		
 		MoveHorizontally();
 	}
-	
-	/// <summary>
-	/// Checks if the user is on the ground or not and modifies the isGrounded field accordingly.
-	/// </summary>
-	private void CheckIfGrounded()
+
+    private void CheckIfTouchingItems()
+    {
+        foreach (GameObject item in food)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+            {
+                Debug.Log("Colliding with item");
+                if (Input.GetButton("Interact"))
+                {
+                    Destroy(item);
+                }
+            }
+        }
+        foreach (GameObject item in weapons)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    Destroy(item);
+                }
+            }
+        }
+        foreach (GameObject item in items)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    Destroy(item);
+                }
+            }
+        }
+    }
+
+    private void CheckIfTouchingEnemy()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.GetComponent<Collider2D>().IsTouching(collider2D))
+            {
+                Debug.Log("Colliding with enemy");
+                //Code to add functionality when collision is detected, like attacking
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks if the user is on the ground or not and modifies the isGrounded field accordingly.
+    /// </summary>
+    private void CheckIfGrounded()
 	{
 		if (rigidbody2D.velocity.y.Equals(0))
 		{
@@ -141,34 +191,5 @@ public class PlayerControllerScript : MonoBehaviour
 		}
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Trigger Entered");
-        if (Input.GetButton("Interact"))
-        {
-            Debug.Log("Interact button clicked");
-            if (other.gameObject.CompareTag("Food") || other.gameObject.CompareTag("Weapon") || other.gameObject.CompareTag("Item"))
-            {
-                Destroy(other.gameObject);
-                Debug.Log("Picked up " + other.gameObject.tag);
-            }
-        }
-    }
-
-    void CheckIfTouchingItems()
-    {
-        foreach(GameObject item in food)
-        {
-            if (item.GetComponent<Collider2D>().IsTouching(collider2D))
-            {
-                Debug.Log("Colliders touching");
-                if (Input.GetButton("Interact"))
-                {
-                    Destroy(item);
-                    Debug.Log("Picked up " + item.tag);
-                }
-            }
-        }
-    }
     #endregion
 }
