@@ -20,16 +20,19 @@ public class PlayerControllerScript : MonoBehaviour
 	#region Components
 	Rigidbody2D rigidbody2D;
     Collider2D collider2D;
-	#endregion
+    GameObject[] food;
+    GameObject[] weapons;
+    GameObject[] items;
+    #endregion
 
-	void Start()
+    void Start()
 	{
 		rigidbody2D = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<Collider2D>();
 
-        GameObject[] food = GameObject.FindGameObjectsWithTag("Food");
-        GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
-        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+        food = GameObject.FindGameObjectsWithTag("Food");
+        weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        items = GameObject.FindGameObjectsWithTag("Item");
     }
 
 	// Use when applying non-physics-related functions. Runs once per frame.
@@ -40,7 +43,7 @@ public class PlayerControllerScript : MonoBehaviour
 		// Falling
 		CheckIfGrounded();
 		ApplyFallMultipliers();
-        CheckForItems();
+        CheckIfTouchingItems();
 	}
 
     bool IsGrounded(){
@@ -152,11 +155,20 @@ public class PlayerControllerScript : MonoBehaviour
         }
     }
 
-    void CheckForItems()
+    void CheckIfTouchingItems()
     {
-        GameObject[] food = GameObject.FindGameObjectsWithTag("Food");
-        GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
-        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+        foreach(GameObject item in food)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+            {
+                Debug.Log("Colliders touching");
+                if (Input.GetButton("Interact"))
+                {
+                    Destroy(item);
+                    Debug.Log("Picked up " + item.tag);
+                }
+            }
+        }
     }
     #endregion
 }
