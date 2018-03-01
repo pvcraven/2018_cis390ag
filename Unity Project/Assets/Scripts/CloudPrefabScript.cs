@@ -21,7 +21,7 @@ public class CloudPrefabScript : MonoBehaviour {
 		camWidth = Camera.main.orthographicSize * Camera.main.aspect;
 
 		speed = Random.Range (minSpeed, maxSpeed);
-		transform.position = new Vector3 (cameraTransform.position.x + camWidth + buffer, Random.Range (cameraTransform.position.y + minY, cameraTransform.position.y + maxY), transform.position.z);
+		transform.position = new Vector2 (cameraTransform.position.x + camWidth + buffer, Random.Range (cameraTransform.position.y + minY, cameraTransform.position.y + maxY));
 	}
 
 	void Update () {
