@@ -17,11 +17,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Background
+  - Background Vegetation
+  - Foreground
+  - Text
   - 
   - 
   - 
@@ -42,12 +42,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background Vegetation
+    uniqueID: 1748361327
+    locked: 0
   - name: Background
     uniqueID: 3007235109
+    locked: 0
+  - name: Foreground Vegetation
+    uniqueID: 1058157929
+    locked: 0
+  - name: Foreground
+    uniqueID: 1183463441
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Foreground
-    uniqueID: 1183463441
+  - name: Special Items
+    uniqueID: 1294629773
     locked: 0
