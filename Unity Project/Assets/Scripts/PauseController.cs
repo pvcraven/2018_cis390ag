@@ -32,21 +32,6 @@ public class PauseController : MonoBehaviour
 		}
 	}
 
-	private void ShowPauseMenu()
-	{
-		pauseMenu.gameObject.SetActive(true);
-		defaultPauseMenu.gameObject.SetActive(true);
-		HideSubMenus();
-		PauseGame();
-	}
-
-	public void ResumeGame()
-	{
-		pauseMenu.gameObject.SetActive(false);
-		HideSubMenus();
-		UnPauseGame();
-	}
-
 	#region Pausing
 	public void PauseGame()
 	{
@@ -63,6 +48,21 @@ public class PauseController : MonoBehaviour
 	private void TogglePaused()
 	{
 		gamePaused = !gamePaused;
+	}
+	
+	private void ShowPauseMenu()
+	{
+		pauseMenu.gameObject.SetActive(true);
+		defaultPauseMenu.gameObject.SetActive(true);
+		HideSubMenus();
+		PauseGame();
+	}
+
+	public void ResumeGame()
+	{
+		pauseMenu.gameObject.SetActive(false);
+		HideSubMenus();
+		UnPauseGame();
 	}
 	#endregion
 
@@ -101,6 +101,4 @@ public class PauseController : MonoBehaviour
 		keyBindingsMenu.gameObject.SetActive(false);
 	}
 	#endregion
-
-	
 }

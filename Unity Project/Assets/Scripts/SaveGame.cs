@@ -15,7 +15,7 @@ public class SaveGame : MonoBehaviour
 			PlayerPrefs.GetFloat("playerPosY"));
 	}
 
-	public void SaveGameSettings()
+	private void SaveGameSettings()
 	{
 		// Get player location
 		PlayerPrefs.SetFloat("playerPosX", player.position.x);
