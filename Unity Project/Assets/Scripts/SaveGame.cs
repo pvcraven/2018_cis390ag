@@ -9,9 +9,9 @@ public class SaveGame : MonoBehaviour
 
 	void Awake()
 	{
-		player.position = new Vector2(
-			PlayerPrefs.GetFloat("playerPosX"),
-			PlayerPrefs.GetFloat("playerPosY"));
+		//player.position = new Vector2(
+			//PlayerPrefs.GetFloat("playerPosX"),
+			//PlayerPrefs.GetFloat("playerPosY"));
 	}
 
 	private void SaveGameSettings()
