@@ -9,7 +9,6 @@ public class SaveGame : MonoBehaviour
 
 	void Awake()
 	{
-		
 		player.position = new Vector2(
 			PlayerPrefs.GetFloat("playerPosX"),
 			PlayerPrefs.GetFloat("playerPosY"));
@@ -19,7 +18,7 @@ public class SaveGame : MonoBehaviour
 	{
 		// Get player location
 		PlayerPrefs.SetFloat("playerPosX", player.position.x);
-		PlayerPrefs.SetFloat("playerPosY", (float)(player.position.y + .1));
+		PlayerPrefs.SetFloat("playerPosY", (float)(player.position.y + .4));
 	}
 
 	public void ExitToMainMenu()
