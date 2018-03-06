@@ -22,6 +22,7 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
+*.png.meta
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -38,3 +39,8 @@ sysinfo.txt
 Thumbs.db
 Thumbs.db.meta
 Unity Project/.vs/
+Unity Project/.idea/
+Unity Project/Assets/Plugins.meta
+Unity Project/Assets/Plugins/Editor.meta
+Unity Project/Assets/Plugins/
+Unity Project/Unity Project.csproj.DotSettings
