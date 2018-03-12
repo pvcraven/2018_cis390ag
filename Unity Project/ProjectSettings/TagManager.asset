@@ -42,11 +42,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background Vegetation
-    uniqueID: 1748361327
-    locked: 0
   - name: Background
     uniqueID: 3007235109
+    locked: 0
+  - name: Background Objects
+    uniqueID: 2905367119
+    locked: 0
+  - name: Background Vegetation
+    uniqueID: 1748361327
     locked: 0
   - name: Foreground Vegetation
     uniqueID: 1058157929
