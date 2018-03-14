@@ -15,6 +15,7 @@ public class PlayerControllerScript : MonoBehaviour
 	// If the character begins the level facing left, this needs to be changed to false.
 	private bool facingRight = true;
 	private bool isGrounded = true;
+    private bool stabbing = false;
 	#endregion
 
 	#region Components
@@ -24,10 +25,12 @@ public class PlayerControllerScript : MonoBehaviour
     GameObject[] weapons;
     GameObject[] items;
     GameObject[] enemies;
+    Animator anim;
     #endregion
 
     void Start()
 	{
+        anim = GetComponent<Animator>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<Collider2D>();
 
@@ -57,6 +60,13 @@ public class PlayerControllerScript : MonoBehaviour
     void FixedUpdate()
 	{
 		CheckForInput();
+        stabbing = Input.GetKeyDown("f");
+
+        if(stabbing)
+        {
+            Stab();
+            
+        }
 	}
 
 	#region Logic Functions
@@ -190,6 +200,14 @@ public class PlayerControllerScript : MonoBehaviour
 			FlipDirection();
 		}
 	}
+
+    private void Stab()
+    {
+        anim.SetBool("stabbing", stabbing);
+        anim.Play("Tory_Stabbing");
+        stabbing = false;
+        anim.SetBool("stabbing", stabbing);
+    }
 
     #endregion
 }

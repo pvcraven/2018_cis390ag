@@ -9000,6 +9000,8 @@ GameObject:
   - component: {fileID: 1042809900}
   - component: {fileID: 1042809899}
   - component: {fileID: 1042809898}
+  - component: {fileID: 1042809902}
+  - component: {fileID: 1042809903}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9120,6 +9122,39 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &1042809902
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1042809896}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb67be9bfd2bd36449c58428ee08ca0d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &1042809903
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1042809896}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: f7423415c835dd94f922da8504974cbe, type: 2}
+  - {fileID: 7400000, guid: a7e20feb8b09d89499beed8ad3f4867c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1060145820
 GameObject:
   m_ObjectHideFlags: 0
