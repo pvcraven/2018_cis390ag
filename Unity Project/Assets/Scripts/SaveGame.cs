@@ -18,7 +18,7 @@ public class SaveGame : MonoBehaviour
 	{
 		// Get player location
 		PlayerPrefs.SetFloat("playerPosX", player.position.x);
-		PlayerPrefs.SetFloat("playerPosY", (float)(player.position.y + .4));
+		PlayerPrefs.SetFloat("playerPosY", (float)(player.position.y + 1));
 	}
 
 	public void ExitToMainMenu()
