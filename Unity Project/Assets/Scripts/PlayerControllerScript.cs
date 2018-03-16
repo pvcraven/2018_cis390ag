@@ -11,15 +11,20 @@ public class PlayerControllerScript : MonoBehaviour
     public float groundDistance;
 	public float fallMultiplier = 2f;
 	public float lowJumpMultiplier = 2f;
+    public GameObject bullet;
+    public Transform bulletSpawn;
+    public float fireRate = 1f;
 
-	// If the character begins the level facing left, this needs to be changed to false.
-	private bool facingRight = true;
+    // If the character begins the level facing left, this needs to be changed to false.
+    private bool facingRight = true;
 	private bool isGrounded = true;
     private bool stabbing = false;
-	#endregion
+    private bool hasWeapon = true;
+    private float nextFire;
+    #endregion
 
-	#region Components
-	Rigidbody2D rigidbody2D;
+    #region Components
+    Rigidbody2D rigidbody2D;
     Collider2D collider2D;
     GameObject[] food;
     GameObject[] weapons;
@@ -79,6 +84,12 @@ public class PlayerControllerScript : MonoBehaviour
 		{
 			Jump();
 		}
+
+        if(Input.GetButton("Shoot") && hasWeapon && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            FireWeapon();
+        }
 		
 		MoveHorizontally();
 	}
@@ -214,6 +225,11 @@ public class PlayerControllerScript : MonoBehaviour
         anim.Play("Tory_Stabbing");
         stabbing = false;
         anim.SetBool("stabbing", stabbing);
+    }
+
+    private void FireWeapon()
+    {
+        Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
     }
 
     #endregion
