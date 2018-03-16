@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -24,8 +25,6 @@ public class PlayerControllerScript : MonoBehaviour
     #endregion
 
     #region Components
-    Rigidbody2D rigidbody2D;
-    Collider2D collider2D;
     GameObject[] food;
     GameObject[] weapons;
     GameObject[] items;
@@ -35,6 +34,9 @@ public class PlayerControllerScript : MonoBehaviour
 
     void Start()
 	{
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+		Collider2D collider2D = GetComponent<Collider2D>();
+		
         anim = GetComponent<Animator>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<Collider2D>();
@@ -51,13 +53,14 @@ public class PlayerControllerScript : MonoBehaviour
 		CheckForInput();
 		
 		// Falling
-		CheckIfGrounded();
+		//CheckIfGrounded();
 		ApplyFallMultipliers();
         CheckIfTouchingItems();
         CheckIfTouchingEnemy();
 	}
 
-    bool IsGrounded(){
+    bool IsGrounded()
+	{
        return Physics.Raycast(transform.position, -Vector3.down, groundDistance + 0.1f);
     }
 
@@ -96,6 +99,8 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void CheckIfTouchingItems()
     {
+	    Collider2D collider2D = GetComponent<Collider2D>();
+	    
         foreach (GameObject item in food)
         {
             if (item.GetComponent<Collider2D>().IsTouching(collider2D))
@@ -131,6 +136,8 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void CheckIfTouchingEnemy()
     {
+	    Collider2D collider2D = GetComponent<Collider2D>();
+	    
         foreach (GameObject enemy in enemies)
         {
             if (enemy.GetComponent<Collider2D>().IsTouching(collider2D))
@@ -141,11 +148,30 @@ public class PlayerControllerScript : MonoBehaviour
         }
     }
 
-    /// <summary>
+	private void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag.Equals("Ground"))
+		{
+			isGrounded = true;
+			print("Entering Ground");
+		}
+	}
+
+	private void OnCollisionExit(Collision other)
+	{
+		if (other.gameObject.tag.Equals("Ground"))
+		{
+			isGrounded = false;
+			Console.WriteLine("Exiting Ground");
+		}
+	}
+
+	/// <summary>
     /// Checks if the user is on the ground or not and modifies the isGrounded field accordingly.
     /// </summary>
     private void CheckIfGrounded()
 	{
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
 		if (rigidbody2D.velocity.y.Equals(0))
 		{
 			isGrounded = true;
@@ -174,6 +200,8 @@ public class PlayerControllerScript : MonoBehaviour
 	/// </summary>
 	private void Jump()
 	{
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+		
 		rigidbody2D.velocity = Vector2.up * jumpForce;
 	}
 
@@ -183,6 +211,8 @@ public class PlayerControllerScript : MonoBehaviour
 	/// </summary>
 	private void ApplyFallMultipliers()
 	{
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+		
 		if (rigidbody2D.velocity.y < 0)
 		{
 			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -198,6 +228,8 @@ public class PlayerControllerScript : MonoBehaviour
 	/// </summary>
 	private void MoveHorizontally()
 	{
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+		
 		float move = Input.GetAxis("Horizontal");
         if(Input.GetButton("Sprint"))
         {
