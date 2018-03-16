@@ -11,23 +11,31 @@ public class PlayerControllerScript : MonoBehaviour
     public float groundDistance;
 	public float fallMultiplier = 2f;
 	public float lowJumpMultiplier = 2f;
+    public GameObject bullet;
+    public Transform bulletSpawn;
+    public float fireRate = 1f;
 
-	// If the character begins the level facing left, this needs to be changed to false.
-	private bool facingRight = true;
+    // If the character begins the level facing left, this needs to be changed to false.
+    private bool facingRight = true;
 	private bool isGrounded = true;
-	#endregion
+    private bool stabbing = false;
+    private bool hasWeapon = true;
+    private float nextFire;
+    #endregion
 
-	#region Components
-	Rigidbody2D rigidbody2D;
+    #region Components
+    Rigidbody2D rigidbody2D;
     Collider2D collider2D;
     GameObject[] food;
     GameObject[] weapons;
     GameObject[] items;
     GameObject[] enemies;
+    Animator anim;
     #endregion
 
     void Start()
 	{
+        anim = GetComponent<Animator>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<Collider2D>();
 
@@ -57,6 +65,13 @@ public class PlayerControllerScript : MonoBehaviour
     void FixedUpdate()
 	{
 		CheckForInput();
+        stabbing = Input.GetKeyDown("f");
+
+        if(stabbing)
+        {
+            Stab();
+            
+        }
 	}
 
 	#region Logic Functions
@@ -65,10 +80,16 @@ public class PlayerControllerScript : MonoBehaviour
 	/// </summary>
 	private void CheckForInput()
 	{
-		if (Input.GetButton("Jump") && isGrounded)
+		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
 			Jump();
 		}
+
+        if(Input.GetButton("Shoot") && hasWeapon && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            FireWeapon();
+        }
 		
 		MoveHorizontally();
 	}
@@ -178,7 +199,14 @@ public class PlayerControllerScript : MonoBehaviour
 	private void MoveHorizontally()
 	{
 		float move = Input.GetAxis("Horizontal");
-		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+        if(Input.GetButton("Sprint"))
+        {
+            rigidbody2D.velocity = new Vector2(move * maxSpeed * 1.5f, rigidbody2D.velocity.y);
+        }
+        else
+        {
+            rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+        }
 
 		// Flip the character if they're moving in the opposite direction
 		if (move > 0 && !facingRight)
@@ -190,6 +218,19 @@ public class PlayerControllerScript : MonoBehaviour
 			FlipDirection();
 		}
 	}
+
+    private void Stab()
+    {
+        anim.SetBool("stabbing", stabbing);
+        anim.Play("Tory_Stabbing");
+        stabbing = false;
+        anim.SetBool("stabbing", stabbing);
+    }
+
+    private void FireWeapon()
+    {
+        Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+    }
 
     #endregion
 }
