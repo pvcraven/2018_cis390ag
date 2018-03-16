@@ -188,7 +188,14 @@ public class PlayerControllerScript : MonoBehaviour
 	private void MoveHorizontally()
 	{
 		float move = Input.GetAxis("Horizontal");
-		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+        if(Input.GetButton("Sprint"))
+        {
+            rigidbody2D.velocity = new Vector2(move * maxSpeed * 1.5f, rigidbody2D.velocity.y);
+        }
+        else
+        {
+            rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+        }
 
 		// Flip the character if they're moving in the opposite direction
 		if (move > 0 && !facingRight)
