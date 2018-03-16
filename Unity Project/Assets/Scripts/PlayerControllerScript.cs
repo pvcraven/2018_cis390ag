@@ -80,7 +80,7 @@ public class PlayerControllerScript : MonoBehaviour
 	/// </summary>
 	private void CheckForInput()
 	{
-		if (Input.GetButton("Jump") && isGrounded)
+		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
 			Jump();
 		}
