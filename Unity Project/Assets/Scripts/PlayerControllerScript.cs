@@ -11,20 +11,39 @@ public class PlayerControllerScript : MonoBehaviour
     public float groundDistance;
 	public float fallMultiplier = 2f;
 	public float lowJumpMultiplier = 2f;
+    public GameObject bullet;
+    public Transform bulletSpawn;
+    public float fireRate = 1f;
 
-	// If the character begins the level facing left, this needs to be changed to false.
-	private bool facingRight = true;
+    // If the character begins the level facing left, this needs to be changed to false.
+    private bool facingRight = true;
 	private bool isGrounded = true;
-	#endregion
+    private bool stabbing = false;
+    private bool hasWeapon = true;
+    private float nextFire;
+    #endregion
 
-	#region Components
-	Rigidbody2D rigidbody2D;
-	#endregion
+    #region Components
+    Rigidbody2D rigidbody2D;
+    Collider2D collider2D;
+    GameObject[] food;
+    GameObject[] weapons;
+    GameObject[] items;
+    GameObject[] enemies;
+    Animator anim;
+    #endregion
 
-	void Start()
+    void Start()
 	{
+        anim = GetComponent<Animator>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
-	}
+        collider2D = GetComponent<Collider2D>();
+
+        food = GameObject.FindGameObjectsWithTag("Food");
+        weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        items = GameObject.FindGameObjectsWithTag("Item");
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    }
 
 	// Use when applying non-physics-related functions. Runs once per frame.
 	void Update()
@@ -34,6 +53,8 @@ public class PlayerControllerScript : MonoBehaviour
 		// Falling
 		CheckIfGrounded();
 		ApplyFallMultipliers();
+        CheckIfTouchingItems();
+        CheckIfTouchingEnemy();
 	}
 
     bool IsGrounded(){
@@ -44,6 +65,13 @@ public class PlayerControllerScript : MonoBehaviour
     void FixedUpdate()
 	{
 		CheckForInput();
+        stabbing = Input.GetKeyDown("f");
+
+        if(stabbing)
+        {
+            Stab();
+            
+        }
 	}
 
 	#region Logic Functions
@@ -56,14 +84,67 @@ public class PlayerControllerScript : MonoBehaviour
 		{
 			Jump();
 		}
+
+        if(Input.GetButton("Shoot") && hasWeapon && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            FireWeapon();
+        }
 		
 		MoveHorizontally();
 	}
-	
-	/// <summary>
-	/// Checks if the user is on the ground or not and modifies the isGrounded field accordingly.
-	/// </summary>
-	private void CheckIfGrounded()
+
+    private void CheckIfTouchingItems()
+    {
+        foreach (GameObject item in food)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+            {
+                Debug.Log("Colliding with item");
+                if (Input.GetButton("Interact"))
+                {
+                    Destroy(item);
+                }
+            }
+        }
+        foreach (GameObject item in weapons)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    Destroy(item);
+                }
+            }
+        }
+        foreach (GameObject item in items)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    Destroy(item);
+                }
+            }
+        }
+    }
+
+    private void CheckIfTouchingEnemy()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.GetComponent<Collider2D>().IsTouching(collider2D))
+            {
+                Debug.Log("Colliding with enemy");
+                //Code to add functionality when collision is detected, like attacking
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks if the user is on the ground or not and modifies the isGrounded field accordingly.
+    /// </summary>
+    private void CheckIfGrounded()
 	{
 		if (rigidbody2D.velocity.y.Equals(0))
 		{
@@ -118,7 +199,14 @@ public class PlayerControllerScript : MonoBehaviour
 	private void MoveHorizontally()
 	{
 		float move = Input.GetAxis("Horizontal");
-		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+        if(Input.GetButton("Sprint"))
+        {
+            rigidbody2D.velocity = new Vector2(move * maxSpeed * 1.5f, rigidbody2D.velocity.y);
+        }
+        else
+        {
+            rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+        }
 
 		// Flip the character if they're moving in the opposite direction
 		if (move > 0 && !facingRight)
@@ -131,18 +219,18 @@ public class PlayerControllerScript : MonoBehaviour
 		}
 	}
 
-    void OnTriggerEnter(Collider other)
+    private void Stab()
     {
-        Debug.Log("Trigger Entered");
-        if (Input.GetButton("Interact"))
-        {
-            Debug.Log("Interact button clicked");
-            if (other.gameObject.CompareTag("Food") || other.gameObject.CompareTag("Weapon") || other.gameObject.CompareTag("Item"))
-            {
-                other.gameObject.SetActive(false);
-                Debug.Log("Picked up " + other.gameObject.tag);
-            }
-        }
+        anim.SetBool("stabbing", stabbing);
+        anim.Play("Tory_Stabbing");
+        stabbing = false;
+        anim.SetBool("stabbing", stabbing);
     }
+
+    private void FireWeapon()
+    {
+        Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+    }
+
     #endregion
 }
