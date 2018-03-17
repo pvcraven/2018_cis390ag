@@ -8846,6 +8846,34 @@ Transform:
   m_Father: {fileID: 598021576}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &916371875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 916371876}
+  m_Layer: 0
+  m_Name: BulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &916371876
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 916371875}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.25, y: 0.17000008, z: -0.0048828125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1042809897}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &931833723
 GameObject:
   m_ObjectHideFlags: 0
@@ -9223,7 +9251,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.2, y: -3.27, z: -0.9128076}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 916371876}
   m_Father: {fileID: 70908230}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9260,6 +9289,9 @@ MonoBehaviour:
   groundDistance: 0
   fallMultiplier: 2
   lowJumpMultiplier: 2
+  bullet: {fileID: 1469316922951046, guid: 997478f9774788c43a173daa4f6de41b, type: 2}
+  bulletSpawn: {fileID: 916371876}
+  fireRate: 1
 --- !u!50 &1042809900
 Rigidbody2D:
   serializedVersion: 4
@@ -12188,7 +12220,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1974177258}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019515172, y: -0.12514941, z: -0.9255029}
+  m_LocalPosition: {x: -1.1731437, y: -0.7527322, z: -10.912807}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 70908230}
@@ -12262,7 +12294,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 4.19
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

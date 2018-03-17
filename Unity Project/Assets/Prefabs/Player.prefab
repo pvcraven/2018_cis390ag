@@ -113,6 +113,9 @@ MonoBehaviour:
   groundDistance: 0
   fallMultiplier: 2
   lowJumpMultiplier: 2
+  bullet: {fileID: 0}
+  bulletSpawn: {fileID: 0}
+  fireRate: 1
 --- !u!114 &114450015898437544
 MonoBehaviour:
   m_ObjectHideFlags: 1
