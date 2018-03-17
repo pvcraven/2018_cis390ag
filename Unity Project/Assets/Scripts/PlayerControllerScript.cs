@@ -22,6 +22,7 @@ public class PlayerControllerScript : MonoBehaviour
     private bool stabbing = false;
     private bool hasWeapon = true;
     private float nextFire;
+    private SpriteRenderer sr;
     #endregion
 
     #region Components
@@ -40,6 +41,7 @@ public class PlayerControllerScript : MonoBehaviour
         anim = GetComponent<Animator>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
 
         food = GameObject.FindGameObjectsWithTag("Food");
         weapons = GameObject.FindGameObjectsWithTag("Weapon");
@@ -77,6 +79,14 @@ public class PlayerControllerScript : MonoBehaviour
         }
 	}
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(FlashColor());
+        }
+    }
+
 	#region Logic Functions
 	/// <summary>
 	/// Checks for user input.
@@ -105,7 +115,7 @@ public class PlayerControllerScript : MonoBehaviour
         {
             if (item.GetComponent<Collider2D>().IsTouching(collider2D))
             {
-                Debug.Log("Colliding with item");
+                //Debug.Log("Colliding with item");
                 if (Input.GetButton("Interact"))
                 {
                     Destroy(item);
@@ -142,7 +152,7 @@ public class PlayerControllerScript : MonoBehaviour
         {
             if (enemy.GetComponent<Collider2D>().IsTouching(collider2D))
             {
-                Debug.Log("Colliding with enemy");
+                //Debug.Log("Colliding with enemy");
                 //Code to add functionality when collision is detected, like attacking
             }
         }
@@ -262,6 +272,16 @@ public class PlayerControllerScript : MonoBehaviour
     private void FireWeapon()
     {
         Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+    }
+
+    IEnumerator FlashColor()
+    {
+        var normalColor = sr.material.color;
+        sr.material.color = Color.red;
+        yield return new WaitForSeconds(0.25F);
+
+        sr.material.color = normalColor;
+        yield return new WaitForSeconds(0.1F);
     }
 
     #endregion
