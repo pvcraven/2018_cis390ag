@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 70419240595750898}
   - component: {fileID: 95618799376286996}
   m_Layer: 0
-  m_Name: rhovey_Tory_Body
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
