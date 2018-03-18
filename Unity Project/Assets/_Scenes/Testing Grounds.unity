@@ -2122,6 +2122,11 @@ Transform:
   m_Father: {fileID: 1137974872}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &445270681 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1904929112714450, guid: 383fa54533897ac4982bcc7d756b8c8c,
+    type: 2}
+  m_PrefabInternal: {fileID: 786108071}
 --- !u!1 &445552892
 GameObject:
   m_ObjectHideFlags: 0
@@ -12248,6 +12253,7 @@ GameObject:
   - component: {fileID: 2100564273}
   - component: {fileID: 2100564272}
   - component: {fileID: 2100564276}
+  - component: {fileID: 2100564277}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12344,7 +12350,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 1146229303}
-  PausedControlObject: {fileID: 1146229303}
+  PausedControlObject: {fileID: 445270681}
+--- !u!114 &2100564277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2100564271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e6b0a8fc6d96743a9fb582c83e2ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  defaultPauseMenu: {fileID: 0}
+  settingsMenu: {fileID: 0}
+  keyBindingsMenu: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &2101702314
 GameObject:
   m_ObjectHideFlags: 0
