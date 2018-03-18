@@ -2770,7 +2770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!70 &660690170
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2909,8 +2909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b21ff05ef770164688603082df01bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog_box: {fileID: 1245507610}
-  list_of_dialog_events: []
 --- !u!1 &669527516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3676,7 +3674,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4319176879575072, guid: 383fa54533897ac4982bcc7d756b8c8c, type: 2}
       propertyPath: m_RootOrder
-      value: 74
+      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 383fa54533897ac4982bcc7d756b8c8c, type: 2}
@@ -3690,11 +3688,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4043096785936760, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.250112
+      value: -1.573
       objectReference: {fileID: 0}
     - target: {fileID: 4043096785936760, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.24984789
+      value: -0.392
       objectReference: {fileID: 0}
     - target: {fileID: 4043096785936760, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3719,6 +3717,23 @@ Prefab:
     - target: {fileID: 4043096785936760, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043096785936760, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -1.084893
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043096785936760, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.0328453
+      objectReference: {fileID: 0}
+    - target: {fileID: 70498615930019690, guid: 25dc1019d8824f54b966744e81cef76d,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
@@ -9986,7 +10001,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799845597
 GameObject:
