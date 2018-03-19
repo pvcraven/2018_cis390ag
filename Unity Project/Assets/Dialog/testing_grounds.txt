@@ -1,7 +1,8 @@
 x-pos: 3.5
 Tory: Hey there little guy!
 Zombie: Wrawrrr
-Tory: Hmm... And i was hoping that we could be friends...
+Tory: Woah...
+Tory: Chill Out
 
 x-pos: 3.7
 Tory: Time to die
