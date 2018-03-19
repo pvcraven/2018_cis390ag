@@ -6,23 +6,22 @@ using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
 {
-	#region Attributes
-	public float maxSpeed = 5f;
-	public float jumpForce = 5f;
+   #region Attributes
+   public float maxSpeed = 5f;
+   public float jumpForce = 5f;
     public float groundDistance;
-	public float fallMultiplier = 2f;
-	public float lowJumpMultiplier = 2f;
+   public float fallMultiplier = 2f;
+   public float lowJumpMultiplier = 2f;
     public GameObject bullet;
     public Transform bulletSpawn;
     public float fireRate = 1f;
 
     // If the character begins the level facing left, this needs to be changed to false.
     private bool facingRight = true;
-	private bool isGrounded = true;
+   private bool isGrounded = true;
     private bool stabbing = false;
     private bool hasWeapon = true;
     private float nextFire;
-    private SpriteRenderer sr;
     #endregion
 
     #region Components
@@ -34,14 +33,13 @@ public class PlayerControllerScript : MonoBehaviour
     #endregion
 
     void Start()
-	{
-		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
-		Collider2D collider2D = GetComponent<Collider2D>();
-		
+   {
+      Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+      Collider2D collider2D = GetComponent<Collider2D>();
+      
         anim = GetComponent<Animator>();
-		rigidbody2D = GetComponent<Rigidbody2D>();
+      rigidbody2D = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<Collider2D>();
-        sr = GetComponent<SpriteRenderer>();
 
         food = GameObject.FindGameObjectsWithTag("Food");
         weapons = GameObject.FindGameObjectsWithTag("Weapon");
@@ -49,73 +47,60 @@ public class PlayerControllerScript : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
-	// Use when applying non-physics-related functions. Runs once per frame.
-	void Update()
-	{
-		CheckForInput();
-		
-		// Falling
-		//CheckIfGrounded();
-		ApplyFallMultipliers();
+   // Use when applying non-physics-related functions. Runs once per frame.
+   void Update()
+   {
+      CheckForInput();
+      
+      // Falling
+      //CheckIfGrounded();
+      ApplyFallMultipliers();
         CheckIfTouchingItems();
         CheckIfTouchingEnemy();
-	}
-
-    bool IsGrounded()
-	{
-       return Physics.Raycast(transform.position, -Vector3.down, groundDistance + 0.1f);
-    }
+      CheckIfGrounded();
+   }
 
 // Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
     void FixedUpdate()
-	{
-		CheckForInput();
+   {
+      CheckForInput();
         stabbing = Input.GetKeyDown("f");
 
         if(stabbing)
         {
             Stab();
-            
         }
-	}
+   }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            StartCoroutine(FlashColor());
-        }
-    }
-
-	#region Logic Functions
-	/// <summary>
-	/// Checks for user input.
-	/// </summary>
-	private void CheckForInput()
-	{
-		if (Input.GetButtonDown("Jump") && isGrounded)
-		{
-			Jump();
-		}
+   #region Logic Functions
+   /// <summary>
+   /// Checks for user input.
+   /// </summary>
+   private void CheckForInput()
+   {
+      if (Input.GetButtonDown("Jump") && isGrounded)
+      {
+         Jump();
+      }
 
         if(Input.GetButton("Shoot") && hasWeapon && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             FireWeapon();
         }
-		
-		MoveHorizontally();
-	}
+      
+      MoveHorizontally();
+   }
 
     private void CheckIfTouchingItems()
     {
-	    Collider2D collider2D = GetComponent<Collider2D>();
-	    
+       Collider2D collider2D = GetComponent<Collider2D>();
+       
         foreach (GameObject item in food)
         {
             if (item.GetComponent<Collider2D>().IsTouching(collider2D))
             {
-                //Debug.Log("Colliding with item");
+                Debug.Log("Colliding with item");
                 if (Input.GetButton("Interact"))
                 {
                     Destroy(item);
@@ -146,101 +131,105 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void CheckIfTouchingEnemy()
     {
-	    Collider2D collider2D = GetComponent<Collider2D>();
-	    
+       Collider2D collider2D = GetComponent<Collider2D>();
+       
         foreach (GameObject enemy in enemies)
         {
             if (enemy.GetComponent<Collider2D>().IsTouching(collider2D))
             {
-                //Debug.Log("Colliding with enemy");
+                Debug.Log("Colliding with enemy");
                 //Code to add functionality when collision is detected, like attacking
             }
         }
     }
 
-	private void OnCollisionEnter(Collision other)
-	{
-		if (other.gameObject.tag.Equals("Ground"))
-		{
-			isGrounded = true;
-			print("Entering Ground");
-		}
-	}
+   private void OnCollisionEnter2D(Collision2D other)
+   {
+      if (other.gameObject.tag.Equals("Ground"))
+      {
+         isGrounded = true;
+      }
+   }
 
-	private void OnCollisionExit(Collision other)
-	{
-		if (other.gameObject.tag.Equals("Ground"))
-		{
-			isGrounded = false;
-			Console.WriteLine("Exiting Ground");
-		}
-	}
+   private void OnCollisionExit2D(Collision2D other)
+   {
+      if (other.gameObject.tag.Equals("Ground"))
+      {
+         StartCoroutine(WaitToJumpInSeconds(.2f));
+         //isGrounded = false;
+         //print("Exiting Ground");
+      }
+   }
 
-	/// <summary>
+   //TODO: Wait for a split second before "exiting ground" so the player can jump while running on slants
+   IEnumerator WaitToJumpInSeconds(float seconds)
+   {
+      yield return new WaitForSeconds(seconds);
+      isGrounded = false;
+   }
+   
+   /// <summary>
     /// Checks if the user is on the ground or not and modifies the isGrounded field accordingly.
     /// </summary>
     private void CheckIfGrounded()
-	{
-		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
-		if (rigidbody2D.velocity.y.Equals(0))
-		{
-			isGrounded = true;
-		}
-		else
-		{
-			isGrounded = false;
-		}
-	}
-	#endregion
-	
-	#region Movement Functions
-	/// <summary>
-	/// Flips the player's sprite's direction.
-	/// </summary>
-	private void FlipDirection()
-	{
-		facingRight = !facingRight;
-		Vector2 scale = transform.localScale;
-		scale.x *= -1;
-		transform.localScale = scale;
-	}
+   {
+      Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+      if (rigidbody2D.velocity.y.Equals(0))
+      {
+         isGrounded = true;
+      }
+   }
+   #endregion
+   
+   #region Movement Functions
+   /// <summary>
+   /// Flips the player's sprite's direction.
+   /// </summary>
+   private void FlipDirection()
+   {
+      facingRight = !facingRight;
+      Vector2 scale = transform.localScale;
+      scale.x *= -1;
+      transform.localScale = scale;
+   }
 
-	/// <summary>
-	/// Causes the player to jump.
-	/// </summary>
-	private void Jump()
-	{
-		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
-		
-		rigidbody2D.velocity = Vector2.up * jumpForce;
-	}
+   /// <summary>
+   /// Causes the player to jump.
+   /// </summary>
+   private void Jump()
+   {
+      Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+      
+      rigidbody2D.velocity = Vector2.up * jumpForce;
+      this.isGrounded = false;
+   }
 
-	/// <summary>
-	/// Causes the player to fall. The speed of the player's fall depends on how long they hold the Jump key. This allows
-	/// the user to either "short" jump or "long" jump. 
-	/// </summary>
-	private void ApplyFallMultipliers()
-	{
-		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
-		
-		if (rigidbody2D.velocity.y < 0)
-		{
-			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-		}
-		else if (rigidbody2D.velocity.y > 0 && !Input.GetButton("Jump"))
-		{
-			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-		}
-	}
+   /// <summary>
+   /// Causes the player to fall. The speed of the player's fall depends on how long they hold the Jump key. This allows
+   /// the user to either "short" jump or "long" jump. 
+   /// </summary>
+   private void ApplyFallMultipliers()
+   {
+      Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+      
+      if (rigidbody2D.velocity.y < 0)
+      {
+         rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+      }
+      else if (rigidbody2D.velocity.y > 0 && !Input.GetButton("Jump"))
+      {
+         rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+      }
+   }
 
-	/// <summary>
-	/// Takes input from the user along the y axis and moves the player accordingly.
-	/// </summary>
-	private void MoveHorizontally()
-	{
-		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
-		
-		float move = Input.GetAxis("Horizontal");
+   /// <summary>
+   /// Takes input from the user along the y axis and moves the player accordingly.
+   /// </summary>
+   private void MoveHorizontally()
+   {
+      Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+      
+      float move = Input.GetAxis("Horizontal");
         if(Input.GetButton("Sprint"))
         {
             rigidbody2D.velocity = new Vector2(move * maxSpeed * 1.5f, rigidbody2D.velocity.y);
@@ -250,16 +239,16 @@ public class PlayerControllerScript : MonoBehaviour
             rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
         }
 
-		// Flip the character if they're moving in the opposite direction
-		if (move > 0 && !facingRight)
-		{
-			FlipDirection();
-		}
-		else if (move < 0 && facingRight)
-		{
-			FlipDirection();
-		}
-	}
+      // Flip the character if they're moving in the opposite direction
+      if (move > 0 && !facingRight)
+      {
+         FlipDirection();
+      }
+      else if (move < 0 && facingRight)
+      {
+         FlipDirection();
+      }
+   }
 
     private void Stab()
     {
@@ -272,16 +261,6 @@ public class PlayerControllerScript : MonoBehaviour
     private void FireWeapon()
     {
         Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
-    }
-
-    IEnumerator FlashColor()
-    {
-        var normalColor = sr.material.color;
-        sr.material.color = Color.red;
-        yield return new WaitForSeconds(0.25F);
-
-        sr.material.color = normalColor;
-        yield return new WaitForSeconds(0.1F);
     }
 
     #endregion
