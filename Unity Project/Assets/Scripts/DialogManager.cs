@@ -11,8 +11,11 @@ public class DialogManager : MonoBehaviour
 {
 	public GameObject dialog_box;
 	public List<DialogEvent> list_of_dialog_events;
+    public GameObject PausedControlObject;
+    private PauseController pauseGame;
 
-	private Rigidbody2D rb;
+
+    private Rigidbody2D rb;
 	private bool paused_for_dialog = false;
 	private List<bool> dialog_that_has_taken_place;
 	private int current_dialog_event = 0;
@@ -22,7 +25,9 @@ public class DialogManager : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
-		load_dialog_from_file("Assets/Dialog/testing_grounds.txt");
+        pauseGame = PausedControlObject.GetComponent<PauseController>();
+
+        load_dialog_from_file("Assets/Dialog/testing_grounds.txt");
 		initialize_dialog_events ();
 		hide_dialog_on_start ();
 	}
@@ -72,13 +77,13 @@ public class DialogManager : MonoBehaviour
 	}
 
 	void pause_until_space_is_pressed() {
-		Time.timeScale = 0.01f;
-		paused_for_dialog = true;
+        pauseGame.PauseGame();
+        paused_for_dialog = true;
 	}
 
 	void unpause_and_hide_dialog() {
-		Time.timeScale = 1;
-		paused_for_dialog = false;
+        pauseGame.UnPauseGame();
+        paused_for_dialog = false;
 		dialog_box.SetActive (false);
 	}
 
