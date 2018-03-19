@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 50061199482621952}
   - component: {fileID: 114098588780932326}
   - component: {fileID: 70130963980976624}
+  - component: {fileID: 114591797242549048}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -387,6 +388,9 @@ MonoBehaviour:
   groundDistance: 0
   fallMultiplier: 2
   lowJumpMultiplier: 2
+  bullet: {fileID: 0}
+  bulletSpawn: {fileID: 0}
+  fireRate: 1
 --- !u!114 &114495573809441644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -423,6 +427,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114591797242549048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1619191791050694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e6b0a8fc6d96743a9fb582c83e2ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  defaultPauseMenu: {fileID: 0}
+  settingsMenu: {fileID: 0}
+  keyBindingsMenu: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &114778457260068414
 MonoBehaviour:
   m_ObjectHideFlags: 1
