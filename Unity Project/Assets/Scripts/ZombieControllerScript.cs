@@ -8,22 +8,29 @@ public class ZombieControllerScript : MonoBehaviour
     public float timeTravelled = 5f;
     public Transform raycastSpawn;
 
-    private bool facingLeft = false;
+    private bool facingLeft = true;
     private bool characterFound = false;
     private float flipTime;
     private Rigidbody2D rb;
-    //private Animator anim;
+    private Animator anim;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         flipTime = Time.time + timeTravelled;
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-        //anim.SetFloat("vSpeed", rb.velocity.y);
+        var move = Input.GetAxis("Horizontal");
+        anim.SetFloat("Speed", Mathf.Abs(move));
+        //rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y);
+
+        if (move > 0 && !facingLeft)
+            Flip();
+        else if (move < 0 && facingLeft)
+            Flip();
 
         characterFound = checkForPlayer();
 
