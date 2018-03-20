@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minY: 2
   minSpeed: 0.5
-  maxSpeed: 2
+  maxSpeed: 1
   buffer: 1
 --- !u!212 &212884083572212856
 SpriteRenderer:
