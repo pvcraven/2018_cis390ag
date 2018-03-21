@@ -6,32 +6,42 @@ public class ZombieControllerScript : MonoBehaviour
 {
     public float maxSpeed = 10f;
     public float timeTravelled = 5f;
-    public Transform raycastSpawn;
+    public Transform sightStart, sightEnd;
 
-    private bool facingLeft = false;
+    private bool facingLeft = true;
     private bool characterFound = false;
     private float flipTime;
     private Rigidbody2D rb;
-    //private Animator anim;
-    
+    private Animator anim;
+    public float health = 100f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         flipTime = Time.time + timeTravelled;
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-        //anim.SetFloat("vSpeed", rb.velocity.y);
+        CheckHealth();
+
+        var move = Input.GetAxis("Horizontal");
+        anim.SetFloat("Speed", Mathf.Abs(move));
+        //rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y);
+
+        if (move > 0 && !facingLeft)
+            Flip();
+        else if (move < 0 && facingLeft)
+            Flip();
 
         characterFound = checkForPlayer();
 
-        if(!characterFound)
+        if (!characterFound)
         {
-            if(Time.time < flipTime)
+            if (Time.time < flipTime)
             {
-                if(facingLeft)
+                if (facingLeft)
                 {
                     rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
                 }
@@ -49,7 +59,10 @@ public class ZombieControllerScript : MonoBehaviour
         else
         {
             Debug.Log("Player found!");
+            //Code for movement following player after player has been found
         }
+
+        
     }
 
     void Flip()
@@ -61,23 +74,14 @@ public class ZombieControllerScript : MonoBehaviour
     }
     bool checkForPlayer()
     {
-        //if(facingLeft)
-        //{
-        //    if(Physics2D.Raycast(rb.transform.position, Vector3.back, 1, 13))
-        //    {
-        //        return true;
-        //    }
-        //}
-        //else
-        //{
-        //    if(Physics2D.Raycast(rb.transform.position,Vector3.forward, 1, 13))
-        //    {
-        //        return true;
-        //    }
-        //}
+        return Physics2D.Linecast(sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer("Player"));
+    }
 
-        Debug.Log(Physics2D.Raycast(raycastSpawn.position, Vector3.forward, 1, 13).collider.gameObject.tag);
-
-        return false;
+    void CheckHealth()
+    {
+        if (health <= 0)
+        {
+            Destroy(rb.gameObject);
+        }
     }
 }
