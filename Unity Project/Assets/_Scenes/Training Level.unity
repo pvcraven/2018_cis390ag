@@ -54161,11 +54161,6 @@ Prefab:
         type: 2}
       propertyPath: PausedControlObject
       value: 
-<<<<<<< HEAD
-      objectReference: {fileID: 1435536444}
-=======
-      objectReference: {fileID: 412062258}
->>>>>>> ce17e4ce5190fb611c332b054740bdcbce8ca30f
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22371c14e87411b4b95735bb3ead68e6, type: 2}
   m_IsPrefabParent: 0
