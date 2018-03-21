@@ -17,11 +17,19 @@ public class PlayerControllerScript : MonoBehaviour
 	public GameObject bullet;
 	public Transform bulletSpawn;
 	public float fireRate = 1f;
+    private SpriteRenderer sr;
 
-	// If the character begins the level facing left, this needs to be changed to false.
-	private bool facingRight = true;
+    // If the character begins the level facing left, this needs to be changed to false.
+    private bool facingRight = true;
 	private bool isGrounded = false;
-	private bool stabbing = false;
+
+    public Transform startOnPlayer, endOnGround;
+
+    //Anim Variables
+    private bool stabbing = false;
+    private bool walking = false;
+    private float vSpeed = 0f;
+
 	private bool hasWeapon = true;
 	private float nextFire;
 	private List<Collision2D> groundPlayerIsTouching = new List<Collision2D>();
@@ -38,19 +46,16 @@ public class PlayerControllerScript : MonoBehaviour
 	GameObject[] items;
 	GameObject[] enemies;
 	Animator anim;
-	private Rigidbody2D rigidbody2D;
-	private Collider2D collider2D;
+	private Rigidbody2D rb2D;
+	private Collider2D coll2D;
 
 	#endregion
 
 	void Start()
 	{
 		anim = GetComponent<Animator>();
-		rigidbody2D = GetComponent<Rigidbody2D>();
-		collider2D = GetComponent<Collider2D>();
-		contactFilter.useTriggers = false;
-		contactFilter.SetLayerMask (Physics2D.GetLayerCollisionMask (gameObject.layer));
-		contactFilter.useLayerMask = true;
+		rb2D = GetComponent<Rigidbody2D>();
+		coll2D = GetComponent<Collider2D>();
 
 		food = GameObject.FindGameObjectsWithTag("Food");
 		weapons = GameObject.FindGameObjectsWithTag("Weapon");
@@ -63,8 +68,6 @@ public class PlayerControllerScript : MonoBehaviour
 	{
 		CheckForInput();
 
-		// Falling
-		//CheckIfGrounded();
 		ApplyFallMultipliers();
 		CheckIfTouchingItems();
 		CheckIfTouchingEnemy();
@@ -83,9 +86,18 @@ public class PlayerControllerScript : MonoBehaviour
 		}
 	}
 
-	#region Logic Functions
 
-	private void CheckForInput()
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(FlashColor());
+        }
+    }
+
+    #region Logic Functions
+
+    private void CheckForInput()
 	{
 		if (Input.GetButtonDown("Jump") && this.isGrounded)
 		{
@@ -105,7 +117,7 @@ public class PlayerControllerScript : MonoBehaviour
 	{
 		foreach (GameObject item in food)
 		{
-			if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+			if (item.GetComponent<Collider2D>().IsTouching(coll2D))
 			{
 				Debug.Log("Colliding with item");
 				if (Input.GetButton("Interact"))
@@ -117,7 +129,7 @@ public class PlayerControllerScript : MonoBehaviour
 
 		foreach (GameObject item in weapons)
 		{
-			if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+			if (item.GetComponent<Collider2D>().IsTouching(coll2D))
 			{
 				if (Input.GetButton("Interact"))
 				{
@@ -128,7 +140,7 @@ public class PlayerControllerScript : MonoBehaviour
 
 		foreach (GameObject item in items)
 		{
-			if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+			if (item.GetComponent<Collider2D>().IsTouching(coll2D))
 			{
 				if (Input.GetButton("Interact"))
 				{
@@ -142,7 +154,7 @@ public class PlayerControllerScript : MonoBehaviour
 	{
 		foreach (GameObject enemy in enemies)
 		{
-			if (enemy.GetComponent<Collider2D>().IsTouching(collider2D))
+			if (enemy.GetComponent<Collider2D>().IsTouching(coll2D))
 			{
 				Debug.Log("Colliding with enemy");
 				//Code to add functionality when collision is detected, like attacking
@@ -150,27 +162,14 @@ public class PlayerControllerScript : MonoBehaviour
 		}
 	}
 
-	private void CheckIfGrounded()
-	{
-		this.isGrounded = false;
-		int count = rigidbody2D.Cast (new Vector2(0, -1), contactFilter, hitBuffer, .2f);
-		hitBufferList.Clear();
-
-		foreach (RaycastHit2D element in hitBuffer)
-		{
-			hitBufferList.Add(element);
-		}
-
-		for (int i = 0; i < hitBufferList.Count; i++) 
-		{
-			Vector2 currentNormal = hitBufferList[i].normal;
-			if (currentNormal.y > .01f) 
-			{
-				this.isGrounded = true;
-			}
-		}
-	}
-
+    private void CheckIfGrounded()
+    {
+        isGrounded = Physics2D.Linecast(startOnPlayer.position, endOnGround.position, 1 << LayerMask.NameToLayer("Ground"));
+        Debug.Log(isGrounded);
+        anim.SetBool("OnGround", isGrounded);
+        anim.SetFloat("vSpeed", vSpeed);
+        anim.Play("Tory_Jumping");
+    }
 	#endregion
 
 	#region Movement Functions
@@ -185,8 +184,9 @@ public class PlayerControllerScript : MonoBehaviour
 	
 	private void Jump()
 	{
-		this.isGrounded = false;
-		rigidbody2D.velocity = Vector2.up * jumpForce;
+        isGrounded = false;
+		rb2D.velocity = Vector2.up * jumpForce;
+        vSpeed = rb2D.velocity.y;
 	}
 
 	/// <summary>
@@ -195,13 +195,13 @@ public class PlayerControllerScript : MonoBehaviour
 	/// </summary>
 	private void ApplyFallMultipliers()
 	{
-		if (rigidbody2D.velocity.y < 0)
+		if (rb2D.velocity.y < 0)
 		{
-			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+			rb2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 		}
-		else if (rigidbody2D.velocity.y > 0 && !Input.GetButton("Jump"))
+		else if (rb2D.velocity.y > 0 && !Input.GetButton("Jump"))
 		{
-			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+			rb2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
 		}
 	}
 
@@ -211,14 +211,25 @@ public class PlayerControllerScript : MonoBehaviour
 	private void MoveHorizontally()
 	{
 		float move = Input.GetAxis("Horizontal");
+
+        if(move >= .2 || move <= -.2)
+        {
+            walking = true;
+        }
+        else
+        {
+            walking = false;
+        }
+
 		if (Input.GetButton("Sprint"))
 		{
-			rigidbody2D.velocity = new Vector2(move * maxSpeed * 1.5f, rigidbody2D.velocity.y);
+			rb2D.velocity = new Vector2(move * maxSpeed * 1.5f, rb2D.velocity.y);
 		}
 		else
 		{
-			rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
-		}
+			rb2D.velocity = new Vector2(move * maxSpeed, rb2D.velocity.y);
+            Walk();
+        }
 
 		// Flip the character if they're moving in the opposite direction
 		if (move > 0 && !facingRight)
@@ -239,10 +250,33 @@ public class PlayerControllerScript : MonoBehaviour
 		anim.SetBool("stabbing", stabbing);
 	}
 
+    private void Walk()
+    {
+        if(walking)
+        {
+            anim.SetBool("walking", walking);
+            anim.Play("Tory_Walking");
+        }
+        else
+        {
+            anim.SetBool("walking", walking);
+        }
+    }
+
 	private void FireWeapon()
 	{
 		Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
 	}
 
-	#endregion
+    IEnumerator FlashColor()
+    {
+        var normalColor = sr.material.color;
+
+        sr.material.color = Color.red;
+        yield return new WaitForSeconds(0.25F);
+
+        sr.material.color = normalColor;
+        yield return new WaitForSeconds(0.1F);
+    }
+    #endregion
 }
