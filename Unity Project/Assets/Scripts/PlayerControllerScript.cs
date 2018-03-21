@@ -39,14 +39,15 @@ public class PlayerControllerScript : MonoBehaviour
 	GameObject[] items;
 	GameObject[] enemies;
 	Animator anim;
-
+	Rigidbody2D rb2d;
+	Collider2D col2d;
 	#endregion
 
 	void Start()
 	{
 		anim = GetComponent<Animator>();
-		rigidbody2D = GetComponent<Rigidbody2D>();
-		collider2D = GetComponent<Collider2D>();
+		rb2d = GetComponent<Rigidbody2D>();
+		col2d = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
 		contactFilter.useTriggers = false;
 		contactFilter.SetLayerMask (Physics2D.GetLayerCollisionMask (gameObject.layer));
@@ -71,7 +72,7 @@ public class PlayerControllerScript : MonoBehaviour
 		CheckIfGrounded();
 	}
 
-// Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
+	// Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
 	void FixedUpdate()
 	{
 		CheckForInput();
@@ -161,7 +162,7 @@ public class PlayerControllerScript : MonoBehaviour
 	private void CheckIfGrounded()
 	{
 		this.isGrounded = false;
-		int count = GetComponent<Rigidbody2D>().Cast (new Vector2(0, -1), contactFilter, hitBuffer, .2f);
+		int count = rb2d.Cast (new Vector2(0, -1), contactFilter, hitBuffer, .2f);
 		hitBufferList.Clear();
 
 		foreach (RaycastHit2D element in hitBuffer)
@@ -194,7 +195,7 @@ public class PlayerControllerScript : MonoBehaviour
 	private void Jump()
 	{
 		this.isGrounded = false;
-		GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpForce;
+		rb2d.velocity = Vector2.up * jumpForce;
 	}
 
 	/// <summary>
@@ -203,13 +204,13 @@ public class PlayerControllerScript : MonoBehaviour
 	/// </summary>
 	private void ApplyFallMultipliers()
 	{
-		if (GetComponent<Rigidbody2D>().velocity.y < 0)
+		if (rb2d.velocity.y < 0)
 		{
-			GetComponent<Rigidbody2D>().velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+			rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 		}
-		else if (GetComponent<Rigidbody2D>().velocity.y > 0 && !Input.GetButton("Jump"))
+		else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
 		{
-			GetComponent<Rigidbody2D>().velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+			rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
 		}
 	}
 
@@ -221,11 +222,11 @@ public class PlayerControllerScript : MonoBehaviour
 		float move = Input.GetAxis("Horizontal");
 		if (Input.GetButton("Sprint"))
 		{
-			GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed * 1.5f, GetComponent<Rigidbody2D>().velocity.y);
+			rb2d.velocity = new Vector2(move * maxSpeed * 1.5f, rb2d.velocity.y);
 		}
 		else
 		{
-			GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			rb2d.velocity = new Vector2(move * maxSpeed, rb2d.velocity.y);
 		}
 
 		// Flip the character if they're moving in the opposite direction
