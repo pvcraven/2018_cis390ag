@@ -167,8 +167,8 @@ public class PlayerControllerScript : MonoBehaviour
         isGrounded = Physics2D.Linecast(startOnPlayer.position, endOnGround.position, 1 << LayerMask.NameToLayer("Ground"));
         Debug.Log(isGrounded);
         anim.SetBool("OnGround", isGrounded);
-        anim.SetFloat("vSpeed", vSpeed);
-        anim.Play("Tory_Jumping");
+        
+        anim.SetFloat("vSpeed", rb2D.velocity.y);
     }
 	#endregion
 
@@ -186,7 +186,6 @@ public class PlayerControllerScript : MonoBehaviour
 	{
         isGrounded = false;
 		rb2D.velocity = Vector2.up * jumpForce;
-        vSpeed = rb2D.velocity.y;
 	}
 
 	/// <summary>
@@ -255,6 +254,7 @@ public class PlayerControllerScript : MonoBehaviour
         if(walking)
         {
             anim.SetBool("walking", walking);
+            Debug.Log("Walking");
             anim.Play("Tory_Walking");
         }
         else
