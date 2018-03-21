@@ -39,8 +39,6 @@ public class PlayerControllerScript : MonoBehaviour
 	GameObject[] items;
 	GameObject[] enemies;
 	Animator anim;
-	private Rigidbody2D rigidbody2D;
-	private Collider2D collider2D;
 
 	#endregion
 
@@ -115,7 +113,7 @@ public class PlayerControllerScript : MonoBehaviour
 	{
 		foreach (GameObject item in food)
 		{
-			if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+			if (item.GetComponent<Collider2D>().IsTouching(GetComponent<Collider2D>()))
 			{
 				Debug.Log("Colliding with item");
 				if (Input.GetButton("Interact"))
@@ -127,7 +125,7 @@ public class PlayerControllerScript : MonoBehaviour
 
 		foreach (GameObject item in weapons)
 		{
-			if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+			if (item.GetComponent<Collider2D>().IsTouching(GetComponent<Collider2D>()))
 			{
 				if (Input.GetButton("Interact"))
 				{
@@ -138,7 +136,7 @@ public class PlayerControllerScript : MonoBehaviour
 
 		foreach (GameObject item in items)
 		{
-			if (item.GetComponent<Collider2D>().IsTouching(collider2D))
+			if (item.GetComponent<Collider2D>().IsTouching(GetComponent<Collider2D>()))
 			{
 				if (Input.GetButton("Interact"))
 				{
@@ -152,7 +150,7 @@ public class PlayerControllerScript : MonoBehaviour
 	{
 		foreach (GameObject enemy in enemies)
 		{
-			if (enemy.GetComponent<Collider2D>().IsTouching(collider2D))
+			if (enemy.GetComponent<Collider2D>().IsTouching(GetComponent<Collider2D>()))
 			{
 				Debug.Log("Colliding with enemy");
 				//Code to add functionality when collision is detected, like attacking
@@ -163,7 +161,7 @@ public class PlayerControllerScript : MonoBehaviour
 	private void CheckIfGrounded()
 	{
 		this.isGrounded = false;
-		int count = rigidbody2D.Cast (new Vector2(0, -1), contactFilter, hitBuffer, .2f);
+		int count = GetComponent<Rigidbody2D>().Cast (new Vector2(0, -1), contactFilter, hitBuffer, .2f);
 		hitBufferList.Clear();
 
 		foreach (RaycastHit2D element in hitBuffer)
@@ -196,7 +194,7 @@ public class PlayerControllerScript : MonoBehaviour
 	private void Jump()
 	{
 		this.isGrounded = false;
-		rigidbody2D.velocity = Vector2.up * jumpForce;
+		GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpForce;
 	}
 
 	/// <summary>
@@ -205,13 +203,13 @@ public class PlayerControllerScript : MonoBehaviour
 	/// </summary>
 	private void ApplyFallMultipliers()
 	{
-		if (rigidbody2D.velocity.y < 0)
+		if (GetComponent<Rigidbody2D>().velocity.y < 0)
 		{
-			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+			GetComponent<Rigidbody2D>().velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 		}
-		else if (rigidbody2D.velocity.y > 0 && !Input.GetButton("Jump"))
+		else if (GetComponent<Rigidbody2D>().velocity.y > 0 && !Input.GetButton("Jump"))
 		{
-			rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+			GetComponent<Rigidbody2D>().velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
 		}
 	}
 
@@ -223,11 +221,11 @@ public class PlayerControllerScript : MonoBehaviour
 		float move = Input.GetAxis("Horizontal");
 		if (Input.GetButton("Sprint"))
 		{
-			rigidbody2D.velocity = new Vector2(move * maxSpeed * 1.5f, rigidbody2D.velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed * 1.5f, GetComponent<Rigidbody2D>().velocity.y);
 		}
 		else
 		{
-			rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 		}
 
 		// Flip the character if they're moving in the opposite direction
