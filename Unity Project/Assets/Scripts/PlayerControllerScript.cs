@@ -67,25 +67,17 @@ public class PlayerControllerScript : MonoBehaviour
 	void Update()
 	{
 		CheckForInput();
-
 		ApplyFallMultipliers();
 		CheckIfTouchingItems();
 		CheckIfTouchingEnemy();
-		CheckIfGrounded();
+        CheckIfGrounded();
 	}
 
 // Use when applying physics-related functions. Runs in sync with the physics engine - may update 0, 1, or many times per frame depending on the physics FPS settings.
 	void FixedUpdate()
 	{
 		CheckForInput();
-		stabbing = Input.GetKeyDown("f");
-
-		if (stabbing)
-		{
-			Stab();
-		}
 	}
-
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -94,12 +86,12 @@ public class PlayerControllerScript : MonoBehaviour
             StartCoroutine(FlashColor());
         }
     }
-
+    
     #region Logic Functions
 
     private void CheckForInput()
 	{
-		if (Input.GetButtonDown("Jump") && this.isGrounded)
+		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
 			Jump();
 		}
@@ -110,7 +102,14 @@ public class PlayerControllerScript : MonoBehaviour
 			FireWeapon();
 		}
 
-		MoveHorizontally();
+        stabbing = Input.GetKeyDown("f");
+
+        if (stabbing)
+        {
+            Stab();
+        }
+
+        MoveHorizontally();
 	}
 
 	private void CheckIfTouchingItems()
@@ -162,13 +161,23 @@ public class PlayerControllerScript : MonoBehaviour
 		}
 	}
 
-    private void CheckIfGrounded()
+    private bool CheckIfGrounded()
     {
         isGrounded = Physics2D.Linecast(startOnPlayer.position, endOnGround.position, 1 << LayerMask.NameToLayer("Ground"));
-        Debug.Log(isGrounded);
-        anim.SetBool("OnGround", isGrounded);
-        
-        anim.SetFloat("vSpeed", rb2D.velocity.y);
+
+        if(isGrounded)
+        {
+            anim.SetBool("OnGround", isGrounded);
+            anim.SetFloat("vSpeed", 0);
+        }
+        else
+        {
+            anim.SetFloat("vSpeed", rb2D.velocity.y);
+            anim.SetBool("OnGround", isGrounded);
+            anim.Play("Jump/Fall");
+        }
+
+        return isGrounded;
     }
 	#endregion
 
@@ -184,9 +193,8 @@ public class PlayerControllerScript : MonoBehaviour
 	
 	private void Jump()
 	{
-        isGrounded = false;
-		rb2D.velocity = Vector2.up * jumpForce;
-	}
+         rb2D.velocity = Vector2.up * jumpForce;
+    }
 
 	/// <summary>
 	/// Causes the player to fall. The speed of the player's fall depends on how long they hold the Jump key. This allows
@@ -255,7 +263,6 @@ public class PlayerControllerScript : MonoBehaviour
         {
             anim.SetBool("walking", walking);
             Debug.Log("Walking");
-            anim.Play("Tory_Walking");
         }
         else
         {
