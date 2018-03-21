@@ -28,6 +28,7 @@ public class PlayerControllerScript : MonoBehaviour
 	private RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 	private List<RaycastHit2D> hitBufferList = new List<RaycastHit2D> (16);
 	private ContactFilter2D contactFilter;
+    private SpriteRenderer sr;
 
 	#endregion
 
@@ -48,6 +49,7 @@ public class PlayerControllerScript : MonoBehaviour
 		anim = GetComponent<Animator>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
 		collider2D = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
 		contactFilter.useTriggers = false;
 		contactFilter.SetLayerMask (Physics2D.GetLayerCollisionMask (gameObject.layer));
 		contactFilter.useLayerMask = true;
@@ -82,6 +84,14 @@ public class PlayerControllerScript : MonoBehaviour
 			Stab();
 		}
 	}
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(FlashColor());
+        }
+    }
 
 	#region Logic Functions
 
@@ -243,6 +253,17 @@ public class PlayerControllerScript : MonoBehaviour
 	{
 		Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
 	}
+
+    IEnumerator FlashColor()
+    {
+        var normalColor = sr.material.color;
+
+        sr.material.color = Color.red;
+        yield return new WaitForSeconds(0.25F);
+
+        sr.material.color = normalColor;
+        yield return new WaitForSeconds(0.1F);
+    }
 
 	#endregion
 }
