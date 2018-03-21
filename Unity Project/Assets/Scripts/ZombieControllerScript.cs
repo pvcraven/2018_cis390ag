@@ -13,6 +13,7 @@ public class ZombieControllerScript : MonoBehaviour
     private float flipTime;
     private Rigidbody2D rb;
     private Animator anim;
+    public float health = 100f;
 
     void Start()
     {
@@ -23,6 +24,8 @@ public class ZombieControllerScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        CheckHealth();
+
         var move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", Mathf.Abs(move));
         //rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y);
@@ -58,6 +61,8 @@ public class ZombieControllerScript : MonoBehaviour
             Debug.Log("Player found!");
             //Code for movement following player after player has been found
         }
+
+        
     }
 
     void Flip()
@@ -70,5 +75,13 @@ public class ZombieControllerScript : MonoBehaviour
     bool checkForPlayer()
     {
         return Physics2D.Linecast(sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer("Player"));
+    }
+
+    void CheckHealth()
+    {
+        if (health <= 0)
+        {
+            Destroy(rb.gameObject);
+        }
     }
 }
