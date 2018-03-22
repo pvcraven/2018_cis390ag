@@ -156,6 +156,7 @@ public class PlayerControllerScript : MonoBehaviour
 			if (enemy.GetComponent<Collider2D>().IsTouching(coll2D))
 			{
 				Debug.Log("Colliding with enemy");
+				FlashColor();
 				//Code to add functionality when collision is detected, like attacking
 			}
 		}

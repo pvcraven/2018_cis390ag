@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 50069340320420560}
   - component: {fileID: 114650392896360724}
   - component: {fileID: 114306898908346934}
+  - component: {fileID: 114159777248568338}
   - component: {fileID: 70910004324860084}
   - component: {fileID: 95204153325148070}
   m_Layer: 0
@@ -169,6 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4475109029806880}
   - component: {fileID: 114343809999157212}
+  - component: {fileID: 114267294677505094}
   m_Layer: 0
   m_Name: CM vcam2
   m_TagString: Untagged
@@ -183,8 +185,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851647365750044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.4, y: 5.947, z: 0}
-  m_LocalScale: {x: 33.470154, y: 7.388725, z: 1}
+  m_LocalPosition: {x: 47, y: -2.4, z: 0}
+  m_LocalScale: {x: 98.07491, y: 33.52634, z: 1}
   m_Children: []
   m_Father: {fileID: 224416087169560914}
   m_RootOrder: 0
@@ -209,7 +211,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377632775304484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.92, y: 4.37, z: -10.925503}
+  m_LocalPosition: {x: 3.359622, y: 4.37, z: -10.925503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4857875647038306}
@@ -435,6 +437,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114159777248568338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270749830176946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc4abaa48162b547ae9e0508876bce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 8
+  zombie: {fileID: 0}
+  bandit: {fileID: 0}
+--- !u!114 &114267294677505094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1946912833650078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 0
+  m_BoundingVolume: {fileID: 0}
+  m_BoundingShape2D: {fileID: 60959207769075918}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
 --- !u!114 &114306898908346934
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -25,7 +25,6 @@ public class BulletController : MonoBehaviour {
         DetectCollision();
     }
 
-
     void DetectCollision()
     {
         if (coll2D.IsTouching(zombie.GetComponent<Collider2D>()))
