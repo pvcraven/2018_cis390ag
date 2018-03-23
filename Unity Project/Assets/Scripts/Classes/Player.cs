@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, ICharacterInterface {
+public class Player : ICharacterInterface {
 
 
 	#region Properties
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour, ICharacterInterface {
 		get{return speed;}
 		set{speed = value;}}
 	public bool IsGrounded{
-		get{return isGrounded;}
+		get{return Physics2D.Linecast(this.player.GetComponent<PlayerController>().startOnPlayer.position, this.player.GetComponent<PlayerController>().endOnGround.position, 1 << LayerMask.NameToLayer("Ground")); }
 		set{isGrounded = value;}}
 	public int JumpForce{
 		get{return jumpForce;}
@@ -34,61 +34,65 @@ public class Player : MonoBehaviour, ICharacterInterface {
 	#endregion
 	
 	#region Variables
-	private int health = 0;
-	private int strength = 0;
-	private int speed = 0;
+	private int health = 100;
+	private int strength = 10;
+	private int speed = 2;
 	private bool isGrounded = false;
 	private int jumpForce = 0;
-	private int fallMultiplier = 0;
-	private int lowJumpMultiplier = 0;
+	private int fallMultiplier = 3;
+	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
 
-	#endregion
+    #endregion
 
-	#region Components
-	private Rigidbody2D rb2D;
-	private Collider2D coll2D;
-	private Animator anim;
-	private SpriteRenderer spriteRend;
+    #region Components
+    public GameObject player;
 
-	#endregion
+    public Transform startOnPlayer, endOnGround;
 
-	#region Contrustor
-	public Player(){
+    #endregion
+
+    #region Contrustor
+    public Player(GameObject player){
 
 		this.Health = 100;
 		this.Strength = 0;
 		this.Speed = 5;
 		this.IsGrounded = true;
-		this.FallMultiplier = 5;
+        this.JumpForce = 5;
+		this.FallMultiplier = 3;
 		this.LowJumpMultiplier = 2;
-		this.facingRight = true;
+		this.FacingRight = true;
+        this.player = player;
     }
-
-    public void Start()
-    {
-        rb2D = GetComponent<Rigidbody2D>();
-        coll2D = GetComponent<Collider2D>();
-        anim = GetComponent<Animator>();
-        spriteRend = GetComponent<SpriteRenderer>();
-    }
-
 
 	#endregion
 	
 	#region Methods 
 	public void Jump(){
-		if(this.isGrounded)
+		if(this.IsGrounded)
 		{
-			rb2D.velocity = Vector2.up * jumpForce;
+            Debug.Log("Jump");
+
+            if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
+            {
+                player.GetComponent<Rigidbody2D>().velocity += Vector2.up * this.JumpForce * Physics2D.gravity.y * (this.FallMultiplier -= 1) * Time.deltaTime;
+            }
+            else if (player.GetComponent<Rigidbody2D>().velocity.y > 0 && !Input.GetButton("Jump"))
+            {
+                player.GetComponent<Rigidbody2D>().velocity += Vector2.up * this.JumpForce * Physics2D.gravity.y * (this.LowJumpMultiplier -= 1) * Time.deltaTime;
+            }
+           
+            GroundCheckHandler();
 		}}
-	public void Walk(float direction) {
+
+    public void Walk(float direction) {
 		CheckDirection(direction);
-		rb2D.velocity = new Vector2(direction * this.speed, rb2D.velocity.y);}
+		player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, player.GetComponent<Rigidbody2D>().velocity.y);}
 
 	public void Sprint(float direction){
 		CheckDirection(direction);
-		rb2D.velocity = new Vector2(direction * speed * 1.5f, rb2D.velocity.y);}
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * speed * 1.5f, player.GetComponent<Rigidbody2D>().velocity.y);}
 
 	public void MeleeAttack(){
 		Debug.Log("MeleeAttack");}
@@ -111,23 +115,40 @@ public class Player : MonoBehaviour, ICharacterInterface {
 		}}
 
 	public void FlipDirection() {
-		facingRight = !facingRight;
-		Vector2 scale = transform.localScale;
+		FacingRight = !FacingRight;
+		Vector2 scale = player.transform.localScale;
 		scale.x *= -1;
-		transform.localScale = scale;}
+		player.transform.localScale = scale;}
 
 	public void TakeDamage(int damage) {
 		this.health = this.health - damage;}
 
+    private bool GroundCheckHandler(){
+        
+        if (this.IsGrounded)
+        {
+            player.GetComponent<Animator>().SetBool("OnGround", IsGrounded);
+            player.GetComponent<Animator>().SetFloat("vSpeed", 0);
+        }
+        else
+        {
+            player.GetComponent<Animator>().SetFloat("vSpeed", player.GetComponent<Rigidbody2D>().velocity.y);
+            player.GetComponent<Animator>().SetBool("OnGround", IsGrounded);
+            player.GetComponent<Animator>().Play("Jump/Fall");
+        }
+        Debug.Log(this.IsGrounded);
 
-	public IEnumerator FlashColor(Color color) {
+        return this.IsGrounded;
+    }
+
+    public IEnumerator FlashColor(Color color) {
 		//spriteRend is a SpriteRenderer
-        var normalColor = spriteRend.material.color;
+        var normalColor = player.GetComponent<SpriteRenderer>().material.color;
 
-        spriteRend.material.color = color;
+        player.GetComponent<SpriteRenderer>().material.color = color;
         yield return new WaitForSeconds(0.25F);
 
-        spriteRend.material.color = color;
+        player.GetComponent<SpriteRenderer>().material.color = color;
         yield return new WaitForSeconds(0.1F);}
 
 	#endregion

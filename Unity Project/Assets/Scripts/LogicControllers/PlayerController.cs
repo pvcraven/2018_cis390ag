@@ -11,26 +11,17 @@ public class PlayerController : MonoBehaviour {
 	public KeyCode interactKey = KeyCode.R;
 	public KeyCode pauseKey = KeyCode.Escape; 
 
-	private bool jump;
 	private bool walk;
-	private bool sprint;
-	private bool melee;
-	private bool ranged;
-	private bool interact;
-	private bool pause;
 
-    public Player tory = new Player();
+    public GameObject player;
+    public Transform startOnPlayer, endOnGround;
+    public Player tory;
 
     private float direction = 0;
 
 	void Start()
 	{
-        jump = Input.GetKeyDown(jumpKey);
-		sprint = Input.GetKeyDown(sprintKey) && walk;
-		melee = Input.GetKeyDown(meleeKey);
-		ranged = Input.GetKeyDown(rangedKey);
-		interact = Input.GetKeyDown(interactKey);
-		pause = Input.GetKeyDown(pauseKey);
+        tory = new Player(player);
 	}
 
 	void Update()
@@ -42,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		direction = Input.GetAxis("Horizontal");
 		
-		if(direction >= .01 || direction <= -.01)
+		if(direction >= .2 || direction <= -.2)
 		{
 			walk = true;
 		}
@@ -56,35 +47,42 @@ public class PlayerController : MonoBehaviour {
     {
         Move();
 
-        if (pause)
+        if(Input.GetKeyDown(pauseKey))
         {
             //pauseCode
         }
 
-        if (jump)
+        if(Input.GetKey(jumpKey))
         {
             tory.Jump();
         }
 
-        if (sprint)
+        if(Input.GetKeyDown(sprintKey) && walk)
         {
             tory.Sprint(direction);
         }
-        else if (walk)
+        else if(walk)
         {
             tory.Walk(direction);
         }
+        else
+        {
+            if(tory.IsGrounded)
+            {
+                tory.player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            }
+        }
 
-        if (melee)
+        if(Input.GetKeyDown(meleeKey))
         {
             tory.MeleeAttack();
         }
-        else if (ranged)
+        else if(Input.GetKeyDown(rangedKey))
         {
             tory.RangedAttack();
         }
 
-        if (interact)
+        if(Input.GetKeyDown(interactKey))
         {
             tory.Interact();
         }

@@ -38,9 +38,8 @@ GameObject:
   - component: {fileID: 4324409836364732}
   - component: {fileID: 212429018028049734}
   - component: {fileID: 50069340320420560}
-  - component: {fileID: 114650392896360724}
+  - component: {fileID: 114618731280287424}
   - component: {fileID: 114306898908346934}
-  - component: {fileID: 114159777248568338}
   - component: {fileID: 70910004324860084}
   - component: {fileID: 95204153325148070}
   m_Layer: 0
@@ -211,7 +210,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377632775304484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.83750236, y: 4.37, z: -10.925503}
+  m_LocalPosition: {x: 0.019515172, y: 0, z: -0.9255029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4857875647038306}
@@ -323,7 +322,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -351,7 +350,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.05
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -437,20 +436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114159777248568338
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1270749830176946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc4abaa48162b547ae9e0508876bce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 8
-  zombie: {fileID: 0}
-  bandit: {fileID: 0}
 --- !u!114 &114267294677505094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -538,7 +523,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114650392896360724
+--- !u!114 &114618731280287424
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -546,17 +531,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1270749830176946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70d4388f99048c4280311c355d29047, type: 3}
+  m_Script: {fileID: 11500000, guid: 8448dbae72a528b42a3e98b6951e04c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
-  jumpForce: 5
-  groundDistance: 0
-  fallMultiplier: 2
-  lowJumpMultiplier: 2
-  bullet: {fileID: 1469316922951046, guid: a55509bdb2a654346a42e29d301cbcea, type: 2}
-  bulletSpawn: {fileID: 4777189863969172}
-  fireRate: 1
+  jumpKey: 32
+  sprintKey: 304
+  meleeKey: 102
+  rangedKey: 101
+  interactKey: 114
+  pauseKey: 27
+  player: {fileID: 1270749830176946}
   startOnPlayer: {fileID: 4763194070322316}
   endOnGround: {fileID: 4104615564674150}
 --- !u!114 &114766998018581186
