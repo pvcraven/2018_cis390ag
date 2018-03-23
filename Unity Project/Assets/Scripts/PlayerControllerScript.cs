@@ -51,8 +51,12 @@ public class PlayerControllerScript : MonoBehaviour
 
 	#endregion
 
+	public Player tory = new Player();
+
+
 	void Start()
 	{
+
 		anim = GetComponent<Animator>();
 		rb2D = GetComponent<Rigidbody2D>();
 		coll2D = GetComponent<Collider2D>();
@@ -197,10 +201,10 @@ public class PlayerControllerScript : MonoBehaviour
          rb2D.velocity = Vector2.up * jumpForce;
     }
 
-	/// <summary>
-	/// Causes the player to fall. The speed of the player's fall depends on how long they hold the Jump key. This allows
-	/// the user to either "short" jump or "long" jump. 
-	/// </summary>
+	// <summary>
+	// Causes the player to fall. The speed of the player's fall depends on how long they hold the Jump key. This allows
+	// the user to either "short" jump or "long" jump. 
+	// </summary>
 	private void ApplyFallMultipliers()
 	{
 		if (rb2D.velocity.y < 0)
@@ -275,6 +279,7 @@ public class PlayerControllerScript : MonoBehaviour
 	{
 		Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
 	}
+
 
     IEnumerator FlashColor()
     {
