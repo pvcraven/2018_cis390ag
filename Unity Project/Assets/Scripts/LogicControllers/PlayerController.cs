@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		direction = Input.GetAxis("Horixontal");
 		
-		if(direction >= .01 || direction <= -.01)
+		if(direction >= .01 || direction <= -.01);
 		{
 			walk = true;
 		}
@@ -53,43 +53,42 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    void CheckforInput()
-    {
-        Move();
+	void CheckforInput()
+	{
+		Move();
 
-        if (pause)
-        {
-            //pauseCode
-        }
+		if(pause)
+		{
+			//pauseCode
+		}
 
-        if (jump)
-        {
-            tory.Jump();
-        }
+		if(jump)
+		{
+			tory.Jump();
+		}
 
-        if (sprint)
-        {
-            tory.Sprint(direction);
-        }
-        else if (walk)
-        {
-            tory.Walk(direction);
-        }
+		if(sprint)
+		{
+			tory.Sprint(direction);
+		}
+		else if(walk)
+		{
+			tory.Walk(direction);
+		}
 
-        if (melee)
-        {
-            tory.MeleeAttack();
-        }
-        else if (ranged)
-        {
-            tory.RangedAttack();
-        }
-
-        if (interact)
-        {
-            tory.Interact();
-        }
-    }
+		if(melee)
+		{
+			tory.MeleeAttack();
+		}
+		else if(ranged)
+		{
+			tory.RangedAttack();
+		}
+		
+		if(interact)
+		{
+			tory.Interact();
+		}
 
 
 }
