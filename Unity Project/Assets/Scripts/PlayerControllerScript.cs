@@ -264,7 +264,6 @@ public class PlayerControllerScript : MonoBehaviour
         if(walking)
         {
             anim.SetBool("walking", walking);
-            Debug.Log("Walking");
         }
         else
         {
