@@ -63,11 +63,16 @@ public class Player : MonoBehaviour, ICharacterInterface {
 		this.FallMultiplier = 5;
 		this.LowJumpMultiplier = 2;
 		this.facingRight = true;
+    }
 
-		rb2D = GetComponent<Rigidbody2D>();
-		coll2D = GetComponent<Collider2D>();
-		anim = GetComponent<Animator>();
-		spriteRend = GetComponent<SpriteRenderer>();}
+    public void Start()
+    {
+        rb2D = GetComponent<Rigidbody2D>();
+        coll2D = GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
+        spriteRend = GetComponent<SpriteRenderer>();
+    }
+
 
 	#endregion
 	
