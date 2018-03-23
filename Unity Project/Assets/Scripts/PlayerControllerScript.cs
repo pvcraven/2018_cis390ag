@@ -51,9 +51,6 @@ public class PlayerControllerScript : MonoBehaviour
 
 	#endregion
 
-	public Player tory = new Player();
-
-
 	void Start()
 	{
 
