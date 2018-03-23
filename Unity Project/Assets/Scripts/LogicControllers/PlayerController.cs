@@ -19,14 +19,12 @@ public class PlayerController : MonoBehaviour {
 	private bool interact;
 	private bool pause;
 
-    private Player tory;
+    public Player tory = new Player();
 
     private float direction = 0;
 
 	void Start()
 	{
-        Player tory = new Player();
-
         jump = Input.GetKeyDown(jumpKey);
 		sprint = Input.GetKeyDown(sprintKey) && walk;
 		melee = Input.GetKeyDown(meleeKey);
