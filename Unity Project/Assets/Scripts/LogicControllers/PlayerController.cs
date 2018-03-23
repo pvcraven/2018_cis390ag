@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public string jumpKey = "";
-	public string walkKey = "";
-	public string sprintKey = "";
-	public string meleeKey = "";
-	public string rangedKey = "";
-	public string interactKey = "";
-	public string pauseKey = ""; 
+	public KeyCode jumpKey = KeyCode.Space;
+	public KeyCode sprintKey = KeyCode.LeftShift;
+	public KeyCode meleeKey = KeyCode.F;
+	public KeyCode rangedKey = KeyCode.E;
+	public KeyCode interactKey = KeyCode.R;
+	public KeyCode pauseKey = KeyCode.Escape; 
 
 	private bool jump;
 	private bool walk;
@@ -20,13 +19,15 @@ public class PlayerController : MonoBehaviour {
 	private bool interact;
 	private bool pause;
 
-	public Player tory = new Player();
+    private Player tory;
 
-	private float direction = 0;
+    private float direction = 0;
 
 	void Start()
 	{
-		jump = Input.GetKeyDown(jumpKey);
+        Player tory = new Player();
+
+        jump = Input.GetKeyDown(jumpKey);
 		sprint = Input.GetKeyDown(sprintKey) && walk;
 		melee = Input.GetKeyDown(meleeKey);
 		ranged = Input.GetKeyDown(rangedKey);
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Move()
 	{
-		direction = Input.GetAxis("Horixontal");
+		direction = Input.GetAxis("Horizontal");
 		
 		if(direction >= .01 || direction <= -.01)
 		{
