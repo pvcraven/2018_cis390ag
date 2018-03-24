@@ -14,23 +14,22 @@ public class PlayerController : MonoBehaviour {
 	private bool walk;
 
     public GameObject player;
+	public GameObject rangedAmmunition;
+	public Transform rangedSpawner;
     public Transform startOnPlayer, endOnGround;
     public Player tory;
 
     private float direction = 0;
 
-	void Start()
-	{
+	void Start(){
         tory = new Player(player);
 	}
 
-	void Update()
-	{
+	void Update(){
 		CheckforInput();
 	}
 
-	void Move()
-	{
+	void Move(){
 		direction = Input.GetAxis("Horizontal");
 		
 		if(direction >= .2 || direction <= -.2)
@@ -43,18 +42,24 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    void CheckforInput()
-    {
+    void CheckforInput(){
+
+		#region Setup Information for Input Checks
         Move();
+		tory.GroundCheck();
+
+		#endregion
 
         if(Input.GetKeyDown(pauseKey))
         {
             //pauseCode
         }
 
-        if(Input.GetKey(jumpKey))
+        if(Input.GetKeyDown(jumpKey))
         {
-            tory.Jump();
+
+			tory.GroundCheck();
+			tory.Jump();
         }
 
         if(Input.GetKeyDown(sprintKey) && walk)
@@ -69,7 +74,7 @@ public class PlayerController : MonoBehaviour {
         {
             if(tory.IsGrounded)
             {
-                tory.player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                tory.StopMoving();
             }
         }
 
@@ -88,4 +93,9 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+
+	void OnCollisionEnter()
+	{
+
+	}
 }
