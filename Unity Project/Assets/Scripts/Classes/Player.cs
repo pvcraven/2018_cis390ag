@@ -167,6 +167,7 @@ public class Player : ICharacterInterface {
 
 		GameObject.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);}
 
+
 	public void Interact(){
 		Debug.Log("Interact");}
 

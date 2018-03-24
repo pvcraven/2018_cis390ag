@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour {
 	public KeyCode interactKey = KeyCode.R;
 	public KeyCode pauseKey = KeyCode.Escape; 
 
+	public GameObject bullet;
+	public Transform bulletSpawn;
+
 	private bool walk;
 
     public GameObject player;
