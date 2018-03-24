@@ -97,8 +97,11 @@ public class Player : ICharacterInterface {
 	public void MeleeAttack(){
 		Debug.Log("MeleeAttack");}
 
-	public void RangedAttack(){
-		Debug.Log("RangedAttack");}
+	public void RangedAttack(GameObject rangedObject, Transform rangedSpawn){
+		Debug.Log("RangedAttack");
+		GameObject.Instantiate(rangedObject, rangedSpawn.position, Quaternion.identity);
+
+	}
 
 	public void Interact(){
 		Debug.Log("Interact");}

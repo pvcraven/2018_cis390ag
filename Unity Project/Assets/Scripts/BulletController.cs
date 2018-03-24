@@ -5,8 +5,6 @@ using UnityEngine;
 public class BulletController : MonoBehaviour {
 
     public float bulletSpeed = 8f;
-    public GameObject zombie;
-    public GameObject bandit;
 
 
 	// Use this for initialization
@@ -15,14 +13,14 @@ public class BulletController : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed, GetComponent<Rigidbody2D>().velocity.x);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("BulletTriggerEnter");
 
         if(other.gameObject.tag == "Enemy")
         {
             other.gameObject.GetComponent<ZombieControllerScript>().TakeDamage();
-
+			Destroy (gameObject);
         }
     }
 
