@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject bullet;
 	public Transform bulletSpawn;
+    private AudioSource gunShot;
 
 	private bool walk;
 
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Start(){
         tory = new Player(player);
+        gunShot = GetComponent<AudioSource>();
 	}
 
 	void Update(){
@@ -60,7 +62,6 @@ public class PlayerController : MonoBehaviour {
 
         if(Input.GetKeyDown(jumpKey))
         {
-
 			tory.GroundCheck();
 			tory.Jump();
         }
@@ -88,6 +89,7 @@ public class PlayerController : MonoBehaviour {
         else if(Input.GetKeyDown(rangedKey))
         {
             tory.RangedAttack();
+            gunShot.Play();
         }
 
         if(Input.GetKeyDown(interactKey))
