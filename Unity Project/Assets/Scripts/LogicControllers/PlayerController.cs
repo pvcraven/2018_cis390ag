@@ -33,9 +33,21 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 		CheckforInput();
-        Debug.Log(tory.stamina);
-        Debug.Log(tory.health);
-	}
+        if (Input.GetKey(sprintKey) && walk && tory.Stamina > 1)
+        {
+            tory.Stamina -= 1;
+        }
+        else
+        {
+            if(tory.Stamina < 500)
+                tory.Stamina += .25f;
+        }
+        if(Input.GetKeyDown(attack) && tory.Stamina > 10)
+        {
+            tory.Stamina -= 10;
+        }
+        Debug.Log(tory.Stamina);
+    }
 
 	void Move(){
 		direction = Input.GetAxis("Horizontal");
@@ -69,10 +81,9 @@ public class PlayerController : MonoBehaviour {
 			tory.Jump();
         }
 
-        if(Input.GetKeyDown(sprintKey) && walk)
+        if(Input.GetKeyDown(sprintKey) && walk && tory.Stamina > 0)
         {
             tory.Sprint(direction);
-            tory.stamina -= 1;
         }
         else if(walk)
         {

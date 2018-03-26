@@ -9,6 +9,9 @@ public class Player : ICharacterInterface {
     public int Health{
 		get {return health;}
 		set {health = value;}}
+    public float Stamina{
+        get { return stamina; }
+        set { stamina = value; }}
     public int Strength {
 		get {return strength;}
 		set {strength = value;}}
@@ -44,8 +47,8 @@ public class Player : ICharacterInterface {
 	#endregion
 	
 	#region Variables
-	public int health = 100;
-    public int stamina = 100;
+	private int health = 100;
+    private float stamina = 500;
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
@@ -56,7 +59,7 @@ public class Player : ICharacterInterface {
 	private bool walking = false;
 	private string currentMeleeWeapon = "";
 	private string currentRangedWeapon = "";
-	private string currentAttackType = "";
+	private string currentAttackType = "melee";
 
     #endregion
 
@@ -71,6 +74,7 @@ public class Player : ICharacterInterface {
     public Player(GameObject player){
 
 		this.Health = 100;
+        this.Stamina = 500;
 		this.Strength = 0;
 		this.Speed = 5;
 		this.IsGrounded = true;
@@ -165,6 +169,7 @@ public class Player : ICharacterInterface {
         {
             currentAttackType = "melee";
         }
+        Debug.Log("New Weapon: " + currentAttackType);
     }
 
 	public void RangedAttack(){
