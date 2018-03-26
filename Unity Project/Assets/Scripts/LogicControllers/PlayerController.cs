@@ -4,46 +4,41 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public string jumpKey = "";
-	public string walkKey = "";
-	public string sprintKey = "";
-	public string meleeKey = "";
-	public string rangedKey = "";
-	public string interactKey = "";
-	public string pauseKey = ""; 
+	public KeyCode jumpKey = KeyCode.Space;
+	public KeyCode sprintKey = KeyCode.LeftShift;
+	public KeyCode meleeKey = KeyCode.F;
+	public KeyCode rangedKey = KeyCode.E;
+	public KeyCode interactKey = KeyCode.R;
+	public KeyCode pauseKey = KeyCode.Escape; 
 
-	private bool jump;
+	public GameObject bullet;
+	public Transform bulletSpawn;
+    private AudioSource gunShot;
+
 	private bool walk;
-	private bool sprint;
-	private bool melee;
-	private bool ranged;
-	private bool interact;
-	private bool pause;
 
-	public Player tory = new Player();
+    public GameObject player;
+	public GameObject rangedAmmunition;
+	public Transform rangedSpawner;
+    public Transform startOnPlayer, endOnGround;
+    public Player tory;
 
-	private float direction = 0;
+    private float direction = 0;
+    private SpriteRenderer spriteRend;
 
-	void Start()
-	{
-		jump = Input.GetKeyDown(jumpKey);
-		sprint = Input.GetKeyDown(sprintKey) && walk;
-		melee = Input.GetKeyDown(meleeKey);
-		ranged = Input.GetKeyDown(rangedKey);
-		interact = Input.GetKeyDown(interactKey);
-		pause = Input.GetKeyDown(pauseKey);
+	void Start(){
+        tory = new Player(player);
+        gunShot = GetComponent<AudioSource>();
 	}
 
-	void Update()
-	{
+	void Update(){
 		CheckforInput();
 	}
 
-	void Move()
-	{
-		direction = Input.GetAxis("Horixontal");
+	void Move(){
+		direction = Input.GetAxis("Horizontal");
 		
-		if(direction >= .01 || direction <= -.01);
+		if(direction >= .2 || direction <= -.2)
 		{
 			walk = true;
 		}
@@ -53,42 +48,64 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void CheckforInput()
-	{
-		Move();
+    void CheckforInput(){
 
-		if(pause)
-		{
-			//pauseCode
-		}
+		#region Setup Information for Input Checks
+        Move();
+		tory.GroundCheck();
 
-		if(jump)
-		{
+		#endregion
+
+        if(Input.GetKeyDown(pauseKey))
+        {
+            //pauseCode
+        }
+
+        if(Input.GetKeyDown(jumpKey))
+        {
+			tory.GroundCheck();
 			tory.Jump();
-		}
+        }
 
-		if(sprint)
-		{
-			tory.Sprint(direction);
-		}
-		else if(walk)
-		{
-			tory.Walk(direction);
-		}
+        if(Input.GetKeyDown(sprintKey) && walk)
+        {
+            tory.Sprint(direction);
+        }
+        else if(walk)
+        {
+            tory.Walk(direction);
+        }
+        else
+        {
+            if(tory.IsGrounded)
+            {
+                tory.StopMoving();
+            }
+        }
 
-		if(melee)
-		{
-			tory.MeleeAttack();
-		}
-		else if(ranged)
-		{
-			tory.RangedAttack();
-		}
-		
-		if(interact)
-		{
-			tory.Interact();
-		}
+        if(Input.GetKeyDown(meleeKey))
+        {
+            tory.MeleeAttack();
+        }
+        else if(Input.GetKeyDown(rangedKey))
+        {
+            tory.RangedAttack();
+            gunShot.Play();
+        }
 
+        if(Input.GetKeyDown(interactKey))
+        {
+            tory.Interact();
+        }
 
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(tory.FlashColor());
+            tory.TakeDamage(10);
+        }
+    }
 }

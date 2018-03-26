@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4200663950459676}
   - component: {fileID: 212785999773370186}
   - component: {fileID: 114244900302148946}
-  - component: {fileID: 50897472464448094}
   - component: {fileID: 70213611362957092}
   - component: {fileID: 114288746098549296}
+  - component: {fileID: 50949121230288302}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -44,21 +44,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50897472464448094
+--- !u!50 &50949121230288302
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1469316922951046}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 8
+  zombie: {fileID: 0}
+  bandit: {fileID: 0}
 --- !u!212 &212785999773370186
 SpriteRenderer:
   m_ObjectHideFlags: 1

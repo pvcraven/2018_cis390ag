@@ -18,6 +18,6 @@ public interface ICharacterInterface {
 
 	void FlipDirection();
 
-	IEnumerator FlashColor(Color color);
+	IEnumerator FlashColor();
 
 }
