@@ -119,12 +119,12 @@ public class ZombieControllerScript : MonoBehaviour
         {
             if (overlappingObjects[position].CompareTag("Ground"))
             {
-                Debug.Log("On Ground");
+                //Debug.Log("On Ground");
                 return true;
             }
             position++;
         }
-        Debug.Log("Not on Ground");
+        //Debug.Log("Not on Ground");
 
         return false;
     }
