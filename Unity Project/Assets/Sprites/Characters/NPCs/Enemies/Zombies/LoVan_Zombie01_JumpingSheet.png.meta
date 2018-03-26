@@ -3,7 +3,17 @@ guid: c238b86e586f7474f8a65165081d7ed4
 timeCreated: 1519711745
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: LoVan_Zombie01_JumpingSheet_0
+    21300002: LoVan_Zombie01_JumpingSheet_1
+    21300004: LoVan_Zombie01_JumpingSheet_2
+    21300006: LoVan_Zombie01_JumpingSheet_3
+    21300008: LoVan_Zombie01_JumpingSheet_4
+    21300010: LoVan_Zombie01_JumpingSheet_5
+    21300012: LoVan_Zombie01_JumpingSheet_6
+    21300014: LoVan_Zombie01_JumpingSheet_7
+    21300016: LoVan_Zombie01_JumpingSheet_8
+    21300018: LoVan_Zombie01_JumpingSheet_9
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -40,7 +50,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -66,9 +76,159 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 51
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1
+        width: 51
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 2
+        width: 51
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 3
+        width: 54
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_4
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 4
+        width: 58
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_5
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 4
+        width: 61
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_6
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 4
+        width: 58
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_7
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 3
+        width: 54
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_8
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 2
+        width: 51
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LoVan_Zombie01_JumpingSheet_9
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 1
+        width: 51
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

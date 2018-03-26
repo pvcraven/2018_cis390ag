@@ -30,15 +30,13 @@ public class ZombieControllerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        var move = Input.GetAxis("Horizontal");
-        anim.SetFloat("Speed", Mathf.Abs(move));
+       
         //rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y);
 
-        if (move > 0 && !facingLeft)
-            Flip();
-        else if (move < 0 && facingLeft)
-            Flip();
+        //if (move > 0 && !facingLeft)
+        //    Flip();
+        //else if (move < 0 && facingLeft)
+        //    Flip();
 
         characterFound = checkForPlayer();
         onGround = DetermineOnGrounded();
@@ -83,6 +81,7 @@ public class ZombieControllerScript : MonoBehaviour
         {
             anim.SetBool("JumpingUP", false);
         }
+        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
 
     }
 
