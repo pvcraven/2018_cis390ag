@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     public Player tory;
 
     private float direction = 0;
+    private SpriteRenderer spriteRend;
 
 	void Start(){
         tory = new Player(player);

@@ -209,15 +209,17 @@ public class Player : ICharacterInterface {
             player.GetComponent<Animator>().Play("Jump/Fall");
         }}
    
-   public IEnumerator FlashColor(Color color) {
-		//spriteRend is a SpriteRenderer
-        var normalColor = player.GetComponent<SpriteRenderer>().material.color;
+   public IEnumerator FlashColor()
+    {
+        var spriteRend = player.GetComponent<SpriteRenderer>();
+        var normalColor = spriteRend.material.color;
 
-        player.GetComponent<SpriteRenderer>().material.color = color;
+        spriteRend.material.color = Color.red;
         yield return new WaitForSeconds(0.25F);
 
-        player.GetComponent<SpriteRenderer>().material.color = color;
-        yield return new WaitForSeconds(0.1F);}
+        spriteRend.material.color = normalColor;
+        yield return new WaitForSeconds(0.1F);
+    }
 
 	private void Stab(){
 		player.GetComponent<Animator>().SetBool("stabbing", true);
