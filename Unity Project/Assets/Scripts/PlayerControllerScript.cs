@@ -29,6 +29,8 @@ public class PlayerControllerScript : MonoBehaviour
     private bool stabbing = false;
     private bool walking = false;
     private float vSpeed = 0f;
+    private float health;
+    private float stamina;
 
 	private bool hasWeapon = true;
 	private float nextFire;
@@ -64,6 +66,10 @@ public class PlayerControllerScript : MonoBehaviour
 		weapons = GameObject.FindGameObjectsWithTag("Weapon");
 		items = GameObject.FindGameObjectsWithTag("Item");
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        this.stamina = 100f;
+        this.health = 100f;
+        Debug.Log(this.stamina);
 	}
 
 	// Use when applying non-physics-related functions. Runs once per frame.
@@ -80,7 +86,7 @@ public class PlayerControllerScript : MonoBehaviour
 	void FixedUpdate()
 	{
 		CheckForInput();
-	}
+    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -236,10 +242,14 @@ public class PlayerControllerScript : MonoBehaviour
 		if (Input.GetButton("Sprint"))
 		{
 			rb2D.velocity = new Vector2(move * maxSpeed * 1.5f, rb2D.velocity.y);
-		}
+            stamina -= 1f;
+            Debug.Log(this.stamina);
+        }
 		else
 		{
 			rb2D.velocity = new Vector2(move * maxSpeed, rb2D.velocity.y);
+            stamina += .5f;
+            Debug.Log(this.stamina);
             Walk();
         }
 

@@ -44,7 +44,8 @@ public class Player : ICharacterInterface {
 	#endregion
 	
 	#region Variables
-	private int health = 100;
+	public int health = 100;
+    public int stamina = 100;
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
@@ -134,6 +135,14 @@ public class Player : ICharacterInterface {
 		CheckDirection(direction);
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * speed * 1.5f, player.GetComponent<Rigidbody2D>().velocity.y);}
 
+    public void Attack()
+    {
+        if (currentAttackType == "ranged")
+            RangedAttack();
+        else
+            MeleeAttack();
+    }
+
 	public void MeleeAttack(){
 		Debug.Log("MeleeAttack");
 
@@ -144,6 +153,19 @@ public class Player : ICharacterInterface {
 				Stab();
 				break;
 		}}
+
+    public void switchWeapon()
+    {
+        Debug.Log("SwitchWeapon");
+        if(currentAttackType == "melee")
+        {
+            currentAttackType = "ranged";
+        }
+        else
+        {
+            currentAttackType = "melee";
+        }
+    }
 
 	public void RangedAttack(){
 		Debug.Log("RangedAttack");

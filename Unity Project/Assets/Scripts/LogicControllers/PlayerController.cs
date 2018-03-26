@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour {
 
 	public KeyCode jumpKey = KeyCode.Space;
 	public KeyCode sprintKey = KeyCode.LeftShift;
-	public KeyCode meleeKey = KeyCode.F;
-	public KeyCode rangedKey = KeyCode.E;
+    public KeyCode attack = KeyCode.F;
 	public KeyCode interactKey = KeyCode.R;
-	public KeyCode pauseKey = KeyCode.Escape; 
+	public KeyCode pauseKey = KeyCode.Escape;
+    public KeyCode switchWeapon = KeyCode.LeftControl;
 
 	public GameObject bullet;
 	public Transform bulletSpawn;
@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 		CheckforInput();
+        Debug.Log(tory.stamina);
+        Debug.Log(tory.health);
 	}
 
 	void Move(){
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour {
         if(Input.GetKeyDown(sprintKey) && walk)
         {
             tory.Sprint(direction);
+            tory.stamina -= 1;
         }
         else if(walk)
         {
@@ -83,19 +86,18 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if(Input.GetKeyDown(meleeKey))
+        if(Input.GetKeyDown(attack))
         {
-            tory.MeleeAttack();
-        }
-        else if(Input.GetKeyDown(rangedKey))
-        {
-            tory.RangedAttack();
-            gunShot.Play();
+            tory.Attack();
         }
 
         if(Input.GetKeyDown(interactKey))
         {
             tory.Interact();
+        }
+        if(Input.GetKeyDown(switchWeapon))
+        {
+            tory.switchWeapon();
         }
 
     }
