@@ -105,6 +105,7 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(tory.FlashColor());
+            tory.TakeDamage(10);
         }
     }
 }
