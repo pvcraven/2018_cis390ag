@@ -211,13 +211,13 @@ public class Player : ICharacterInterface {
    
    public IEnumerator FlashColor()
     {
-        var spriteRend = player.GetComponent<SpriteRenderer>();
-        var normalColor = spriteRend.material.color;
+        var spriteRenderer = player.GetComponent<SpriteRenderer>();
+        var normalColor = spriteRenderer.material.color;
 
-        spriteRend.material.color = Color.red;
+        spriteRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.25F);
 
-        spriteRend.material.color = normalColor;
+        spriteRenderer.material.color = normalColor;
         yield return new WaitForSeconds(0.1F);
     }
 
