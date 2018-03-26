@@ -24,7 +24,6 @@ public class ZombieControllerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        CheckHealth();
 
         var move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", Mathf.Abs(move));
@@ -77,8 +76,10 @@ public class ZombieControllerScript : MonoBehaviour
         return Physics2D.Linecast(sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer("Player"));
     }
 
-    void CheckHealth()
+    public void TakeDamage()
     {
+        health -= 50f;
+
         if (health <= 0)
         {
             Destroy(rb.gameObject);

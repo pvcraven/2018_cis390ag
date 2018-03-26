@@ -48,6 +48,7 @@ public class PlayerControllerScript : MonoBehaviour
 	Animator anim;
 	private Rigidbody2D rb2D;
 	private Collider2D coll2D;
+    private AudioSource audioSource;
 
 	#endregion
 
@@ -57,6 +58,7 @@ public class PlayerControllerScript : MonoBehaviour
 		anim = GetComponent<Animator>();
 		rb2D = GetComponent<Rigidbody2D>();
 		coll2D = GetComponent<Collider2D>();
+        audioSource = GetComponent<AudioSource>();
 
 		food = GameObject.FindGameObjectsWithTag("Food");
 		weapons = GameObject.FindGameObjectsWithTag("Weapon");
@@ -101,6 +103,7 @@ public class PlayerControllerScript : MonoBehaviour
 		{
 			nextFire = Time.time + fireRate;
 			FireWeapon();
+            audioSource.Play();
 		}
 
         stabbing = Input.GetKeyDown("f");
