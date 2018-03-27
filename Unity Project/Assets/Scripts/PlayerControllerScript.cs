@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
@@ -10,53 +11,48 @@ public class PlayerControllerScript : MonoBehaviour
 	#region Attributes
 
 	public float maxSpeed = 5f;
+	public float sprintMultiplier = 1.5f;
 	public float jumpForce = 5f;
-	public float groundDistance;
 	public float fallMultiplier = 2f;
 	public float lowJumpMultiplier = 2f;
-	public GameObject bullet;
-	public Transform bulletSpawn;
 	public float fireRate = 1f;
-    private SpriteRenderer sr;
 
     // If the character begins the level facing left, this needs to be changed to false.
-    private bool facingRight = true;
+    private bool isFacingRight = true;
 	private bool isGrounded = false;
 
-    public Transform startOnPlayer, endOnGround;
-
     //Anim Variables
-    private bool stabbing = false;
-    private bool walking = false;
+    private bool isStabbing = false;
+    private bool isWalking = false;
     private float vSpeed = 0f;
     private float health;
     private float stamina;
 
 	private bool hasWeapon = true;
 	private float nextFire;
-	private List<Collision2D> groundPlayerIsTouching = new List<Collision2D>();
-	private RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
-	private List<RaycastHit2D> hitBufferList = new List<RaycastHit2D> (16);
-	private ContactFilter2D contactFilter;
 
 	#endregion
 
 	#region Components
 
-	GameObject[] food;
-	GameObject[] weapons;
-	GameObject[] items;
-	GameObject[] enemies;
+	private GameObject[] food;
+	private GameObject[] weapons;
+	private GameObject[] items;
+	private GameObject[] enemies;
 	Animator anim;
 	private Rigidbody2D rb2D;
 	private Collider2D coll2D;
     private AudioSource audioSource;
+	private SpriteRenderer sr;
+	public GameObject bullet;
+	public Transform bulletSpawn;
+	public Transform startOnPlayer, endOnGround;
 
 	#endregion
 
 	void Start()
 	{
-
+		// Initialize components
 		anim = GetComponent<Animator>();
 		rb2D = GetComponent<Rigidbody2D>();
 		coll2D = GetComponent<Collider2D>();
@@ -67,6 +63,7 @@ public class PlayerControllerScript : MonoBehaviour
 		items = GameObject.FindGameObjectsWithTag("Item");
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
+		//TODO: Check if this is needed since it's in the player class
         this.stamina = 100f;
         this.health = 100f;
         Debug.Log(this.stamina);
@@ -112,9 +109,9 @@ public class PlayerControllerScript : MonoBehaviour
             audioSource.Play();
 		}
 
-        stabbing = Input.GetKeyDown("f");
+        isStabbing = Input.GetKeyDown("f");
 
-        if (stabbing)
+        if (isStabbing)
         {
             Stab();
         }
@@ -196,7 +193,7 @@ public class PlayerControllerScript : MonoBehaviour
 
 	private void FlipDirection()
 	{
-		facingRight = !facingRight;
+		isFacingRight = !isFacingRight;
 		Vector2 scale = transform.localScale;
 		scale.x *= -1;
 		transform.localScale = scale;
@@ -207,10 +204,7 @@ public class PlayerControllerScript : MonoBehaviour
          rb2D.velocity = Vector2.up * jumpForce;
     }
 
-	// <summary>
-	// Causes the player to fall. The speed of the player's fall depends on how long they hold the Jump key. This allows
-	// the user to either "short" jump or "long" jump. 
-	// </summary>
+	// Adjusts the player's jump depending on how long they hold the jump key
 	private void ApplyFallMultipliers()
 	{
 		if (rb2D.velocity.y < 0)
@@ -223,25 +217,22 @@ public class PlayerControllerScript : MonoBehaviour
 		}
 	}
 
-	/// <summary>
-	/// Takes input from the user along the y axis and moves the player accordingly.
-	/// </summary>
 	private void MoveHorizontally()
 	{
 		float move = Input.GetAxis("Horizontal");
 
         if(move >= .2 || move <= -.2)
         {
-            walking = true;
+            isWalking = true;
         }
         else
         {
-            walking = false;
+            isWalking = false;
         }
 
 		if (Input.GetButton("Sprint"))
 		{
-			rb2D.velocity = new Vector2(move * maxSpeed * 1.5f, rb2D.velocity.y);
+			rb2D.velocity = new Vector2(move * maxSpeed * sprintMultiplier, rb2D.velocity.y);
             stamina -= 1f;
             Debug.Log(this.stamina);
         }
@@ -254,11 +245,11 @@ public class PlayerControllerScript : MonoBehaviour
         }
 
 		// Flip the character if they're moving in the opposite direction
-		if (move > 0 && !facingRight)
+		if (move > 0 && !isFacingRight)
 		{
 			FlipDirection();
 		}
-		else if (move < 0 && facingRight)
+		else if (move < 0 && isFacingRight)
 		{
 			FlipDirection();
 		}
@@ -266,21 +257,21 @@ public class PlayerControllerScript : MonoBehaviour
 
 	private void Stab()
 	{
-		anim.SetBool("stabbing", stabbing);
+		anim.SetBool("stabbing", isStabbing);
 		anim.Play("Tory_Stabbing");
-		stabbing = false;
-		anim.SetBool("stabbing", stabbing);
+		isStabbing = false;
+		anim.SetBool("stabbing", isStabbing);
 	}
 
     private void Walk()
     {
-        if(walking)
+        if(isWalking)
         {
-            anim.SetBool("walking", walking);
+            anim.SetBool("walking", isWalking);
         }
         else
         {
-            anim.SetBool("walking", walking);
+            anim.SetBool("walking", isWalking);
         }
     }
 

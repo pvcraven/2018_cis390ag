@@ -9,9 +9,7 @@ public class SaveGame : MonoBehaviour
 
 	void Awake()
 	{
-		//player.position = new Vector2(
-			//PlayerPrefs.GetFloat("playerPosX"),
-			//PlayerPrefs.GetFloat("playerPosY"));
+		//loadPlayerPosition();
 	}
 
 	private void SaveGameSettings()
@@ -37,5 +35,12 @@ public class SaveGame : MonoBehaviour
 		
 		// Closes Unity game if it's a full application
 		Application.Quit();
+	}
+	
+	private void loadPlayerPosition()
+	{
+		this.player.position = new Vector2(
+			PlayerPrefs.GetFloat("playerPosX"),
+			PlayerPrefs.GetFloat("playerPosY"));
 	}
 }
