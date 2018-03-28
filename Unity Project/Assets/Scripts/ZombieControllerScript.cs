@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ZombieControllerScript : MonoBehaviour
 {
-    //TODO: Create a zombie class
     public float maxSpeed = 10f;
     public float timeTravelled = 5f;
     public Transform sightStart, sightEnd;

@@ -37,7 +37,7 @@ public class SaveGame : MonoBehaviour
 		Application.Quit();
 	}
 	
-	private void loadPlayerPosition()
+	private void LoadPlayerPosition()
 	{
 		this.player.position = new Vector2(
 			PlayerPrefs.GetFloat("playerPosX"),
