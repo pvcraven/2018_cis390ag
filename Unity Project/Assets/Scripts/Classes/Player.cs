@@ -78,7 +78,7 @@ public class Player : ICharacterInterface {
 		this.Strength = 0;
 		this.Speed = 5;
 		this.IsGrounded = true;
-        this.JumpForce = 7;
+        this.JumpForce = 12;
 		this.FallMultiplier = 4;
 		this.LowJumpMultiplier = 3;
 		this.FacingRight = true;
@@ -118,7 +118,7 @@ public class Player : ICharacterInterface {
 				Debug.Log("Time.deltaTime: " + Time.deltaTime);
 
                 player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, (System.Math.Abs((int) player.GetComponent<Rigidbody2D>().velocity.y + 1))* this.JumpForce * System.Math.Abs(Physics2D.gravity.y) * (this.LowJumpMultiplier - 1) * Time.deltaTime);
-				Debug.Log("LowJump: " +  player.GetComponent<Rigidbody2D>().velocity);
+				//Debug.Log("LowJump: " +  player.GetComponent<Rigidbody2D>().velocity);
 			}
 
 		}}
@@ -148,7 +148,7 @@ public class Player : ICharacterInterface {
     }
 
 	public void MeleeAttack(){
-		Debug.Log("MeleeAttack");
+		//Debug.Log("MeleeAttack");
 
 		switch(this.MeleeWeapon)
 		{
@@ -160,7 +160,7 @@ public class Player : ICharacterInterface {
 
     public void switchWeapon()
     {
-        Debug.Log("SwitchWeapon");
+        //Debug.Log("SwitchWeapon");
         if(currentAttackType == "melee")
         {
             currentAttackType = "ranged";
@@ -169,11 +169,11 @@ public class Player : ICharacterInterface {
         {
             currentAttackType = "melee";
         }
-        Debug.Log("New Weapon: " + currentAttackType);
+        //Debug.Log("New Weapon: " + currentAttackType);
     }
 
 	public void RangedAttack(){
-		Debug.Log("RangedAttack");
+		//Debug.Log("RangedAttack");
 
 		GameObject rangedAmmunition = player.GetComponent<PlayerController>().rangedAmmunition;
 		Transform rangedSpawner =  player.GetComponent<PlayerController>().rangedSpawner;
@@ -196,7 +196,8 @@ public class Player : ICharacterInterface {
 
 
 	public void Interact(){
-		Debug.Log("Interact");}
+		//Debug.Log("Interact");
+	}
 
 	public void CheckDirection(float direction) {
 		// Flip the character if they're moving in the opposite direction

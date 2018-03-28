@@ -1,0 +1,33 @@
+x-pos: -3.7
+Use 'W', 'A', 'S', or 'D' to move!
+
+x-pos: 1.0
+This is Normal
+*BOLD* This Is Bold
+*ITALIC* This Is Italic
+*BIG* This Is Big
+*BOLD**BIG* Bold and Big
+This is normal again 
+
+
+x-pos: 1.2
+Press 'F' to pick up items!
+
+x-pos: 6.5
+Press 'Space' to jump!
+
+x-pos: 16
+Use 'F' to pickup weapons!
+
+x-pos: 20
+Use 'TAB' to view your inventory!
+
+x-pos: 25
+Press 'F' to use your knife!
+
+x-pos: 30
+Press 'Shift' to sprint!
+
+x-pos: 35
+Press 'X' to interact with characters!
+***
