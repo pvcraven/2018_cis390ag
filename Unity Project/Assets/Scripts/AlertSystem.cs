@@ -28,9 +28,9 @@ public class AlertSystem : MonoBehaviour
 
 	void checkForEvents()
 	{
-		for(int i = 0; i<events.Count; i++)
+		for(int i = 0; i < events.Count; i++)
 		{
-			Debug.Log(transform.position.x + " " + events[i].x_position + " " + eventsHappened[i]);
+			//Debug.Log(transform.position.x + " " + events[i].x_position + " " + eventsHappened[i]);
 			if (events[i].x_position <= transform.position.x && !eventsHappened[i])
 			{
 				eventsHappened[i] = true;

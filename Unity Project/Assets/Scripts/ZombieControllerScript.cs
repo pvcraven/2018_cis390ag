@@ -7,34 +7,49 @@ public class ZombieControllerScript : MonoBehaviour
     public float maxSpeed = 10f;
     public float timeTravelled = 5f;
     public Transform sightStart, sightEnd;
+    public float jumpForce;
+	public GameObject player;
 
     private bool facingLeft = true;
     private bool characterFound = false;
+    private bool onGround = false;
+    private int jumpCooldown = 120;
     private float flipTime;
     private Rigidbody2D rb;
     private Animator anim;
+    private CapsuleCollider2D cc;
     public float health = 100f;
+	private AudioSource audio;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        cc = GetComponent<CapsuleCollider2D>();
         flipTime = Time.time + timeTravelled;
         anim = GetComponent<Animator>();
+		audio = GetComponent<AudioSource> ();
     }
 
     void FixedUpdate()
     {
-
-        var move = Input.GetAxis("Horizontal");
-        anim.SetFloat("Speed", Mathf.Abs(move));
+		sound_manager ();
         //rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y);
 
-        if (move > 0 && !facingLeft)
-            Flip();
-        else if (move < 0 && facingLeft)
-            Flip();
+        //if (move > 0 && !facingLeft)
+        //    Flip();
+        //else if (move < 0 && facingLeft)
+        //    Flip();
 
         characterFound = checkForPlayer();
+        onGround = DetermineOnGrounded();
+
+        if (jumpCooldown <= 0 && onGround)
+        {
+            Jump();
+            jumpCooldown = 120;
+        }
+        jumpCooldown--;
 
         if (!characterFound)
         {
@@ -61,8 +76,26 @@ public class ZombieControllerScript : MonoBehaviour
             //Code for movement following player after player has been found
         }
 
-        
+        if (!onGround && rb.velocity.y > 0)
+        {
+            anim.SetBool("JumpingUP", true);
+        }
+        else
+        {
+            anim.SetBool("JumpingUP", false);
+        }
+        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+
     }
+
+	void sound_manager () {
+		if (Vector2.Distance (player.transform.position, transform.position) < 5) {
+			if (!audio.isPlaying) {
+				audio.Play ();
+				audio.Play (44100);
+			}
+		}
+	}
 
     void Flip()
     {
@@ -84,5 +117,32 @@ public class ZombieControllerScript : MonoBehaviour
         {
             Destroy(rb.gameObject);
         }
+    }
+
+    bool DetermineOnGrounded()
+    {
+        int position = 0;
+        Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(new Vector2(cc.attachedRigidbody.position.x, cc.attachedRigidbody.position.y), new Vector2(cc.size.x, cc.size.y + .05f), cc.direction, 0);
+
+        //Debug.Log("overlappingObjects: " + overlappingObjects);
+        //Debug.Log("Position: " + position);
+
+        while (position < overlappingObjects.GetLength(0))
+        {
+            if (overlappingObjects[position].CompareTag("Ground"))
+            {
+                //Debug.Log("On Ground");
+                return true;
+            }
+            position++;
+        }
+        //Debug.Log("Not on Ground");
+
+        return false;
+    }
+
+    public void Jump()
+    {
+        rb.velocity += Vector2.up * jumpForce;
     }
 }

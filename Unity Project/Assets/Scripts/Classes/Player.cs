@@ -9,6 +9,9 @@ public class Player : ICharacterInterface {
     public int Health{
 		get {return health;}
 		set {health = value;}}
+    public float Stamina{
+        get { return stamina; }
+        set { stamina = value; }}
     public int Strength {
 		get {return strength;}
 		set {strength = value;}}
@@ -16,7 +19,7 @@ public class Player : ICharacterInterface {
 		get{return speed;}
 		set{speed = value;}}
 	public bool IsGrounded{
-		get{return Physics2D.Linecast(this.player.GetComponent<PlayerController>().startOnPlayer.position, this.player.GetComponent<PlayerController>().endOnGround.position, 1 << LayerMask.NameToLayer("Ground")); }
+		get{return isGrounded;}
 		set{isGrounded = value;}}
 	public int JumpForce{
 		get{return jumpForce;}
@@ -30,18 +33,33 @@ public class Player : ICharacterInterface {
 	public bool FacingRight{
 		get{return facingRight;}
 		set{facingRight = value;}}
-    
+	public bool Walking{
+		get{return walking;}
+		set{walking = value;}}
+    public string MeleeWeapon{
+		get{return currentMeleeWeapon;}
+		set{currentMeleeWeapon = value;}}
+
+	public string RangedWeapon{
+		get{return currentRangedWeapon;}
+		set{currentRangedWeapon = value;}}
+
 	#endregion
 	
 	#region Variables
 	private int health = 100;
+    private float stamina = 500;
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
-	private int jumpForce = 0;
+	private int jumpForce = 7;
 	private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
+	private bool walking = false;
+	private string currentMeleeWeapon = "";
+	private string currentRangedWeapon = "";
+	private string currentAttackType = "melee";
 
     #endregion
 
@@ -56,52 +74,130 @@ public class Player : ICharacterInterface {
     public Player(GameObject player){
 
 		this.Health = 100;
+        this.Stamina = 500;
 		this.Strength = 0;
 		this.Speed = 5;
 		this.IsGrounded = true;
-        this.JumpForce = 5;
-		this.FallMultiplier = 3;
-		this.LowJumpMultiplier = 2;
+        this.JumpForce = 12;
+		this.FallMultiplier = 4;
+		this.LowJumpMultiplier = 3;
 		this.FacingRight = true;
         this.player = player;
+		this.MeleeWeapon = "Knife";
+		this.RangedWeapon = "Gun";
     }
 
 	#endregion
 	
 	#region Methods 
 	public void Jump(){
+
 		if(this.IsGrounded)
 		{
             Debug.Log("Jump");
 
-            if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
+            if(player.GetComponent<Rigidbody2D>().velocity.y < 0)
             {
-                player.GetComponent<Rigidbody2D>().velocity += Vector2.up * this.JumpForce * Physics2D.gravity.y * (this.FallMultiplier -= 1) * Time.deltaTime;
-            }
-            else if (player.GetComponent<Rigidbody2D>().velocity.y > 0 && !Input.GetButton("Jump"))
+				Debug.Log("JumpForce: " + this.JumpForce);
+				Debug.Log("FallMultiplier: " + this.FallMultiplier);
+				Debug.Log("Gravity: " + Physics2D.gravity.y);
+				Debug.Log("Vector2.up: " + Vector2.up);
+				Debug.Log("Time.deltaTime: " + Time.deltaTime);
+
+				
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, (System.Math.Abs((int) player.GetComponent<Rigidbody2D>().velocity.y + 1)) * this.JumpForce * System.Math.Abs(Physics2D.gravity.y) * (this.FallMultiplier - 1) * Time.deltaTime);
+				Debug.Log("Fall: " + player.GetComponent<Rigidbody2D>().velocity);
+			}
+            else if(player.GetComponent<Rigidbody2D>().velocity.y >= 0)
             {
-                player.GetComponent<Rigidbody2D>().velocity += Vector2.up * this.JumpForce * Physics2D.gravity.y * (this.LowJumpMultiplier -= 1) * Time.deltaTime;
-            }
-           
-            GroundCheckHandler();
+
+				Debug.Log("JumpForce: " + this.JumpForce);
+				Debug.Log("LowJumpMultiplier: " + this.LowJumpMultiplier);
+				Debug.Log("Gravity: " + Physics2D.gravity.y);
+				Debug.Log("Vector2.up: " + Vector2.up);
+				Debug.Log("Time.deltaTime: " + Time.deltaTime);
+
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, (System.Math.Abs((int) player.GetComponent<Rigidbody2D>().velocity.y + 1))* this.JumpForce * System.Math.Abs(Physics2D.gravity.y) * (this.LowJumpMultiplier - 1) * Time.deltaTime);
+				//Debug.Log("LowJump: " +  player.GetComponent<Rigidbody2D>().velocity);
+			}
+
 		}}
 
     public void Walk(float direction) {
 		CheckDirection(direction);
-		player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, player.GetComponent<Rigidbody2D>().velocity.y);}
+		this.Walking = true;
+		player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, player.GetComponent<Rigidbody2D>().velocity.y);
+
+		player.GetComponent<Animator>().SetBool("walking", this.Walking);}
+	
+	public void StopMoving() {
+		this.Walking = false;
+		player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+		player.GetComponent<Animator>().SetBool("walking", this.Walking);}
 
 	public void Sprint(float direction){
 		CheckDirection(direction);
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * speed * 1.5f, player.GetComponent<Rigidbody2D>().velocity.y);}
 
+    public void Attack()
+    {
+        if (currentAttackType == "ranged")
+            RangedAttack();
+        else
+            MeleeAttack();
+    }
+
 	public void MeleeAttack(){
-		Debug.Log("MeleeAttack");}
+		//Debug.Log("MeleeAttack");
+
+		switch(this.MeleeWeapon)
+		{
+			case "Knife" : 
+				this.strength = 10;
+				Stab();
+				break;
+		}}
+
+    public void switchWeapon()
+    {
+        //Debug.Log("SwitchWeapon");
+        if(currentAttackType == "melee")
+        {
+            currentAttackType = "ranged";
+        }
+        else
+        {
+            currentAttackType = "melee";
+        }
+        //Debug.Log("New Weapon: " + currentAttackType);
+    }
 
 	public void RangedAttack(){
-		Debug.Log("RangedAttack");}
+		//Debug.Log("RangedAttack");
+
+		GameObject rangedAmmunition = player.GetComponent<PlayerController>().rangedAmmunition;
+		Transform rangedSpawner =  player.GetComponent<PlayerController>().rangedSpawner;
+		
+		switch(this.RangedWeapon)
+		{
+			case "Gun" : 
+				this.strength = 50;
+
+				//This needs to work with a Bullet Class rather than the previously existing way.
+				//Reason: It will only work with a gun, the previously existing way prohibits any future ranged weapons.
+				//Also: the current bullets never despawn, are pretty slow, 
+				//		and can only be fired in a straight line toward the positve X axis
+
+				//rangedAmmunition = new Bullet();
+				break;
+		}
+
+		GameObject.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);}
+
 
 	public void Interact(){
-		Debug.Log("Interact");}
+		//Debug.Log("Interact");
+	}
 
 	public void CheckDirection(float direction) {
 		// Flip the character if they're moving in the opposite direction
@@ -123,33 +219,40 @@ public class Player : ICharacterInterface {
 	public void TakeDamage(int damage) {
 		this.health = this.health - damage;}
 
-    private bool GroundCheckHandler(){
+    public void GroundCheck(){
+
+		this.IsGrounded = Physics2D.Linecast(this.player.GetComponent<PlayerController>().startOnPlayer.position, 
+											 this.player.GetComponent<PlayerController>().endOnGround.position, 
+											 1 << LayerMask.NameToLayer("Ground"));
         
         if (this.IsGrounded)
         {
-            player.GetComponent<Animator>().SetBool("OnGround", IsGrounded);
+            player.GetComponent<Animator>().SetBool("OnGround", this.IsGrounded);
             player.GetComponent<Animator>().SetFloat("vSpeed", 0);
         }
         else
         {
             player.GetComponent<Animator>().SetFloat("vSpeed", player.GetComponent<Rigidbody2D>().velocity.y);
-            player.GetComponent<Animator>().SetBool("OnGround", IsGrounded);
+            player.GetComponent<Animator>().SetBool("OnGround", this.IsGrounded);
             player.GetComponent<Animator>().Play("Jump/Fall");
-        }
-        Debug.Log(this.IsGrounded);
+        }}
+   
+   public IEnumerator FlashColor()
+    {
+        var spriteRenderer = player.GetComponent<SpriteRenderer>();
+        var normalColor = spriteRenderer.material.color;
 
-        return this.IsGrounded;
-    }
-
-    public IEnumerator FlashColor(Color color) {
-		//spriteRend is a SpriteRenderer
-        var normalColor = player.GetComponent<SpriteRenderer>().material.color;
-
-        player.GetComponent<SpriteRenderer>().material.color = color;
+        spriteRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.25F);
 
-        player.GetComponent<SpriteRenderer>().material.color = color;
-        yield return new WaitForSeconds(0.1F);}
+        spriteRenderer.material.color = normalColor;
+        yield return new WaitForSeconds(0.1F);
+    }
 
+	private void Stab(){
+		player.GetComponent<Animator>().SetBool("stabbing", true);
+		player.GetComponent<Animator>().Play("Tory_Stabbing");
+		player.GetComponent<Animator>().SetBool("stabbing", false);}
+	
 	#endregion
 }
