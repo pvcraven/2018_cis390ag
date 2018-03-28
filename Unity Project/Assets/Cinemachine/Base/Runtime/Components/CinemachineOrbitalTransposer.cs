@@ -375,9 +375,9 @@ namespace Cinemachine
             if (m_Heading.m_HeadingDefinition == Heading.HeadingDefinition.Velocity
                 && mTargetRigidBody == null)
             {
-                Debug.Log(string.Format(
-                        "Attempted to use HeadingDerivationMode.Velocity to calculate heading for {0}. No RigidBody was present on '{1}'. Defaulting to position delta",
-                        GetFullName(VirtualCamera.VirtualCameraGameObject), FollowTarget));
+                //Debug.Log(string.Format(
+                //        "Attempted to use HeadingDerivationMode.Velocity to calculate heading for {0}. No RigidBody was present on '{1}'. Defaulting to position delta",
+                //        GetFullName(VirtualCamera.VirtualCameraGameObject), FollowTarget));
                 m_Heading.m_HeadingDefinition = Heading.HeadingDefinition.PositionDelta;
             }
 

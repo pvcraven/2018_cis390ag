@@ -1,6 +1,15 @@
 x-pos: -3.7
 Use 'W', 'A', 'S', or 'D' to move!
 
+x-pos: 1.0
+This is Normal
+*BOLD* This Is Bold
+*ITALIC* This Is Italic
+*BIG* This Is Big
+*BOLD**BIG* Bold and Big
+This is normal again 
+
+
 x-pos: 1.2
 Press 'F' to pick up items!
 

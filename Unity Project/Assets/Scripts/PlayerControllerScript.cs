@@ -66,7 +66,7 @@ public class PlayerControllerScript : MonoBehaviour
 		//TODO: Check if this is needed since it's in the player class
         this.stamina = 100f;
         this.health = 100f;
-        Debug.Log(this.stamina);
+        //Debug.Log(this.stamina);
 	}
 
 	// Use when applying non-physics-related functions. Runs once per frame.
@@ -125,7 +125,7 @@ public class PlayerControllerScript : MonoBehaviour
 		{
 			if (item.GetComponent<Collider2D>().IsTouching(coll2D))
 			{
-				Debug.Log("Colliding with item");
+				//Debug.Log("Colliding with item");
 				if (Input.GetButton("Interact"))
 				{
 					Destroy(item);
@@ -162,7 +162,7 @@ public class PlayerControllerScript : MonoBehaviour
 		{
 			if (enemy.GetComponent<Collider2D>().IsTouching(coll2D))
 			{
-				Debug.Log("Colliding with enemy");
+				//Debug.Log("Colliding with enemy");
 				FlashColor();
 				//Code to add functionality when collision is detected, like attacking
 			}
@@ -234,13 +234,13 @@ public class PlayerControllerScript : MonoBehaviour
 		{
 			rb2D.velocity = new Vector2(move * maxSpeed * sprintMultiplier, rb2D.velocity.y);
             stamina -= 1f;
-            Debug.Log(this.stamina);
+            //Debug.Log(this.stamina);
         }
 		else
 		{
 			rb2D.velocity = new Vector2(move * maxSpeed, rb2D.velocity.y);
             stamina += .5f;
-            Debug.Log(this.stamina);
+            //Debug.Log(this.stamina);
             Walk();
         }
 
