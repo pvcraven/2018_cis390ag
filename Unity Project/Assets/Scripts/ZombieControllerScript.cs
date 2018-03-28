@@ -8,7 +8,7 @@ public class ZombieControllerScript : MonoBehaviour
     public float timeTravelled = 5f;
     public Transform sightStart, sightEnd;
     public float jumpForce;
-
+	public GameObject player;
 
     private bool facingLeft = true;
     private bool characterFound = false;
@@ -19,6 +19,8 @@ public class ZombieControllerScript : MonoBehaviour
     private Animator anim;
     private CapsuleCollider2D cc;
     public float health = 100f;
+	private AudioSource audio;
+
 
     void Start()
     {
@@ -26,11 +28,12 @@ public class ZombieControllerScript : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>();
         flipTime = Time.time + timeTravelled;
         anim = GetComponent<Animator>();
+		audio = GetComponent<AudioSource> ();
     }
 
     void FixedUpdate()
     {
-       
+		sound_manager ();
         //rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y);
 
         //if (move > 0 && !facingLeft)
@@ -84,6 +87,15 @@ public class ZombieControllerScript : MonoBehaviour
         anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
 
     }
+
+	void sound_manager () {
+		if (Vector2.Distance (player.transform.position, transform.position) < 5) {
+			if (!audio.isPlaying) {
+				audio.Play ();
+				audio.Play (44100);
+			}
+		}
+	}
 
     void Flip()
     {
