@@ -16,12 +16,16 @@ public class BulletController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("BulletTriggerEnter");
-
         if(other.gameObject.tag == "Enemy")
         {
             other.gameObject.GetComponent<ZombieControllerScript>().TakeDamage();
-			Destroy (gameObject);
+			Destroy(gameObject);
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        Destroy(gameObject);
     }
 
 }
