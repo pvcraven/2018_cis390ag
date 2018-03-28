@@ -27,7 +27,7 @@ public class DialogManager : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
         pauseGame = PausedControlObject.GetComponent<PauseController>();
 
-        load_dialog_from_file("Assets/Dialog/testing_grounds.txt");
+        load_dialog_from_file("Assets/Dialog/training_level.txt");
 		initialize_dialog_events ();
 		hide_dialog_on_start ();
 	}
@@ -47,7 +47,7 @@ public class DialogManager : MonoBehaviour
 		check_if_event_triggered();
 
 		if (paused_for_dialog) {
-			if (Input.GetKeyUp("space")) {
+			if (Input.GetKeyUp("return")) {
 				DialogEvent current_dialog = list_of_dialog_events [current_dialog_event];
 				if (current_dialog.current_message == current_dialog.messages.Count - 1)
 					unpause_and_hide_dialog ();
@@ -71,6 +71,9 @@ public class DialogManager : MonoBehaviour
 				Text dialog_text = dialog_box.GetComponentInChildren<Text> ();
 				dialog_text.text = list_of_dialog_events[i].messages[list_of_dialog_events[i].current_message];
 				dialog_box.SetActive (true);
+
+				Vector2 dialog_position = new Vector2 (rb.position.x, rb.position.y+1.2f);
+				dialog_box.transform.position = dialog_position;
 				pause_until_space_is_pressed ();
 			}
 		}

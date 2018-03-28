@@ -78,7 +78,7 @@ public class Player : ICharacterInterface {
 		this.Strength = 0;
 		this.Speed = 5;
 		this.IsGrounded = true;
-        this.JumpForce = 7;
+        this.JumpForce = 12;
 		this.FallMultiplier = 4;
 		this.LowJumpMultiplier = 3;
 		this.FacingRight = true;
