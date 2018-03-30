@@ -7,7 +7,7 @@ public interface IRangedWeaponInterface{
 
     int AmmunitionSpeed { get; set; }
     int AmmunitionDamage { get; set; }
-    int FireRate { get; set; }
+    int FireRatePerSecond { get; set; }
     void RangedTrigger();
 
 }

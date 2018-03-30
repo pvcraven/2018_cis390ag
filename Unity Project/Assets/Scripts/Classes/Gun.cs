@@ -17,10 +17,10 @@ public class Gun : IRangedWeaponInterface
         set { ammunitionDamage = value; }
     }
 
-    public int FireRate
+    public int FireRatePerSecond
     {
-        get { return fireRate; }
-        set { fireRate = value; }
+        get { return fireRatePerSecond; }
+        set { fireRatePerSecond = value; }
     }
 
     #endregion
@@ -28,30 +28,27 @@ public class Gun : IRangedWeaponInterface
     #region Variables
     private int ammunitionSpeed = 10;
     private int ammunitionDamage = 50;
-    private int fireRate = 2;
+    private int fireRatePerSecond = 2;
     #endregion
 
     #region Constructor
 
     public Gun(string gun)
     {
-
         switch(gun)
         {
             case "pistol":
                 this.ammunitionDamage = 25;
                 this.ammunitionSpeed = 35;
-
-          
+                this.fireRatePerSecond = 1;
                 break;
 
             case "assaultRifle":
                 this.ammunitionDamage = 35;
                 this.ammunitionSpeed = 50;
+                this.fireRatePerSecond = 3;
                 break;
-             
         }
-        
     }
 
     #endregion
@@ -59,8 +56,7 @@ public class Gun : IRangedWeaponInterface
     #region Methods
     public void RangedTrigger()
     {
-
-
+        
     }
 
     #endregion
