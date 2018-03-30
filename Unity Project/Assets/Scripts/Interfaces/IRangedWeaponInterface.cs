@@ -5,11 +5,9 @@ using UnityEngine;
 public interface IRangedWeaponInterface{
 
 
-    int AmmuntionSpeed { get; set; }
+    int AmmunitionSpeed { get; set; }
     int AmmunitionDamage { get; set; }
-    int FireRate { get; set; }
+    int FireRatePerSecond { get; set; }
+    void RangedTrigger();
 
-    void OnTriggerEnter2D(Collider2D other);
-
-    void OnTriggerExit2D(Collider2D other);
 }

@@ -7,20 +7,17 @@ namespace Classes
     {
         #region Properties
 
-        public int Health
-        {
+        public int Health {
             get { return this.health; }
             set { this.health = value; }
         }
 
-        public int Damage
-        {
+        public int Damage {
             get { return this.damage; }
             set { this.damage = value; }
         }
 
-        public bool IsRanged
-        {
+        public bool IsRanged {
             get { return this.isRanged; }
             set { this.isRanged = value; }
         }
@@ -32,6 +29,7 @@ namespace Classes
         protected int health;
         protected int damage;
         protected float maxSpeed;
+        protected float currentSpeed;
         protected bool isRanged;
         protected bool hasFoundPlayer;
         protected bool isFacingLeft;
@@ -59,59 +57,54 @@ namespace Classes
         
         #region Constructors
         
-        public Enemy(GameObject enemy)
-        {
+        public Enemy(GameObject enemy) {
             this.enemy = enemy;
-            this.health = DEFAULT_DAMAGE;
+            this.health = DEFAULT_HEALTH;
             this.damage = DEFAULT_DAMAGE;
+            this.currentSpeed = 0f;
             this.maxSpeed = DEFAULT_MAX_SPEED;
             this.isRanged = DEFAULT_IS_RANGED;
             this.hasFoundPlayer = DEFAULT_IS_AWARE_OF_PLAYER;
             this.isFacingLeft = DEFAULT_IS_FACING_LEFT;
         }
 
-        public Enemy(GameObject enemy, int health, int damage, float maxSpeed, bool isRanged, bool hasFoundPlayer, bool isFacingLeft)
-        {
+        public Enemy(GameObject enemy, int health, int damage, float maxSpeed, bool isRanged) {
             this.enemy = enemy;
             this.health = health;
+            this.currentSpeed = 0f;
             this.maxSpeed = maxSpeed;
             this.damage = damage;
             this.isRanged = isRanged;
-            this.hasFoundPlayer = hasFoundPlayer;
-            this.isFacingLeft = isFacingLeft;
+            this.hasFoundPlayer = DEFAULT_IS_AWARE_OF_PLAYER;
+            this.isFacingLeft = DEFAULT_IS_FACING_LEFT;
+
+            InitializeComponents();
         }
         
         #endregion
         
         #region Methods
 
-        private void InitializeComponents()
-        {
+        private void InitializeComponents() {
             this.rb2d = this.enemy.GetComponent<Rigidbody2D>();
             this.anim = this.enemy.GetComponent<Animator>();
             this.coll2D = this.enemy.GetComponent<Collider2D>();
             
         }
 
-        public void Attack()
-        {
-            if (this.isRanged)
-            {
+        public void Attack() {
+            if (this.isRanged) {
                 RangedAttack();
-            }
-            else
-            {
+            } else {
                 MeleeAttack();
             } 
         }
 
-        private void RangedAttack()
-        {
+        private void RangedAttack() {
             
         }
 
-        private void MeleeAttack()
-        {
+        private void MeleeAttack() {
             
         }
         
