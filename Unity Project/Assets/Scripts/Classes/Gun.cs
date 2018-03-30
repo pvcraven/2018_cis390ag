@@ -11,7 +11,7 @@ public class Gun : IRangedWeaponInterface
         get { return ammunitionSpeed; }
         set { ammunitionSpeed = value; }
     }
-    public float AmmunitionDamage
+    public int AmmunitionDamage
     {
         get { return ammunitionDamage; }
         set { ammunitionDamage = value; }
@@ -27,7 +27,7 @@ public class Gun : IRangedWeaponInterface
 
     #region Variables
     private int ammunitionSpeed = 10;
-    private float ammunitionDamage = 50;
+    private int ammunitionDamage = 50;
     private int fireRate = 2;
     #endregion
 
@@ -57,7 +57,7 @@ public class Gun : IRangedWeaponInterface
     #endregion
 
     #region Methods
-    public void ShootGun()
+    public void RangedTrigger()
     {
 
 
