@@ -123,7 +123,7 @@ public class Player : ICharacterInterface {
 
 		}}
 
-    public void Walk(float direction) {
+    public void Walk(float direction, float paceDistance = 0) {
 		CheckDirection(direction);
 		this.Walking = true;
 		player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, player.GetComponent<Rigidbody2D>().velocity.y);
@@ -253,6 +253,12 @@ public class Player : ICharacterInterface {
 		player.GetComponent<Animator>().SetBool("stabbing", true);
 		player.GetComponent<Animator>().Play("Tory_Stabbing");
 		player.GetComponent<Animator>().SetBool("stabbing", false);}
+
+
+    public void DrinkWater()
+    {
+        this.stamina += 100;
+    }
 	
 	#endregion
 }
