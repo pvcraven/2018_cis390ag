@@ -12,7 +12,7 @@ public interface ICharacterInterface {
 	//Methods
 	void TakeDamage(int damage);
 
-	void Walk(float direction);
+	void Walk(float direction, float paceDistance = 0);
 
 	void CheckDirection(float direction);
 
