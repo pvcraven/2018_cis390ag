@@ -36,13 +36,4 @@ public class InventoryController : MonoBehaviour
             }
         }
     }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        // This is a test for Audrey and Inventory
-        if (other.gameObject.CompareTag("Item"))
-        {
-            inventoryItemsTest[0] = other.gameObject;
-        }
-    }
 }
