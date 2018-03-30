@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour {
 
         if(Input.GetKeyDown(interactKey))
         {
-            tory.Interact();
+            Destroy(tory.Interact());
         }
         if(Input.GetKeyDown(switchWeapon))
         {
