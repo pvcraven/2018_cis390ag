@@ -39,15 +39,19 @@ public class Player : ICharacterInterface {
     public string MeleeWeapon{
 		get{return currentMeleeWeapon;}
 		set{currentMeleeWeapon = value;}}
-
 	public string RangedWeapon{
 		get{return currentRangedWeapon;}
 		set{currentRangedWeapon = value;}}
+    public string CurrentAttackType
+    {
+        get { return currentAttackType; }
+        set { currentAttackType = value; }
+    }
 
-	#endregion
-	
-	#region Variables
-	private int health = 100;
+    #endregion
+
+    #region Variables
+    private int health = 100;
     private float stamina = 500;
 	private int strength = 10;
 	private int speed = 2;
@@ -67,6 +71,9 @@ public class Player : ICharacterInterface {
     public GameObject player;
 
     public Transform startOnPlayer, endOnGround;
+
+    public GameObject rangedAmmunition;
+    public Transform rangedSpawner;
 
     #endregion
 
@@ -175,8 +182,8 @@ public class Player : ICharacterInterface {
 	public void RangedAttack(){
 		//Debug.Log("RangedAttack");
 
-		GameObject rangedAmmunition = player.GetComponent<PlayerController>().rangedAmmunition;
-		Transform rangedSpawner =  player.GetComponent<PlayerController>().rangedSpawner;
+		this.rangedAmmunition = player.GetComponent<PlayerController>().rangedAmmunition;
+		this.rangedSpawner =  player.GetComponent<PlayerController>().rangedSpawner;
 		
 		switch(this.RangedWeapon)
 		{
@@ -188,13 +195,34 @@ public class Player : ICharacterInterface {
 				//Also: the current bullets never despawn, are pretty slow, 
 				//		and can only be fired in a straight line toward the positve X axis
 
-				//rangedAmmunition = new Bullet();
+				//rangedAmmunition = new Gun();
 				break;
 		}
 
-		GameObject.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);}
+        if (this.RangedWeapon != null)
+        {
+            GameObject shot = Object.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);
+            Rigidbody2D shotRB = shot.GetComponent<Rigidbody2D>();
 
+            //Potentially move to class
+            if (this.FacingRight)
+            {
+                Vector2 scale = shot.transform.localScale;
+                scale.x *= -1;
+                shot.transform.localScale = scale;
+                shotRB = shot.GetComponent<Rigidbody2D>();
+                shotRB.AddForce(new Vector2(500, 0));
+            }
+            else
+            {
+                shotRB = shot.GetComponent<Rigidbody2D>();
+                shotRB.AddForce(new Vector2(-500, 0));
+            }
 
+            Object.Destroy(shot, 3.0f);
+        }
+    }
+		
 	public void Interact(){
 		//Debug.Log("Interact");
 	}
@@ -253,6 +281,6 @@ public class Player : ICharacterInterface {
 		player.GetComponent<Animator>().SetBool("stabbing", true);
 		player.GetComponent<Animator>().Play("Tory_Stabbing");
 		player.GetComponent<Animator>().SetBool("stabbing", false);}
-	
+
 	#endregion
 }

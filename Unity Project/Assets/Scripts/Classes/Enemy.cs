@@ -70,8 +70,7 @@ namespace Classes
             this.isFacingLeft = DEFAULT_IS_FACING_LEFT;
         }
 
-        public Enemy(GameObject enemy, int health, int damage, float maxSpeed, bool isRanged, bool hasFoundPlayer, 
-            bool isFacingLeft)
+        public Enemy(GameObject enemy, int health, int damage, float maxSpeed, bool isRanged, bool hasFoundPlayer, bool isFacingLeft)
         {
             this.enemy = enemy;
             this.health = health;
