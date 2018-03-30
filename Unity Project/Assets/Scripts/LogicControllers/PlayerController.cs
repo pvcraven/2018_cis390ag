@@ -110,6 +110,10 @@ public class PlayerController : MonoBehaviour {
         {
             tory.switchWeapon();
         }
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            tory.DrinkWater();
+        }
 
     }
 

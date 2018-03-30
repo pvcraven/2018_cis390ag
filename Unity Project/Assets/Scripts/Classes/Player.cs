@@ -253,6 +253,12 @@ public class Player : ICharacterInterface {
 		player.GetComponent<Animator>().SetBool("stabbing", true);
 		player.GetComponent<Animator>().Play("Tory_Stabbing");
 		player.GetComponent<Animator>().SetBool("stabbing", false);}
+
+
+    public void DrinkWater()
+    {
+        this.stamina += 100;
+    }
 	
 	#endregion
 }
