@@ -10,6 +10,7 @@ public class InventoryController : MonoBehaviour
 
     private bool inventoryIsOpen = false;
     private PauseController pauseGame;
+    private GameObject[] inventoryItemsTest = new GameObject[3];
 
     void Start()
     {
@@ -33,6 +34,15 @@ public class InventoryController : MonoBehaviour
                 inventoryIsOpen = false;
                 pauseGame.UnPauseGame();
             }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        // This is a test for Audrey and Inventory
+        if (other.gameObject.CompareTag("Item"))
+        {
+            inventoryItemsTest[0] = other.gameObject;
         }
     }
 }
