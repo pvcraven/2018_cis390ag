@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -68,7 +69,8 @@ public class Player : ICharacterInterface {
 
     public Transform startOnPlayer, endOnGround;
 
-    private GameObject[] food;
+    //private GameObject[] food;
+    private List<GameObject> food;
     private GameObject[] weapons;
     private GameObject[] items;
 
@@ -90,7 +92,8 @@ public class Player : ICharacterInterface {
 		this.MeleeWeapon = "Knife";
 		this.RangedWeapon = "Gun";
 
-        food = GameObject.FindGameObjectsWithTag("Food");
+        //food = GameObject.FindGameObjectsWithTag("Food");
+        food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food")); 
         weapons = GameObject.FindGameObjectsWithTag("Weapon");
         items = GameObject.FindGameObjectsWithTag("Item");
     }
@@ -206,13 +209,13 @@ public class Player : ICharacterInterface {
 	public GameObject Interact(){
         foreach (GameObject item in food)
         {
-            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
+            var itemPickedUp = item.GetComponent<Collider2D>();
+            var currentPlayer = player.GetComponent<Collider2D>();
+
+            if (itemPickedUp.IsTouching(currentPlayer))
             {
-                //Debug.Log("Colliding with item");
-                if (Input.GetButton("Interact"))
-                {
-                    return item;
-                }
+                food.Remove(item);
+                return item;
             }
         }
 

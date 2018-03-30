@@ -23,9 +23,9 @@ public class BulletController : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        Destroy(gameObject);
-    }
+    //void OnTriggerExit2D(Collider2D other)
+    //{
+    //    Destroy(gameObject);
+    //}
 
 }
