@@ -8,8 +8,6 @@ public interface IRangedWeaponInterface{
     int AmmuntionSpeed { get; set; }
     int AmmunitionDamage { get; set; }
     int FireRate { get; set; }
+    void FireTrigger();
 
-    void OnTriggerEnter2D(Collider2D other);
-
-    void OnTriggerExit2D(Collider2D other);
 }
