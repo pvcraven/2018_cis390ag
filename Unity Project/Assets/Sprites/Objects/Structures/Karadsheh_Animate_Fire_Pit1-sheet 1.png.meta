@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 0a4af4dc130844d8e8ce59a7d4ac030d
+timeCreated: 1522269937
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Karadsheh_Animate_Fire_Pit1-sheet 1_0
+    21300002: Karadsheh_Animate_Fire_Pit1-sheet 1_1
+    21300004: Karadsheh_Animate_Fire_Pit1-sheet 1_2
+    21300006: Karadsheh_Animate_Fire_Pit1-sheet 1_3
+    21300008: Karadsheh_Animate_Fire_Pit1-sheet 1_4
+    21300010: Karadsheh_Animate_Fire_Pit1-sheet 1_5
+    21300012: Karadsheh_Animate_Fire_Pit1-sheet 1_6
+    21300014: Karadsheh_Animate_Fire_Pit1-sheet 1_7
+    21300016: Karadsheh_Animate_Fire_Pit1-sheet 1_8
+    21300018: Karadsheh_Animate_Fire_Pit1-sheet 1_9
+    21300020: Karadsheh_Animate_Fire_Pit1-sheet 1_10
+    21300022: Karadsheh_Animate_Fire_Pit1-sheet 1_11
+    21300024: Karadsheh_Animate_Fire_Pit1-sheet 1_12
+    21300026: Karadsheh_Animate_Fire_Pit1-sheet 1_13
+    21300028: Karadsheh_Animate_Fire_Pit1-sheet 1_14
+    21300030: Karadsheh_Animate_Fire_Pit1-sheet 1_15
+    21300032: Karadsheh_Animate_Fire_Pit1-sheet 1_16
+    21300034: Karadsheh_Animate_Fire_Pit1-sheet 1_17
+    21300036: Karadsheh_Animate_Fire_Pit1-sheet 1_18
+    21300038: Karadsheh_Animate_Fire_Pit1-sheet 1_19
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 50
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 0
+        width: 60
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_2
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 0
+        width: 58
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_3
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 0
+        width: 62
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_4
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 0
+        width: 62
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_5
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 58
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_6
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 0
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_7
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 0
+        width: 57
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_8
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 0
+        width: 57
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_9
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 0
+        width: 55
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_10
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 0
+        width: 53
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 0
+        width: 52
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_12
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 0
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_13
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 0
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_14
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 0
+        width: 55
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_15
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 0
+        width: 55
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_16
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 0
+        width: 55
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_17
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 0
+        width: 57
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_18
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 0
+        width: 56
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Karadsheh_Animate_Fire_Pit1-sheet 1_19
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 0
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: -614, y: 12}
+      - {x: -627, y: 8}
+      - {x: -631, y: -13}
+      - {x: -631, y: -32}
+      - {x: -581, y: -32}
+      - {x: -581, y: 9}
+      - {x: -585, y: 12}
+    - - {x: -550, y: 14}
+      - {x: -562, y: 10}
+      - {x: -570, y: -18}
+      - {x: -570, y: -32}
+      - {x: -512, y: -32}
+      - {x: -512, y: -9}
+      - {x: -522, y: 14}
+    - - {x: -487, y: 18}
+      - {x: -506, y: -1}
+      - {x: -506, y: -32}
+      - {x: -446, y: -32}
+      - {x: -446, y: -26}
+      - {x: -447, y: -5}
+      - {x: -455, y: 11}
+      - {x: -465, y: 18}
+    - - {x: -422, y: 18}
+      - {x: -429, y: 12}
+      - {x: -443, y: -8}
+      - {x: -444, y: -20}
+      - {x: -444, y: -32}
+      - {x: -382, y: -32}
+      - {x: -382, y: -19}
+      - {x: -385, y: 14}
+      - {x: -393, y: 18}
+    - - {x: -328, y: 20}
+      - {x: -370, y: 20}
+      - {x: -382, y: 16}
+      - {x: -382, y: -32}
+      - {x: -322, y: -32}
+      - {x: -319, y: -27}
+      - {x: -319, y: 8}
+    - - {x: -312, y: 24}
+      - {x: -314, y: 11}
+      - {x: -314, y: -32}
+      - {x: -259, y: -32}
+      - {x: -256, y: -19}
+      - {x: -256, y: 8}
+      - {x: -263, y: 24}
+    - - {x: -202, y: 27}
+      - {x: -246, y: 27}
+      - {x: -250, y: 17}
+      - {x: -250, y: -32}
+      - {x: -191, y: -32}
+      - {x: -191, y: 9}
+      - {x: -199, y: 23}
+    - - {x: -163, y: 30}
+      - {x: -183, y: 21}
+      - {x: -185, y: 10}
+      - {x: -185, y: -20}
+      - {x: -184, y: -32}
+      - {x: -130, y: -32}
+      - {x: -127, y: -26}
+      - {x: -127, y: 15}
+      - {x: -137, y: 30}
+    - - {x: -118, y: 32}
+      - {x: -120, y: -8}
+      - {x: -116, y: -32}
+      - {x: -67, y: -32}
+      - {x: -63, y: -25}
+      - {x: -63, y: 32}
+    - - {x: -25, y: 32}
+      - {x: -50, y: 30}
+      - {x: -54, y: 7}
+      - {x: -54, y: -31}
+      - {x: -50, y: -32}
+      - {x: -2, y: -32}
+      - {x: 1, y: -27}
+      - {x: 1, y: 3}
+      - {x: -3, y: 28}
+    - - {x: 49, y: 19}
+      - {x: 32, y: 19}
+      - {x: 18, y: 14}
+      - {x: 8, y: 2}
+      - {x: 8, y: -21}
+      - {x: 16, y: -32}
+      - {x: 55, y: -32}
+      - {x: 63, y: -20}
+      - {x: 63, y: 9}
+      - {x: 56, y: 18}
+    - - {x: 88, y: 21}
+      - {x: 72, y: 17}
+      - {x: 72, y: -18}
+      - {x: 90, y: -32}
+      - {x: 116, y: -32}
+      - {x: 126, y: -8}
+      - {x: 126, y: 14}
+      - {x: 119, y: 21}
+    - - {x: 182, y: 22}
+      - {x: 147, y: 22}
+      - {x: 142, y: 21}
+      - {x: 136, y: 9}
+      - {x: 136, y: -12}
+      - {x: 148, y: -32}
+      - {x: 183, y: -32}
+      - {x: 191, y: -16}
+      - {x: 191, y: 9}
+      - {x: 189, y: 15}
+    - - {x: 239, y: 25}
+      - {x: 214, y: 25}
+      - {x: 200, y: 5}
+      - {x: 200, y: -20}
+      - {x: 202, y: -32}
+      - {x: 256, y: -32}
+      - {x: 257, y: -27}
+      - {x: 257, y: 13}
+      - {x: 248, y: 23}
+    - - {x: 308, y: 30}
+      - {x: 270, y: 30}
+      - {x: 265, y: 27}
+      - {x: 264, y: 24}
+      - {x: 264, y: -32}
+      - {x: 317, y: -32}
+      - {x: 321, y: -22}
+      - {x: 321, y: 28}
+    - - {x: 334, y: 32}
+      - {x: 328, y: 14}
+      - {x: 328, y: -9}
+      - {x: 333, y: -32}
+      - {x: 381, y: -32}
+      - {x: 384, y: -29}
+      - {x: 384, y: 20}
+      - {x: 383, y: 32}
+    - - {x: 392, y: 32}
+      - {x: 392, y: -10}
+      - {x: 399, y: -32}
+      - {x: 438, y: -32}
+      - {x: 448, y: -19}
+      - {x: 448, y: 32}
+    - - {x: 500, y: 32}
+      - {x: 470, y: 32}
+      - {x: 456, y: 20}
+      - {x: 456, y: -6}
+      - {x: 464, y: -32}
+      - {x: 505, y: -32}
+      - {x: 513, y: -21}
+      - {x: 513, y: 8}
+      - {x: 507, y: 32}
+    - - {x: 531, y: 31}
+      - {x: 518, y: 11}
+      - {x: 522, y: -18}
+      - {x: 524, y: -32}
+      - {x: 571, y: -32}
+      - {x: 577, y: -23}
+      - {x: 577, y: 4}
+      - {x: 565, y: 21}
+    - - {x: 631, y: 20}
+      - {x: 604, y: 20}
+      - {x: 586, y: 8}
+      - {x: 586, y: -32}
+      - {x: 638, y: -32}
+      - {x: 638, y: 6}
+      - {x: 637, y: 15}
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

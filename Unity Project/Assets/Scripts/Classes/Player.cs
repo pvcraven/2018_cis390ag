@@ -68,9 +68,13 @@ public class Player : ICharacterInterface {
 
     public Transform startOnPlayer, endOnGround;
 
+    private GameObject[] food;
+    private GameObject[] weapons;
+    private GameObject[] items;
+
     #endregion
 
-    #region Contrustor
+    #region Contructor
     public Player(GameObject player){
 
 		this.Health = 100;
@@ -85,6 +89,10 @@ public class Player : ICharacterInterface {
         this.player = player;
 		this.MeleeWeapon = "Knife";
 		this.RangedWeapon = "Gun";
+
+        food = GameObject.FindGameObjectsWithTag("Food");
+        weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        items = GameObject.FindGameObjectsWithTag("Item");
     }
 
 	#endregion
@@ -123,7 +131,7 @@ public class Player : ICharacterInterface {
 
 		}}
 
-    public void Walk(float direction) {
+    public void Walk(float direction, float paceDistance = 0) {
 		CheckDirection(direction);
 		this.Walking = true;
 		player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, player.GetComponent<Rigidbody2D>().velocity.y);
@@ -195,9 +203,43 @@ public class Player : ICharacterInterface {
 		GameObject.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);}
 
 
-	public void Interact(){
-		//Debug.Log("Interact");
-	}
+	public GameObject Interact(){
+        foreach (GameObject item in food)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
+            {
+                //Debug.Log("Colliding with item");
+                if (Input.GetButton("Interact"))
+                {
+                    return item;
+                }
+            }
+        }
+
+        foreach (GameObject item in weapons)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    return item;
+                }
+            }
+        }
+
+        foreach (GameObject item in items)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    return item;
+                }
+            }
+        }
+
+        return null;
+    }
 
 	public void CheckDirection(float direction) {
 		// Flip the character if they're moving in the opposite direction
@@ -253,6 +295,12 @@ public class Player : ICharacterInterface {
 		player.GetComponent<Animator>().SetBool("stabbing", true);
 		player.GetComponent<Animator>().Play("Tory_Stabbing");
 		player.GetComponent<Animator>().SetBool("stabbing", false);}
+
+
+    public void DrinkWater()
+    {
+        this.stamina += 100;
+    }
 	
 	#endregion
 }
