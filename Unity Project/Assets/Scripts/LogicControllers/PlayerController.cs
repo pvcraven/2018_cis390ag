@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
         {
             tory.Stamina -= 10;
         }
-        Debug.Log(tory.Stamina);
+        //Debug.Log(tory.Stamina);
     }
 
 	void Move(){

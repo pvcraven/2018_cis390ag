@@ -27,7 +27,7 @@ public class DialogManager : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
         pauseGame = PausedControlObject.GetComponent<PauseController>();
 
-        load_dialog_from_file("Assets/Dialog/testing_grounds.txt");
+        load_dialog_from_file("Assets/Dialog/training_level.txt");
 		initialize_dialog_events ();
 		hide_dialog_on_start ();
 	}
@@ -47,17 +47,43 @@ public class DialogManager : MonoBehaviour
 		check_if_event_triggered();
 
 		if (paused_for_dialog) {
-			if (Input.GetKeyUp("space")) {
+			if (Input.GetKeyUp("return")) {
+				reset_dialog_text ();
 				DialogEvent current_dialog = list_of_dialog_events [current_dialog_event];
 				if (current_dialog.current_message == current_dialog.messages.Count - 1)
 					unpause_and_hide_dialog ();
 				else {
 					current_dialog.current_message++;
 					Text dialog_text = dialog_box.GetComponentInChildren<Text> ();
-					dialog_text.text = current_dialog.messages[current_dialog.current_message];
+					String text_to_display = format_text (dialog_text, current_dialog.messages[current_dialog.current_message]);
+					dialog_text.text = text_to_display;
 				}
 			}
 		}
+	}
+
+	string format_text (Text dialog_text, string str) {
+		string return_value = str;
+		if (str.Contains ("*BOLD*")) {
+			Debug.Log ("Bold");
+			dialog_text.fontStyle = FontStyle.Bold;
+			return_value = return_value.Replace ("*BOLD*", "");
+		}
+		if (str.Contains ("*ITALIC*")) {
+			dialog_text.fontStyle = FontStyle.Italic;
+			return_value = return_value.Replace ("*ITALIC*", "");
+		}
+		if (str.Contains ("*BIG*")) {
+			dialog_text.fontSize = 20;
+			return_value = return_value.Replace ("*BIG*", "");
+		}
+		return return_value;
+	}
+
+	void reset_dialog_text () {
+		Text dialog_text = dialog_box.GetComponentInChildren<Text> ();
+		dialog_text.fontStyle = FontStyle.Normal;
+		dialog_text.fontSize = 14;
 	}
 
 	void check_if_event_triggered()
@@ -69,8 +95,13 @@ public class DialogManager : MonoBehaviour
 				current_dialog_event = i;
 				dialog_that_has_taken_place[i] = true;
 				Text dialog_text = dialog_box.GetComponentInChildren<Text> ();
-				dialog_text.text = list_of_dialog_events[i].messages[list_of_dialog_events[i].current_message];
+				String text_to_display = format_text (dialog_text, list_of_dialog_events [i].messages [list_of_dialog_events [i].current_message]);
+				dialog_text.text = text_to_display;
+				
 				dialog_box.SetActive (true);
+
+				Vector2 dialog_position = new Vector2 (rb.position.x, rb.position.y+1.2f);
+				dialog_box.transform.position = dialog_position;
 				pause_until_space_is_pressed ();
 			}
 		}
@@ -101,14 +132,14 @@ public class DialogManager : MonoBehaviour
 							string[] parts_of_line = line.Split(':');
 							float x_position = float.Parse(parts_of_line[1]);
 							current_dialog_event.x_position = x_position;
-							Debug.Log("New Conversation at: "+x_position);
+							//Debug.Log("New Conversation at: "+x_position);
 						} else if(line.Equals("") || line.Contains("***")) {
 							list_of_dialog_events.Add(current_dialog_event);
 							current_dialog_event = new DialogEvent();
-							Debug.Log("Done Reading Event");
+							//Debug.Log("Done Reading Event");
 						} else {
 							current_dialog_event.messages.Add(line);
-							Debug.Log(line);
+							//Debug.Log(line);
 						}
 						//Debug.Log(line);
 					}
@@ -118,7 +149,7 @@ public class DialogManager : MonoBehaviour
 			}
 		}
 		catch (Exception e) {
-			Debug.Log(e.Message);
+			Debug.LogError(e.Message);
 			return false;
 		}
 	}
