@@ -60220,7 +60220,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -61426,7 +61426,7 @@ Tilemap:
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
-    m_DirtyIndex: 39
+    m_DirtyIndex: 0
 --- !u!1001 &1655337632
 Prefab:
   m_ObjectHideFlags: 0
@@ -117152,7 +117152,7 @@ Tilemap:
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
-    m_DirtyIndex: 39
+    m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
@@ -117643,7 +117643,7 @@ Prefab:
       objectReference: {fileID: 1380719490}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.0015774816
+      value: -3.92
       objectReference: {fileID: 0}
     - target: {fileID: 82203970412758874, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}

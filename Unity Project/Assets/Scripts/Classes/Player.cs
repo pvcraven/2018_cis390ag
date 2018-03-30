@@ -123,7 +123,7 @@ public class Player : ICharacterInterface {
 
 		}}
 
-    public void Walk(float direction) {
+    public void Walk(float direction, float paceDistance = 0) {
 		CheckDirection(direction);
 		this.Walking = true;
 		player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, player.GetComponent<Rigidbody2D>().velocity.y);
