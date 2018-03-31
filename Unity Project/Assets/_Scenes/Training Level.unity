@@ -55643,6 +55643,10 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: -0.049988
       objectReference: {fileID: 0}
+    - target: {fileID: 1078900087538532, guid: 22371c14e87411b4b95735bb3ead68e6, type: 2}
+      propertyPath: m_TagString
+      value: Inventory
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22371c14e87411b4b95735bb3ead68e6, type: 2}
   m_IsPrefabParent: 0

@@ -80,6 +80,7 @@ public class Player : ICharacterInterface {
     private List<GameObject> food;
     private GameObject[] weapons;
     private GameObject[] items;
+    private InventoryController invController;
 
     #endregion
 
@@ -103,6 +104,7 @@ public class Player : ICharacterInterface {
         food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food"));
         weapons = GameObject.FindGameObjectsWithTag("Weapon");
         items = GameObject.FindGameObjectsWithTag("Item");
+        invController = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryController>();
     }
 
 	#endregion
@@ -234,7 +236,8 @@ public class Player : ICharacterInterface {
         }
     }
 		
-	public GameObject Interact(){
+	public GameObject Interact()
+    {
         foreach (GameObject item in food)
         {
             var itemPickedUp = item.GetComponent<Collider2D>();
@@ -242,6 +245,7 @@ public class Player : ICharacterInterface {
 
             if (itemPickedUp.IsTouching(currentPlayer))
             {
+                invController.AddItem(item);
                 food.Remove(item);
                 return item;
             }

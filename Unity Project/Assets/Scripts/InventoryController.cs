@@ -10,7 +10,10 @@ public class InventoryController : MonoBehaviour
 
     private bool inventoryIsOpen = false;
     private PauseController pauseGame;
-    private GameObject[] inventoryItemsTest = new GameObject[3];
+
+    private const int itemSlotsNum = 3;
+    private GameObject[] inventoryItemsTest = new GameObject[itemSlotsNum];
+    private Image[] itemImages = new Image[itemSlotsNum];
 
     void Start()
     {
@@ -35,5 +38,10 @@ public class InventoryController : MonoBehaviour
                 pauseGame.UnPauseGame();
             }
         }
+    }
+
+    public void AddItem(GameObject pickupItem)
+    {
+        Debug.Log("Audrey Test");
     }
 }
