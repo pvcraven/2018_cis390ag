@@ -107,12 +107,11 @@ public class PlayerController : MonoBehaviour {
         {
             tory.Attack();
         }
-
         if (Input.GetKeyDown(interactKey))
         {
-            tory.Interact();
+            Destroy(tory.Interact());
         }
-        if(Input.GetKeyDown(switchWeapon))
+        if (Input.GetKeyDown(switchWeapon))
         {
             tory.switchWeapon();
         }

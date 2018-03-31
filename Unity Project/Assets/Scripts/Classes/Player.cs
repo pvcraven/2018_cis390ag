@@ -76,6 +76,11 @@ public class Player : ICharacterInterface {
     public GameObject rangedAmmunition;
     public Transform rangedSpawner;
 
+    //private GameObject[] food;
+    private List<GameObject> food;
+    private GameObject[] weapons;
+    private GameObject[] items;
+
     #endregion
 
     #region Contrustor
@@ -93,6 +98,11 @@ public class Player : ICharacterInterface {
         this.player = player;
 		this.MeleeWeapon = "Knife";
 		this.RangedWeapon = "Gun";
+
+        //food = GameObject.FindGameObjectsWithTag("Food");
+        food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food"));
+        weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        items = GameObject.FindGameObjectsWithTag("Item");
     }
 
 	#endregion
@@ -202,7 +212,7 @@ public class Player : ICharacterInterface {
 
         if (this.RangedWeapon != null)
         {
-            GameObject shot = Object.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);
+            GameObject shot = UnityEngine.Object.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);
             Rigidbody2D shotRB = shot.GetComponent<Rigidbody2D>();
 
             //Potentially move to class
@@ -220,13 +230,47 @@ public class Player : ICharacterInterface {
                 shotRB.AddForce(new Vector2(-500, 0));
             }
 
-            Object.Destroy(shot, 3.0f);
+            UnityEngine.Object.Destroy(shot, 3.0f);
         }
     }
 		
-	public void Interact(){
-		//Debug.Log("Interact");
-	}
+	public GameObject Interact(){
+        foreach (GameObject item in food)
+        {
+            var itemPickedUp = item.GetComponent<Collider2D>();
+            var currentPlayer = player.GetComponent<Collider2D>();
+
+            if (itemPickedUp.IsTouching(currentPlayer))
+            {
+                food.Remove(item);
+                return item;
+            }
+        }
+
+        foreach (GameObject item in weapons)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    return item;
+                }
+            }
+        }
+
+        foreach (GameObject item in items)
+        {
+            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    return item;
+                }
+            }
+        }
+
+        return null;
+    }
 
 	public void CheckDirection(float direction) {
 		// Flip the character if they're moving in the opposite direction
