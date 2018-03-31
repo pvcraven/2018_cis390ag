@@ -40,15 +40,19 @@ public class Player : ICharacterInterface {
     public string MeleeWeapon{
 		get{return currentMeleeWeapon;}
 		set{currentMeleeWeapon = value;}}
-
 	public string RangedWeapon{
 		get{return currentRangedWeapon;}
 		set{currentRangedWeapon = value;}}
+    public string CurrentAttackType
+    {
+        get { return currentAttackType; }
+        set { currentAttackType = value; }
+    }
 
-	#endregion
-	
-	#region Variables
-	private int health = 100;
+    #endregion
+
+    #region Variables
+    private int health = 100;
     private float stamina = 500;
 	private int strength = 10;
 	private int speed = 2;
@@ -69,14 +73,12 @@ public class Player : ICharacterInterface {
 
     public Transform startOnPlayer, endOnGround;
 
-    //private GameObject[] food;
-    private List<GameObject> food;
-    private GameObject[] weapons;
-    private GameObject[] items;
+    public GameObject rangedAmmunition;
+    public Transform rangedSpawner;
 
     #endregion
 
-    #region Contructor
+    #region Contrustor
     public Player(GameObject player){
 
 		this.Health = 100;
@@ -91,11 +93,6 @@ public class Player : ICharacterInterface {
         this.player = player;
 		this.MeleeWeapon = "Knife";
 		this.RangedWeapon = "Gun";
-
-        //food = GameObject.FindGameObjectsWithTag("Food");
-        food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food")); 
-        weapons = GameObject.FindGameObjectsWithTag("Weapon");
-        items = GameObject.FindGameObjectsWithTag("Item");
     }
 
 	#endregion
@@ -186,8 +183,8 @@ public class Player : ICharacterInterface {
 	public void RangedAttack(){
 		//Debug.Log("RangedAttack");
 
-		GameObject rangedAmmunition = player.GetComponent<PlayerController>().rangedAmmunition;
-		Transform rangedSpawner =  player.GetComponent<PlayerController>().rangedSpawner;
+		this.rangedAmmunition = player.GetComponent<PlayerController>().rangedAmmunition;
+		this.rangedSpawner =  player.GetComponent<PlayerController>().rangedSpawner;
 		
 		switch(this.RangedWeapon)
 		{
@@ -199,50 +196,37 @@ public class Player : ICharacterInterface {
 				//Also: the current bullets never despawn, are pretty slow, 
 				//		and can only be fired in a straight line toward the positve X axis
 
-				//rangedAmmunition = new Bullet();
+				//rangedAmmunition = new Gun();
 				break;
 		}
 
-		GameObject.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);}
-
-
-	public GameObject Interact(){
-        foreach (GameObject item in food)
+        if (this.RangedWeapon != null)
         {
-            var itemPickedUp = item.GetComponent<Collider2D>();
-            var currentPlayer = player.GetComponent<Collider2D>();
+            GameObject shot = Object.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);
+            Rigidbody2D shotRB = shot.GetComponent<Rigidbody2D>();
 
-            if (itemPickedUp.IsTouching(currentPlayer))
+            //Potentially move to class
+            if (this.FacingRight)
             {
-                food.Remove(item);
-                return item;
+                Vector2 scale = shot.transform.localScale;
+                scale.x *= -1;
+                shot.transform.localScale = scale;
+                shotRB = shot.GetComponent<Rigidbody2D>();
+                shotRB.AddForce(new Vector2(500, 0));
             }
-        }
-
-        foreach (GameObject item in weapons)
-        {
-            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
+            else
             {
-                if (Input.GetButton("Interact"))
-                {
-                    return item;
-                }
+                shotRB = shot.GetComponent<Rigidbody2D>();
+                shotRB.AddForce(new Vector2(-500, 0));
             }
-        }
 
-        foreach (GameObject item in items)
-        {
-            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
-            {
-                if (Input.GetButton("Interact"))
-                {
-                    return item;
-                }
-            }
+            Object.Destroy(shot, 3.0f);
         }
-
-        return null;
     }
+		
+	public void Interact(){
+		//Debug.Log("Interact");
+	}
 
 	public void CheckDirection(float direction) {
 		// Flip the character if they're moving in the opposite direction
@@ -299,11 +283,5 @@ public class Player : ICharacterInterface {
 		player.GetComponent<Animator>().Play("Tory_Stabbing");
 		player.GetComponent<Animator>().SetBool("stabbing", false);}
 
-
-    public void DrinkWater()
-    {
-        this.stamina += 100;
-    }
-	
 	#endregion
 }

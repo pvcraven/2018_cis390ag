@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour {
 	public KeyCode pauseKey = KeyCode.Escape;
     public KeyCode switchWeapon = KeyCode.LeftControl;
 
-	public GameObject bullet;
-	public Transform bulletSpawn;
     private AudioSource gunShot;
 
 	private bool walk;
@@ -32,7 +30,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update(){
-		CheckforInput();
+
+        if (tory.Health <= 0)
+        {
+            Destroy(player);
+        }
+
+        CheckforInput();
+
         if (Input.GetKey(sprintKey) && walk && tory.Stamina > 1)
         {
             tory.Stamina -= 1;
@@ -48,6 +53,7 @@ public class PlayerController : MonoBehaviour {
         }
         //Debug.Log(tory.Stamina);
     }
+
 
 	void Move(){
 		direction = Input.GetAxis("Horizontal");
@@ -97,24 +103,19 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if(Input.GetKeyDown(attack))
+        if (Input.GetKeyDown(attack))
         {
             tory.Attack();
         }
 
-        if(Input.GetKeyDown(interactKey))
+        if (Input.GetKeyDown(interactKey))
         {
-            Destroy(tory.Interact());
+            tory.Interact();
         }
         if(Input.GetKeyDown(switchWeapon))
         {
             tory.switchWeapon();
         }
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            tory.DrinkWater();
-        }
-
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -123,6 +124,7 @@ public class PlayerController : MonoBehaviour {
         {
             StartCoroutine(tory.FlashColor());
             tory.TakeDamage(10);
+            Debug.Log("You're Taking Damage! Health: " + tory.Health);
         }
     }
 }

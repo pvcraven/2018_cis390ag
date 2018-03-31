@@ -9,6 +9,7 @@ TagManager:
   - Item
   - Enemy
   - Ground
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 3007235109
+    locked: 0
+  - name: CaveBackground
+    uniqueID: 1430551151
     locked: 0
   - name: Background Objects
     uniqueID: 2905367119

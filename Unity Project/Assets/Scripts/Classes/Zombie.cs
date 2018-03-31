@@ -19,7 +19,6 @@ public class Zombie : ICharacterInterface
             this.health = value;
         }
     }
-
     public int Speed
     {
         get
@@ -32,7 +31,6 @@ public class Zombie : ICharacterInterface
             this.speed = value;
         }
     }
-
     public int Strength
     {
         get
@@ -55,6 +53,11 @@ public class Zombie : ICharacterInterface
         get { return walking; }
         set { walking = value; }
     }
+    public bool CharacterFound
+    {
+        get { return this.characterFound; }
+        set { this.characterFound = value; }
+    }
 
     #endregion
 
@@ -66,25 +69,29 @@ public class Zombie : ICharacterInterface
     private bool facingRight = true;
     private bool walking = false;
     private float startingPosition = 0;
+    private bool characterFound = false;
 
     #endregion
 
     #region Components
-    public GameObject zombie;
+    private GameObject zombie;
 
-    public Transform startOfLineOfSight, endOfLineOfSight;
+    public Transform sightStart, sightEnd;
     #endregion
 
     #region Constructor
 
-    public Zombie(GameObject enemy) 
+    public Zombie(GameObject zombie) 
     {
-        this.health = health;
-        this.speed = speed;
-        this.strength = strength;
-        this.facingRight = true;
+        this.Health = 100;
+        this.Speed = 8;
+        this.Strength = 10;
+        this.FacingRight = true;
         this.zombie = zombie;
         this.startingPosition = zombie.GetComponent<Rigidbody2D>().position.x;
+        this.characterFound = false;
+        this.sightStart = zombie.GetComponentInChildren<Transform>();
+        this.sightEnd = zombie.GetComponent<Transform>();
     }
 
     #endregion
@@ -130,21 +137,33 @@ public class Zombie : ICharacterInterface
 
     public void Walk(float direction = 1, float paceDistance = 0)
     {
-        if (zombie.GetComponent<Rigidbody2D>().position.x >= this.startingPosition + paceDistance)
-        {
-            zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(-direction * this.speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
-        }
-        else if(zombie.GetComponent<Rigidbody2D>().position.x <= this.startingPosition - paceDistance)
-        {
-            zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
-        }
+        this.characterFound = CheckForPlayer();
 
-        CheckDirection(direction);
+        if (!characterFound)
+        {
+            if (zombie.GetComponent<Rigidbody2D>().position.x >= this.startingPosition + paceDistance)
+            {
+                zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(-direction * this.speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
+            }
+            else if (zombie.GetComponent<Rigidbody2D>().position.x <= this.startingPosition - paceDistance)
+            {
+                zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
+            }
+
+            CheckDirection(direction);
+        }
+        else
+        {
+            Debug.Log("Player found!");
+        }
 
         this.Walking = true;
 
         zombie.GetComponent<Animator>().SetBool("walking", this.Walking);
     }
-
+    bool CheckForPlayer()
+    {
+        return Physics2D.Linecast(sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer("Player"));
+    }
     #endregion
 }
