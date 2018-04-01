@@ -48,8 +48,9 @@ public class InventoryController : MonoBehaviour
             if (inventoryItems[i] == null)
             {
                 inventoryItems[i] = pickupItem;
-                inventorySlots[i].GetComponent<Image>().sprite = pickupItem.GetComponent<Sprite>();
-                Debug.Log(inventorySlots[i].name);
+                //inventorySlots[i].GetComponent<Image>().sprite = pickupItem.GetComponent<Sprite>();
+                var tempSprite = pickupItem.GetComponent<SpriteRenderer>().sprite;
+                inventorySlots[i].GetComponent<Image>().sprite = tempSprite;
                 break;
             }
             else
