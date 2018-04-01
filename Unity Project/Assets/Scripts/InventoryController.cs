@@ -45,13 +45,11 @@ public class InventoryController : MonoBehaviour
     {
         for (int i = 0; i < inventoryItems.Length; i++)
         {
-            if (inventoryItems[i] == null)
+            if (inventorySlots[i].GetComponent<Image>().sprite == null)
             {
-                inventoryItems[i] = pickupItem;
-                //inventorySlots[i].GetComponent<Image>().sprite = pickupItem.GetComponent<Sprite>();
                 var tempSprite = pickupItem.GetComponent<SpriteRenderer>().sprite;
                 inventorySlots[i].GetComponent<Image>().sprite = tempSprite;
-                break;
+                return;
             }
             else
             {
