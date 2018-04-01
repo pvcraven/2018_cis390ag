@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Bullet
   - Inventory
+  - InventorySlot
   layers:
   - Default
   - TransparentFX

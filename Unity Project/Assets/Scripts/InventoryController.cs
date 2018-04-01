@@ -12,13 +12,14 @@ public class InventoryController : MonoBehaviour
     private PauseController pauseGame;
 
     private const int itemSlotsNum = 3;
-    private GameObject[] inventoryItemsTest = new GameObject[itemSlotsNum];
-    private Image[] itemImages = new Image[itemSlotsNum];
+    private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
+    private GameObject[] inventorySlots;
 
     void Start()
     {
-        inventoryPanel.SetActive(false);
         pauseGame = PausedControlObject.GetComponent<PauseController>();
+        inventorySlots = GameObject.FindGameObjectsWithTag("InventorySlot");
+        inventoryPanel.SetActive(false);
     }
 
     void Update()
@@ -42,6 +43,19 @@ public class InventoryController : MonoBehaviour
 
     public void AddItem(GameObject pickupItem)
     {
-        Debug.Log("Audrey Test");
+        for (int i = 0; i < inventoryItems.Length; i++)
+        {
+            if (inventoryItems[i] == null)
+            {
+                inventoryItems[i] = pickupItem;
+                inventorySlots[i].GetComponent<Image>().sprite = pickupItem.GetComponent<Sprite>();
+                Debug.Log(inventorySlots[i].name);
+                break;
+            }
+            else
+            {
+                // Inform user that inventory is full
+            }
+        }
     }
 }
