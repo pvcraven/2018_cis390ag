@@ -41,20 +41,22 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    public void AddItem(GameObject pickupItem)
+    public bool AddItem(GameObject pickupItem)
     {
         for (int i = 0; i < inventoryItems.Length; i++)
         {
-            if (inventorySlots[i].GetComponent<Image>().sprite == null)
+            if (inventoryItems[i] == null)
             {
+                var newPickupItem = Instantiate(pickupItem);
+                newPickupItem.transform.parent = inventoryPanel.transform;
+                inventoryItems[i] = newPickupItem;
+
                 var tempSprite = pickupItem.GetComponent<SpriteRenderer>().sprite;
                 inventorySlots[i].GetComponent<Image>().sprite = tempSprite;
-                return;
-            }
-            else
-            {
-                // Inform user that inventory is full
+
+                return true;
             }
         }
+        return false;
     }
 }

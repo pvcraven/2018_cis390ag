@@ -245,9 +245,17 @@ public class Player : ICharacterInterface {
 
             if (itemPickedUp.IsTouching(currentPlayer))
             {
-                invController.AddItem(item);
-                food.Remove(item);
-                return item;
+                var addedItem = invController.AddItem(item);
+
+                if (addedItem)
+                {
+                    food.Remove(item);
+                    return item;
+                }
+                else if (!addedItem)
+                {
+                    return null;
+                }
             }
         }
 
