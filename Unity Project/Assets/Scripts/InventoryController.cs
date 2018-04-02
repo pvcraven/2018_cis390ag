@@ -14,11 +14,19 @@ public class InventoryController : MonoBehaviour
     private const int itemSlotsNum = 3;
     private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
     private GameObject[] inventorySlots;
+    private Button[] inventoryButtons = new Button[itemSlotsNum];
 
     void Start()
     {
         pauseGame = PausedControlObject.GetComponent<PauseController>();
         inventorySlots = GameObject.FindGameObjectsWithTag("InventorySlot");
+
+        for (int i = 0; i < itemSlotsNum; i++)
+        {
+            inventoryButtons[i] = inventorySlots[i].GetComponent<Button>();
+            inventoryButtons[i].onClick.AddListener(InventoryItemClick);
+        }
+
         inventoryPanel.SetActive(false);
     }
 
@@ -58,5 +66,10 @@ public class InventoryController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void InventoryItemClick()
+    {
+        Debug.Log("You click this button");
     }
 }
