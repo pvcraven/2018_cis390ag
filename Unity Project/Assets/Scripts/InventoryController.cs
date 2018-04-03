@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
@@ -14,19 +15,11 @@ public class InventoryController : MonoBehaviour
     private const int itemSlotsNum = 3;
     private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
     private GameObject[] inventorySlots;
-    private Button[] inventoryButtons = new Button[itemSlotsNum];
 
     void Start()
     {
         pauseGame = PausedControlObject.GetComponent<PauseController>();
         inventorySlots = GameObject.FindGameObjectsWithTag("InventorySlot");
-
-        for (int i = 0; i < itemSlotsNum; i++)
-        {
-            inventoryButtons[i] = inventorySlots[i].GetComponent<Button>();
-            inventoryButtons[i].onClick.AddListener(InventoryItemClick);
-        }
-
         inventoryPanel.SetActive(false);
     }
 
@@ -49,6 +42,12 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    public void InventoryItemClick()
+    {
+        var removeItem = EventSystem.current.currentSelectedGameObject;
+        RemoveItem(removeItem);
+    }
+
     public bool AddItem(GameObject pickupItem)
     {
         for (int i = 0; i < inventoryItems.Length; i++)
@@ -68,8 +67,19 @@ public class InventoryController : MonoBehaviour
         return false;
     }
 
-    private void InventoryItemClick()
+    private void RemoveItem(GameObject removeItem)
     {
-        Debug.Log("You click this button");
+        Debug.Log(removeItem);
+        for (int i = 0; i < inventoryItems.Length; i++)
+        {
+            Debug.Log(inventoryItems[i]);
+            if (inventoryItems[i] == removeItem)
+            {
+                inventoryItems[i] = null;
+                inventorySlots[i].GetComponent<Image>().sprite = null;
+
+                return;
+            }
+        }
     }
 }
