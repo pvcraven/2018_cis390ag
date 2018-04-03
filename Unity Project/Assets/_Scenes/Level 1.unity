@@ -61333,7 +61333,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1287732187
-  m_SortingLayer: -3
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
@@ -61953,6 +61953,13 @@ GameObject:
   m_PrefabParentObject: {fileID: 1270749830176946, guid: 859f9ecdd407a214689d25a5103d1a6d,
     type: 2}
   m_PrefabInternal: {fileID: 1939021455}
+--- !u!81 &1731688865
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1731688864}
+  m_Enabled: 1
 --- !u!4 &1731688871 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4324409836364732, guid: 859f9ecdd407a214689d25a5103d1a6d,
@@ -117738,8 +117745,14 @@ Prefab:
       propertyPath: Loop
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 82203970412758874, guid: 859f9ecdd407a214689d25a5103d1a6d,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114615092806929864, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
+    - {fileID: 81069773143653880, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1944031455
