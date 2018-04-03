@@ -44,8 +44,16 @@ public class InventoryController : MonoBehaviour
 
     public void InventoryItemClick()
     {
-        var removeItem = EventSystem.current.currentSelectedGameObject;
-        RemoveItem(removeItem);
+        var itemClicked = EventSystem.current.currentSelectedGameObject;
+        for (int i = 0; i < itemSlotsNum; i++)
+        {
+            if (inventorySlots[i] == itemClicked && inventorySlots[i] != null)
+            {
+                Debug.Log("removed");
+                RemoveItem(i);
+                return;
+            }
+        }
     }
 
     public bool AddItem(GameObject pickupItem)
@@ -67,19 +75,9 @@ public class InventoryController : MonoBehaviour
         return false;
     }
 
-    private void RemoveItem(GameObject removeItem)
+    private void RemoveItem(int position)
     {
-        Debug.Log(removeItem);
-        for (int i = 0; i < inventoryItems.Length; i++)
-        {
-            Debug.Log(inventoryItems[i]);
-            if (inventoryItems[i] == removeItem)
-            {
-                inventoryItems[i] = null;
-                inventorySlots[i].GetComponent<Image>().sprite = null;
-
-                return;
-            }
-        }
+        inventoryItems[position] = null;
+        inventorySlots[position].GetComponent<Image>().sprite = null;
     }
 }
