@@ -61,12 +61,15 @@ public class InventoryController : MonoBehaviour
         {
             if (inventoryItems[i] == null)
             {
+                var currentSlot = inventorySlots[i].GetComponent<Image>();
+                var tempSprite = pickupItem.GetComponent<SpriteRenderer>().sprite;
+
                 var newPickupItem = Instantiate(pickupItem);
                 newPickupItem.transform.parent = inventoryPanel.transform;
                 inventoryItems[i] = newPickupItem;
 
-                var tempSprite = pickupItem.GetComponent<SpriteRenderer>().sprite;
-                inventorySlots[i].GetComponent<Image>().sprite = tempSprite;
+                currentSlot.sprite = tempSprite;
+                currentSlot.color = Color.white;
 
                 return true;
             }
@@ -76,7 +79,9 @@ public class InventoryController : MonoBehaviour
 
     private void RemoveItem(int position)
     {
+        var currentSlot = inventorySlots[position].GetComponent<Image>();
         inventoryItems[position] = null;
-        inventorySlots[position].GetComponent<Image>().sprite = null;
+        currentSlot.sprite = null;
+        currentSlot.color = Color.black;
     }
 }
