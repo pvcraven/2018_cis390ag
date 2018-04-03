@@ -47,9 +47,8 @@ public class InventoryController : MonoBehaviour
         var itemClicked = EventSystem.current.currentSelectedGameObject;
         for (int i = 0; i < itemSlotsNum; i++)
         {
-            if (inventorySlots[i] == itemClicked && inventorySlots[i] != null)
+            if ((inventorySlots[i] == itemClicked) && (inventoryItems[i] != null))
             {
-                Debug.Log("removed");
                 RemoveItem(i);
                 return;
             }
