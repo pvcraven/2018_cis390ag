@@ -12,7 +12,7 @@ public class InventoryController : MonoBehaviour
     private bool inventoryIsOpen = false;
     private PauseController pauseGame;
 
-    private const int itemSlotsNum = 3;
+    private const int itemSlotsNum = 12;
     private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
     private GameObject[] inventorySlots;
 
