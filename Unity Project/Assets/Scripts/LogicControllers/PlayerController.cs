@@ -25,8 +25,9 @@ public class PlayerController : MonoBehaviour {
     private float direction = 0;
     private SpriteRenderer spriteRend;
     private bool step = true;
+    private bool sprintKeyDown = false;
 
-	void Start(){
+	void Start() {
         tory = new Player(player);
         audioSource = GetComponent<AudioSource>();
 	}
@@ -104,7 +105,16 @@ public class PlayerController : MonoBehaviour {
 			tory.GroundCheck();
 			tory.Jump();
         }
-        bool sprintKeyDown = Input.GetKeyDown(sprintKey);
+        
+        if (Input.GetKeyDown(sprintKey))
+        {
+            sprintKeyDown = true;
+        }
+        if (Input.GetKeyUp(sprintKey))
+        {
+            sprintKeyDown = false;
+        }
+
         if (sprintKeyDown && walk && tory.Stamina > 0)
         {
             tory.Sprint(direction);
