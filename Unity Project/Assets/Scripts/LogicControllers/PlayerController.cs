@@ -104,13 +104,14 @@ public class PlayerController : MonoBehaviour {
 			tory.GroundCheck();
 			tory.Jump();
         }
-
-        if(Input.GetKeyDown(sprintKey) && walk && tory.Stamina > 0)
+        bool sprintKeyDown = Input.GetKeyDown(sprintKey);
+        if (sprintKeyDown && walk && tory.Stamina > 0)
         {
             tory.Sprint(direction);
         }
         else if(walk)
         {
+            //Debug.Log(sprintKeyDown + ", " + walk + ", " + tory.Stamina);
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
