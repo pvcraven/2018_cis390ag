@@ -621,14 +621,16 @@ MonoBehaviour:
   interactKey: 114
   pauseKey: 27
   switchWeapon: 306
-  bullet: {fileID: 0}
-  bulletSpawn: {fileID: 0}
   player: {fileID: 1270749830176946}
   rangedAmmunition: {fileID: 1469316922951046, guid: a55509bdb2a654346a42e29d301cbcea,
     type: 2}
   rangedSpawner: {fileID: 4777189863969172}
   startOnPlayer: {fileID: 4763194070322316}
   endOnGround: {fileID: 4104615564674150}
+  walkAudio:
+  - {fileID: 8300000, guid: ca77a9b60e3e080459d53a7895544b9f, type: 3}
+  - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
+  - {fileID: 8300000, guid: d15afcc2244b5b84cbdc0bb5a45f7e00, type: 3}
 --- !u!114 &114766998018581186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -750,7 +752,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1287732187
-  m_SortingLayer: -3
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 34600302fb5f9514c8be9484915c751d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

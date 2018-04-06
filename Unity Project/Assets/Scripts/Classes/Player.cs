@@ -78,8 +78,10 @@ public class Player : ICharacterInterface {
 
     //private GameObject[] food;
     private List<GameObject> food;
-    private GameObject[] weapons;
-    private GameObject[] items;
+    //private GameObject[] weapons;
+    private List<GameObject> weapons;
+    //private GameObject[] items;
+    private List<GameObject> items;
     private InventoryController invController;
 
     #endregion
@@ -100,10 +102,11 @@ public class Player : ICharacterInterface {
 		this.MeleeWeapon = "Knife";
 		this.RangedWeapon = "Gun";
 
-        //food = GameObject.FindGameObjectsWithTag("Food");
         food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food"));
-        weapons = GameObject.FindGameObjectsWithTag("Weapon");
-        items = GameObject.FindGameObjectsWithTag("Item");
+        //weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        weapons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Weapon"));
+        //items = GameObject.FindGameObjectsWithTag("Item");
+        items = new List<GameObject>(GameObject.FindGameObjectsWithTag("Item"));
         invController = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryController>();
     }
 
@@ -245,30 +248,58 @@ public class Player : ICharacterInterface {
 
             if (itemPickedUp.IsTouching(currentPlayer))
             {
-                invController.AddItem(item);
-                food.Remove(item);
-                return item;
+                var addedItem = invController.AddItem(item);
+
+                if (addedItem)
+                {
+                    food.Remove(item);
+                    return item;
+                }
+                else if (!addedItem)
+                {
+                    return null;
+                }
             }
         }
 
         foreach (GameObject item in weapons)
         {
-            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
+            var itemPickedUp = item.GetComponent<Collider2D>();
+            var currentPlayer = player.GetComponent<Collider2D>();
+
+            if (itemPickedUp.IsTouching(currentPlayer))
             {
-                if (Input.GetButton("Interact"))
+                var addedItem = invController.AddItem(item);
+
+                if (addedItem)
                 {
+                    weapons.Remove(item);
                     return item;
+                }
+                else if (!addedItem)
+                {
+                    return null;
                 }
             }
         }
 
         foreach (GameObject item in items)
         {
-            if (item.GetComponent<Collider2D>().IsTouching(player.GetComponent<PlayerController>().GetComponent<Collider2D>()))
+            var itemPickedUp = item.GetComponent<Collider2D>();
+            var currentPlayer = player.GetComponent<Collider2D>();
+
+            if (itemPickedUp.IsTouching(currentPlayer))
             {
-                if (Input.GetButton("Interact"))
+                var addedItem = invController.AddItem(item);
+
+                if (addedItem)
                 {
+                    items.Remove(item);
                     return item;
+                }
+                else if (!addedItem)
+                {
+                    return null;
                 }
             }
         }

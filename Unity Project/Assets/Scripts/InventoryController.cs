@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
@@ -11,7 +12,7 @@ public class InventoryController : MonoBehaviour
     private bool inventoryIsOpen = false;
     private PauseController pauseGame;
 
-    private const int itemSlotsNum = 3;
+    private const int itemSlotsNum = 12;
     private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
     private GameObject[] inventorySlots;
 
@@ -41,20 +42,46 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    public void AddItem(GameObject pickupItem)
+    public void InventoryItemClick()
+    {
+        var itemClicked = EventSystem.current.currentSelectedGameObject;
+        for (int i = 0; i < itemSlotsNum; i++)
+        {
+            if ((inventorySlots[i] == itemClicked) && (inventoryItems[i] != null))
+            {
+                RemoveItem(i);
+                return;
+            }
+        }
+    }
+
+    public bool AddItem(GameObject pickupItem)
     {
         for (int i = 0; i < inventoryItems.Length; i++)
         {
-            if (inventorySlots[i].GetComponent<Image>().sprite == null)
+            if (inventoryItems[i] == null)
             {
+                var currentSlot = inventorySlots[i].GetComponent<Image>();
                 var tempSprite = pickupItem.GetComponent<SpriteRenderer>().sprite;
-                inventorySlots[i].GetComponent<Image>().sprite = tempSprite;
-                return;
-            }
-            else
-            {
-                // Inform user that inventory is full
+
+                var newPickupItem = Instantiate(pickupItem);
+                newPickupItem.transform.parent = inventoryPanel.transform;
+                inventoryItems[i] = newPickupItem;
+
+                currentSlot.sprite = tempSprite;
+                currentSlot.color = Color.white;
+
+                return true;
             }
         }
+        return false;
+    }
+
+    private void RemoveItem(int position)
+    {
+        var currentSlot = inventorySlots[position].GetComponent<Image>();
+        inventoryItems[position] = null;
+        currentSlot.sprite = null;
+        currentSlot.color = Color.black;
     }
 }
