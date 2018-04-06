@@ -25,7 +25,12 @@ public class Player : ICharacterInterface {
 	public int JumpForce{
 		get{return jumpForce;}
 		set{jumpForce = value;}}
-	public int FallMultiplier{
+
+    public int WalkForce { get; private set; }
+
+    private int SprintForce;
+
+    public int FallMultiplier{
 		get{return fallMultiplier;}
 		set{fallMultiplier = value;}}
 	public int LowJumpMultiplier{
@@ -94,7 +99,9 @@ public class Player : ICharacterInterface {
 		this.Strength = 0;
 		this.Speed = 5;
 		this.IsGrounded = true;
-        this.JumpForce = 12;
+        this.JumpForce = 350;
+        this.WalkForce = 8;
+        this.SprintForce = 12;
 		this.FallMultiplier = 4;
 		this.LowJumpMultiplier = 3;
 		this.FacingRight = true;
@@ -124,7 +131,7 @@ public class Player : ICharacterInterface {
         if (this.IsGrounded)
 		{
             // Apply force to jump
-            Vector2 jumpVelocity = new Vector2(0, 350);
+            Vector2 jumpVelocity = new Vector2(0, jumpForce);
             rb.AddForce(jumpVelocity);
 		}
     }
@@ -142,7 +149,7 @@ public class Player : ICharacterInterface {
 
         // Reduce the friction so we can move faster.
         rb.drag = 1f;
-        Vector2 walkVector =new Vector2(direction * 8, 0);
+        Vector2 walkVector =new Vector2(direction * WalkForce, 0);
         rb.AddForce(walkVector);
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
@@ -167,7 +174,7 @@ public class Player : ICharacterInterface {
 
         // Reduce the friction so we can move faster.
         rb.drag = 1f;
-        Vector2 walkVector = new Vector2(direction * 13, 0);
+        Vector2 walkVector = new Vector2(direction * SprintForce, 0);
         rb.AddForce(walkVector);
 
         player.GetComponent<Animator>().SetBool("walking", this.Walking);
