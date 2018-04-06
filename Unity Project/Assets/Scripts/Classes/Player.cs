@@ -130,6 +130,8 @@ public class Player : ICharacterInterface {
     }
 
     public void Walk(float direction, float paceDistance = 0) {
+        //Debug.Log("Walk2");
+
         // Check and see if we are paused
         if (Time.timeScale == 0)
             return;
@@ -143,17 +145,33 @@ public class Player : ICharacterInterface {
         Vector2 walkVector =new Vector2(direction * 8, 0);
         rb.AddForce(walkVector);
 
-		player.GetComponent<Animator>().SetBool("walking", this.Walking);}
+		player.GetComponent<Animator>().SetBool("walking", this.Walking);
+    }
 	
 	public void StopMoving() {
 		this.Walking = false;
         player.GetComponent<Rigidbody2D>().drag = 5;
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);}
 
-	public void Sprint(float direction){
-		CheckDirection(direction);
-        player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * speed * 1.5f, player.GetComponent<Rigidbody2D>().velocity.y);}
+    public void Sprint(float direction)
+    {
+        Debug.Log("Sprint");
 
+        // Check and see if we are paused
+        if (Time.timeScale == 0)
+            return;
+
+        CheckDirection(direction);
+        this.Walking = true;
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+
+        // Reduce the friction so we can move faster.
+        rb.drag = 1f;
+        Vector2 walkVector = new Vector2(direction * 13, 0);
+        rb.AddForce(walkVector);
+
+        player.GetComponent<Animator>().SetBool("walking", this.Walking);
+    }
     public void Attack()
     {
         if (currentAttackType == "ranged")
