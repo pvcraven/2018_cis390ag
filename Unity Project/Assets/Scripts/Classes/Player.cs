@@ -75,6 +75,7 @@ public class Player : ICharacterInterface {
 
     #region Components
     public GameObject player;
+    private CapsuleCollider2D playerCC;
 
     public Transform startOnPlayer, endOnGround;
 
@@ -194,7 +195,7 @@ public class Player : ICharacterInterface {
 		{
 			case "Knife" : 
 				this.strength = 10;
-				Stab();
+				Stab(strength);
 				break;
 		}}
 
@@ -374,10 +375,27 @@ public class Player : ICharacterInterface {
         yield return new WaitForSeconds(0.1F);
     }
 
-	private void Stab(){
+	private void Stab(int damage){
 		player.GetComponent<Animator>().SetBool("stabbing", true);
 		player.GetComponent<Animator>().Play("Tory_Stabbing");
-		player.GetComponent<Animator>().SetBool("stabbing", false);}
+
+        int position = 0;
+        Collider2D collidingObject;
+        playerCC = player.GetComponent<CapsuleCollider2D>();
+        Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(new Vector2(playerCC.attachedRigidbody.position.x, playerCC.attachedRigidbody.position.y), new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
+        while (position < overlappingObjects.GetLength(0))
+        {
+            collidingObject = overlappingObjects[position];
+            if (collidingObject.CompareTag("Enemy"))
+            {
+                ZombieController zombie = collidingObject.gameObject.GetComponent<ZombieController>();
+                zombie.TakeDamage(damage);
+
+            }
+            position++;
+        }
+
+        player.GetComponent<Animator>().SetBool("stabbing", false);}
 
 	#endregion
 }

@@ -33,4 +33,9 @@ public class ZombieController : MonoBehaviour {
             StartCoroutine(z.FlashColor());
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        z.TakeDamage(damage);
+    }
 }
