@@ -9,7 +9,6 @@ This is Normal
 *BOLD**BIG* Bold and Big
 This is normal again 
 
-
 x-pos: 1.2
 Press 'F' to pick up items!
 
