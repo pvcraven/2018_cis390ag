@@ -133,6 +133,7 @@ public class Zombie : ICharacterInterface
     public void TakeDamage(int damage)
     {
         this.health = this.health - damage;
+        FlashColor();
     }
 
     public void Walk(float direction = 1, float paceDistance = 0)
