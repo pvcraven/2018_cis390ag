@@ -115,47 +115,39 @@ public class Player : ICharacterInterface {
 	#region Methods 
 	public void Jump(){
 
-		if(this.IsGrounded)
+        // Check and see if we are paused
+        if (Time.timeScale == 0)
+            return;
+
+        // Check and see if we are on the ground
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        if (this.IsGrounded)
 		{
-            Debug.Log("Jump");
-
-            if(player.GetComponent<Rigidbody2D>().velocity.y < 0)
-            {
-				Debug.Log("JumpForce: " + this.JumpForce);
-				Debug.Log("FallMultiplier: " + this.FallMultiplier);
-				Debug.Log("Gravity: " + Physics2D.gravity.y);
-				Debug.Log("Vector2.up: " + Vector2.up);
-				Debug.Log("Time.deltaTime: " + Time.deltaTime);
-
-				
-                player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, (System.Math.Abs((int) player.GetComponent<Rigidbody2D>().velocity.y + 1)) * this.JumpForce * System.Math.Abs(Physics2D.gravity.y) * (this.FallMultiplier - 1) * Time.deltaTime);
-				Debug.Log("Fall: " + player.GetComponent<Rigidbody2D>().velocity);
-			}
-            else if(player.GetComponent<Rigidbody2D>().velocity.y >= 0)
-            {
-
-				Debug.Log("JumpForce: " + this.JumpForce);
-				Debug.Log("LowJumpMultiplier: " + this.LowJumpMultiplier);
-				Debug.Log("Gravity: " + Physics2D.gravity.y);
-				Debug.Log("Vector2.up: " + Vector2.up);
-				Debug.Log("Time.deltaTime: " + Time.deltaTime);
-
-                player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, (System.Math.Abs((int) player.GetComponent<Rigidbody2D>().velocity.y + 1))* this.JumpForce * System.Math.Abs(Physics2D.gravity.y) * (this.LowJumpMultiplier - 1) * Time.deltaTime);
-				//Debug.Log("LowJump: " +  player.GetComponent<Rigidbody2D>().velocity);
-			}
-
-		}}
+            // Apply force to jump
+            Vector2 jumpVelocity = new Vector2(0, 350);
+            rb.AddForce(jumpVelocity);
+		}
+    }
 
     public void Walk(float direction, float paceDistance = 0) {
-		CheckDirection(direction);
+        // Check and see if we are paused
+        if (Time.timeScale == 0)
+            return;
+
+        CheckDirection(direction);
 		this.Walking = true;
-		player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, player.GetComponent<Rigidbody2D>().velocity.y);
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+
+        // Reduce the friction so we can move faster.
+        rb.drag = 1f;
+        Vector2 walkVector =new Vector2(direction * 8, 0);
+        rb.AddForce(walkVector);
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);}
 	
 	public void StopMoving() {
 		this.Walking = false;
-		player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        player.GetComponent<Rigidbody2D>().drag = 5;
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);}
 
 	public void Sprint(float direction){
