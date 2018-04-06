@@ -22,7 +22,7 @@ MonoBehaviour:
     - {fileID: 21300006, guid: 5cc8bff5488a65d4bbab8a3ce8e679f7, type: 3}
     - {fileID: 21300008, guid: 5cc8bff5488a65d4bbab8a3ce8e679f7, type: 3}
     - {fileID: 21300010, guid: 5cc8bff5488a65d4bbab8a3ce8e679f7, type: 3}
-    m_AnimationSpeed: 1
+    m_AnimationSpeed: 8
     m_PerlinScale: 0.5
     m_RuleTransform: 0
     m_Output: 2
@@ -31,25 +31,25 @@ MonoBehaviour:
   - m_Neighbors: 0000000000000000000000000100000001000000000000000000000000000000
     m_Sprites:
     - {fileID: 21300000, guid: 0117891dc5efbd949831123d6ef93e27, type: 3}
-    - {fileID: 21300004, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300006, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300008, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300010, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300012, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300014, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300016, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300018, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300020, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300022, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300024, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300026, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300028, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300030, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300032, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300034, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300036, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300038, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
-    - {fileID: 21300000, guid: 069b1f08d6dc0c745b07f83e562753e7, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     m_AnimationSpeed: 1
     m_PerlinScale: 0.5
     m_RuleTransform: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
     - {fileID: 21300006, guid: d5f6f3baef25cf344870803ca72564b4, type: 3}
     - {fileID: 21300008, guid: d5f6f3baef25cf344870803ca72564b4, type: 3}
     - {fileID: 21300010, guid: d5f6f3baef25cf344870803ca72564b4, type: 3}
-    m_AnimationSpeed: 1
+    m_AnimationSpeed: 8
     m_PerlinScale: 0.5
     m_RuleTransform: 0
     m_Output: 2
