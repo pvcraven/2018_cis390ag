@@ -62,7 +62,9 @@ public class Player : ICharacterInterface {
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
-	private int jumpForce = 7;
+	private int jumpForce = 350;
+    private int walkForce = 8;
+    private int sprintForce = 16;
 	private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
@@ -92,24 +94,21 @@ public class Player : ICharacterInterface {
 
     #endregion
 
-    #region Contrustor
+    #region Contructor
     public Player(GameObject player){
-
+        this.player = player;
+        /*
 		this.Health = 100;
         this.Stamina = 500;
 		this.Strength = 0;
 		this.Speed = 5;
 		this.IsGrounded = true;
-        this.JumpForce = 350;
-        this.WalkForce = 8;
-        this.SprintForce = 12;
 		this.FallMultiplier = 4;
 		this.LowJumpMultiplier = 3;
 		this.FacingRight = true;
-        this.player = player;
 		this.MeleeWeapon = "Knife";
 		this.RangedWeapon = "Gun";
-
+        */
         food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food"));
         //weapons = GameObject.FindGameObjectsWithTag("Weapon");
         weapons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Weapon"));
@@ -150,7 +149,7 @@ public class Player : ICharacterInterface {
 
         // Reduce the friction so we can move faster.
         rb.drag = 1f;
-        Vector2 walkVector =new Vector2(direction * WalkForce, 0);
+        Vector2 walkVector =new Vector2(direction * walkForce, 0);
         rb.AddForce(walkVector);
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
@@ -175,7 +174,7 @@ public class Player : ICharacterInterface {
 
         // Reduce the friction so we can move faster.
         rb.drag = 1f;
-        Vector2 walkVector = new Vector2(direction * SprintForce, 0);
+        Vector2 walkVector = new Vector2(direction * sprintForce, 0);
         rb.AddForce(walkVector);
 
         player.GetComponent<Animator>().SetBool("walking", this.Walking);
@@ -183,13 +182,20 @@ public class Player : ICharacterInterface {
     public void Attack()
     {
         if (currentAttackType == "ranged")
+        {
             RangedAttack();
+            Debug.Log("Ranged attack");
+        }
         else
+        {
             MeleeAttack();
+            Debug.Log("Melee attack");
+        }
     }
 
-	public void MeleeAttack(){
-		//Debug.Log("MeleeAttack");
+
+    public void MeleeAttack(){
+		Debug.Log("MeleeAttack with "+this.MeleeWeapon);
 
 		switch(this.MeleeWeapon)
 		{
@@ -197,7 +203,8 @@ public class Player : ICharacterInterface {
 				this.strength = 10;
 				Stab(strength);
 				break;
-		}}
+		}
+    }
 
     public void switchWeapon()
     {
@@ -259,6 +266,7 @@ public class Player : ICharacterInterface {
 		
 	public GameObject Interact()
     {
+        Debug.Log("Interact");
         foreach (GameObject item in food)
         {
             var itemPickedUp = item.GetComponent<Collider2D>();
@@ -334,7 +342,8 @@ public class Player : ICharacterInterface {
 		else if (direction < 0 && facingRight)
 		{
 			FlipDirection();
-		}}
+		}
+    }
 
 	public void FlipDirection() {
 		FacingRight = !FacingRight;
@@ -361,7 +370,8 @@ public class Player : ICharacterInterface {
             player.GetComponent<Animator>().SetFloat("vSpeed", player.GetComponent<Rigidbody2D>().velocity.y);
             player.GetComponent<Animator>().SetBool("OnGround", this.IsGrounded);
             player.GetComponent<Animator>().Play("Jump/Fall");
-        }}
+        }
+    }
    
    public IEnumerator FlashColor()
     {
