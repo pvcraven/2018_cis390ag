@@ -63,7 +63,7 @@ public class DialogManager : MonoBehaviour
 	string format_text (Text dialog_text, string str) {
 		string return_value = str;
 		if (str.Contains ("*BOLD*")) {
-			Debug.Log ("Bold");
+			//Debug.Log ("Bold");
 			dialog_text.fontStyle = FontStyle.Bold;
 			return_value = return_value.Replace ("*BOLD*", "");
 		}
@@ -93,7 +93,13 @@ public class DialogManager : MonoBehaviour
 				current_dialog_event = i;
 				dialog_that_has_taken_place[i] = true;
 				Text dialog_text = dialog_box.GetComponentInChildren<Text> ();
-				String text_to_display = format_text (dialog_text, list_of_dialog_events [i].messages [list_of_dialog_events [i].current_message]);
+                if (list_of_dialog_events[i].messages.Count == 0)
+                {
+                    Debug.Log("Error, dialog event " + i + " has no text to go with it. Check for a double blank line in training_level.txt");
+                    return;
+                }
+                String message = list_of_dialog_events[i].messages[list_of_dialog_events[i].current_message];
+				String text_to_display = format_text (dialog_text, message);
 				dialog_text.text = text_to_display;
 				
 				dialog_box.SetActive (true);
@@ -126,7 +132,7 @@ public class DialogManager : MonoBehaviour
 			using (theReader) {
 				do {
 					line = theReader.ReadLine();
-
+                    
 					if (line != null) {
 						if(line.Contains("x-pos")) {
 							string[] parts_of_line = line.Split(':');
