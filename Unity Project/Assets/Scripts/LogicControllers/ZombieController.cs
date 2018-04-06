@@ -11,7 +11,7 @@ public class ZombieController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         z = new Zombie(zombie);
-        z.Walk(paceDistance: 10);
+        z.Walk(1, 10);
     }
 
     // Update is called once per frame

@@ -137,20 +137,29 @@ public class Zombie : ICharacterInterface
 
     public void Walk(float direction = 1, float paceDistance = 0)
     {
-        this.characterFound = CheckForPlayer();
 
         if (!characterFound)
         {
-            if (zombie.GetComponent<Rigidbody2D>().position.x >= this.startingPosition + paceDistance)
+            if (zombie.GetComponent<Rigidbody2D>().position.x > this.startingPosition + paceDistance)
             {
-                zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(-direction * this.speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
+                Debug.Log(">");
+                Debug.Log(this.startingPosition + paceDistance);
+                zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(-direction * this.Speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
+                CheckDirection(direction);
             }
-            else if (zombie.GetComponent<Rigidbody2D>().position.x <= this.startingPosition - paceDistance)
+            else if (zombie.GetComponent<Rigidbody2D>().position.x <= this.startingPosition)
             {
-                zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
+                Debug.Log("<=");
+                zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.Speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
+                CheckDirection(direction);
             }
 
-            CheckDirection(direction);
+            //Vector2 start = new Vector2(this.startingPosition, zombie.GetComponent<Rigidbody2D>().velocity.y);
+            //Vector2 end = new Vector2(this.startingPosition + paceDistance, zombie.GetComponent<Rigidbody2D>().velocity.y);
+
+            //zombie.GetComponent<Transform>().position = Vector2.Lerp(start, end, Mathf.PingPong(Time.time * this.Speed, 1.0f));
+
+            this.characterFound = CheckForPlayer();
         }
         else
         {
