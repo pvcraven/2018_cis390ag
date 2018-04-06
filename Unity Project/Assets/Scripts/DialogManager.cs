@@ -15,7 +15,6 @@ public class DialogManager : MonoBehaviour
     private PauseController pauseGame;
 
 
-    private Rigidbody2D rb;
 	private bool paused_for_dialog = false;
 	private List<bool> dialog_that_has_taken_place;
 	private int current_dialog_event = 0;
@@ -24,7 +23,6 @@ public class DialogManager : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody2D>();
         pauseGame = PausedControlObject.GetComponent<PauseController>();
 
         load_dialog_from_file("Assets/Dialog/training_level.txt");
@@ -100,7 +98,9 @@ public class DialogManager : MonoBehaviour
 				
 				dialog_box.SetActive (true);
 
-				Vector2 dialog_position = new Vector2 (rb.position.x, rb.position.y+1.2f);
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+                Vector2 dialog_position = new Vector2 (rb.position.x, rb.position.y+1.2f);
 				dialog_box.transform.position = dialog_position;
 				pause_until_space_is_pressed ();
 			}
