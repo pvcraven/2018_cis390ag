@@ -68,8 +68,9 @@ public class Zombie : ICharacterInterface
     private int strength = 10;
     private bool facingRight = true;
     private bool walking = false;
-    private float startingPosition = 0;
+    private Vector2 initialPosition;
     private bool characterFound = false;
+    private System.Random rand = new System.Random();
 
     #endregion
 
@@ -84,11 +85,11 @@ public class Zombie : ICharacterInterface
     public Zombie(GameObject zombie) 
     {
         this.Health = 100;
-        this.Speed = 8;
+        this.Speed = rand.Next(1, 3);
         this.Strength = 10;
         this.FacingRight = true;
         this.zombie = zombie;
-        this.startingPosition = zombie.GetComponent<Rigidbody2D>().position.x;
+        this.initialPosition = zombie.GetComponent<Rigidbody2D>().position;
         this.characterFound = false;
         this.sightStart = zombie.GetComponentInChildren<Transform>();
         this.sightEnd = zombie.GetComponent<Transform>();
@@ -124,10 +125,11 @@ public class Zombie : ICharacterInterface
 
     public void FlipDirection()
     {
-        FacingRight = !FacingRight;
+        this.FacingRight = !this.FacingRight;
         Vector2 scale = zombie.transform.localScale;
         scale.x *= -1;
         zombie.transform.localScale = scale;
+        
     }
 
     public void TakeDamage(int damage)
@@ -141,24 +143,42 @@ public class Zombie : ICharacterInterface
 
         if (!characterFound)
         {
-            if (zombie.GetComponent<Rigidbody2D>().position.x > this.startingPosition + paceDistance)
+
+            Debug.Log("C");
+
+            if (!facingRight)
             {
-                Debug.Log(">");
-                Debug.Log(this.startingPosition + paceDistance);
-                zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(-direction * this.Speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
-                CheckDirection(direction);
+                Debug.Log("A");
+                zombie.transform.Translate(Vector2.right * this.Speed * Time.fixedDeltaTime);
             }
-            else if (zombie.GetComponent<Rigidbody2D>().position.x <= this.startingPosition)
+            else
             {
-                Debug.Log("<=");
-                zombie.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.Speed, zombie.GetComponent<Rigidbody2D>().velocity.y);
-                CheckDirection(direction);
+                Debug.Log("B");
+
+                zombie.transform.Translate(Vector2.left * this.Speed * Time.fixedDeltaTime);
             }
 
-            //Vector2 start = new Vector2(this.startingPosition, zombie.GetComponent<Rigidbody2D>().velocity.y);
-            //Vector2 end = new Vector2(this.startingPosition + paceDistance, zombie.GetComponent<Rigidbody2D>().velocity.y);
+            if(zombie.transform.position.x <= this.initialPosition.x - paceDistance)
+            {
+                Debug.Log("stuff");
 
-            //zombie.GetComponent<Transform>().position = Vector2.Lerp(start, end, Mathf.PingPong(Time.time * this.Speed, 1.0f));
+                if (facingRight)
+                {
+                    FlipDirection();
+                }
+            }
+
+            else if (zombie.transform.position.x >= initialPosition.x)
+            {
+                Debug.Log("Morestuff");
+
+                if (!facingRight)
+                {
+                    FlipDirection();
+                }
+            }
+            
+
 
             this.characterFound = CheckForPlayer();
         }

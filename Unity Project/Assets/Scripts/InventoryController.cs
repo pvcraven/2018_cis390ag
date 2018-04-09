@@ -16,11 +16,14 @@ public class InventoryController : MonoBehaviour
     private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
     private GameObject[] inventorySlots;
 
+    private AudioSource audiosource;
+    public AudioClip[] audioclips;
     void Start()
     {
         pauseGame = PausedControlObject.GetComponent<PauseController>();
         inventorySlots = GameObject.FindGameObjectsWithTag("InventorySlot");
         inventoryPanel.SetActive(false);
+        audiosource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -29,12 +32,16 @@ public class InventoryController : MonoBehaviour
         {
             if (!inventoryIsOpen)
             {
+                audiosource.clip = audioclips[0];
+                audiosource.Play();
                 inventoryPanel.SetActive(true);
                 inventoryIsOpen = true;
                 pauseGame.PauseGame();
             }
             else
             {
+                audiosource.clip = audioclips[1];
+                audiosource.Play();
                 inventoryPanel.SetActive(false);
                 inventoryIsOpen = false;
                 pauseGame.UnPauseGame();
