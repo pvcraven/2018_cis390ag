@@ -417,5 +417,10 @@ public class Player : ICharacterInterface {
 		player.GetComponent<Animator> ().SetBool ("dying", true);
 		player.GetComponent<Animator> ().Play ("Tory_Dying");
 	}
+
+    public void DrinkWater()
+    {
+        this.Stamina += 100;
+    }
 	#endregion
 }
