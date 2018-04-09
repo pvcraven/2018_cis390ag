@@ -25,7 +25,7 @@ public class DialogManager : MonoBehaviour
 	void Start () {
         pauseGame = PausedControlObject.GetComponent<PauseController>();
 
-        load_dialog_from_file("Assets/Dialog/training_level.txt");
+        load_dialog_from_file("Assets/Dialogue/training_level.txt");
 		initialize_dialog_events ();
 		hide_dialog_on_start ();
 	}
