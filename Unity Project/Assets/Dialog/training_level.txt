@@ -1,7 +1,7 @@
 x-pos: -3.7
 Use 'W', 'A', 'S', or 'D' to move!
 
-x-pos: 1.0
+x-pos: 70.0
 This is Normal
 *BOLD* This Is Bold
 *ITALIC* This Is Italic
@@ -9,15 +9,14 @@ This is Normal
 *BOLD**BIG* Bold and Big
 This is normal again 
 
-
 x-pos: 1.2
-Press 'F' to pick up items!
+Press 'R' to pick up items!
 
 x-pos: 6.5
 Press 'Space' to jump!
 
-x-pos: 16
-Use 'F' to pickup weapons!
+x-pos: 18
+Use 'Left Control' to switch between weapons!
 
 x-pos: 20
 Use 'TAB' to view your inventory!

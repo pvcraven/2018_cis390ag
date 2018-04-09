@@ -10,6 +10,9 @@ public class Player : ICharacterInterface {
     public int Health{
 		get {return health;}
 		set {health = value;}}
+	public bool Dead {
+		get { return dead; }
+		set { dead = value; }}
     public float Stamina{
         get { return stamina; }
         set { stamina = value; }}
@@ -25,7 +28,12 @@ public class Player : ICharacterInterface {
 	public int JumpForce{
 		get{return jumpForce;}
 		set{jumpForce = value;}}
-	public int FallMultiplier{
+
+    public int WalkForce { get; private set; }
+
+    private int SprintForce;
+
+    public int FallMultiplier{
 		get{return fallMultiplier;}
 		set{fallMultiplier = value;}}
 	public int LowJumpMultiplier{
@@ -53,11 +61,14 @@ public class Player : ICharacterInterface {
 
     #region Variables
     private int health = 100;
+	private bool dead = false;
     private float stamina = 500;
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
-	private int jumpForce = 7;
+	private int jumpForce = 350;
+    private int walkForce = 8;
+    private int sprintForce = 16;
 	private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
@@ -70,6 +81,7 @@ public class Player : ICharacterInterface {
 
     #region Components
     public GameObject player;
+    private CapsuleCollider2D playerCC;
 
     public Transform startOnPlayer, endOnGround;
 
@@ -86,22 +98,21 @@ public class Player : ICharacterInterface {
 
     #endregion
 
-    #region Contrustor
+    #region Contructor
     public Player(GameObject player){
-
+        this.player = player;
+        /*
 		this.Health = 100;
         this.Stamina = 500;
 		this.Strength = 0;
 		this.Speed = 5;
 		this.IsGrounded = true;
-        this.JumpForce = 12;
 		this.FallMultiplier = 4;
 		this.LowJumpMultiplier = 3;
 		this.FacingRight = true;
-        this.player = player;
 		this.MeleeWeapon = "Knife";
 		this.RangedWeapon = "Gun";
-
+        */
         food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food"));
         //weapons = GameObject.FindGameObjectsWithTag("Weapon");
         weapons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Weapon"));
@@ -115,71 +126,89 @@ public class Player : ICharacterInterface {
 	#region Methods 
 	public void Jump(){
 
-		if(this.IsGrounded)
+        // Check and see if we are paused
+        if (Time.timeScale == 0)
+            return;
+
+        // Check and see if we are on the ground
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        if (this.IsGrounded)
 		{
-            Debug.Log("Jump");
-
-            if(player.GetComponent<Rigidbody2D>().velocity.y < 0)
-            {
-				Debug.Log("JumpForce: " + this.JumpForce);
-				Debug.Log("FallMultiplier: " + this.FallMultiplier);
-				Debug.Log("Gravity: " + Physics2D.gravity.y);
-				Debug.Log("Vector2.up: " + Vector2.up);
-				Debug.Log("Time.deltaTime: " + Time.deltaTime);
-
-				
-                player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, (System.Math.Abs((int) player.GetComponent<Rigidbody2D>().velocity.y + 1)) * this.JumpForce * System.Math.Abs(Physics2D.gravity.y) * (this.FallMultiplier - 1) * Time.deltaTime);
-				Debug.Log("Fall: " + player.GetComponent<Rigidbody2D>().velocity);
-			}
-            else if(player.GetComponent<Rigidbody2D>().velocity.y >= 0)
-            {
-
-				Debug.Log("JumpForce: " + this.JumpForce);
-				Debug.Log("LowJumpMultiplier: " + this.LowJumpMultiplier);
-				Debug.Log("Gravity: " + Physics2D.gravity.y);
-				Debug.Log("Vector2.up: " + Vector2.up);
-				Debug.Log("Time.deltaTime: " + Time.deltaTime);
-
-                player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, (System.Math.Abs((int) player.GetComponent<Rigidbody2D>().velocity.y + 1))* this.JumpForce * System.Math.Abs(Physics2D.gravity.y) * (this.LowJumpMultiplier - 1) * Time.deltaTime);
-				//Debug.Log("LowJump: " +  player.GetComponent<Rigidbody2D>().velocity);
-			}
-
-		}}
+            // Apply force to jump
+            Vector2 jumpVelocity = new Vector2(0, jumpForce);
+            rb.AddForce(jumpVelocity);
+		}
+    }
 
     public void Walk(float direction, float paceDistance = 0) {
-		CheckDirection(direction);
-		this.Walking = true;
-		player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * this.speed, player.GetComponent<Rigidbody2D>().velocity.y);
+        //Debug.Log("Walk2");
 
-		player.GetComponent<Animator>().SetBool("walking", this.Walking);}
+        // Check and see if we are paused
+        if (Time.timeScale == 0)
+            return;
+
+        CheckDirection(direction);
+		this.Walking = true;
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+
+        // Reduce the friction so we can move faster.
+        rb.drag = 1f;
+        Vector2 walkVector =new Vector2(direction * walkForce, 0);
+        rb.AddForce(walkVector);
+
+		player.GetComponent<Animator>().SetBool("walking", this.Walking);
+    }
 	
 	public void StopMoving() {
 		this.Walking = false;
-		player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        player.GetComponent<Rigidbody2D>().drag = 5;
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);}
 
-	public void Sprint(float direction){
-		CheckDirection(direction);
-        player.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * speed * 1.5f, player.GetComponent<Rigidbody2D>().velocity.y);}
+    public void Sprint(float direction)
+    {
+        Debug.Log("Sprint");
 
+        // Check and see if we are paused
+        if (Time.timeScale == 0)
+            return;
+
+        CheckDirection(direction);
+        this.Walking = true;
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+
+        // Reduce the friction so we can move faster.
+        rb.drag = 1f;
+        Vector2 walkVector = new Vector2(direction * sprintForce, 0);
+        rb.AddForce(walkVector);
+
+        player.GetComponent<Animator>().SetBool("walking", this.Walking);
+    }
     public void Attack()
     {
         if (currentAttackType == "ranged")
+        {
             RangedAttack();
+            Debug.Log("Ranged attack");
+        }
         else
+        {
             MeleeAttack();
+            Debug.Log("Melee attack");
+        }
     }
 
-	public void MeleeAttack(){
-		//Debug.Log("MeleeAttack");
+
+    public void MeleeAttack(){
+		Debug.Log("MeleeAttack with "+this.MeleeWeapon);
 
 		switch(this.MeleeWeapon)
 		{
 			case "Knife" : 
 				this.strength = 10;
-				Stab();
+				Stab(strength);
 				break;
-		}}
+		}
+    }
 
     public void switchWeapon()
     {
@@ -241,6 +270,7 @@ public class Player : ICharacterInterface {
 		
 	public GameObject Interact()
     {
+        Debug.Log("Interact");
         foreach (GameObject item in food)
         {
             var itemPickedUp = item.GetComponent<Collider2D>();
@@ -316,7 +346,8 @@ public class Player : ICharacterInterface {
 		else if (direction < 0 && facingRight)
 		{
 			FlipDirection();
-		}}
+		}
+    }
 
 	public void FlipDirection() {
 		FacingRight = !FacingRight;
@@ -343,7 +374,8 @@ public class Player : ICharacterInterface {
             player.GetComponent<Animator>().SetFloat("vSpeed", player.GetComponent<Rigidbody2D>().velocity.y);
             player.GetComponent<Animator>().SetBool("OnGround", this.IsGrounded);
             player.GetComponent<Animator>().Play("Jump/Fall");
-        }}
+        }
+    }
    
    public IEnumerator FlashColor()
     {
@@ -357,10 +389,33 @@ public class Player : ICharacterInterface {
         yield return new WaitForSeconds(0.1F);
     }
 
-	private void Stab(){
+	private void Stab(int damage){
 		player.GetComponent<Animator>().SetBool("stabbing", true);
 		player.GetComponent<Animator>().Play("Tory_Stabbing");
-		player.GetComponent<Animator>().SetBool("stabbing", false);}
 
+        int position = 0;
+        Collider2D collidingObject;
+        playerCC = player.GetComponent<CapsuleCollider2D>();
+        Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(new Vector2(playerCC.attachedRigidbody.position.x, playerCC.attachedRigidbody.position.y), new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
+        while (position < overlappingObjects.GetLength(0))
+        {
+            collidingObject = overlappingObjects[position];
+            if (collidingObject.CompareTag("Enemy"))
+            {
+                ZombieController zombie = collidingObject.gameObject.GetComponent<ZombieController>();
+                zombie.TakeDamage(damage);
+
+            }
+            position++;
+        }
+
+        player.GetComponent<Animator>().SetBool("stabbing", false);}
+
+	public void Die() 
+	{
+		this.StopMoving ();
+		player.GetComponent<Animator> ().SetBool ("dying", true);
+		player.GetComponent<Animator> ().Play ("Tory_Dying");
+	}
 	#endregion
 }

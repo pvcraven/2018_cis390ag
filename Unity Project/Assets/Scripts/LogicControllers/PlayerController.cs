@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public KeyCode pauseKey = KeyCode.Escape;
     public KeyCode switchWeapon = KeyCode.LeftControl;
 
-    private AudioSource gunShot;
+    private AudioSource audioSource;
 
 	private bool walk;
 
@@ -20,20 +20,24 @@ public class PlayerController : MonoBehaviour {
 	public Transform rangedSpawner;
     public Transform startOnPlayer, endOnGround;
     public Player tory;
+    public AudioClip[] walkAudio;
 
     private float direction = 0;
     private SpriteRenderer spriteRend;
+    private bool step = true;
+    private bool sprintKeyDown = false;
 
-	void Start(){
+	void Start() {
         tory = new Player(player);
-        gunShot = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 	}
 
 	void Update(){
 
         if (tory.Health <= 0)
         {
-            Destroy(player);
+			tory.Dead = true;
+			tory.Die ();
         }
 
         CheckforInput();
@@ -68,6 +72,22 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+    void WalkSound()
+    {
+        audioSource.clip = walkAudio[1];
+        audioSource.volume = 0.05f;
+        audioSource.pitch = Random.Range(0.8f, 1f);
+        audioSource.Play();
+        StartCoroutine(WalkWait(audioSource.clip.length));
+    }
+
+    IEnumerator WalkWait(float delay)
+    {
+        step = false;
+        yield return new WaitForSeconds(delay);
+        step = true;
+    }
+
     void CheckforInput(){
 
 		#region Setup Information for Input Checks
@@ -86,14 +106,28 @@ public class PlayerController : MonoBehaviour {
 			tory.GroundCheck();
 			tory.Jump();
         }
+        
+        if (Input.GetKeyDown(sprintKey))
+        {
+            sprintKeyDown = true;
+        }
+        if (Input.GetKeyUp(sprintKey))
+        {
+            sprintKeyDown = false;
+        }
 
-        if(Input.GetKeyDown(sprintKey) && walk && tory.Stamina > 0)
+        if (sprintKeyDown && walk && tory.Stamina > 0)
         {
             tory.Sprint(direction);
         }
         else if(walk)
         {
+            //Debug.Log(sprintKeyDown + ", " + walk + ", " + tory.Stamina);
             tory.Walk(direction);
+            if(tory.IsGrounded && step == true)
+            {
+                WalkSound();
+            }
         }
         else
         {
@@ -105,6 +139,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(attack))
         {
+            Debug.Log("Attack");
             tory.Attack();
         }
         if (Input.GetKeyDown(interactKey))
