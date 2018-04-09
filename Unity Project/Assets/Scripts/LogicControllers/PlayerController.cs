@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if(walk)
         {
-            //Debug.Log(sprintKeyDown + ", " + walk + ", " + tory.Stamina);
+            Debug.Log(sprintKeyDown + ", " + walk + ", " + tory.Stamina);
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
