@@ -10,6 +10,9 @@ public class Player : ICharacterInterface {
     public int Health{
 		get {return health;}
 		set {health = value;}}
+	public bool Dead {
+		get { return dead; }
+		set { dead = value; }}
     public float Stamina{
         get { return stamina; }
         set { stamina = value; }}
@@ -58,6 +61,7 @@ public class Player : ICharacterInterface {
 
     #region Variables
     private int health = 100;
+	private bool dead = false;
     private float stamina = 500;
 	private int strength = 10;
 	private int speed = 2;
@@ -407,5 +411,11 @@ public class Player : ICharacterInterface {
 
         player.GetComponent<Animator>().SetBool("stabbing", false);}
 
+	public void Die() 
+	{
+		this.StopMoving ();
+		player.GetComponent<Animator> ().SetBool ("dying", true);
+		player.GetComponent<Animator> ().Play ("Tory_Dying");
+	}
 	#endregion
 }

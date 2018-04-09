@@ -36,7 +36,8 @@ public class PlayerController : MonoBehaviour {
 
         if (tory.Health <= 0)
         {
-            Destroy(player);
+			tory.Dead = true;
+			tory.Die ();
         }
 
         CheckforInput();
