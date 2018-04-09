@@ -7,17 +7,20 @@ public class ZombieController : MonoBehaviour {
     public GameObject zombie;
     private Zombie z;
     public Transform sightStart, sightEnd;
+    private System.Random rand = new System.Random();
 
     // Use this for initialization
     void Start () {
         z = new Zombie(zombie);
-        z.Walk(1, 10);
+        
     }
 
     // Update is called once per frame
     void Update () {
 
-        if(z.Health <= 0)
+        z.Walk(1, rand.Next(5, 20));
+
+        if (z.Health <= 0)
         {
             Destroy(zombie);
         }
