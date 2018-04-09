@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 70910004324860084}
   - component: {fileID: 95204153325148070}
   - component: {fileID: 82203970412758874}
+  - component: {fileID: 81255442996017722}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -60,7 +61,6 @@ GameObject:
   - component: {fileID: 4126008722621398}
   - component: {fileID: 20069429745885972}
   - component: {fileID: 124838883623786084}
-  - component: {fileID: 81069773143653880}
   - component: {fileID: 114490641274023704}
   m_Layer: 0
   m_Name: Camera
@@ -211,7 +211,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377632775304484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.445242, y: -0.24084426, z: -10.925503}
+  m_LocalPosition: {x: 18.20486, y: -0.64084435, z: -10.925503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4857875647038306}
@@ -240,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1946912833650078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.445242, y: -0.24084426, z: -10.925503}
+  m_LocalPosition: {x: 18.20486, y: -0.64084435, z: -10.925503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4643356535960128}
@@ -351,7 +351,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -402,12 +402,12 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.64, y: 1.28}
   m_Direction: 0
---- !u!81 &81069773143653880
+--- !u!81 &81255442996017722
 AudioListener:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377632775304484}
+  m_GameObject: {fileID: 1270749830176946}
   m_Enabled: 1
 --- !u!82 &82203970412758874
 AudioSource:
@@ -476,7 +476,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -627,10 +627,7 @@ MonoBehaviour:
   rangedSpawner: {fileID: 4777189863969172}
   startOnPlayer: {fileID: 4763194070322316}
   endOnGround: {fileID: 4104615564674150}
-  walkAudio:
-  - {fileID: 8300000, guid: ca77a9b60e3e080459d53a7895544b9f, type: 3}
-  - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
-  - {fileID: 8300000, guid: d15afcc2244b5b84cbdc0bb5a45f7e00, type: 3}
+  walkAudio: []
 --- !u!114 &114766998018581186
 MonoBehaviour:
   m_ObjectHideFlags: 1

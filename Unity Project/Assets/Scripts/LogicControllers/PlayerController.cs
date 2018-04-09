@@ -25,8 +25,9 @@ public class PlayerController : MonoBehaviour {
     private float direction = 0;
     private SpriteRenderer spriteRend;
     private bool step = true;
+    private bool sprintKeyDown = false;
 
-	void Start(){
+	void Start() {
         tory = new Player(player);
         audioSource = GetComponent<AudioSource>();
 	}
@@ -104,13 +105,23 @@ public class PlayerController : MonoBehaviour {
 			tory.GroundCheck();
 			tory.Jump();
         }
+        
+        if (Input.GetKeyDown(sprintKey))
+        {
+            sprintKeyDown = true;
+        }
+        if (Input.GetKeyUp(sprintKey))
+        {
+            sprintKeyDown = false;
+        }
 
-        if(Input.GetKeyDown(sprintKey) && walk && tory.Stamina > 0)
+        if (sprintKeyDown && walk && tory.Stamina > 0)
         {
             tory.Sprint(direction);
         }
         else if(walk)
         {
+            //Debug.Log(sprintKeyDown + ", " + walk + ", " + tory.Stamina);
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
@@ -127,6 +138,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(attack))
         {
+            Debug.Log("Attack");
             tory.Attack();
         }
         if (Input.GetKeyDown(interactKey))
