@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer spriteRend;
     private bool step = true;
     private bool sprintKeyDown = false;
+    public AudioClip drinksound;
 
 	void Start() {
         tory = new Player(player);
@@ -153,6 +154,8 @@ public class PlayerController : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.J))
         {
             tory.DrinkWater();
+            audioSource.clip = drinksound;
+            audioSource.Play();
         }
     }
 

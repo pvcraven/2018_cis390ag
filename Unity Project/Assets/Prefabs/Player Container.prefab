@@ -628,6 +628,7 @@ MonoBehaviour:
   startOnPlayer: {fileID: 4763194070322316}
   endOnGround: {fileID: 4104615564674150}
   walkAudio: []
+  drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
 --- !u!114 &114766998018581186
 MonoBehaviour:
   m_ObjectHideFlags: 1
