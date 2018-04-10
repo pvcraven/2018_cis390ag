@@ -8,19 +8,22 @@ public class InventoryController : MonoBehaviour
 {
     public GameObject inventoryPanel;
     public GameObject PausedControlObject;
+    public AudioClip[] audioclips;
 
     private bool inventoryIsOpen = false;
     private PauseController pauseGame;
+    private PlayerController player;
 
     private const int itemSlotsNum = 12;
     private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
     private GameObject[] inventorySlots;
 
     private AudioSource audiosource;
-    public AudioClip[] audioclips;
+
     void Start()
     {
         pauseGame = PausedControlObject.GetComponent<PauseController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         inventorySlots = GameObject.FindGameObjectsWithTag("InventorySlot");
         inventoryPanel.SetActive(false);
         audiosource = GetComponent<AudioSource>();
@@ -56,6 +59,13 @@ public class InventoryController : MonoBehaviour
         {
             if ((inventorySlots[i] == itemClicked) && (inventoryItems[i] != null))
             {
+                if (inventoryItems[i].tag == "Water")
+                {
+                    player.tory.DrinkWater();
+                    audiosource.clip = audioclips[2];
+                    audiosource.Play();
+                }
+
                 RemoveItem(i);
                 return;
             }

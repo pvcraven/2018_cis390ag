@@ -88,12 +88,10 @@ public class Player : ICharacterInterface {
     public GameObject rangedAmmunition;
     public Transform rangedSpawner;
 
-    //private GameObject[] food;
     private List<GameObject> food;
-    //private GameObject[] weapons;
     private List<GameObject> weapons;
-    //private GameObject[] items;
     private List<GameObject> items;
+    private List<GameObject> water;
     private InventoryController invController;
 
     #endregion
@@ -111,10 +109,9 @@ public class Player : ICharacterInterface {
 		this.FacingRight = true;
 		this.MeleeWeapon = null;
 		this.RangedWeapon = null;
+        water = new List<GameObject>(GameObject.FindGameObjectsWithTag("Water"));
         food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food"));
-        //weapons = GameObject.FindGameObjectsWithTag("Weapon");
         weapons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Weapon"));
-        //items = GameObject.FindGameObjectsWithTag("Item");
         items = new List<GameObject>(GameObject.FindGameObjectsWithTag("Item"));
         invController = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryController>();
     }
@@ -290,6 +287,27 @@ public class Player : ICharacterInterface {
             }
         }
 
+        foreach (GameObject item in water)
+        {
+            var itemPickedUp = item.GetComponent<Collider2D>();
+            var currentPlayer = player.GetComponent<Collider2D>();
+
+            if (itemPickedUp.IsTouching(currentPlayer))
+            {
+                var addedItem = invController.AddItem(item);
+
+                if (addedItem)
+                {
+                    water.Remove(item);
+                    return item;
+                }
+                else if (!addedItem)
+                {
+                    return null;
+                }
+            }
+        }
+
         foreach (GameObject item in weapons)
         {
             var itemPickedUp = item.GetComponent<Collider2D>();
@@ -418,7 +436,9 @@ public class Player : ICharacterInterface {
 
     public void DrinkWater()
     {
-        this.Stamina += 100;
+        Debug.Log("You drank some water.  Nice.");
+        if (this.Stamina < 600)
+            this.Stamina += 100;
     }
 	#endregion
 }

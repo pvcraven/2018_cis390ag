@@ -151,12 +151,6 @@ public class PlayerController : MonoBehaviour {
         {
             tory.switchWeapon();
         }
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            tory.DrinkWater();
-            audioSource.clip = drinksound;
-            audioSource.Play();
-        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
