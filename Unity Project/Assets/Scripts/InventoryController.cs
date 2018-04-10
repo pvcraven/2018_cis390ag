@@ -61,8 +61,14 @@ public class InventoryController : MonoBehaviour
             {
                 if (inventoryItems[i].tag == "Water")
                 {
-                    player.tory.DrinkWater();
+                    player.tory.ConsumeEdibleItem();
                     audiosource.clip = audioclips[2];
+                    audiosource.Play();
+                }
+                else if (inventoryItems[i].tag == "Food")
+                {
+                    player.tory.ConsumeEdibleItem();
+                    audiosource.clip = audioclips[3];
                     audiosource.Play();
                 }
 

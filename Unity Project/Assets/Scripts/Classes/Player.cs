@@ -434,11 +434,16 @@ public class Player : ICharacterInterface {
 		player.GetComponent<Animator> ().Play ("Tory_Dying");
 	}
 
-    public void DrinkWater()
+    public void ConsumeEdibleItem()
     {
-        Debug.Log("You drank some water.  Nice.");
         if (this.Stamina < 600)
             this.Stamina += 100;
+    }
+
+    public void UseHealthPack()
+    {
+        if (this.Health < 100)
+            this.Health = 100;
     }
 	#endregion
 }
