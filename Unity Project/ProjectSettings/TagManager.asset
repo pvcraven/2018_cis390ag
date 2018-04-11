@@ -12,6 +12,7 @@ TagManager:
   - Bullet
   - Inventory
   - InventorySlot
+  - Water
   layers:
   - Default
   - TransparentFX

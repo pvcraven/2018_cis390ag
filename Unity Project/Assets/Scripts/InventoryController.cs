@@ -8,19 +8,22 @@ public class InventoryController : MonoBehaviour
 {
     public GameObject inventoryPanel;
     public GameObject PausedControlObject;
+    public AudioClip[] audioclips;
 
     private bool inventoryIsOpen = false;
     private PauseController pauseGame;
+    private PlayerController player;
 
     private const int itemSlotsNum = 12;
     private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
     private GameObject[] inventorySlots;
 
     private AudioSource audiosource;
-    public AudioClip[] audioclips;
+
     void Start()
     {
         pauseGame = PausedControlObject.GetComponent<PauseController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         inventorySlots = GameObject.FindGameObjectsWithTag("InventorySlot");
         inventoryPanel.SetActive(false);
         audiosource = GetComponent<AudioSource>();
@@ -49,6 +52,22 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    public bool WeaponIsInInventory()
+    {
+        foreach (var item in inventoryItems)
+        {
+            if (item.tag == "Weapon")
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool AbleToSwitchWeapons()
+    {
+        return false;
+    }
+
     public void InventoryItemClick()
     {
         var itemClicked = EventSystem.current.currentSelectedGameObject;
@@ -56,6 +75,19 @@ public class InventoryController : MonoBehaviour
         {
             if ((inventorySlots[i] == itemClicked) && (inventoryItems[i] != null))
             {
+                if (inventoryItems[i].tag == "Water")
+                {
+                    player.tory.ConsumeEdibleItem();
+                    audiosource.clip = audioclips[2];
+                    audiosource.Play();
+                }
+                else if (inventoryItems[i].tag == "Food")
+                {
+                    player.tory.ConsumeEdibleItem();
+                    audiosource.clip = audioclips[3];
+                    audiosource.Play();
+                }
+
                 RemoveItem(i);
                 return;
             }

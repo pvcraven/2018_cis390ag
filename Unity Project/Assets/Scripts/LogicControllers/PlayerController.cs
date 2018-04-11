@@ -123,7 +123,6 @@ public class PlayerController : MonoBehaviour {
         }
         else if(walk)
         {
-            //Debug.Log(sprintKeyDown + ", " + walk + ", " + tory.Stamina);
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
@@ -150,12 +149,6 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(switchWeapon))
         {
             tory.switchWeapon();
-        }
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            tory.DrinkWater();
-            audioSource.clip = drinksound;
-            audioSource.Play();
         }
     }
 

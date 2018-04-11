@@ -73,8 +73,8 @@ public class Player : ICharacterInterface {
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
 	private bool walking = false;
-	private string currentMeleeWeapon = "";
-	private string currentRangedWeapon = "";
+	private string currentMeleeWeapon = null;
+	private string currentRangedWeapon = null;
 	private string currentAttackType = "melee";
 
     #endregion
@@ -88,12 +88,10 @@ public class Player : ICharacterInterface {
     public GameObject rangedAmmunition;
     public Transform rangedSpawner;
 
-    //private GameObject[] food;
     private List<GameObject> food;
-    //private GameObject[] weapons;
     private List<GameObject> weapons;
-    //private GameObject[] items;
     private List<GameObject> items;
+    private List<GameObject> water;
     private InventoryController invController;
 
     #endregion
@@ -101,7 +99,6 @@ public class Player : ICharacterInterface {
     #region Contructor
     public Player(GameObject player){
         this.player = player;
-        /*
 		this.Health = 100;
         this.Stamina = 500;
 		this.Strength = 0;
@@ -110,13 +107,11 @@ public class Player : ICharacterInterface {
 		this.FallMultiplier = 4;
 		this.LowJumpMultiplier = 3;
 		this.FacingRight = true;
-		this.MeleeWeapon = "Knife";
-		this.RangedWeapon = "Gun";
-        */
+		this.MeleeWeapon = null;
+		this.RangedWeapon = null;
+        water = new List<GameObject>(GameObject.FindGameObjectsWithTag("Water"));
         food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food"));
-        //weapons = GameObject.FindGameObjectsWithTag("Weapon");
         weapons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Weapon"));
-        //items = GameObject.FindGameObjectsWithTag("Item");
         items = new List<GameObject>(GameObject.FindGameObjectsWithTag("Item"));
         invController = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryController>();
     }
@@ -185,15 +180,18 @@ public class Player : ICharacterInterface {
     }
     public void Attack()
     {
-        if (currentAttackType == "ranged")
+        if (invController.WeaponIsInInventory())
         {
-            RangedAttack();
-            Debug.Log("Ranged attack");
-        }
-        else
-        {
-            MeleeAttack();
-            Debug.Log("Melee attack");
+            if (currentAttackType == "ranged")
+            {
+                RangedAttack();
+                Debug.Log("Ranged attack");
+            }
+            else
+            {
+                MeleeAttack();
+                Debug.Log("Melee attack");
+            }
         }
     }
 
@@ -212,16 +210,19 @@ public class Player : ICharacterInterface {
 
     public void switchWeapon()
     {
-        //Debug.Log("SwitchWeapon");
-        if(currentAttackType == "melee")
+        if (invController.AbleToSwitchWeapons())
         {
-            currentAttackType = "ranged";
+            //Debug.Log("SwitchWeapon");
+            if (currentAttackType == "melee")
+            {
+                currentAttackType = "ranged";
+            }
+            else
+            {
+                currentAttackType = "melee";
+            }
+            //Debug.Log("New Weapon: " + currentAttackType);
         }
-        else
-        {
-            currentAttackType = "melee";
-        }
-        //Debug.Log("New Weapon: " + currentAttackType);
     }
 
 	public void RangedAttack(){
@@ -283,6 +284,27 @@ public class Player : ICharacterInterface {
                 if (addedItem)
                 {
                     food.Remove(item);
+                    return item;
+                }
+                else if (!addedItem)
+                {
+                    return null;
+                }
+            }
+        }
+
+        foreach (GameObject item in water)
+        {
+            var itemPickedUp = item.GetComponent<Collider2D>();
+            var currentPlayer = player.GetComponent<Collider2D>();
+
+            if (itemPickedUp.IsTouching(currentPlayer))
+            {
+                var addedItem = invController.AddItem(item);
+
+                if (addedItem)
+                {
+                    water.Remove(item);
                     return item;
                 }
                 else if (!addedItem)
@@ -418,9 +440,16 @@ public class Player : ICharacterInterface {
 		player.GetComponent<Animator> ().Play ("Tory_Dying");
 	}
 
-    public void DrinkWater()
+    public void ConsumeEdibleItem()
     {
-        this.Stamina += 100;
+        if (this.Stamina < 600)
+            this.Stamina += 100;
+    }
+
+    public void UseHealthPack()
+    {
+        if (this.Health < 100)
+            this.Health = 100;
     }
 	#endregion
 }
