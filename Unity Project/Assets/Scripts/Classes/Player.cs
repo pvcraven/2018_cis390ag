@@ -186,8 +186,8 @@ public class Player : ICharacterInterface {
         Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y);
 
         // If the player moves faster than sprintforce, their velocity gets reset to sprintforce.
-        if (rb.velocity.x < -sprintForce) walkVector.x = -sprintForce;
-        else if (rb.velocity.x > sprintForce) walkVector.x = sprintForce;
+        if (rb.velocity.x < -sprintForce) walkVector.x = -sprintForce / 1.5f;
+        else if (rb.velocity.x > sprintForce) walkVector.x = sprintForce / 1.5f;
 
         // The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
         if (this.isGrounded)
