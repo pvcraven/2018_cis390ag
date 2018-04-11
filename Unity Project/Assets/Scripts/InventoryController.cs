@@ -54,9 +54,9 @@ public class InventoryController : MonoBehaviour
 
     public bool WeaponIsInInventory()
     {
-        foreach (var item in inventoryItems)
+       foreach (var item in inventoryItems)
         {
-            if (item.tag == "Weapon")
+            if (item != null && item.tag == "Weapon")
                 return true;
         }
 
