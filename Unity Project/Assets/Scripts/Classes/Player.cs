@@ -8,8 +8,8 @@ public class Player : ICharacterInterface {
 
 	#region Properties
     public int Health{
-		get {return health;}
-		set {health = value;}}
+		get {return this.health;}
+		set {this.health = value;}}
 	public bool Dead {
 		get { return dead; }
 		set { dead = value; }}
@@ -30,9 +30,7 @@ public class Player : ICharacterInterface {
 		set{jumpForce = value;}}
 
     public int WalkForce { get; private set; }
-
     private int SprintForce;
-
     public int FallMultiplier{
 		get{return fallMultiplier;}
 		set{fallMultiplier = value;}}
@@ -56,10 +54,21 @@ public class Player : ICharacterInterface {
         get { return currentAttackType; }
         set { currentAttackType = value; }
     }
+    public IDictionary<string, string> GetStatusBarInformation
+    {
+        get {
+                statusBarInformation.Clear();
+                statusBarInformation.Add("Health", Health.ToString());
+                statusBarInformation.Add("Stamina", Stamina.ToString());
+                statusBarInformation.Add("AttackType", CurrentAttackType);
+                statusBarInformation.Add("Strength", Strength.ToString());
+                return statusBarInformation;
+            }
+    }
 
     #endregion
 
-    #region Variables
+    #region VariablesstartOnPlayer
     private int health = 100;
 	private bool dead = false;
     private float stamina = 500;
@@ -76,6 +85,7 @@ public class Player : ICharacterInterface {
 	private string currentMeleeWeapon = null;
 	private string currentRangedWeapon = null;
 	private string currentAttackType = "melee";
+    private IDictionary<string, string> statusBarInformation = new Dictionary<string, string>();
 
     #endregion
 
@@ -83,7 +93,7 @@ public class Player : ICharacterInterface {
     public GameObject player;
     private CapsuleCollider2D playerCC;
 
-    public Transform startOnPlayer, endOnGround;
+    public Transform StartOnPlayer, EndOnGround;
 
     public GameObject rangedAmmunition;
     public Transform rangedSpawner;
@@ -178,6 +188,7 @@ public class Player : ICharacterInterface {
 
         player.GetComponent<Animator>().SetBool("walking", this.Walking);
     }
+
     public void Attack()
     {
         if (invController.WeaponIsInInventory())
@@ -197,7 +208,7 @@ public class Player : ICharacterInterface {
 
 
     public void MeleeAttack(){
-		Debug.Log("MeleeAttack with "+this.MeleeWeapon);
+		Debug.Log("MeleeAttack with "+ this.MeleeWeapon);
 
 		switch(this.MeleeWeapon)
 		{
@@ -208,7 +219,7 @@ public class Player : ICharacterInterface {
 		}
     }
 
-    public void switchWeapon()
+    public void SwitchWeapon()
     {
         if (invController.AbleToSwitchWeapons())
         {
@@ -236,10 +247,8 @@ public class Player : ICharacterInterface {
 			case "Gun" : 
 				this.strength = 50;
 
-				//This needs to work with a Bullet Class rather than the previously existing way.
+				//This needs to work with a Bullet or Gun Class rather than the previously existing way.
 				//Reason: It will only work with a gun, the previously existing way prohibits any future ranged weapons.
-				//Also: the current bullets never despawn, are pretty slow, 
-				//		and can only be fired in a straight line toward the positve X axis
 
 				//rangedAmmunition = new Gun();
 				break;
@@ -378,12 +387,14 @@ public class Player : ICharacterInterface {
 		player.transform.localScale = scale;}
 
 	public void TakeDamage(int damage) {
-		this.health = this.health - damage;}
+		this.health = this.health - damage;
+        this.player.GetComponent<StatusBarLogic>().SetHealth();
+    }
 
     public void GroundCheck(){
 
-		this.IsGrounded = Physics2D.Linecast(this.player.GetComponent<PlayerController>().startOnPlayer.position, 
-											 this.player.GetComponent<PlayerController>().endOnGround.position, 
+		this.IsGrounded = Physics2D.Linecast(this.player.GetComponent<PlayerController>().StartOnPlayer.position, 
+											 this.player.GetComponent<PlayerController>().EndOnGround.position, 
 											 1 << LayerMask.NameToLayer("Ground"));
         
         if (this.IsGrounded)
@@ -442,8 +453,12 @@ public class Player : ICharacterInterface {
 
     public void ConsumeEdibleItem()
     {
-        if (this.Stamina < 600)
+        if (this.Stamina < 400)
             this.Stamina += 100;
+        else if(this.Stamina < 500)
+        {
+            this.Stamina = 500;
+        }
     }
 
     public void UseHealthPack()
