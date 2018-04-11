@@ -76,8 +76,8 @@ public class Player : ICharacterInterface {
 	private int speed = 2;
 	private bool isGrounded = false;
 	private int jumpForce = 350;
-    private int walkForce = 8;
-    private int sprintForce = 16;
+    private int walkForce = 5;
+    private int sprintForce = 7;
 	private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
@@ -158,7 +158,19 @@ public class Player : ICharacterInterface {
 
         // Reduce the friction so we can move faster.
         rb.drag = 1f;
-        Vector2 walkVector =new Vector2(direction * walkForce, 0);
+        Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y);
+
+        // If the player is moving faster than walkforce, their velocity gets reset to walkforce.
+        if (rb.velocity.x < -walkForce) walkVector.x = -walkForce / 1.5f;
+        else if (rb.velocity.x > walkForce) walkVector.x = walkForce / 1.5f;
+
+        // The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
+        if (this.isGrounded)
+        {
+            if (rb.velocity.y == 0) walkVector.x *= 1.2f;
+            else if (rb.velocity.y > 0) walkVector.x *= 1.8f;
+        }
+
         rb.AddForce(walkVector);
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
@@ -171,8 +183,6 @@ public class Player : ICharacterInterface {
 
     public void Sprint(float direction)
     {
-        Debug.Log("Sprint");
-
         // Check and see if we are paused
         if (Time.timeScale == 0)
             return;
@@ -183,7 +193,19 @@ public class Player : ICharacterInterface {
 
         // Reduce the friction so we can move faster.
         rb.drag = 1f;
-        Vector2 walkVector = new Vector2(direction * sprintForce, 0);
+        Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y);
+
+        // If the player moves faster than sprintforce, their velocity gets reset to sprintforce.
+        if (rb.velocity.x < -sprintForce) walkVector.x = -sprintForce / 1.5f;
+        else if (rb.velocity.x > sprintForce) walkVector.x = sprintForce / 1.5f;
+
+        // The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
+        if (this.isGrounded)
+        {
+            if (rb.velocity.y == 0) walkVector.x *= 1.2f;
+            else if (rb.velocity.y > 0) walkVector.x *= 1.5f;
+        }
+
         rb.AddForce(walkVector);
 
         player.GetComponent<Animator>().SetBool("walking", this.Walking);
