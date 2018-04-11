@@ -52,6 +52,22 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    public bool WeaponIsInInventory()
+    {
+        foreach (var item in inventoryItems)
+        {
+            if (item.tag == "Weapon")
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool AbleToSwitchWeapons()
+    {
+        return false;
+    }
+
     public void InventoryItemClick()
     {
         var itemClicked = EventSystem.current.currentSelectedGameObject;

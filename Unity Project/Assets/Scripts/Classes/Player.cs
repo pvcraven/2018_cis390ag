@@ -180,15 +180,18 @@ public class Player : ICharacterInterface {
     }
     public void Attack()
     {
-        if (currentAttackType == "ranged")
+        if (invController.WeaponIsInInventory())
         {
-            RangedAttack();
-            Debug.Log("Ranged attack");
-        }
-        else
-        {
-            MeleeAttack();
-            Debug.Log("Melee attack");
+            if (currentAttackType == "ranged")
+            {
+                RangedAttack();
+                Debug.Log("Ranged attack");
+            }
+            else
+            {
+                MeleeAttack();
+                Debug.Log("Melee attack");
+            }
         }
     }
 
@@ -207,16 +210,19 @@ public class Player : ICharacterInterface {
 
     public void switchWeapon()
     {
-        //Debug.Log("SwitchWeapon");
-        if(currentAttackType == "melee")
+        if (invController.AbleToSwitchWeapons())
         {
-            currentAttackType = "ranged";
+            //Debug.Log("SwitchWeapon");
+            if (currentAttackType == "melee")
+            {
+                currentAttackType = "ranged";
+            }
+            else
+            {
+                currentAttackType = "melee";
+            }
+            //Debug.Log("New Weapon: " + currentAttackType);
         }
-        else
-        {
-            currentAttackType = "melee";
-        }
-        //Debug.Log("New Weapon: " + currentAttackType);
     }
 
 	public void RangedAttack(){
