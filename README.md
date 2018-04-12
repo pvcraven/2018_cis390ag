@@ -9,3 +9,25 @@ This branch is the "move fast and break things" branch. If you see somethign tha
 
 # General Development Flow
 I (Nate) am going to be working on this branch full-tilt until friday, so I imagine that this branch will be moving quite quickly, and I will be up in my apartment (Station Square 304). Anybody that wants to join me is absolutly welcome :) I have plenty of Mr. Pibb!
+
+# Current Progress
+
+* Added a "training level" so that people can test out their stuff
+* Fluid physics movments (but jumping while not grounded is still a problem)
+* Can shoot zombies
+* Spawners spawn zombies
+* Zombies chase you
+
+Here is a demo video 
+https://photos.app.goo.gl/cOwJOjzJ700UVze42
+
+# Things this still needs to have the core functionality done
+
+* Make sure that we can only jump when on the floor.
+* Die when touched (leter to be replaced with a health system)
+* Add a "training level" to show the player the controls
+* Add sounds
+* Have better background art
+* More types of zombies with cooler AI
+* Different types of projectiles that do cool things
+* Different levels which force the user to adopt different stratagies
