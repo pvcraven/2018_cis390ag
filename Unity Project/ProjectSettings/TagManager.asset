@@ -12,6 +12,7 @@ TagManager:
   - Bullet
   - Inventory
   - InventorySlot
+  - Zombie
   layers:
   - Default
   - TransparentFX
