@@ -73,8 +73,8 @@ public class Player : ICharacterInterface {
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
 	private bool walking = false;
-	private string currentMeleeWeapon = "";
-	private string currentRangedWeapon = "";
+	private string currentMeleeWeapon = null;
+	private string currentRangedWeapon = null;
 	private string currentAttackType = "melee";
 
     #endregion
@@ -101,7 +101,6 @@ public class Player : ICharacterInterface {
     #region Contructor
     public Player(GameObject player){
         this.player = player;
-        /*
 		this.Health = 100;
         this.Stamina = 500;
 		this.Strength = 0;
@@ -110,9 +109,8 @@ public class Player : ICharacterInterface {
 		this.FallMultiplier = 4;
 		this.LowJumpMultiplier = 3;
 		this.FacingRight = true;
-		this.MeleeWeapon = "Knife";
-		this.RangedWeapon = "Gun";
-        */
+		this.MeleeWeapon = null;
+		this.RangedWeapon = null;
         food = new List<GameObject>(GameObject.FindGameObjectsWithTag("Food"));
         //weapons = GameObject.FindGameObjectsWithTag("Weapon");
         weapons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Weapon"));

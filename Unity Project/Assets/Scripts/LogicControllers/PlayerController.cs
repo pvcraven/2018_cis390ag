@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer spriteRend;
     private bool step = true;
     private bool sprintKeyDown = false;
+    public AudioClip drinksound;
 
 	void Start() {
         tory = new Player(player);
@@ -122,7 +123,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if(walk)
         {
-            //Debug.Log(sprintKeyDown + ", " + walk + ", " + tory.Stamina);
+            Debug.Log(sprintKeyDown + ", " + walk + ", " + tory.Stamina);
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
@@ -153,6 +154,8 @@ public class PlayerController : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.J))
         {
             tory.DrinkWater();
+            audioSource.clip = drinksound;
+            audioSource.Play();
         }
     }
 
