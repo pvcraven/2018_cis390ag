@@ -54,9 +54,9 @@ public class InventoryController : MonoBehaviour
 
     public bool WeaponIsInInventory()
     {
-        foreach (var item in inventoryItems)
+       foreach (var item in inventoryItems)
         {
-            if (item.tag == "Weapon")
+            if (item != null && item.tag == "Weapon")
                 return true;
         }
 
@@ -80,15 +80,26 @@ public class InventoryController : MonoBehaviour
                     player.tory.ConsumeEdibleItem();
                     audiosource.clip = audioclips[2];
                     audiosource.Play();
+                    RemoveItem(i);
                 }
                 else if (inventoryItems[i].tag == "Food")
                 {
                     player.tory.ConsumeEdibleItem();
                     audiosource.clip = audioclips[3];
                     audiosource.Play();
+                    RemoveItem(i);
+                }
+                else if (inventoryItems[i].tag == "Weapon")
+                {
+                    // do nothing
+                }
+                else if (inventoryItems[i].tag == "HealthPack")
+                {
+                    player.tory.UseHealthPack();
+                    Debug.Log("Health Pack Increased health to: " + player.tory.Health);
+                    RemoveItem(i);
                 }
 
-                RemoveItem(i);
                 return;
             }
         }
@@ -109,6 +120,11 @@ public class InventoryController : MonoBehaviour
 
                 currentSlot.sprite = tempSprite;
                 currentSlot.color = Color.white;
+
+                if (newPickupItem.tag == "Weapon")
+                {
+                    // Not selectable?
+                }
 
                 return true;
             }
