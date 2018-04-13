@@ -256,7 +256,7 @@ public class Player : ICharacterInterface {
             {
                 currentAttackType = "melee";
             }
-            //Debug.Log("New Weapon: " + currentAttackType);
+            this.player.GetComponent<StatusBarLogic>().SetWeapon();
         }
     }
 
@@ -322,7 +322,10 @@ public class Player : ICharacterInterface {
         {
             var touching = PlayerIsTouchingItem(item);
             if (touching)
+            {
+                this.player.GetComponent<StatusBarLogic>().SetWeapon();
                 return InteractWithObject(item, weapons);
+            }
         }
 
         foreach (GameObject item in items)
