@@ -20,6 +20,8 @@ public class StatusBarLogic : MonoBehaviour
 
     public RectTransform healthPanel;
     public RectTransform stausPanel;
+    public GameObject gunStatus;
+    public GameObject knifeStatus;
 
     private float healthPanelMin;
     private float initialHealthPanelMax;
@@ -35,13 +37,15 @@ public class StatusBarLogic : MonoBehaviour
         initialHealthPanelMax = healthPanel.GetComponent<RectTransform>().anchorMax.x;
         currentHealthPanelMax = initialHealthPanelMax;
 
+        gunStatus.SetActive(false);
+        knifeStatus.SetActive(false);
+
         Debug.Log("HERE" + healthPanel.GetComponent<RectTransform>().anchorMax.x);
     }
 
     void Update()
     {
         statusBarInformation = GetComponent<PlayerController>().tory.GetStatusBarInformation;
-        Debug.Log(statusBarInformation["Health"]);
     }
 
     public void SetHealth()
@@ -74,5 +78,19 @@ public class StatusBarLogic : MonoBehaviour
     void SetStrength()
     {
         statusBarInformation.TryGetValue("Strength", out statusBarStrength);
+    }
+
+    public void SetWeapon()
+    {
+        statusBarInformation.TryGetValue("AttackType", out statusBarAttackType);
+        if (statusBarAttackType == "melee")
+        {
+            gunStatus.SetActive(false);
+            knifeStatus.SetActive(true);
+        } else
+        {
+            gunStatus.SetActive(true);
+            knifeStatus.SetActive(false);
+        }
     }
 }

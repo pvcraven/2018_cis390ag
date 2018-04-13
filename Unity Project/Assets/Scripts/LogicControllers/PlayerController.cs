@@ -144,7 +144,6 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(attack))
         {
-            Debug.Log("Attack");
             tory.Attack();
         }
         if (Input.GetKeyDown(interactKey))
