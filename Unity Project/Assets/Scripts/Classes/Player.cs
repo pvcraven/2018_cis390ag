@@ -124,6 +124,8 @@ public class Player : ICharacterInterface {
         weapons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Weapon"));
         items = new List<GameObject>(GameObject.FindGameObjectsWithTag("Item"));
         invController = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryController>();
+
+        items.AddRange(new List<GameObject>(GameObject.FindGameObjectsWithTag("HealthPack")));
     }
 
 	#endregion
@@ -299,98 +301,41 @@ public class Player : ICharacterInterface {
             UnityEngine.Object.Destroy(shot, 3.0f);
         }
     }
-		
-	public GameObject Interact()
+
+    public GameObject Interact()
     {
-        Debug.Log("Interact");
         foreach (GameObject item in food)
         {
-            var itemPickedUp = item.GetComponent<Collider2D>();
-            var currentPlayer = player.GetComponent<Collider2D>();
-
-            if (itemPickedUp.IsTouching(currentPlayer))
-            {
-                var addedItem = invController.AddItem(item);
-
-                if (addedItem)
-                {
-                    food.Remove(item);
-                    return item;
-                }
-                else if (!addedItem)
-                {
-                    return null;
-                }
-            }
+            var touching = PlayerIsTouchingItem(item);
+            if (touching)
+                return InteractWithObject(item, food);
         }
 
         foreach (GameObject item in water)
         {
-            var itemPickedUp = item.GetComponent<Collider2D>();
-            var currentPlayer = player.GetComponent<Collider2D>();
-
-            if (itemPickedUp.IsTouching(currentPlayer))
-            {
-                var addedItem = invController.AddItem(item);
-
-                if (addedItem)
-                {
-                    water.Remove(item);
-                    return item;
-                }
-                else if (!addedItem)
-                {
-                    return null;
-                }
-            }
+            var touching = PlayerIsTouchingItem(item);
+            if (touching)
+                return InteractWithObject(item, water);
         }
 
         foreach (GameObject item in weapons)
         {
-            var itemPickedUp = item.GetComponent<Collider2D>();
-            var currentPlayer = player.GetComponent<Collider2D>();
-
-            if (itemPickedUp.IsTouching(currentPlayer))
-            {
-                var addedItem = invController.AddItem(item);
-
-                if (addedItem)
-                {
-                    weapons.Remove(item);
-                    return item;
-                }
-                else if (!addedItem)
-                {
-                    return null;
-                }
-            }
+            var touching = PlayerIsTouchingItem(item);
+            if (touching)
+                return InteractWithObject(item, weapons);
         }
 
         foreach (GameObject item in items)
         {
-            var itemPickedUp = item.GetComponent<Collider2D>();
-            var currentPlayer = player.GetComponent<Collider2D>();
-
-            if (itemPickedUp.IsTouching(currentPlayer))
-            {
-                var addedItem = invController.AddItem(item);
-
-                if (addedItem)
-                {
-                    items.Remove(item);
-                    return item;
-                }
-                else if (!addedItem)
-                {
-                    return null;
-                }
-            }
+            var touching = PlayerIsTouchingItem(item);
+            if (touching)
+                return InteractWithObject(item, items);
         }
 
         return null;
     }
 
-	public void CheckDirection(float direction) {
+    public void CheckDirection(float direction) {
 		// Flip the character if they're moving in the opposite direction
 		if (direction > 0 && !facingRight)
 		{
@@ -488,5 +433,30 @@ public class Player : ICharacterInterface {
         if (this.Health < 100)
             this.Health = 100;
     }
-	#endregion
+
+    private GameObject InteractWithObject(GameObject item, List<GameObject> inArray)
+    {
+        var addedItem = invController.AddItem(item);
+        if (addedItem)
+        {
+            inArray.Remove(item);
+            return item;
+        }
+        else if (!addedItem)
+        {
+            return null;
+        }
+
+        return null;
+    }
+
+    private bool PlayerIsTouchingItem(GameObject item)
+    {
+        var itemPickedUp = item.GetComponent<Collider2D>();
+        var currentPlayer = player.GetComponent<Collider2D>();
+
+        var touching = itemPickedUp.IsTouching(currentPlayer);
+        return touching;
+    }
+    #endregion
 }
