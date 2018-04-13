@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour {
     {
         audioSource.clip = walkAudio[1];
         audioSource.volume = 0.05f;
-        audioSource.pitch = Random.Range(0.8f, 1f);
+        audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
         audioSource.Play();
         StartCoroutine(WalkWait(audioSource.clip.length));
     }

@@ -18,8 +18,8 @@ public class StatusBarLogic : MonoBehaviour
 
     private int health = 100;
 
-    public Transform healthPanel;
-    public Transform stausPanel;
+    public RectTransform healthPanel;
+    public RectTransform stausPanel;
 
     private float healthPanelMin;
     private float initialHealthPanelMax;
@@ -51,10 +51,14 @@ public class StatusBarLogic : MonoBehaviour
 
         int.TryParse(statusBarHealth, out health);
 
-        currentHealthPanelMax = ((currentHealthPanelMax - healthPanelMin)/(100 * health)) + healthPanelMin;
+        // Not sure what this is...
+        //currentHealthPanelMax = ((currentHealthPanelMax - healthPanelMin)/(100 * health)) + healthPanelMin;
 
-        Debug.Log("I\n" + initialHealthPanelMax);
-        Debug.Log("C\n" + currentHealthPanelMax);
+        float max_health = 100; // This should be a member of something... but it is just "100" everywhere 
+        float new_width_of_panel = -( (1-(health / max_health)) * 160);
+        healthPanel.offsetMax = new Vector2(new_width_of_panel, -0); // new Vector2(-right, -top);
+
+        Debug.Log(new_width_of_panel);
     }
 
     public void SetStamina()

@@ -356,6 +356,7 @@ public class Player : ICharacterInterface {
 	public void TakeDamage(int damage) {
 		this.health = this.health - damage;
         this.player.GetComponent<StatusBarLogic>().SetHealth();
+        
     }
 
     public void GroundCheck(){
