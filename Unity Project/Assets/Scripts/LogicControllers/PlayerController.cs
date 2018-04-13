@@ -78,16 +78,15 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    void WalkSound()
+    void StepSound(AudioClip clip)
     {
-        audioSource.clip = walkAudio[1];
+        audioSource.clip = clip;
         audioSource.volume = 0.05f;
         audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
         audioSource.Play();
-        StartCoroutine(WalkWait(audioSource.clip.length));
     }
 
-    IEnumerator WalkWait(float delay)
+    IEnumerator StepWait(float delay)
     {
         step = false;
         yield return new WaitForSeconds(delay);
@@ -125,13 +124,21 @@ public class PlayerController : MonoBehaviour {
         if (sprintKeyDown && walk && tory.Stamina > 0)
         {
             tory.Sprint(direction);
+            if(tory.IsGrounded && step == true)
+            {
+                // Add functionality later to check ground tag and change StepSound based on that.
+                StepSound(walkAudio[1]);
+                StartCoroutine(StepWait(audioSource.clip.length/1.5f));
+            }
         }
         else if(walk)
         {
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
-                WalkSound();
+                // Add functionality later to check ground tag and change StepSound based on that.
+                StepSound(walkAudio[1]);
+                StartCoroutine(StepWait(audioSource.clip.length));
             }
         }
         else
