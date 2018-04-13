@@ -18,18 +18,22 @@ public class PlayerController : MonoBehaviour {
     public GameObject player;
 	public GameObject rangedAmmunition;
 	public Transform rangedSpawner;
-    public Transform startOnPlayer, endOnGround;
+    public Transform StartOnPlayer, EndOnGround;
     public Player tory;
-    public AudioClip[] walkAudio;
 
-    private float direction = 0;
+    public GameObject statusBar;
+
     private SpriteRenderer spriteRend;
+    private float direction = 0;
     private bool step = true;
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
+    public AudioClip[] walkAudio;
 
-	void Start() {
+    void Start() {
+
         tory = new Player(player);
+
         audioSource = GetComponent<AudioSource>();
 	}
 
@@ -148,7 +152,7 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetKeyDown(switchWeapon))
         {
-            tory.switchWeapon();
+            tory.SwitchWeapon();
         }
     }
 
