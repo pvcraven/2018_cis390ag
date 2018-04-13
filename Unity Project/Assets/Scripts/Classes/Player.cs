@@ -8,8 +8,8 @@ public class Player : ICharacterInterface {
 
 	#region Properties
     public int Health{
-		get {return health;}
-		set {health = value;}}
+		get {return this.health;}
+		set {this.health = value;}}
 	public bool Dead {
 		get { return dead; }
 		set { dead = value; }}
@@ -30,9 +30,7 @@ public class Player : ICharacterInterface {
 		set{jumpForce = value;}}
 
     public int WalkForce { get; private set; }
-
     private int SprintForce;
-
     public int FallMultiplier{
 		get{return fallMultiplier;}
 		set{fallMultiplier = value;}}
@@ -56,10 +54,21 @@ public class Player : ICharacterInterface {
         get { return currentAttackType; }
         set { currentAttackType = value; }
     }
+    public IDictionary<string, string> GetStatusBarInformation
+    {
+        get {
+                statusBarInformation.Clear();
+                statusBarInformation.Add("Health", Health.ToString());
+                statusBarInformation.Add("Stamina", Stamina.ToString());
+                statusBarInformation.Add("AttackType", CurrentAttackType);
+                statusBarInformation.Add("Strength", Strength.ToString());
+                return statusBarInformation;
+            }
+    }
 
     #endregion
 
-    #region Variables
+    #region VariablesstartOnPlayer
     private int health = 100;
 	private bool dead = false;
     private float stamina = 500;
@@ -67,8 +76,8 @@ public class Player : ICharacterInterface {
 	private int speed = 2;
 	private bool isGrounded = false;
 	private int jumpForce = 350;
-    private int walkForce = 8;
-    private int sprintForce = 16;
+    private int walkForce = 5;
+    private int sprintForce = 7;
 	private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
@@ -76,6 +85,7 @@ public class Player : ICharacterInterface {
 	private string currentMeleeWeapon = null;
 	private string currentRangedWeapon = null;
 	private string currentAttackType = "melee";
+    private IDictionary<string, string> statusBarInformation = new Dictionary<string, string>();
 
     #endregion
 
@@ -83,7 +93,7 @@ public class Player : ICharacterInterface {
     public GameObject player;
     private CapsuleCollider2D playerCC;
 
-    public Transform startOnPlayer, endOnGround;
+    public Transform StartOnPlayer, EndOnGround;
 
     public GameObject rangedAmmunition;
     public Transform rangedSpawner;
@@ -114,6 +124,8 @@ public class Player : ICharacterInterface {
         weapons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Weapon"));
         items = new List<GameObject>(GameObject.FindGameObjectsWithTag("Item"));
         invController = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryController>();
+
+        items.AddRange(new List<GameObject>(GameObject.FindGameObjectsWithTag("HealthPack")));
     }
 
 	#endregion
@@ -148,7 +160,19 @@ public class Player : ICharacterInterface {
 
         // Reduce the friction so we can move faster.
         rb.drag = 1f;
-        Vector2 walkVector =new Vector2(direction * walkForce, 0);
+        Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y);
+
+        // If the player is moving faster than walkforce, their velocity gets reset to walkforce.
+        if (rb.velocity.x < -walkForce) walkVector.x = -walkForce / 1.5f;
+        else if (rb.velocity.x > walkForce) walkVector.x = walkForce / 1.5f;
+
+        // The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
+        if (this.isGrounded)
+        {
+            if (rb.velocity.y == 0) walkVector.x *= 1.2f;
+            else if (rb.velocity.y > 0) walkVector.x *= 1.8f;
+        }
+
         rb.AddForce(walkVector);
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
@@ -161,8 +185,6 @@ public class Player : ICharacterInterface {
 
     public void Sprint(float direction)
     {
-        Debug.Log("Sprint");
-
         // Check and see if we are paused
         if (Time.timeScale == 0)
             return;
@@ -173,11 +195,24 @@ public class Player : ICharacterInterface {
 
         // Reduce the friction so we can move faster.
         rb.drag = 1f;
-        Vector2 walkVector = new Vector2(direction * sprintForce, 0);
+        Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y);
+
+        // If the player moves faster than sprintforce, their velocity gets reset to sprintforce.
+        if (rb.velocity.x < -sprintForce) walkVector.x = -sprintForce / 1.5f;
+        else if (rb.velocity.x > sprintForce) walkVector.x = sprintForce / 1.5f;
+
+        // The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
+        if (this.isGrounded)
+        {
+            if (rb.velocity.y == 0) walkVector.x *= 1.2f;
+            else if (rb.velocity.y > 0) walkVector.x *= 1.5f;
+        }
+
         rb.AddForce(walkVector);
 
         player.GetComponent<Animator>().SetBool("walking", this.Walking);
     }
+
     public void Attack()
     {
         if (invController.WeaponIsInInventory())
@@ -197,7 +232,7 @@ public class Player : ICharacterInterface {
 
 
     public void MeleeAttack(){
-		Debug.Log("MeleeAttack with "+this.MeleeWeapon);
+		Debug.Log("MeleeAttack with "+ this.MeleeWeapon);
 
 		switch(this.MeleeWeapon)
 		{
@@ -208,7 +243,7 @@ public class Player : ICharacterInterface {
 		}
     }
 
-    public void switchWeapon()
+    public void SwitchWeapon()
     {
         if (invController.AbleToSwitchWeapons())
         {
@@ -236,10 +271,8 @@ public class Player : ICharacterInterface {
 			case "Gun" : 
 				this.strength = 50;
 
-				//This needs to work with a Bullet Class rather than the previously existing way.
+				//This needs to work with a Bullet or Gun Class rather than the previously existing way.
 				//Reason: It will only work with a gun, the previously existing way prohibits any future ranged weapons.
-				//Also: the current bullets never despawn, are pretty slow, 
-				//		and can only be fired in a straight line toward the positve X axis
 
 				//rangedAmmunition = new Gun();
 				break;
@@ -268,98 +301,41 @@ public class Player : ICharacterInterface {
             UnityEngine.Object.Destroy(shot, 3.0f);
         }
     }
-		
-	public GameObject Interact()
+
+    public GameObject Interact()
     {
-        Debug.Log("Interact");
         foreach (GameObject item in food)
         {
-            var itemPickedUp = item.GetComponent<Collider2D>();
-            var currentPlayer = player.GetComponent<Collider2D>();
-
-            if (itemPickedUp.IsTouching(currentPlayer))
-            {
-                var addedItem = invController.AddItem(item);
-
-                if (addedItem)
-                {
-                    food.Remove(item);
-                    return item;
-                }
-                else if (!addedItem)
-                {
-                    return null;
-                }
-            }
+            var touching = PlayerIsTouchingItem(item);
+            if (touching)
+                return InteractWithObject(item, food);
         }
 
         foreach (GameObject item in water)
         {
-            var itemPickedUp = item.GetComponent<Collider2D>();
-            var currentPlayer = player.GetComponent<Collider2D>();
-
-            if (itemPickedUp.IsTouching(currentPlayer))
-            {
-                var addedItem = invController.AddItem(item);
-
-                if (addedItem)
-                {
-                    water.Remove(item);
-                    return item;
-                }
-                else if (!addedItem)
-                {
-                    return null;
-                }
-            }
+            var touching = PlayerIsTouchingItem(item);
+            if (touching)
+                return InteractWithObject(item, water);
         }
 
         foreach (GameObject item in weapons)
         {
-            var itemPickedUp = item.GetComponent<Collider2D>();
-            var currentPlayer = player.GetComponent<Collider2D>();
-
-            if (itemPickedUp.IsTouching(currentPlayer))
-            {
-                var addedItem = invController.AddItem(item);
-
-                if (addedItem)
-                {
-                    weapons.Remove(item);
-                    return item;
-                }
-                else if (!addedItem)
-                {
-                    return null;
-                }
-            }
+            var touching = PlayerIsTouchingItem(item);
+            if (touching)
+                return InteractWithObject(item, weapons);
         }
 
         foreach (GameObject item in items)
         {
-            var itemPickedUp = item.GetComponent<Collider2D>();
-            var currentPlayer = player.GetComponent<Collider2D>();
-
-            if (itemPickedUp.IsTouching(currentPlayer))
-            {
-                var addedItem = invController.AddItem(item);
-
-                if (addedItem)
-                {
-                    items.Remove(item);
-                    return item;
-                }
-                else if (!addedItem)
-                {
-                    return null;
-                }
-            }
+            var touching = PlayerIsTouchingItem(item);
+            if (touching)
+                return InteractWithObject(item, items);
         }
 
         return null;
     }
 
-	public void CheckDirection(float direction) {
+    public void CheckDirection(float direction) {
 		// Flip the character if they're moving in the opposite direction
 		if (direction > 0 && !facingRight)
 		{
@@ -378,12 +354,15 @@ public class Player : ICharacterInterface {
 		player.transform.localScale = scale;}
 
 	public void TakeDamage(int damage) {
-		this.health = this.health - damage;}
+		this.health = this.health - damage;
+        this.player.GetComponent<StatusBarLogic>().SetHealth();
+        
+    }
 
     public void GroundCheck(){
 
-		this.IsGrounded = Physics2D.Linecast(this.player.GetComponent<PlayerController>().startOnPlayer.position, 
-											 this.player.GetComponent<PlayerController>().endOnGround.position, 
+		this.IsGrounded = Physics2D.Linecast(this.player.GetComponent<PlayerController>().StartOnPlayer.position, 
+											 this.player.GetComponent<PlayerController>().EndOnGround.position, 
 											 1 << LayerMask.NameToLayer("Ground"));
         
         if (this.IsGrounded)
@@ -442,8 +421,12 @@ public class Player : ICharacterInterface {
 
     public void ConsumeEdibleItem()
     {
-        if (this.Stamina < 600)
+        if (this.Stamina < 400)
             this.Stamina += 100;
+        else if(this.Stamina < 500)
+        {
+            this.Stamina = 500;
+        }
     }
 
     public void UseHealthPack()
@@ -451,5 +434,30 @@ public class Player : ICharacterInterface {
         if (this.Health < 100)
             this.Health = 100;
     }
-	#endregion
+
+    private GameObject InteractWithObject(GameObject item, List<GameObject> inArray)
+    {
+        var addedItem = invController.AddItem(item);
+        if (addedItem)
+        {
+            inArray.Remove(item);
+            return item;
+        }
+        else if (!addedItem)
+        {
+            return null;
+        }
+
+        return null;
+    }
+
+    private bool PlayerIsTouchingItem(GameObject item)
+    {
+        var itemPickedUp = item.GetComponent<Collider2D>();
+        var currentPlayer = player.GetComponent<Collider2D>();
+
+        var touching = itemPickedUp.IsTouching(currentPlayer);
+        return touching;
+    }
+    #endregion
 }
