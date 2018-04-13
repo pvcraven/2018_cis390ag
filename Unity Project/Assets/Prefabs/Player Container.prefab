@@ -874,6 +874,7 @@ MonoBehaviour:
   EndOnGround: {fileID: 4104615564674150}
   statusBar: {fileID: 0}
   drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
+  pickupSound: {fileID: 8300000, guid: fa26aebbce207954d8b85f2947a4fbe2, type: 3}
   walkAudio:
   - {fileID: 8300000, guid: d15afcc2244b5b84cbdc0bb5a45f7e00, type: 3}
   - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}

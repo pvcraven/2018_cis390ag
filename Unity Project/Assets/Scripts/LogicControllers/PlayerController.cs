@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
     private bool step = true;
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
+    public AudioClip pickupSound;
     public AudioClip[] walkAudio;
 
     void Start() {
@@ -156,6 +157,13 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(interactKey))
         {
             Destroy(tory.Interact());
+            if(tory.Interact() != null)
+            {
+                audioSource.clip = pickupSound;
+                audioSource.volume = 1f;
+                audioSource.Play();
+                StartCoroutine(StepWait(audioSource.clip.length));
+            }
         }
         if (Input.GetKeyDown(switchWeapon))
         {
