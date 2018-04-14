@@ -424,9 +424,18 @@ public class Player : ICharacterInterface {
             position++;
         }
 
-        player.GetComponent<Animator>().SetBool("stabbing", false);}
+        PlayerController script = player.GetComponent<PlayerController>();
+        script.MeleeAnimationDelay();
 
-	public void Die() 
+        //player.GetComponent<Animator>().SetBool("stabbing", false);
+    }
+
+    public void SetAnimationFalse()
+    {
+        player.GetComponent<Animator>().SetBool("stabbing", false);
+    }
+
+    public void Die() 
 	{
 		this.StopMoving ();
 		player.GetComponent<Animator> ().SetBool ("dying", true);

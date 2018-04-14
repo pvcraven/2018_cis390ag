@@ -22,11 +22,14 @@ public class PlayerController : MonoBehaviour {
 	public Transform rangedSpawner;
     public Transform StartOnPlayer, EndOnGround;
     public Player tory;
+    public float attackDelay;
 
     public GameObject statusBar;
 
+    private float attackCooldown = -1;
     private SpriteRenderer spriteRend;
     private float direction = 0;
+    private bool animationDelay = false;
     private bool step = true;
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
@@ -47,6 +50,12 @@ public class PlayerController : MonoBehaviour {
 			tory.Dead = true;
 			tory.Die ();
         }
+
+        if (attackCooldown >= 0)
+        {
+            attackCooldown--;
+        }
+        if (animationDelay) animationDelay = MeleeAnimationDelay(animationDelay);
 
         CheckforInput();
 
@@ -151,7 +160,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(attack))
+        if (Input.GetKeyDown(attack) && attackCooldown < 0)
         {
             tory.Attack();
         }
@@ -192,5 +201,17 @@ public class PlayerController : MonoBehaviour {
         {
             //TODO: Add code to connect level 2 with the next level
         }
+    }
+
+    public bool MeleeAnimationDelay(bool b)
+    {
+        tory.SetAnimationFalse();
+        return false;
+    }
+
+    public void MeleeAnimationDelay()
+    {
+        attackCooldown = attackDelay;
+        animationDelay = true;
     }
 }
