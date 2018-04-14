@@ -220,19 +220,19 @@ public class Player : ICharacterInterface {
             if (currentAttackType == "ranged")
             {
                 RangedAttack();
-                Debug.Log("Ranged attack");
+                //Debug.Log("Ranged attack");
             }
             else
             {
                 MeleeAttack();
-                Debug.Log("Melee attack");
+                //Debug.Log("Melee attack");
             }
         }
     }
 
 
     public void MeleeAttack(){
-		Debug.Log("MeleeAttack with "+ this.MeleeWeapon);
+		//Debug.Log("MeleeAttack with "+ this.MeleeWeapon);
 
 		switch(this.MeleeWeapon)
 		{
@@ -323,7 +323,9 @@ public class Player : ICharacterInterface {
             var touching = PlayerIsTouchingItem(item);
             if (touching)
             {
-                this.player.GetComponent<StatusBarLogic>().SetWeapon();
+                //this.player.GetComponent<StatusBarLogic>().SetWeapon();
+                //Debug.Log("item " + item);
+                //Debug.Log("Weapons " + weapons.ToArray().ToString());
                 return InteractWithObject(item, weapons);
             }
         }
@@ -394,13 +396,23 @@ public class Player : ICharacterInterface {
     }
 
 	private void Stab(int damage){
+        float MeleeAttackHitBox = 0;
+
 		player.GetComponent<Animator>().SetBool("stabbing", true);
 		player.GetComponent<Animator>().Play("Tory_Stabbing");
 
         int position = 0;
         Collider2D collidingObject;
         playerCC = player.GetComponent<CapsuleCollider2D>();
-        Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(new Vector2(playerCC.attachedRigidbody.position.x, playerCC.attachedRigidbody.position.y), new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
+        if (facingRight)
+        {
+            MeleeAttackHitBox = playerCC.attachedRigidbody.position.x + 1;
+        }
+        else
+        {
+            MeleeAttackHitBox = playerCC.attachedRigidbody.position.x - 1;
+        }
+        Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(new Vector2(MeleeAttackHitBox, playerCC.attachedRigidbody.position.y), new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
         while (position < overlappingObjects.GetLength(0))
         {
             collidingObject = overlappingObjects[position];
@@ -444,6 +456,13 @@ public class Player : ICharacterInterface {
         if (addedItem)
         {
             inArray.Remove(item);
+            if (currentMeleeWeapon == null)
+            {
+                if (item.name.Contains("Knife"))
+                {
+                    MeleeWeapon = "Knife";
+                }
+            }
             return item;
         }
         else if (!addedItem)
