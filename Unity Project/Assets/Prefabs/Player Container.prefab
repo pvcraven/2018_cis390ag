@@ -63,6 +63,7 @@ GameObject:
   - component: {fileID: 82203970412758874}
   - component: {fileID: 81255442996017722}
   - component: {fileID: 114982857166748036}
+  - component: {fileID: 114273005791080168}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -298,7 +299,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377632775304484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.46, y: 4.37, z: -10.925503}
+  m_LocalPosition: {x: 0.019515172, y: 7.5, z: -0.9255029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4857875647038306}
@@ -311,7 +312,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1270749830176946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.46, y: 4.37, z: -0.9255029}
+  m_LocalPosition: {x: 30.87, y: 5.18, z: -0.9255029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4777189863969172}
@@ -327,7 +328,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1946912833650078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.46, y: 4.37, z: -10.925503}
+  m_LocalPosition: {x: 30.87, y: 5.18, z: -10.925503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4643356535960128}
@@ -411,7 +412,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -658,6 +659,17 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 60959207769075918}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!114 &114273005791080168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270749830176946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114306898908346934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -858,13 +870,14 @@ MonoBehaviour:
   rangedAmmunition: {fileID: 1469316922951046, guid: a55509bdb2a654346a42e29d301cbcea,
     type: 2}
   rangedSpawner: {fileID: 4777189863969172}
-  startOnPlayer: {fileID: 4763194070322316}
-  endOnGround: {fileID: 4104615564674150}
-  statusBar: {fileID: 1339919976171178}
+  StartOnPlayer: {fileID: 4763194070322316}
+  EndOnGround: {fileID: 4104615564674150}
+  statusBar: {fileID: 0}
+  drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
+  pickupSound: {fileID: 8300000, guid: fa26aebbce207954d8b85f2947a4fbe2, type: 3}
   walkAudio:
   - {fileID: 8300000, guid: d15afcc2244b5b84cbdc0bb5a45f7e00, type: 3}
   - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
-  drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
 --- !u!114 &114766998018581186
 MonoBehaviour:
   m_ObjectHideFlags: 1
