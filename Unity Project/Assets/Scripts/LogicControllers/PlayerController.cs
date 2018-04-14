@@ -166,14 +166,7 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetKeyDown(interactKey))
         {
-            Destroy(tory.Interact());
-            if(tory.Interact() != null)
-            {
-                audioSource.clip = pickupSound;
-                audioSource.volume = 1f;
-                audioSource.Play();
-                StartCoroutine(StepWait(audioSource.clip.length));
-            }
+            Destroy(tory.Interact(pickupSound));
         }
         if (Input.GetKeyDown(switchWeapon))
         {

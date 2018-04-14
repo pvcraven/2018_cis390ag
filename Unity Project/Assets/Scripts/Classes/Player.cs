@@ -302,20 +302,20 @@ public class Player : ICharacterInterface {
         }
     }
 
-    public GameObject Interact()
+    public GameObject Interact(AudioClip clip)
     {
         foreach (GameObject item in food)
         {
             var touching = PlayerIsTouchingItem(item);
             if (touching)
-                return InteractWithObject(item, food);
+                return InteractWithObject(item, food, clip);
         }
 
         foreach (GameObject item in water)
         {
             var touching = PlayerIsTouchingItem(item);
             if (touching)
-                return InteractWithObject(item, water);
+                return InteractWithObject(item, water, clip);
         }
 
         foreach (GameObject item in weapons)
@@ -326,7 +326,7 @@ public class Player : ICharacterInterface {
                 //this.player.GetComponent<StatusBarLogic>().SetWeapon();
                 //Debug.Log("item " + item);
                 //Debug.Log("Weapons " + weapons.ToArray().ToString());
-                return InteractWithObject(item, weapons);
+                return InteractWithObject(item, weapons, clip);
             }
         }
 
@@ -334,7 +334,7 @@ public class Player : ICharacterInterface {
         {
             var touching = PlayerIsTouchingItem(item);
             if (touching)
-                return InteractWithObject(item, items);
+                return InteractWithObject(item, items, clip);
         }
 
         return null;
@@ -458,11 +458,12 @@ public class Player : ICharacterInterface {
             this.Health = 100;
     }
 
-    private GameObject InteractWithObject(GameObject item, List<GameObject> inArray)
+    private GameObject InteractWithObject(GameObject item, List<GameObject> inArray, AudioClip clip)
     {
         var addedItem = invController.AddItem(item);
         if (addedItem)
         {
+            AudioSource.PlayClipAtPoint(clip, player.transform.position);
             inArray.Remove(item);
             if (currentMeleeWeapon == null)
             {
