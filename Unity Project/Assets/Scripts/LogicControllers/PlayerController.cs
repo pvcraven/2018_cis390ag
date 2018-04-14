@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -178,6 +179,18 @@ public class PlayerController : MonoBehaviour {
             StartCoroutine(tory.FlashColor());
             tory.TakeDamage(10);
             Debug.Log("You're Taking Damage! Health: " + tory.Health);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.name.Equals("End Level 1 Trigger"))
+        {
+            SceneManager.LoadScene(MainMenuController.LEVEL_1_NAME);
+        }
+        else if (other.name.Equals("End Level 2 Trigger"))
+        {
+            //TODO: Add code to connect level 2 with the next level
         }
     }
 }
