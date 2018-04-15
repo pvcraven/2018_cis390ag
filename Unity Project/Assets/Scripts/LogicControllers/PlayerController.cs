@@ -89,10 +89,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    void StepSound(AudioClip clip)
+    void StepSound()
     {
-        audioSource.clip = clip;
-        audioSource.volume = 0.05f;
         audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
         audioSource.Play();
     }
@@ -137,8 +135,7 @@ public class PlayerController : MonoBehaviour {
             tory.Sprint(direction);
             if(tory.IsGrounded && step == true)
             {
-                // Add functionality later to check ground tag and change StepSound based on that.
-                StepSound(walkAudio[1]);
+                StepSound();
                 StartCoroutine(StepWait(audioSource.clip.length/1.5f));
             }
         }
@@ -147,8 +144,7 @@ public class PlayerController : MonoBehaviour {
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
-                // Add functionality later to check ground tag and change StepSound based on that.
-                StepSound(walkAudio[1]);
+                StepSound();
                 StartCoroutine(StepWait(audioSource.clip.length));
             }
         }
@@ -181,6 +177,24 @@ public class PlayerController : MonoBehaviour {
             StartCoroutine(tory.FlashColor());
             tory.TakeDamage(10);
             Debug.Log("You're Taking Damage! Health: " + tory.Health);
+        }
+
+        if (other.gameObject.CompareTag("Stone"))
+        {
+            audioSource.clip = walkAudio[0];
+            audioSource.volume = 0.10f;
+        }
+
+        if (other.gameObject.CompareTag("Dirt"))
+        {
+            audioSource.clip = walkAudio[1];
+            audioSource.volume = 0.05f;
+        }
+
+        if (other.gameObject.CompareTag("Grass"))
+        {
+            audioSource.clip = walkAudio[2];
+            audioSource.volume = 0.05f;
         }
     }
 

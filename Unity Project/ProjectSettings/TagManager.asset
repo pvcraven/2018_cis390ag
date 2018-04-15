@@ -15,6 +15,9 @@ TagManager:
   - Water
   - HealthPack
   - End Level Trigger
+  - Grass
+  - Stone
+  - Dirt
   layers:
   - Default
   - TransparentFX
