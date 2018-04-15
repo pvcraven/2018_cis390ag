@@ -17860,9 +17860,7 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 107780786}
     m_ColliderPaths:
-    - - X: 579649984
-        Y: 23950000
-      - X: 573249984
+    - - X: 573249984
         Y: 23950000
       - X: 573249984
         Y: 23850000
@@ -18212,6 +18210,8 @@ CompositeCollider2D:
         Y: -107150000
       - X: 579649984
         Y: -107150000
+      - X: 579649984
+        Y: 23950000
   m_CompositePaths:
     m_Paths:
     - - {x: 57.965, y: 2.375}
@@ -73707,7 +73707,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4857875647038306, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_RootOrder
-      value: 2238
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114982857166748036, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}
@@ -73721,7 +73721,7 @@ Prefab:
       objectReference: {fileID: 1702450416}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 30.87
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 114618731280287424, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}
@@ -73736,15 +73736,15 @@ Prefab:
     - target: {fileID: 20069429745885972, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}
       propertyPath: orthographic size
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.18
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -10.925503
+      value: -0.9255029
       objectReference: {fileID: 0}
     - target: {fileID: 4324409836364732, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.x
