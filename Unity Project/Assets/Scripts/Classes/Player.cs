@@ -302,20 +302,32 @@ public class Player : ICharacterInterface {
         }
     }
 
+<<<<<<< .merge_file_DXpt0L
     public GameObject Interact()
+=======
+    public GameObject Interact(AudioClip clip)
+>>>>>>> .merge_file_JqdUdm
     {
         foreach (GameObject item in food)
         {
             var touching = PlayerIsTouchingItem(item);
             if (touching)
+<<<<<<< .merge_file_DXpt0L
                 return InteractWithObject(item, food);
+=======
+                return InteractWithObject(item, food, clip);
+>>>>>>> .merge_file_JqdUdm
         }
 
         foreach (GameObject item in water)
         {
             var touching = PlayerIsTouchingItem(item);
             if (touching)
+<<<<<<< .merge_file_DXpt0L
                 return InteractWithObject(item, water);
+=======
+                return InteractWithObject(item, water, clip);
+>>>>>>> .merge_file_JqdUdm
         }
 
         foreach (GameObject item in weapons)
@@ -326,7 +338,11 @@ public class Player : ICharacterInterface {
                 //this.player.GetComponent<StatusBarLogic>().SetWeapon();
                 //Debug.Log("item " + item);
                 //Debug.Log("Weapons " + weapons.ToArray().ToString());
+<<<<<<< .merge_file_DXpt0L
                 return InteractWithObject(item, weapons);
+=======
+                return InteractWithObject(item, weapons, clip);
+>>>>>>> .merge_file_JqdUdm
             }
         }
 
@@ -334,7 +350,11 @@ public class Player : ICharacterInterface {
         {
             var touching = PlayerIsTouchingItem(item);
             if (touching)
+<<<<<<< .merge_file_DXpt0L
                 return InteractWithObject(item, items);
+=======
+                return InteractWithObject(item, items, clip);
+>>>>>>> .merge_file_JqdUdm
         }
 
         return null;
@@ -424,9 +444,24 @@ public class Player : ICharacterInterface {
             position++;
         }
 
+<<<<<<< .merge_file_DXpt0L
         player.GetComponent<Animator>().SetBool("stabbing", false);}
 
 	public void Die() 
+=======
+        PlayerController script = player.GetComponent<PlayerController>();
+        script.MeleeAnimationDelay();
+
+        //player.GetComponent<Animator>().SetBool("stabbing", false);
+    }
+
+    public void SetAnimationFalse()
+    {
+        player.GetComponent<Animator>().SetBool("stabbing", false);
+    }
+
+    public void Die() 
+>>>>>>> .merge_file_JqdUdm
 	{
 		this.StopMoving ();
 		player.GetComponent<Animator> ().SetBool ("dying", true);
@@ -449,11 +484,19 @@ public class Player : ICharacterInterface {
             this.Health = 100;
     }
 
+<<<<<<< .merge_file_DXpt0L
     private GameObject InteractWithObject(GameObject item, List<GameObject> inArray)
+=======
+    private GameObject InteractWithObject(GameObject item, List<GameObject> inArray, AudioClip clip)
+>>>>>>> .merge_file_JqdUdm
     {
         var addedItem = invController.AddItem(item);
         if (addedItem)
         {
+<<<<<<< .merge_file_DXpt0L
+=======
+            AudioSource.PlayClipAtPoint(clip, player.transform.position);
+>>>>>>> .merge_file_JqdUdm
             inArray.Remove(item);
             if (currentMeleeWeapon == null)
             {

@@ -22,11 +22,22 @@ public class PlayerController : MonoBehaviour {
 	public Transform rangedSpawner;
     public Transform StartOnPlayer, EndOnGround;
     public Player tory;
+<<<<<<< .merge_file_3djLIA
 
     public GameObject statusBar;
 
     private SpriteRenderer spriteRend;
     private float direction = 0;
+=======
+    public float attackDelay;
+
+    public GameObject statusBar;
+
+    private float attackCooldown = -1;
+    private SpriteRenderer spriteRend;
+    private float direction = 0;
+    private bool animationDelay = false;
+>>>>>>> .merge_file_KCCwrp
     private bool step = true;
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
@@ -48,6 +59,15 @@ public class PlayerController : MonoBehaviour {
 			tory.Die ();
         }
 
+<<<<<<< .merge_file_3djLIA
+=======
+        if (attackCooldown >= 0)
+        {
+            attackCooldown--;
+        }
+        if (animationDelay) animationDelay = MeleeAnimationDelay(animationDelay);
+
+>>>>>>> .merge_file_KCCwrp
         CheckforInput();
 
         if (Input.GetKey(sprintKey) && walk && tory.Stamina > 1)
@@ -80,10 +100,15 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+<<<<<<< .merge_file_3djLIA
     void StepSound(AudioClip clip)
     {
         audioSource.clip = clip;
         audioSource.volume = 0.05f;
+=======
+    void StepSound()
+    {
+>>>>>>> .merge_file_KCCwrp
         audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
         audioSource.Play();
     }
@@ -128,8 +153,12 @@ public class PlayerController : MonoBehaviour {
             tory.Sprint(direction);
             if(tory.IsGrounded && step == true)
             {
+<<<<<<< .merge_file_3djLIA
                 // Add functionality later to check ground tag and change StepSound based on that.
                 StepSound(walkAudio[1]);
+=======
+                StepSound();
+>>>>>>> .merge_file_KCCwrp
                 StartCoroutine(StepWait(audioSource.clip.length/1.5f));
             }
         }
@@ -138,8 +167,12 @@ public class PlayerController : MonoBehaviour {
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
+<<<<<<< .merge_file_3djLIA
                 // Add functionality later to check ground tag and change StepSound based on that.
                 StepSound(walkAudio[1]);
+=======
+                StepSound();
+>>>>>>> .merge_file_KCCwrp
                 StartCoroutine(StepWait(audioSource.clip.length));
             }
         }
@@ -151,12 +184,17 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+<<<<<<< .merge_file_3djLIA
         if (Input.GetKeyDown(attack))
+=======
+        if (Input.GetKeyDown(attack) && attackCooldown < 0)
+>>>>>>> .merge_file_KCCwrp
         {
             tory.Attack();
         }
         if (Input.GetKeyDown(interactKey))
         {
+<<<<<<< .merge_file_3djLIA
             Destroy(tory.Interact());
             if(tory.Interact() != null)
             {
@@ -165,6 +203,9 @@ public class PlayerController : MonoBehaviour {
                 audioSource.Play();
                 StartCoroutine(StepWait(audioSource.clip.length));
             }
+=======
+            Destroy(tory.Interact(pickupSound));
+>>>>>>> .merge_file_KCCwrp
         }
         if (Input.GetKeyDown(switchWeapon))
         {
@@ -180,6 +221,27 @@ public class PlayerController : MonoBehaviour {
             tory.TakeDamage(10);
             Debug.Log("You're Taking Damage! Health: " + tory.Health);
         }
+<<<<<<< .merge_file_3djLIA
+=======
+
+        if (other.gameObject.CompareTag("Stone"))
+        {
+            audioSource.clip = walkAudio[0];
+            audioSource.volume = 0.10f;
+        }
+
+        if (other.gameObject.CompareTag("Dirt"))
+        {
+            audioSource.clip = walkAudio[1];
+            audioSource.volume = 0.05f;
+        }
+
+        if (other.gameObject.CompareTag("Grass"))
+        {
+            audioSource.clip = walkAudio[2];
+            audioSource.volume = 0.05f;
+        }
+>>>>>>> .merge_file_KCCwrp
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -193,4 +255,19 @@ public class PlayerController : MonoBehaviour {
             //TODO: Add code to connect level 2 with the next level
         }
     }
+<<<<<<< .merge_file_3djLIA
+=======
+
+    public bool MeleeAnimationDelay(bool b)
+    {
+        tory.SetAnimationFalse();
+        return false;
+    }
+
+    public void MeleeAnimationDelay()
+    {
+        attackCooldown = attackDelay;
+        animationDelay = true;
+    }
+>>>>>>> .merge_file_KCCwrp
 }

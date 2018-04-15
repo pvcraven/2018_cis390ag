@@ -15,8 +15,14 @@ TagManager:
   - Water
   - HealthPack
   - End Level Trigger
+<<<<<<< .merge_file_aRaMSK
   - Zombie
   - Bandit
+=======
+  - Grass
+  - Stone
+  - Dirt
+>>>>>>> .merge_file_hXysXj
   layers:
   - Default
   - TransparentFX
