@@ -272,12 +272,12 @@ public class Player : ICharacterInterface
 			if (currentAttackType == "ranged")
 			{
 				RangedAttack();
-				//Debug.Log("Ranged attack");
+				Debug.Log("Ranged attack");
 			}
 			else
 			{
 				MeleeAttack();
-				//Debug.Log("Melee attack");
+				Debug.Log("Melee attack");
 			}
 		}
 	}
@@ -300,7 +300,7 @@ public class Player : ICharacterInterface
 	{
 		if (invController.AbleToSwitchWeapons())
 		{
-			//Debug.Log("SwitchWeapon");
+			Debug.Log("SwitchWeapon");
 			if (currentAttackType == "melee")
 			{
 				currentAttackType = "ranged";
