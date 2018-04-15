@@ -138,8 +138,15 @@ public class PlayerController : MonoBehaviour {
             if(tory.IsGrounded && step == true)
             {
                 // Add functionality later to check ground tag and change StepSound based on that.
-                StepSound(walkAudio[1]);
-                StartCoroutine(StepWait(audioSource.clip.length/1.5f));
+				if (tory.IsGroundedOnStone) {
+					StepSound (walkAudio [0]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Stone");
+				} else {
+					StepSound (walkAudio [1]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Ground");
+				}
             }
         }
         else if(walk)
@@ -148,8 +155,15 @@ public class PlayerController : MonoBehaviour {
             if(tory.IsGrounded && step == true)
             {
                 // Add functionality later to check ground tag and change StepSound based on that.
-                StepSound(walkAudio[1]);
-                StartCoroutine(StepWait(audioSource.clip.length));
+				if (tory.IsGroundedOnStone) {
+					StepSound (walkAudio [0]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Stone");
+				} else {
+					StepSound (walkAudio [1]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Ground");
+				}
             }
         }
         else

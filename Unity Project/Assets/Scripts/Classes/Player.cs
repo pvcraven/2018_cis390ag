@@ -45,6 +45,12 @@ public class Player : ICharacterInterface
 		set { isGrounded = value; }
 	}
 
+	public bool IsGroundedOnStone
+	{
+		get { return isGroundedOnStone; }
+		set { isGroundedOnStone = value; }
+	}
+
 	public int JumpForce
 	{
 		get { return jumpForce; }
@@ -119,6 +125,7 @@ public class Player : ICharacterInterface
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
+	private bool isGroundedOnStone = false; 
 	private int jumpForce = 350;
 	private int walkForce = 5;
 	private int sprintForce = 7;
@@ -429,7 +436,11 @@ public class Player : ICharacterInterface
 			this.player.GetComponent<PlayerController>().EndOnGround.position,
 			1 << LayerMask.NameToLayer("Ground"));
 
-		if (this.IsGrounded)
+		this.IsGroundedOnStone = Physics2D.Linecast(this.player.GetComponent<PlayerController>().StartOnPlayer.position,
+			this.player.GetComponent<PlayerController>().EndOnGround.position,
+			1 << LayerMask.NameToLayer("Stone"));
+
+		if (this.IsGrounded || this.IsGroundedOnStone)
 		{
 			player.GetComponent<Animator>().SetBool("OnGround", this.IsGrounded);
 			player.GetComponent<Animator>().SetFloat("vSpeed", 0);
