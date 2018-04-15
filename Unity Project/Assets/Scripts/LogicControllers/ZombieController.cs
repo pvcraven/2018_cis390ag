@@ -24,7 +24,6 @@ public class ZombieController : MonoBehaviour {
         {
             Destroy(zombie);
         }
-        
 	}
 
     void OnCollisionEnter2D(Collision2D other)

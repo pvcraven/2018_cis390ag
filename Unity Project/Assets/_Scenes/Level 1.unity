@@ -171,7 +171,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &22633371
 Transform:
@@ -1477,7 +1477,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &145705692
 Transform:
@@ -1696,7 +1696,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &200530349
 Transform:
@@ -1758,6 +1758,10 @@ Prefab:
         type: 2}
       propertyPath: m_LinearDrag
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
+      propertyPath: m_TagString
+      value: Zombie
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
@@ -1866,7 +1870,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &230681713
 Transform:
@@ -2091,7 +2095,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &241417621
 Transform:
@@ -2563,7 +2567,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &468584213
 Transform:
@@ -3389,7 +3393,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &583691156
 Transform:
@@ -3467,7 +3471,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &593106431
 Transform:
@@ -59031,7 +59035,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &714489243
 Transform:
@@ -59104,7 +59108,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &717985006
 Transform:
@@ -59348,7 +59352,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &793201665
 Transform:
@@ -59759,7 +59763,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &880048811
 Transform:
@@ -59832,7 +59836,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &913423387
 Transform:
@@ -60115,6 +60119,10 @@ Prefab:
       propertyPath: m_Name
       value: Zombie_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
+      propertyPath: m_TagString
+      value: Zombie
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
   m_IsPrefabParent: 0
@@ -60160,6 +60168,10 @@ Prefab:
     - target: {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
       propertyPath: m_Name
       value: Zombie_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
+      propertyPath: m_TagString
+      value: Zombie
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
@@ -60476,7 +60488,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1031606832
 Transform:
@@ -60743,7 +60755,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1077796577
 Transform:
@@ -60876,7 +60888,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1188701406
 Transform:
@@ -61022,7 +61034,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1207069273
 Transform:
@@ -61324,7 +61336,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1269410930
 Transform:
@@ -76244,7 +76256,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1358518919
 Transform:
@@ -76403,6 +76415,10 @@ Prefab:
     - target: {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
       propertyPath: m_Name
       value: Zombie_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
+      propertyPath: m_TagString
+      value: Zombie
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
@@ -77442,7 +77458,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1615760432
 Transform:
@@ -134185,7 +134201,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1934764276
 Transform:
@@ -134548,6 +134564,10 @@ Prefab:
         type: 2}
       propertyPath: m_Volume
       value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
+      propertyPath: m_TagString
+      value: Zombie
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
@@ -135385,7 +135405,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &2086178995
 Transform:
@@ -135761,7 +135781,7 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &2118121904
 Transform:
