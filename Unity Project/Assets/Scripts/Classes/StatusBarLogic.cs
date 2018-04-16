@@ -17,6 +17,7 @@ public class StatusBarLogic : MonoBehaviour
     private string statusBarStrength = "0";
 
     private int health = 100;
+    private float stamina = 500;
 
     public RectTransform healthPanel;
     public RectTransform stausPanel;
@@ -68,6 +69,12 @@ public class StatusBarLogic : MonoBehaviour
     public void SetStamina()
     {
         statusBarInformation.TryGetValue("Stamina", out statusBarStamina);
+
+        float.TryParse(statusBarStamina, out stamina);
+
+        float max_stamina = 500; // This should be a member of something... but it is just "100" everywhere 
+        float new_width_of_panel = -((1 - (stamina / max_stamina)) * 160);
+        stausPanel.offsetMax = new Vector2(new_width_of_panel, -0); // new Vector2(-right, -top);
     }
 
     void SetAttackType()
