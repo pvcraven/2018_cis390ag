@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -21,11 +22,14 @@ public class PlayerController : MonoBehaviour {
 	public Transform rangedSpawner;
     public Transform StartOnPlayer, EndOnGround;
     public Player tory;
-
     public GameObject statusBar;
 
     private SpriteRenderer spriteRend;
     private float direction = 0;
+    public float attackDelay;
+
+    private float attackCooldown = -1;
+    private bool animationDelay = false;
     private bool step = true;
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
@@ -46,6 +50,12 @@ public class PlayerController : MonoBehaviour {
 			tory.Dead = true;
 			tory.Die ();
         }
+	    
+        if (attackCooldown >= 0)
+        {
+            attackCooldown--;
+        }
+        if (animationDelay) animationDelay = MeleeAnimationDelay(animationDelay);
 
         CheckforInput();
 
@@ -128,8 +138,15 @@ public class PlayerController : MonoBehaviour {
             if(tory.IsGrounded && step == true)
             {
                 // Add functionality later to check ground tag and change StepSound based on that.
-                StepSound(walkAudio[1]);
-                StartCoroutine(StepWait(audioSource.clip.length/1.5f));
+				if (tory.IsGroundedOnStone) {
+					StepSound (walkAudio [0]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Stone");
+				} else {
+					StepSound (walkAudio [1]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Ground");
+				}
             }
         }
         else if(walk)
@@ -138,8 +155,15 @@ public class PlayerController : MonoBehaviour {
             if(tory.IsGrounded && step == true)
             {
                 // Add functionality later to check ground tag and change StepSound based on that.
-                StepSound(walkAudio[1]);
-                StartCoroutine(StepWait(audioSource.clip.length));
+				if (tory.IsGroundedOnStone) {
+					StepSound (walkAudio [0]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Stone");
+				} else {
+					StepSound (walkAudio [1]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Ground");
+				}
             }
         }
         else
@@ -150,7 +174,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(attack))
+        if (Input.GetKeyDown(attack) && attackCooldown < 0)
         {
             tory.Attack();
         }
@@ -179,5 +203,47 @@ public class PlayerController : MonoBehaviour {
             tory.TakeDamage(10);
             Debug.Log("You're Taking Damage! Health: " + tory.Health);
         }
+        
+        if (other.gameObject.CompareTag("Stone"))
+        {
+            audioSource.clip = walkAudio[0];
+            audioSource.volume = 0.10f;
+        }
+
+        if (other.gameObject.CompareTag("Dirt"))
+        {
+            audioSource.clip = walkAudio[1];
+            audioSource.volume = 0.05f;
+        }
+
+        if (other.gameObject.CompareTag("Grass"))
+        {
+            audioSource.clip = walkAudio[2];
+            audioSource.volume = 0.05f;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.name.Equals("End Level 1 Trigger"))
+        {
+            SceneManager.LoadScene(MainMenuController.LEVEL_1_NAME);
+        }
+        else if (other.name.Equals("End Level 2 Trigger"))
+        {
+            //TODO: Add code to connect level 2 with the next level
+        }
+    }
+
+    public bool MeleeAnimationDelay(bool b)
+    {
+        tory.SetAnimationFalse();
+        return false;
+    }
+
+    public void MeleeAnimationDelay()
+    {
+        attackCooldown = attackDelay;
+        animationDelay = true;
     }
 }

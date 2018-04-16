@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: sewer_brick_foreground_manhole_layered
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 96a7448d7ef35a34586678829749e820, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b439b53a69958b045bc975089caeb17c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

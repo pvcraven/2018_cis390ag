@@ -87,7 +87,7 @@ public class StatusBarLogic : MonoBehaviour
         {
             gunStatus.SetActive(false);
             knifeStatus.SetActive(true);
-        } else
+        } else if (statusBarAttackType == "ranged")
         {
             gunStatus.SetActive(true);
             knifeStatus.SetActive(false);

@@ -17,6 +17,7 @@ public class InventoryController : MonoBehaviour
     private const int itemSlotsNum = 12;
     private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
     private GameObject[] inventorySlots;
+    private int numOfWeapons = 0;
 
     private AudioSource audiosource;
 
@@ -65,6 +66,9 @@ public class InventoryController : MonoBehaviour
 
     public bool AbleToSwitchWeapons()
     {
+        if (numOfWeapons >= 2)
+            return true;
+
         return false;
     }
 
@@ -121,10 +125,8 @@ public class InventoryController : MonoBehaviour
                 currentSlot.sprite = tempSprite;
                 currentSlot.color = Color.white;
 
-                if (newPickupItem.tag == "Weapon")
-                {
-                    // Not selectable?
-                }
+                if (pickupItem.tag == "Weapon")
+                    numOfWeapons++;
 
                 return true;
             }

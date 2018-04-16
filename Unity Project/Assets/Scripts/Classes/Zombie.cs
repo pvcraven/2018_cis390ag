@@ -136,6 +136,7 @@ public class Zombie : ICharacterInterface
     {
         this.health = this.health - damage;
         FlashColor();
+        //Debug.Log("Zombie hit");
     }
 
     public void Walk(float direction = 1, float paceDistance = 0)
@@ -144,23 +145,23 @@ public class Zombie : ICharacterInterface
         if (!characterFound)
         {
 
-            Debug.Log("C");
+            //Debug.Log("C");
 
             if (!facingRight)
             {
-                Debug.Log("A");
+                //Debug.Log("A");
                 zombie.transform.Translate(Vector2.right * this.Speed * Time.fixedDeltaTime);
             }
             else
             {
-                Debug.Log("B");
+                //Debug.Log("B");
 
                 zombie.transform.Translate(Vector2.left * this.Speed * Time.fixedDeltaTime);
             }
 
             if(zombie.transform.position.x <= this.initialPosition.x - paceDistance)
             {
-                Debug.Log("stuff");
+                //Debug.Log("stuff");
 
                 if (facingRight)
                 {
@@ -170,7 +171,7 @@ public class Zombie : ICharacterInterface
 
             else if (zombie.transform.position.x >= initialPosition.x)
             {
-                Debug.Log("Morestuff");
+                //Debug.Log("Morestuff");
 
                 if (!facingRight)
                 {
@@ -184,7 +185,7 @@ public class Zombie : ICharacterInterface
         }
         else
         {
-            Debug.Log("Player found!");
+            //Debug.Log("Player found!");
         }
 
         this.Walking = true;

@@ -70,4 +70,12 @@ public class BanditEnemyController : MonoBehaviour {
         banditVelocity.x = -banditTransform.right.x * speed;
         rb.velocity = banditVelocity;
     }
+    
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
