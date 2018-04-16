@@ -155,7 +155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1572423539252428
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1694916199088250
 GameObject:
   m_ObjectHideFlags: 1
@@ -334,7 +334,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377632775304484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.87, y: 5.18, z: -10.925503}
+  m_LocalPosition: {x: 39.17594, y: 4.75, z: -10.925503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4857875647038306}
@@ -347,7 +347,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1270749830176946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.87, y: 5.18, z: -0.9255029}
+  m_LocalPosition: {x: 39.814526, y: 4.35, z: -0.9255029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4777189863969172}
@@ -363,7 +363,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1946912833650078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.87, y: 5.18, z: -10.925503}
+  m_LocalPosition: {x: 39.17594, y: 4.75, z: -10.925503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4643356535960128}
@@ -542,10 +542,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ca77a9b60e3e080459d53a7895544b9f, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.05
-  m_Pitch: 1
+  m_Pitch: 0.8926128
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -915,7 +915,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0b980312ea3413144ad9f6b2d2208e61, type: 3}
   - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
   - {fileID: 8300000, guid: ca77a9b60e3e080459d53a7895544b9f, type: 3}
-  jumpSound: {fileID: 8300000, guid: f1369b29eb1b1a3458da05bb15e45fd7, type: 3}
+  jumpSound: {fileID: 8300000, guid: b5ad655837c624570a06b57fb07dda80, type: 3}
+  gameOversound: {fileID: 8300000, guid: d392f515b1d53480d9d1f1467ebaf41f, type: 3}
 --- !u!114 &114766998018581186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -962,15 +963,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1270749830176946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5782d9503b6c96543a9129136b147030, type: 3}
+  m_Script: {fileID: 11500000, guid: b9fd66e6b3692e04eb8e43f8762f0724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerGameObject: {fileID: 1270749830176946}
   statusBarGameObject: {fileID: 1063748955980738}
   healthPanel: {fileID: 224971945857617196}
   stausPanel: {fileID: 224021473782188728}
-  gunStatus: {fileID: 1492066915556922}
-  knifeStatus: {fileID: 1681487488674118}
+  gunStatus: {fileID: 1681487488674118}
+  knifeStatus: {fileID: 1492066915556922}
 --- !u!114 &114882220596351960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1017,7 +1018,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f37870da508bc344985f9a057585859c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22aaf9b46144d97449ecc7515c042bfe, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1037,7 +1038,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog_box: {fileID: 0}
-  list_of_dialog_events: []
+  list_of_dialog_events:
+  - x_position: -3.700000047683716
+    messages:
+    - Use 'W', 'A', 'S', or 'D' to move!
+    current_message: 0
+  - x_position: 70
+    messages:
+    - This is Normal
+    - '*BOLD* This Is Bold'
+    - '*ITALIC* This Is Italic'
+    - '*BIG* This Is Big'
+    - '*BOLD**BIG* Bold and Big'
+    - 'This is normal again '
+    current_message: 0
+  - x_position: 1.2000000476837158
+    messages:
+    - Press 'R' to pick up items!
+    current_message: 0
+  - x_position: 6.5
+    messages:
+    - Press 'Space' to jump!
+    current_message: 0
+  - x_position: 18
+    messages:
+    - Use 'Left Control' to switch between weapons!
+    current_message: 0
+  - x_position: 20
+    messages:
+    - Use 'TAB' to view your inventory!
+    current_message: 0
+  - x_position: 25
+    messages:
+    - Press 'F' to use your knife!
+    current_message: 0
+  - x_position: 30
+    messages:
+    - Press 'Shift' to sprint!
+    current_message: 0
+  - x_position: 35
+    messages:
+    - Press 'X' to interact with characters!
+    current_message: 0
   PausedControlObject: {fileID: 0}
 --- !u!124 &124838883623786084
 Behaviour:
@@ -1224,8 +1266,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.004}
   m_AnchorMin: {x: 0.19, y: 0.4}
   m_AnchorMax: {x: 0.93, y: 0.57}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.04, y: 0}
+  m_SizeDelta: {x: -0.08, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224106483252138440
 RectTransform:
