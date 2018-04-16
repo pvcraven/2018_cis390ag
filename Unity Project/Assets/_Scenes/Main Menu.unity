@@ -1869,9 +1869,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1134788530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5257475313e44b158b789ea853914982, type: 3}
+  m_Script: {fileID: 11500000, guid: 792c31e8de209f64f8d051e0d4567f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: {fileID: 412761910}
+  keyBindingsMenu: {fileID: 1527716492}
 --- !u!4 &1134788532
 Transform:
   m_ObjectHideFlags: 0
