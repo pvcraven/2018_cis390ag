@@ -5,7 +5,38 @@ namespace Classes
 {
 	public class Weapon
 	{
-		// If the Player gets in melee range of an enemy, the Player needs to set the Weapon to isInMeleeRange.
+		#region Properties
+		public int Damage
+		{
+			get { return damage; }
+			set { damage = value; }
+		}
+
+		public int Durability
+		{
+			get { return durability; }
+			set { durability = value; }
+		}
+
+		public bool IsRanged
+		{
+			get { return isRanged; }
+			set { isRanged = value; }
+		}
+
+		public bool IsInMeleeRange
+		{
+			get { return isInMeleeRange; }
+			set { isInMeleeRange = value; }
+		}
+
+		public float Range
+		{
+			get { return range; }
+			set { range = value; }
+		}
+		#endregion
+		
 		#region Fields
 		protected int damage;
 		protected int durability;
@@ -75,40 +106,9 @@ namespace Classes
 
 		public void AttackRanged()
 		{
-			// Spawn a bullet
+			// Spawn a bullet. Will be updated once the Player class is cleaned up
 			player.RangedAttack();
 		}
-
-		public int Damage
-		{
-			get { return damage; }
-			set { damage = value; }
-		}
-
-		public int Durability
-		{
-			get { return durability; }
-			set { durability = value; }
-		}
-
-		public bool IsRanged
-		{
-			get { return isRanged; }
-			set { isRanged = value; }
-		}
-
-		public bool IsInMeleeRange
-		{
-			get { return isInMeleeRange; }
-			set { isInMeleeRange = value; }
-		}
-
-		public float Range
-		{
-			get { return range; }
-			set { range = value; }
-		}
-
 		#endregion
 	}
 }
