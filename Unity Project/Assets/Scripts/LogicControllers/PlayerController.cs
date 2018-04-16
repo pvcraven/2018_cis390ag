@@ -122,6 +122,7 @@ public class PlayerController : MonoBehaviour {
         {
 			tory.GroundCheck();
 			tory.Jump();
+			audioSource.clip = jumpSound;
 			audioSource.Play ();
         }
         
