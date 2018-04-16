@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 81255442996017722}
   - component: {fileID: 114982857166748036}
   - component: {fileID: 114273005791080168}
+  - component: {fileID: 114845612475843668}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -299,7 +300,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377632775304484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019515172, y: 7.5, z: -0.9255029}
+  m_LocalPosition: {x: 30.87, y: 5.18, z: -10.925503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4857875647038306}
@@ -381,7 +382,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1572423539252428}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.019515172, y: -7.5, z: 0.9255029}
+  m_LocalPosition: {x: -38, y: -7.5, z: 0.9255029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4324409836364732}
@@ -412,7 +413,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 4
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -872,15 +873,15 @@ MonoBehaviour:
   rangedSpawner: {fileID: 4777189863969172}
   StartOnPlayer: {fileID: 4763194070322316}
   EndOnGround: {fileID: 4104615564674150}
-  statusBar: {fileID: 0}
+  statusBar: {fileID: 1339919976171178}
   attackDelay: 0
   drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
-  pickupSound: {fileID: 8300000, guid: fa26aebbce207954d8b85f2947a4fbe2, type: 3}
+  pickupSound: {fileID: 8300000, guid: 5fc27d263ebd13c409e6399e3fc2fc46, type: 3}
   walkAudio:
   - {fileID: 8300000, guid: 0b980312ea3413144ad9f6b2d2208e61, type: 3}
   - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
   - {fileID: 8300000, guid: ca77a9b60e3e080459d53a7895544b9f, type: 3}
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: f1369b29eb1b1a3458da05bb15e45fd7, type: 3}
 --- !u!114 &114766998018581186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -919,6 +920,17 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 100
+--- !u!114 &114845612475843668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270749830176946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114982857166748036
 MonoBehaviour:
   m_ObjectHideFlags: 1
