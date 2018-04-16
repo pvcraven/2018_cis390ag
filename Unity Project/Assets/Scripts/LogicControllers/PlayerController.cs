@@ -90,10 +90,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    void StepSound(AudioClip clip)
+    void StepSound()
     {
-        audioSource.clip = clip;
-        audioSource.volume = 0.05f;
         audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
         audioSource.Play();
     }
@@ -140,16 +138,8 @@ public class PlayerController : MonoBehaviour {
             tory.Sprint(direction);
             if(tory.IsGrounded && step == true)
             {
-                // Add functionality later to check ground tag and change StepSound based on that.
-				if (tory.IsGroundedOnStone) {
-					StepSound (walkAudio [0]);
-					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
-					Debug.Log ("Stone");
-				} else {
-					StepSound (walkAudio [1]);
-					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
-					Debug.Log ("Ground");
-				}
+                StepSound();
+                StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
             }
         }
         else if(walk)
@@ -157,16 +147,8 @@ public class PlayerController : MonoBehaviour {
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
-                // Add functionality later to check ground tag and change StepSound based on that.
-				if (tory.IsGroundedOnStone) {
-					StepSound (walkAudio [0]);
-					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
-					Debug.Log ("Stone");
-				} else {
-					StepSound (walkAudio [1]);
-					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
-					Debug.Log ("Ground");
-				}
+                StepSound();
+                StartCoroutine(StepWait(audioSource.clip.length));
             }
         }
         else
@@ -183,14 +165,7 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetKeyDown(interactKey))
         {
-            Destroy(tory.Interact());
-            if(tory.Interact() != null)
-            {
-                audioSource.clip = pickupSound;
-                audioSource.volume = 1f;
-                audioSource.Play();
-                StartCoroutine(StepWait(audioSource.clip.length));
-            }
+            Destroy(tory.Interact(pickupSound));
         }
         if (Input.GetKeyDown(switchWeapon))
         {

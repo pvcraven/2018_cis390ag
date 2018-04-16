@@ -50,12 +50,6 @@ public class Player : ICharacterInterface
 		set { isGrounded = value; }
 	}
 
-	public bool IsGroundedOnStone
-	{
-		get { return isGroundedOnStone; }
-		set { isGroundedOnStone = value; }
-	}
-
 	public int JumpForce
 	{
 		get { return jumpForce; }
@@ -130,7 +124,6 @@ public class Player : ICharacterInterface
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
-	private bool isGroundedOnStone = false; 
 	private int jumpForce = 350;
 	private int walkForce = 5;
 	private int sprintForce = 7;
@@ -263,8 +256,8 @@ public class Player : ICharacterInterface
 		Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y);
 
 		// If the player moves faster than sprintforce, their velocity gets reset to sprintforce.
-		if (rb.velocity.x < -sprintForce) walkVector.x = -sprintForce / 1.5f;
-		else if (rb.velocity.x > sprintForce) walkVector.x = sprintForce / 1.5f;
+		if (rb.velocity.x < -sprintForce) walkVector.x = -sprintForce;
+		else if (rb.velocity.x > sprintForce) walkVector.x = sprintForce;
 
 		// The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
 		if (this.isGrounded)
@@ -370,20 +363,20 @@ public class Player : ICharacterInterface
 		}
 	}
 
-	public GameObject Interact()
+	public GameObject Interact(AudioClip clip)
 	{
 		foreach (GameObject item in food)
 		{
 			var touching = PlayerIsTouchingItem(item);
 			if (touching)
-				return InteractWithObject(item, food);
+				return InteractWithObject(item, food, clip);
 		}
 
 		foreach (GameObject item in water)
 		{
 			var touching = PlayerIsTouchingItem(item);
 			if (touching)
-				return InteractWithObject(item, water);
+				return InteractWithObject(item, water, clip);
 		}
 
 		foreach (GameObject item in weapons)
@@ -394,7 +387,7 @@ public class Player : ICharacterInterface
 				//this.player.GetComponent<StatusBarLogic>().SetWeapon();
 				//Debug.Log("item " + item);
 				//Debug.Log("Weapons " + weapons.ToArray().ToString());
-				return InteractWithObject(item, weapons);
+				return InteractWithObject(item, weapons, clip);
 			}
 		}
 
@@ -402,7 +395,7 @@ public class Player : ICharacterInterface
 		{
 			var touching = PlayerIsTouchingItem(item);
 			if (touching)
-				return InteractWithObject(item, items);
+				return InteractWithObject(item, items, clip);
 		}
 
 		return null;
@@ -442,11 +435,7 @@ public class Player : ICharacterInterface
 			this.player.GetComponent<PlayerController>().EndOnGround.position,
 			1 << LayerMask.NameToLayer("Ground"));
 
-		this.IsGroundedOnStone = Physics2D.Linecast(this.player.GetComponent<PlayerController>().StartOnPlayer.position,
-			this.player.GetComponent<PlayerController>().EndOnGround.position,
-			1 << LayerMask.NameToLayer("Stone"));
-
-		if (this.IsGrounded || this.IsGroundedOnStone)
+		if (this.IsGrounded)
 		{
 			player.GetComponent<Animator>().SetBool("OnGround", this.IsGrounded);
 			player.GetComponent<Animator>().SetFloat("vSpeed", 0);
@@ -537,11 +526,12 @@ public class Player : ICharacterInterface
             this.Health = 100;
     }
 
-    private GameObject InteractWithObject(GameObject item, List<GameObject> inArray)
+    private GameObject InteractWithObject(GameObject item, List<GameObject> inArray, AudioClip clip)
     {
         var addedItem = invController.AddItem(item);
         if (addedItem)
         {
+            AudioSource.PlayClipAtPoint(clip, player.transform.position);
             inArray.Remove(item);
             if (currentMeleeWeapon == null)
             {
