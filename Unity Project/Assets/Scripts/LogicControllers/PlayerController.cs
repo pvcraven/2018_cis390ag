@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
     public Transform startOnPlayer, endOnGround;
     public Player tory;
     public AudioClip[] walkAudio;
+	public float minX;
+	public float maxX;
 
     private float direction = 0;
     private SpriteRenderer spriteRend;
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour {
 	void Move(){
 		direction = Input.GetAxis("Horizontal");
 		
-		if(direction >= .2 || direction <= -.2)
+		if((direction >= .2 || direction <= -.2) && )
 		{
 			walk = true;
 		}
