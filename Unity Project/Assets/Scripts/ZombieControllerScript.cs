@@ -19,7 +19,7 @@ public class ZombieControllerScript : MonoBehaviour
     private Animator anim;
     private CapsuleCollider2D cc;
     public float health = 100f;
-	private AudioSource audio;
+	private new AudioSource audio;
 
 
     void Start()
