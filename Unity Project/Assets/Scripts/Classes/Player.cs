@@ -384,7 +384,7 @@ public class Player : ICharacterInterface
 			var touching = PlayerIsTouchingItem(item);
 			if (touching)
 			{
-				//this.player.GetComponent<StatusBarLogic>().SetWeapon();
+				this.player.GetComponent<StatusBarLogic>().SetWeapon();
 				//Debug.Log("item " + item);
 				//Debug.Log("Weapons " + weapons.ToArray().ToString());
 				return InteractWithObject(item, weapons, clip);
