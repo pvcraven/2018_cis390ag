@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -18,20 +20,26 @@ public class PlayerController : MonoBehaviour {
     public GameObject player;
 	public GameObject rangedAmmunition;
 	public Transform rangedSpawner;
-    public Transform startOnPlayer, endOnGround;
+    public Transform StartOnPlayer, EndOnGround;
     public Player tory;
-    public AudioClip[] walkAudio;
-	public float minX;
-	public float maxX;
+    public GameObject statusBar;
 
-    private float direction = 0;
     private SpriteRenderer spriteRend;
+    private float direction = 0;
+    public float attackDelay;
+
+    private float attackCooldown = -1;
+    private bool animationDelay = false;
     private bool step = true;
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
+    public AudioClip pickupSound;
+    public AudioClip[] walkAudio;
 
-	void Start() {
+    void Start() {
+
         tory = new Player(player);
+
         audioSource = GetComponent<AudioSource>();
 	}
 
@@ -42,6 +50,12 @@ public class PlayerController : MonoBehaviour {
 			tory.Dead = true;
 			tory.Die ();
         }
+	    
+        if (attackCooldown >= 0)
+        {
+            attackCooldown--;
+        }
+        if (animationDelay) animationDelay = MeleeAnimationDelay(animationDelay);
 
         CheckforInput();
 
@@ -65,7 +79,7 @@ public class PlayerController : MonoBehaviour {
 	void Move(){
 		direction = Input.GetAxis("Horizontal");
 		
-		if((direction >= .2 || direction <= -.2) && )
+		if(direction >= .2 || direction <= -.2)
 		{
 			walk = true;
 		}
@@ -75,16 +89,15 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    void WalkSound()
+    void StepSound(AudioClip clip)
     {
-        audioSource.clip = walkAudio[1];
+        audioSource.clip = clip;
         audioSource.volume = 0.05f;
-        audioSource.pitch = Random.Range(0.8f, 1f);
+        audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
         audioSource.Play();
-        StartCoroutine(WalkWait(audioSource.clip.length));
     }
 
-    IEnumerator WalkWait(float delay)
+    IEnumerator StepWait(float delay)
     {
         step = false;
         yield return new WaitForSeconds(delay);
@@ -122,14 +135,35 @@ public class PlayerController : MonoBehaviour {
         if (sprintKeyDown && walk && tory.Stamina > 0)
         {
             tory.Sprint(direction);
+            if(tory.IsGrounded && step == true)
+            {
+                // Add functionality later to check ground tag and change StepSound based on that.
+				if (tory.IsGroundedOnStone) {
+					StepSound (walkAudio [0]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Stone");
+				} else {
+					StepSound (walkAudio [1]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Ground");
+				}
+            }
         }
         else if(walk)
         {
-            Debug.Log(sprintKeyDown + ", " + walk + ", " + tory.Stamina);
             tory.Walk(direction);
             if(tory.IsGrounded && step == true)
             {
-                WalkSound();
+                // Add functionality later to check ground tag and change StepSound based on that.
+				if (tory.IsGroundedOnStone) {
+					StepSound (walkAudio [0]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Stone");
+				} else {
+					StepSound (walkAudio [1]);
+					StartCoroutine (StepWait (audioSource.clip.length / 1.5f));
+					Debug.Log ("Ground");
+				}
             }
         }
         else
@@ -140,24 +174,24 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(attack))
+        if (Input.GetKeyDown(attack) && attackCooldown < 0)
         {
-            Debug.Log("Attack");
             tory.Attack();
         }
         if (Input.GetKeyDown(interactKey))
         {
             Destroy(tory.Interact());
+            if(tory.Interact() != null)
+            {
+                audioSource.clip = pickupSound;
+                audioSource.volume = 1f;
+                audioSource.Play();
+                StartCoroutine(StepWait(audioSource.clip.length));
+            }
         }
         if (Input.GetKeyDown(switchWeapon))
         {
-            tory.switchWeapon();
-        }
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            tory.DrinkWater();
-            audioSource.clip = drinksound;
-            audioSource.Play();
+            tory.SwitchWeapon();
         }
     }
 
@@ -169,5 +203,47 @@ public class PlayerController : MonoBehaviour {
             tory.TakeDamage(10);
             Debug.Log("You're Taking Damage! Health: " + tory.Health);
         }
+        
+        if (other.gameObject.CompareTag("Stone"))
+        {
+            audioSource.clip = walkAudio[0];
+            audioSource.volume = 0.10f;
+        }
+
+        if (other.gameObject.CompareTag("Dirt"))
+        {
+            audioSource.clip = walkAudio[1];
+            audioSource.volume = 0.05f;
+        }
+
+        if (other.gameObject.CompareTag("Grass"))
+        {
+            audioSource.clip = walkAudio[2];
+            audioSource.volume = 0.05f;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.name.Equals("End Level 1 Trigger"))
+        {
+            SceneManager.LoadScene(MainMenuController.LEVEL_1_NAME);
+        }
+        else if (other.name.Equals("End Level 2 Trigger"))
+        {
+            //TODO: Add code to connect level 2 with the next level
+        }
+    }
+
+    public bool MeleeAnimationDelay(bool b)
+    {
+        tory.SetAnimationFalse();
+        return false;
+    }
+
+    public void MeleeAnimationDelay()
+    {
+        attackCooldown = attackDelay;
+        animationDelay = true;
     }
 }

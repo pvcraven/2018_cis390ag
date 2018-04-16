@@ -12,6 +12,14 @@ TagManager:
   - Bullet
   - Inventory
   - InventorySlot
+  - Water
+  - HealthPack
+  - End Level Trigger
+  - Grass
+  - Stone
+  - Dirt
+  - Zombie
+  - Bandit
   layers:
   - Default
   - TransparentFX
@@ -27,7 +35,7 @@ TagManager:
   - Foreground
   - Text
   - Player
-  - 
+  - Stone
   - 
   - 
   - 

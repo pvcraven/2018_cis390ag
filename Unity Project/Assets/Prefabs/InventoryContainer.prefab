@@ -1179,6 +1179,8 @@ MonoBehaviour:
   audioclips:
   - {fileID: 8300000, guid: 361eeb080c264d74b80e733e05e4146b, type: 3}
   - {fileID: 8300000, guid: 6ab422ee58e13534bb30f05d5f6eecea, type: 3}
+  - {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
+  - {fileID: 8300000, guid: 67f9f73a3bb6be14198fe14423051987, type: 3}
 --- !u!114 &114699005859965140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1518,7 +1520,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &224056900644049158
 RectTransform:
@@ -1674,7 +1676,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000011444097, y: 0.0000076294}
+  m_AnchoredPosition: {x: 0, y: 0.0000076294}
   m_SizeDelta: {x: 77.3, y: 77.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224605889922325588

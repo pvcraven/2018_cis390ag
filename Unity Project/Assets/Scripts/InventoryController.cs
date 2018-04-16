@@ -8,19 +8,23 @@ public class InventoryController : MonoBehaviour
 {
     public GameObject inventoryPanel;
     public GameObject PausedControlObject;
+    public AudioClip[] audioclips;
 
     private bool inventoryIsOpen = false;
     private PauseController pauseGame;
+    private PlayerController player;
 
     private const int itemSlotsNum = 12;
     private GameObject[] inventoryItems = new GameObject[itemSlotsNum];
     private GameObject[] inventorySlots;
+    private int numOfWeapons = 0;
 
     private AudioSource audiosource;
-    public AudioClip[] audioclips;
+
     void Start()
     {
         pauseGame = PausedControlObject.GetComponent<PauseController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         inventorySlots = GameObject.FindGameObjectsWithTag("InventorySlot");
         inventoryPanel.SetActive(false);
         audiosource = GetComponent<AudioSource>();
@@ -49,6 +53,25 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    public bool WeaponIsInInventory()
+    {
+       foreach (var item in inventoryItems)
+        {
+            if (item != null && item.tag == "Weapon")
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool AbleToSwitchWeapons()
+    {
+        if (numOfWeapons >= 2)
+            return true;
+
+        return false;
+    }
+
     public void InventoryItemClick()
     {
         var itemClicked = EventSystem.current.currentSelectedGameObject;
@@ -56,7 +79,31 @@ public class InventoryController : MonoBehaviour
         {
             if ((inventorySlots[i] == itemClicked) && (inventoryItems[i] != null))
             {
-                RemoveItem(i);
+                if (inventoryItems[i].tag == "Water")
+                {
+                    player.tory.ConsumeEdibleItem();
+                    audiosource.clip = audioclips[2];
+                    audiosource.Play();
+                    RemoveItem(i);
+                }
+                else if (inventoryItems[i].tag == "Food")
+                {
+                    player.tory.ConsumeEdibleItem();
+                    audiosource.clip = audioclips[3];
+                    audiosource.Play();
+                    RemoveItem(i);
+                }
+                else if (inventoryItems[i].tag == "Weapon")
+                {
+                    // do nothing
+                }
+                else if (inventoryItems[i].tag == "HealthPack")
+                {
+                    player.tory.UseHealthPack();
+                    Debug.Log("Health Pack Increased health to: " + player.tory.Health);
+                    RemoveItem(i);
+                }
+
                 return;
             }
         }
@@ -77,6 +124,9 @@ public class InventoryController : MonoBehaviour
 
                 currentSlot.sprite = tempSprite;
                 currentSlot.color = Color.white;
+
+                if (pickupItem.tag == "Weapon")
+                    numOfWeapons++;
 
                 return true;
             }
