@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip pickupSound;
     public AudioClip[] walkAudio;
 	public AudioClip jumpSound;
+	public AudioClip gameOversound;
 
     void Start() {
 
@@ -50,6 +51,8 @@ public class PlayerController : MonoBehaviour {
         {
 			tory.Dead = true;
 			tory.Die ();
+			audioSource.clip = gameOversound;
+			audioSource.Play ();
         }
 	    
         if (attackCooldown >= 0)
@@ -62,18 +65,19 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKey(sprintKey) && walk && tory.Stamina > 1)
         {
-            tory.Stamina -= 1;
+            tory.AdjustStamina(-1);
+
         }
         else
         {
             if(tory.Stamina < 500)
-                tory.Stamina += .25f;
+                tory.AdjustStamina(0.25f);
         }
         if(Input.GetKeyDown(attack) && tory.Stamina > 10)
         {
-            tory.Stamina -= 10;
+            tory.AdjustStamina(-10);
         }
-        //Debug.Log(tory.Stamina);
+        
     }
 
 

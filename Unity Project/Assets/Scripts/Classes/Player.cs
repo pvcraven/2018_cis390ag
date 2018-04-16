@@ -428,6 +428,12 @@ public class Player : ICharacterInterface
 		this.player.GetComponent<StatusBarLogic>().SetHealth();
 	}
 
+    public void AdjustStamina(float stamina)
+    {
+        this.stamina += stamina;
+        this.player.GetComponent<StatusBarLogic>().SetStamina();
+    }
+
 	public void GroundCheck()
 	{
 
