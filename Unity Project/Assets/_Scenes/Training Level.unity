@@ -31425,21 +31425,9 @@ CompositeCollider2D:
       - X: 806450048
         Y: 50450000
       - X: 806450048
-        Y: 107050000
-      - X: 806350016
-        Y: 107050000
-      - X: 806350016
         Y: 113449992
       - X: 661450048
         Y: 113449992
-      - X: 661450048
-        Y: 75650000
-      - X: 661550016
-        Y: 75650000
-      - X: 661550016
-        Y: 69250000
-      - X: 661450048
-        Y: 69250000
       - X: 661450048
         Y: 22349998
       - X: 585949952
@@ -32012,14 +32000,8 @@ CompositeCollider2D:
       - {x: 81.905, y: 4.3849998}
       - {x: 81.905, y: 5.025}
       - {x: 80.645004, y: 5.025}
-      - {x: 80.645004, y: 10.684999}
-      - {x: 80.635, y: 10.684999}
-      - {x: 80.635, y: 11.324999}
+      - {x: 80.645004, y: 11.324999}
       - {x: 66.145004, y: 11.324999}
-      - {x: 66.145004, y: 7.545}
-      - {x: 66.155, y: 7.545}
-      - {x: 66.155, y: 6.905}
-      - {x: 66.145004, y: 6.905}
       - {x: 66.145004, y: 2.215}
       - {x: 58.594997, y: 2.215}
       - {x: 57.995003, y: 2.365}
@@ -87340,7 +87322,7 @@ Prefab:
       objectReference: {fileID: 1702450416}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 30.87
+      value: 68.85049
       objectReference: {fileID: 0}
     - target: {fileID: 114618731280287424, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}
@@ -87359,7 +87341,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.18
+      value: 12.68
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -87396,6 +87378,11 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114618731280287424, guid: 859f9ecdd407a214689d25a5103d1a6d,
+        type: 2}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b5ad655837c624570a06b57fb07dda80, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
   m_IsPrefabParent: 0
