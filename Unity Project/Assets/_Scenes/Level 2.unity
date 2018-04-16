@@ -115199,7 +115199,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.10508871
+      value: 3.764503
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -115305,6 +115305,16 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114618731280287424, guid: 859f9ecdd407a214689d25a5103d1a6d,
+        type: 2}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b5ad655837c624570a06b57fb07dda80, type: 3}
+    - target: {fileID: 114618731280287424, guid: 859f9ecdd407a214689d25a5103d1a6d,
+        type: 2}
+      propertyPath: gameOversound
+      value: 
+      objectReference: {fileID: 8300000, guid: d392f515b1d53480d9d1f1467ebaf41f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
   m_IsPrefabParent: 0
