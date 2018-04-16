@@ -62,18 +62,19 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKey(sprintKey) && walk && tory.Stamina > 1)
         {
-            tory.Stamina -= 1;
+            tory.AdjustStamina(-1);
+
         }
         else
         {
             if(tory.Stamina < 500)
-                tory.Stamina += .25f;
+                tory.AdjustStamina(0.25f);
         }
         if(Input.GetKeyDown(attack) && tory.Stamina > 10)
         {
-            tory.Stamina -= 10;
+            tory.AdjustStamina(-10);
         }
-        //Debug.Log(tory.Stamina);
+        
     }
 
 
