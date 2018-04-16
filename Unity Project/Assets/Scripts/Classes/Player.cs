@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Classes;
 using UnityEngine;
 
 public class Player : ICharacterInterface
 {
-
-
 	#region Properties
 
+	public Weapon Weapon
+	{
+		get { return weapon; }
+		set { weapon = value; }
+	}
+	
 	public int Health
 	{
 		get { return this.health; }
@@ -137,6 +142,7 @@ public class Player : ICharacterInterface
 	private string currentRangedWeapon = null;
 	private string currentAttackType = "melee";
 	private IDictionary<string, string> statusBarInformation = new Dictionary<string, string>();
+	private Weapon weapon = new Weapon();
 
 	#endregion
 

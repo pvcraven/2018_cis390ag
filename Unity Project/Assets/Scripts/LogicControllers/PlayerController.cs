@@ -200,7 +200,10 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+	    tory.Weapon.IsInMeleeRange = true;
+	    
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Zombie") || 
+            other.gameObject.CompareTag("Bandit"))
         {
             StartCoroutine(tory.FlashColor());
             tory.TakeDamage(10);
@@ -226,7 +229,12 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+	private void OnCollisionExit(Collision other)
+	{
+		tory.Weapon.IsInMeleeRange = false;
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name.Equals("End Level 1 Trigger"))
         {
