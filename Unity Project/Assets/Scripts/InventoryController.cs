@@ -66,7 +66,7 @@ public class InventoryController : MonoBehaviour
 
     public bool AbleToSwitchWeapons()
     {
-        if (numOfWeapons >= 2)
+        //if (numOfWeapons >= 2)
             return true;
 
         return false;
