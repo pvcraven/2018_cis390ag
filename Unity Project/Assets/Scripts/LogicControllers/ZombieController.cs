@@ -24,7 +24,6 @@ public class ZombieController : MonoBehaviour {
         {
             Destroy(zombie);
         }
-        
 	}
 
     void OnCollisionEnter2D(Collision2D other)
@@ -40,5 +39,11 @@ public class ZombieController : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         z.TakeDamage(damage);
+    }
+    
+    public Zombie Z
+    {
+        get { return z; }
+        set { z = value; }
     }
 }

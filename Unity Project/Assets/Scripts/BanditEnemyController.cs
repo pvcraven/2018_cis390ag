@@ -14,6 +14,8 @@ public class BanditEnemyController : MonoBehaviour {
     public bool isGrounded = false;
     public Transform groundCheck;
     public LayerMask whatIsGround;
+    
+    public int health = 50;
 
     // Use this for initialization
     void Start () {
@@ -21,7 +23,6 @@ public class BanditEnemyController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         banditSpriteWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
         banditTransform = this.transform;
-        
     }
 	
 	// Update is called once per frame
@@ -69,5 +70,18 @@ public class BanditEnemyController : MonoBehaviour {
         Vector2 banditVelocity = rb.velocity;
         banditVelocity.x = -banditTransform.right.x * speed;
         rb.velocity = banditVelocity;
+    }
+    
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        this.health -= damage;
     }
 }

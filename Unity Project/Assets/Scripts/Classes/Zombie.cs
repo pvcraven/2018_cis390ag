@@ -136,55 +136,56 @@ public class Zombie : ICharacterInterface
     {
         this.health = this.health - damage;
         FlashColor();
+        //Debug.Log("Zombie hit");
     }
 
     public void Walk(float direction = 1, float paceDistance = 0)
     {
 
-        if (!characterFound)
+            //Debug.Log("C");
+
+        if (!facingRight)
         {
-
-            Debug.Log("C");
-
-            if (!facingRight)
+            //Debug.Log("A");
+            if(!CheckForPlayer())
             {
-                Debug.Log("A");
                 zombie.transform.Translate(Vector2.right * this.Speed * Time.fixedDeltaTime);
             }
             else
             {
-                Debug.Log("B");
-
-                zombie.transform.Translate(Vector2.left * this.Speed * Time.fixedDeltaTime);
+                zombie.transform.Translate(Vector2.right * this.Speed * 2 * Time.fixedDeltaTime);
             }
-
-            if(zombie.transform.position.x <= this.initialPosition.x - paceDistance)
-            {
-                Debug.Log("stuff");
-
-                if (facingRight)
-                {
-                    FlipDirection();
-                }
-            }
-
-            else if (zombie.transform.position.x >= initialPosition.x)
-            {
-                Debug.Log("Morestuff");
-
-                if (!facingRight)
-                {
-                    FlipDirection();
-                }
-            }
-            
-
-
-            this.characterFound = CheckForPlayer();
         }
         else
         {
-            Debug.Log("Player found!");
+            if(!CheckForPlayer())
+            {
+                zombie.transform.Translate(Vector2.left * this.Speed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                zombie.transform.Translate(Vector2.left * this.Speed * 2 * Time.fixedDeltaTime);
+            }
+        }
+
+        if(zombie.transform.position.x <= this.initialPosition.x - paceDistance)
+        {
+            //Debug.Log("stuff");
+
+            if (facingRight)
+            {
+                FlipDirection();
+            }
+        }
+
+        else if (zombie.transform.position.x >= initialPosition.x)
+        {
+            //Debug.Log("Morestuff");
+
+            if (!facingRight)
+            {
+                FlipDirection();
+            }
         }
 
         this.Walking = true;
