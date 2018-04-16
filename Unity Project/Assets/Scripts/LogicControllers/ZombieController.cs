@@ -40,4 +40,10 @@ public class ZombieController : MonoBehaviour {
     {
         z.TakeDamage(damage);
     }
+    
+    public Zombie Z
+    {
+        get { return z; }
+        set { z = value; }
+    }
 }
