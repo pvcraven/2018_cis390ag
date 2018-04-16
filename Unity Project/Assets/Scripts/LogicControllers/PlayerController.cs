@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip drinksound;
     public AudioClip pickupSound;
     public AudioClip[] walkAudio;
+	public AudioClip jumpSound;
 
     void Start() {
 
@@ -121,6 +122,7 @@ public class PlayerController : MonoBehaviour {
         {
 			tory.GroundCheck();
 			tory.Jump();
+			audioSource.Play ();
         }
         
         if (Input.GetKeyDown(sprintKey))
