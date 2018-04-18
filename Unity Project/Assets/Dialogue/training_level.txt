@@ -1,4 +1,4 @@
-x-pos: -3.7
+x-pos: -13
 Use 'W', 'A', 'S', or 'D' to move!
 
 x-pos: 70.0
