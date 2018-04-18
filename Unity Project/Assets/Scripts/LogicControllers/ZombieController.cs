@@ -18,7 +18,7 @@ public class ZombieController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        z.Walk(1, rand.Next(5, 20));
+        z.Walk(1, rand.Next(50, 200));
 
         if (z.Health <= 0)
         {
@@ -33,6 +33,20 @@ public class ZombieController : MonoBehaviour {
             Destroy(other.gameObject);
             z.TakeDamage(50);
             StartCoroutine(z.FlashColor());
+        }
+
+        if(other.gameObject.CompareTag("Zombie"))
+        {
+            
+            if(rand.Next(0,2) == 2)
+            {
+                z.FlipDirection();
+            }
+            else
+            {
+                z.TakeDamage(25);
+            }
+            
         }
     }
 
