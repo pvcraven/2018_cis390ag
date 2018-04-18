@@ -27,15 +27,17 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer spriteRend;
     private float direction = 0;
     public float attackDelay;
-
+    private bool updatedDelay = false;
     private float attackCooldown = -1;
     private bool animationDelay = false;
+
     private bool step = true;
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
     public AudioClip pickupSound;
     public AudioClip[] walkAudio;
 	public AudioClip jumpSound;
+	public AudioClip gameOverMusic;
 
     void Start() {
 
@@ -50,14 +52,19 @@ public class PlayerController : MonoBehaviour {
         {
 			tory.Dead = true;
 			tory.Die ();
+			audioSource.clip = gameOverMusic;
+			audioSource.Play ();
         }
 	    
         if (attackCooldown >= 0)
         {
             attackCooldown--;
         }
-        if (animationDelay) animationDelay = MeleeAnimationDelay(animationDelay);
-
+        if (animationDelay)
+        {
+            updatedDelay = MeleeAnimationDelay(animationDelay);
+        }
+        animationDelay = updatedDelay;
         CheckforInput();
 
         if (Input.GetKey(sprintKey) && walk && tory.Stamina > 1)
