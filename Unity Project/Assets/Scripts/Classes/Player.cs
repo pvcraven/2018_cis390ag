@@ -491,7 +491,7 @@ public class Player : ICharacterInterface
 		while (position < overlappingObjects.GetLength(0))
 		{
 			collidingObject = overlappingObjects[position];
-			if (collidingObject.CompareTag("Enemy"))
+			if (collidingObject.CompareTag("Zombie"))
 			{
 				ZombieController zombie = collidingObject.gameObject.GetComponent<ZombieController>();
 				zombie.TakeDamage(damage);

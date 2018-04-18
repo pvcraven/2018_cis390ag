@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 
     private SpriteRenderer spriteRend;
     private float direction = 0;
-    public float attackDelay;
+    private float attackDelay = 20;
     private bool updatedDelay = false;
     private float attackCooldown = -1;
     private bool animationDelay = false;
