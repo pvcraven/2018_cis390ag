@@ -215,7 +215,7 @@ public class Player : ICharacterInterface
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 
 		// Reduce the friction so we can move faster.
-		rb.drag = 1f;
+		rb.drag = 0f;
 		Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y);
 
 		// If the player is moving faster than walkforce, their velocity gets reset to walkforce.
