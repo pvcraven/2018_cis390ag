@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip pickupSound;
     public AudioClip[] walkAudio;
 	public AudioClip jumpSound;
+	public AudioClip gameOverMusic;
 
     void Start() {
 
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour {
         {
 			tory.Dead = true;
 			tory.Die ();
+			audioSource.clip = gameOverMusic;
+			audioSource.Play ();
         }
 	    
         if (attackCooldown >= 0)
