@@ -501,8 +501,10 @@ public class Player : ICharacterInterface
 			position++;
 		}
 
-		player.GetComponent<Animator>().SetBool("stabbing", false);
-	}
+        PlayerController script = player.GetComponent<PlayerController>();
+        script.MeleeAnimationDelay();
+
+    }
 	
     public void SetAnimationFalse()
     {

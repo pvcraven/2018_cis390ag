@@ -27,9 +27,10 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer spriteRend;
     private float direction = 0;
     public float attackDelay;
-
+    private bool updatedDelay = false;
     private float attackCooldown = -1;
     private bool animationDelay = false;
+
     private bool step = true;
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
@@ -59,8 +60,11 @@ public class PlayerController : MonoBehaviour {
         {
             attackCooldown--;
         }
-        if (animationDelay) animationDelay = MeleeAnimationDelay(animationDelay);
-
+        if (animationDelay)
+        {
+            updatedDelay = MeleeAnimationDelay(animationDelay);
+        }
+        animationDelay = updatedDelay;
         CheckforInput();
 
         if (Input.GetKey(sprintKey) && walk && tory.Stamina > 1)
