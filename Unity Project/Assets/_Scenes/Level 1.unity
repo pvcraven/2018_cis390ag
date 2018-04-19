@@ -82786,19 +82786,19 @@ Prefab:
     - target: {fileID: 20069429745885972, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}
       propertyPath: orthographic size
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.8185668
+      value: 0.019515172
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -10.925503
+      value: -0.9255029
       objectReference: {fileID: 0}
     - target: {fileID: 114618731280287424, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}
@@ -82825,6 +82825,16 @@ Prefab:
     - target: {fileID: 4475109029806880, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 50069340320420560, guid: 859f9ecdd407a214689d25a5103d1a6d,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50069340320420560, guid: 859f9ecdd407a214689d25a5103d1a6d,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}

@@ -125,7 +125,7 @@ public class Player : ICharacterInterface
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
-	private int jumpForce = 550;
+	private int jumpForce = 450;
 	private int walkForce = 15;
 	private int sprintForce = 20;
 	private int fallMultiplier = 3;
@@ -217,23 +217,9 @@ public class Player : ICharacterInterface
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 
 		// Reduce the friction so we can move faster.
-		Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y);
+		Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y + 10.0f);
 
-		// If the player is moving faster than walkforce, their velocity gets reset to walkforce.
-        // walkForce also functions as the player's maximum possible walk speed.
-		if (rb.velocity.x < -walkForce)
-            walkVector.x = -walkForce;
-		else if (rb.velocity.x > walkForce)
-            walkVector.x = walkForce;
 
-		// The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
-		if (this.isGrounded)
-		{
-			if (rb.velocity.y == 0)
-                walkVector.x *= 1.2f;
-			else if (rb.velocity.y > 0.01f)
-                walkVector.x *= 1.5f;
-		}
 
         if (!walkingToFast())
         {
@@ -248,17 +234,16 @@ public class Player : ICharacterInterface
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         return Mathf.Abs(rb.velocity.x) > 3;
     }
-
+     
     private bool runningToFast()
     {
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-        return Mathf.Abs(rb.velocity.x) > 7;
+        return Mathf.Abs(rb.velocity.x) > 5;
     }
 
     public void StopMoving()
 	{
 		this.Walking = false;
-		player.GetComponent<Rigidbody2D>().drag = 5;
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
 
@@ -271,23 +256,7 @@ public class Player : ICharacterInterface
 		CheckDirection(direction);
 		this.Walking = true;
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-		Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y);
-
-		// If the player moves faster than sprintforce, their velocity gets reset to sprintforce.
-        // sprintForce also functions as the player's maxmimum possible sprint speed.
-		if (rb.velocity.x < -sprintForce)
-            walkVector.x = -sprintForce;
-		else if (rb.velocity.x > sprintForce)
-            walkVector.x = sprintForce;
-
-		// The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
-		if (this.isGrounded)
-		{
-			if (rb.velocity.y == 0)
-                walkVector.x *= 1.2f;
-			else if (rb.velocity.y > 0.01f)
-                walkVector.x *= 1.5f;
-		}
+		Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y+20.0f);
 
         if (!runningToFast())
         {
