@@ -302,7 +302,6 @@ public class Player : ICharacterInterface
 		{
 			case "Knife":
 				this.strength = 10;
-				Stab(strength);
 				break;
 		}
 	}

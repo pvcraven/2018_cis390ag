@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(attack) && attackCooldown < 0)
+        if (Input.GetKeyDown(attack))
         {
             tory.Attack();
         }
@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-	private void OnCollisionExit2D(Collision other)
+	private void OnCollisionExit(Collision other)
 	{
 		tory.Weapon.IsInMeleeRange = false;
 	}

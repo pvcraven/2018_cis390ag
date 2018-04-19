@@ -52,7 +52,7 @@ public class ZombieController : MonoBehaviour {
         }
 
         //Doesn't work YET! We have to redo the stab method first.
-        if(other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<Player>().Stabbing == true)
+        if(other.gameObject.CompareTag("Player")) //&& other.gameObject.GetComponent<PlayerController>().Stabbing == true) <-- Adding this functionality -CW
         {
             z.TakeDamage(50);
             StartCoroutine(z.FlashColor());
