@@ -10,10 +10,12 @@ public class ZombieController : MonoBehaviour {
     public Transform StartOnZombie, EndOnGround;
     private System.Random rand = new System.Random();
     private bool isTouchingAnotherZombie = false;
+    public int jumpForce = 150;
 
     // Use this for initialization
     void Start () {
         z = new Zombie(zombie);
+        z.jumpForce = jumpForce; //This is hacky and should be a z.JumpForce where JumpForce is a property but we're running out of time so... oh well...?
         
     }
 

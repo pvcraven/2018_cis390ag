@@ -75,7 +75,7 @@ public class Zombie : ICharacterInterface
     private bool facingRight = true;
     private bool isGrounded = false;
     private bool walking = false;
-    private int jumpForce = 150;
+    public int jumpForce = 150;
     private Vector2 initialPosition;
     private bool characterFound = false;
     private System.Random rand = new System.Random();
