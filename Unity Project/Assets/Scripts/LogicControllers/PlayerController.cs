@@ -221,11 +221,11 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.name.Equals("End Level 1 Trigger"))
         {
-            SceneManager.LoadScene(MainMenuController.LEVEL_1_NAME);
+            SceneManager.LoadScene("Level 1");
         }
         else if (other.name.Equals("End Level 2 Trigger"))
         {
-            //TODO: Add code to connect level 2 with the next level
+            SceneManager.LoadScene("Level 2");
         }
     }
 
