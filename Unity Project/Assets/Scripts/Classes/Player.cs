@@ -125,7 +125,7 @@ public class Player : ICharacterInterface
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
-	private int jumpForce = 500;
+	private int jumpForce = 550;
 	private int walkForce = 15;
 	private int sprintForce = 20;
 	private int fallMultiplier = 3;
@@ -200,7 +200,8 @@ public class Player : ICharacterInterface
 			// Apply force to jump
 			Vector2 jumpVelocity = new Vector2(0, jumpForce);
 			rb.AddForce(jumpVelocity);
-		}
+            rb.drag = 1;
+        }
 	}
 
 	public void Walk(float direction, float paceDistance = 0)
@@ -233,13 +234,28 @@ public class Player : ICharacterInterface
 			else if (rb.velocity.y > 0.01f)
                 walkVector.x *= 1.5f;
 		}
-        
-		rb.AddForce(walkVector);
+
+        if (!walkingToFast())
+        {
+            rb.AddForce(walkVector);
+        }
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
 
-	public void StopMoving()
+    private bool walkingToFast()
+    {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        return Mathf.Abs(rb.velocity.x) > 3;
+    }
+
+    private bool runningToFast()
+    {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        return Mathf.Abs(rb.velocity.x) > 7;
+    }
+
+    public void StopMoving()
 	{
 		this.Walking = false;
 		player.GetComponent<Rigidbody2D>().drag = 5;
@@ -273,7 +289,10 @@ public class Player : ICharacterInterface
                 walkVector.x *= 1.5f;
 		}
 
-		rb.AddForce(walkVector);
+        if (!runningToFast())
+        {
+            rb.AddForce(walkVector);
+        }
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
