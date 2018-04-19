@@ -19,7 +19,11 @@ public class ZombieSpawner : MonoBehaviour {
         if(zombieNumber == 0)
         {
             GameObject zombie = UnityEngine.Object.Instantiate(zombiePrefab[zombieNumber], zombieSpawner.position, Quaternion.identity);
+
+            UnityEngine.Object.Destroy(zombie, 30.0f);
         }
+
         
+
     }
 }
