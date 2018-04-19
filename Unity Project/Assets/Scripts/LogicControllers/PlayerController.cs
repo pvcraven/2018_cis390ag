@@ -48,12 +48,12 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 
-        if (tory.Health <= 0)
+        if (tory.Health <= 0 && tory.Dead == false)
         {
-			tory.Dead = true;
 			tory.Die ();
-			audioSource.clip = gameOverMusic;
-			audioSource.Play ();
+            AudioSource bgMusic = GameObject.Find("Background Music").GetComponent<AudioSource>();
+            bgMusic.clip = gameOverMusic;
+            bgMusic.Play();
         }
 	    
         if (attackCooldown >= 0)
@@ -65,7 +65,9 @@ public class PlayerController : MonoBehaviour {
             updatedDelay = MeleeAnimationDelay(animationDelay);
         }
         animationDelay = updatedDelay;
-        CheckforInput();
+
+        if(tory.Dead == false)
+            CheckforInput();
 
         if (Input.GetKey(sprintKey) && walk && tory.Stamina > 1)
         {
