@@ -51,6 +51,14 @@ public class ZombieController : MonoBehaviour {
             StartCoroutine(z.FlashColor());
         }
 
+        //Doesn't work YET! We have to redo the stab method first.
+        if(other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<Player>().Stabbing == true)
+        {
+            z.TakeDamage(50);
+            StartCoroutine(z.FlashColor());
+            Debug.Log("Ouch!");
+        }
+
         if (other.gameObject.CompareTag("Zombie"))
         {
             isTouchingAnotherZombie = true;
@@ -61,11 +69,6 @@ public class ZombieController : MonoBehaviour {
     public void OnCollisionExit2D(Collision2D other)
     {
         isTouchingAnotherZombie = false;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        z.TakeDamage(damage);
     }
     
     public Zombie Z

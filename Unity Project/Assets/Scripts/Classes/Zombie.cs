@@ -146,7 +146,6 @@ public class Zombie : ICharacterInterface
     {
         this.health = this.health - damage;
         FlashColor();
-        //Debug.Log("Zombie hit");
     }
 
     public void Jump()
@@ -164,7 +163,6 @@ public class Zombie : ICharacterInterface
             // Apply force to jump
             Vector2 jumpVelocity = new Vector2(0, jumpForce);
             rb.AddForce(jumpVelocity);
-            Debug.Log("Zombie: " + jumpVelocity);
         }
     }
 

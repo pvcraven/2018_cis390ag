@@ -26,10 +26,11 @@ public class PlayerController : MonoBehaviour {
 
     private SpriteRenderer spriteRend;
     private float direction = 0;
-    private float attackDelay = 20;
-    private bool updatedDelay = false;
-    private float attackCooldown = -1;
-    private bool animationDelay = false;
+
+    //private float attackDelay = 20;
+    //private bool updatedDelay = false;
+    //private float attackCooldown = -1;
+    //private bool animationDelay = false;
 
     private bool step = true;
     private bool sprintKeyDown = false;
@@ -48,23 +49,25 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 
-        if (tory.Health <= 0 && tory.Dead == false)
+        //Why do we have a tory.Dead? It's redundant. If his health is <= 0 he is already dead.
+        if (tory.Health <= 0)
         {
 			tory.Die ();
+
             AudioSource bgMusic = GameObject.Find("Background Music").GetComponent<AudioSource>();
             bgMusic.clip = gameOverMusic;
             bgMusic.Play();
         }
 	    
-        if (attackCooldown >= 0)
-        {
-            attackCooldown--;
-        }
-        if (animationDelay)
-        {
-            updatedDelay = MeleeAnimationDelay(animationDelay);
-        }
-        animationDelay = updatedDelay;
+        //if (attackCooldown >= 0)
+        //{
+        //    attackCooldown--;
+        //}
+        //if (animationDelay)
+        //{
+        //    updatedDelay = MeleeAnimationDelay(animationDelay);
+        //}
+        //animationDelay = updatedDelay;
 
         if(tory.Dead == false)
             CheckforInput();
@@ -99,19 +102,6 @@ public class PlayerController : MonoBehaviour {
 			walk = false;
 		}
 	}
-
-    void StepSound()
-    {
-        audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
-        audioSource.Play();
-    }
-
-    IEnumerator StepWait(float delay)
-    {
-        step = false;
-        yield return new WaitForSeconds(delay);
-        step = true;
-    }
 
     void CheckforInput(){
 
@@ -187,6 +177,7 @@ public class PlayerController : MonoBehaviour {
     {
 	    tory.Weapon.IsInMeleeRange = true;
 	    
+        //Why Enemy? Do we have objects with this tag?
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Zombie") || 
             other.gameObject.CompareTag("Bandit"))
         {
@@ -214,7 +205,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-	private void OnCollisionExit(Collision other)
+	private void OnCollisionExit2D(Collision other)
 	{
 		tory.Weapon.IsInMeleeRange = false;
 	}
@@ -231,15 +222,31 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public bool MeleeAnimationDelay(bool b)
+    #region Sound Code
+    void StepSound()
     {
-        tory.SetAnimationFalse();
-        return false;
+        audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
+        audioSource.Play();
     }
 
-    public void MeleeAnimationDelay()
+    IEnumerator StepWait(float delay)
     {
-        attackCooldown = attackDelay;
-        animationDelay = true;
+        step = false;
+        yield return new WaitForSeconds(delay);
+        step = true;
     }
+    #endregion
+
+    //Did you just add bool b so you could you the same method name? This is bad overloading. What does this do?
+    //public bool MeleeAnimationDelay(bool b)
+    //{
+    //    tory.SetAnimationFalse();
+    //    return false;
+    //}
+
+    //public void MeleeAnimationDelay()
+    //{
+    //    attackCooldown = attackDelay;
+    //    animationDelay = true;
+    //}
 }

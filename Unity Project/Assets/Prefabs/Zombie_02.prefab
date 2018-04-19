@@ -321,6 +321,7 @@ MonoBehaviour:
   sightEnd: {fileID: 4108845834232588}
   StartOnZombie: {fileID: 4689580085371590}
   EndOnGround: {fileID: 4329892473886220}
+  jumpForce: 450
 --- !u!212 &212914348552885940
 SpriteRenderer:
   m_ObjectHideFlags: 1

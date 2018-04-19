@@ -57,13 +57,17 @@ public class StatusBarLogic : MonoBehaviour
         int.TryParse(statusBarHealth, out health);
 
         // Not sure what this is...
+
         //currentHealthPanelMax = ((currentHealthPanelMax - healthPanelMin)/(100 * health)) + healthPanelMin;
+
+        //This ^ mathematically works out how much of the health bar to remove based on the length of the bar. (For Res-Scaling)
+        //Unless you can get the current method to actually run out of the health bar in the correct amount of hits to kill you, we need to adapt the equation below to match something similar.
+        //Currently, it does not.
 
         float max_health = 100; // This should be a member of something... but it is just "100" everywhere 
         float new_width_of_panel = -( (1-(health / max_health)) * 160);
-        healthPanel.offsetMax = new Vector2(new_width_of_panel, -0); // new Vector2(-right, -top);
 
-        Debug.Log(new_width_of_panel);
+        healthPanel.offsetMax = new Vector2(new_width_of_panel, -0); // new Vector2(-right, -top);
     }
 
     public void SetStamina()
@@ -72,7 +76,7 @@ public class StatusBarLogic : MonoBehaviour
 
         float.TryParse(statusBarStamina, out stamina);
 
-        float max_stamina = 500; // This should be a member of something... but it is just "100" everywhere 
+        float max_stamina = 500; // This should be a member of something... but it is just "500" everywhere 
         float new_width_of_panel = -((1 - (stamina / max_stamina)) * 160);
         stausPanel.offsetMax = new Vector2(new_width_of_panel, -0); // new Vector2(-right, -top);
     }
@@ -90,11 +94,13 @@ public class StatusBarLogic : MonoBehaviour
     public void SetWeapon()
     {
         statusBarInformation.TryGetValue("AttackType", out statusBarAttackType);
+
         if (statusBarAttackType == "melee")
         {
             gunStatus.SetActive(false);
             knifeStatus.SetActive(true);
-        } else if (statusBarAttackType == "ranged")
+        }
+        else if (statusBarAttackType == "ranged")
         {
             gunStatus.SetActive(true);
             knifeStatus.SetActive(false);

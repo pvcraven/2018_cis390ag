@@ -102,7 +102,13 @@ public class Player : ICharacterInterface
 		set { currentAttackType = value; }
 	}
 
-	public IDictionary<string, string> GetStatusBarInformation
+    public bool Stabbing
+    {
+        get { return stabbing; }
+        set { stabbing = value; }
+    }
+
+    public IDictionary<string, string> GetStatusBarInformation
 	{
 		get
 		{
@@ -114,6 +120,8 @@ public class Player : ICharacterInterface
 			return statusBarInformation;
 		}
 	}
+
+
 
 	#endregion
 
@@ -128,6 +136,7 @@ public class Player : ICharacterInterface
 	private int jumpForce = 500;
 	private int walkForce = 15;
 	private int sprintForce = 20;
+    private bool stabbing = false;
 	private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
@@ -205,7 +214,6 @@ public class Player : ICharacterInterface
 
 	public void Walk(float direction, float paceDistance = 0)
 	{
-		//Debug.Log("Walk2");
 
 		// Check and see if we are paused
 		if (Time.timeScale == 0)
@@ -284,14 +292,16 @@ public class Player : ICharacterInterface
 		{
 			if (currentAttackType == "ranged")
 			{
-				RangedAttack();
-				Debug.Log("Ranged attack");
+                this.RangedWeapon = "Gun"; //Ideally, if we had more than one type of ranged or melee weapon we would change these in the inventory.
+                RangedAttack();
+				//Debug.Log("Ranged attack"); 
 			}
 			else
 			{
-				MeleeAttack();
-				Debug.Log("Melee attack");
-			}
+                this.MeleeWeapon = "Knife";
+                MeleeAttack();
+				//Debug.Log("Melee attack");
+            }
 		}
 	}
 
@@ -313,7 +323,7 @@ public class Player : ICharacterInterface
 	{
 		if (invController.AbleToSwitchWeapons())
 		{
-			Debug.Log("SwitchWeapon");
+			//Debug.Log("SwitchWeapon");
 			if (currentAttackType == "melee")
 			{
 				currentAttackType = "ranged";
@@ -435,7 +445,7 @@ public class Player : ICharacterInterface
 		this.player.GetComponent<StatusBarLogic>().SetHealth();
         if(this.Health <= 0)
         {
-            Debug.Log("die");
+            //Debug.Log("Die");
             this.Die();
         }
 	}
@@ -452,8 +462,6 @@ public class Player : ICharacterInterface
 		this.IsGrounded = Physics2D.Linecast(this.player.GetComponent<PlayerController>().StartOnPlayer.position,
 			this.player.GetComponent<PlayerController>().EndOnGround.position,
 			1 << LayerMask.NameToLayer("Ground"));
-
-        Debug.Log(this.IsGrounded);
 
 		if (this.IsGrounded)
 		{
@@ -479,64 +487,72 @@ public class Player : ICharacterInterface
 		yield return new WaitForSeconds(0.1F);
 	}
 
-	private void Stab(int damage)
-	{
-		float MeleeAttackHitBox = 0;
+    
+    //WAAAAAAY to complicated for what we are doing... I can't read this to I can't fix it.
 
-		player.GetComponent<Animator>().SetBool("stabbing", true);
+	//private void Stab(int damage)
+	//{
+	//	float MeleeAttackHitBox = 0;
 
-		int position = 0;
-		Collider2D collidingObject;
-		playerCC = player.GetComponent<CapsuleCollider2D>();
-		if (facingRight)
-		{
-			MeleeAttackHitBox = playerCC.attachedRigidbody.position.x + 1;
-		}
-		else
-		{
-			MeleeAttackHitBox = playerCC.attachedRigidbody.position.x - 1;
-		}
+ //       this.Stabbing = true;
 
-		Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(
-			new Vector2(MeleeAttackHitBox, playerCC.attachedRigidbody.position.y),
-			new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
-		while (position < overlappingObjects.GetLength(0))
-		{
-			collidingObject = overlappingObjects[position];
-			if (collidingObject.CompareTag("Zombie"))
-			{
-				ZombieController zombie = collidingObject.gameObject.GetComponent<ZombieController>();
-				zombie.TakeDamage(damage);
+	//	player.GetComponent<Animator>().SetBool("stabbing", true);
 
-			}
+	//	int position = 0;
+	//	Collider2D collidingObject;
+	//	playerCC = player.GetComponent<CapsuleCollider2D>();
+	//	if (facingRight)
+	//	{
+	//		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x + 1;
+	//	}
+	//	else
+	//	{
+	//		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x - 1;
+	//	}
 
-			position++;
-		}
+	//	Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(
+	//		new Vector2(MeleeAttackHitBox, playerCC.attachedRigidbody.position.y),
+	//		new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
+	//	while (position < overlappingObjects.GetLength(0))
+	//	{
+	//		collidingObject = overlappingObjects[position];
+	//		if (collidingObject.CompareTag("Zombie"))
+	//		{
+	//			Zombie zombie = collidingObject.gameObject.GetComponent<Zombie>();
+	//			zombie.TakeDamage(damage);
 
-        PlayerController script = player.GetComponent<PlayerController>();
-        script.MeleeAnimationDelay();
+	//		}
 
-    }
-	
-    public void SetAnimationFalse()
+	//		position++;
+	//	}
+
+ //       PlayerController script = player.GetComponent<PlayerController>();
+ //       script.MeleeAnimationDelay();
+
+ //       this.Stabbing = false;
+
+ //   }
+   public void SetAnimationFalse()
     {
         player.GetComponent<Animator>().SetBool("stabbing", false);
-    }
+    }	
+ 
 
     public void Die() 
 	{
         this.StopMoving ();
         this.sprintForce = 0;
         this.walkForce = 0;
-        this.dead = true;
-		player.GetComponent<Animator> ().SetBool ("dying", true);
+		player.GetComponent<Animator>().SetBool ("dying", true);
         SceneManager.LoadScene("Dead");
 	}
 
     public void ConsumeEdibleItem()
     {
         if (this.Stamina < 400)
+        {
             this.Stamina += 100;
+        }
         else if(this.Stamina < 500)
         {
             this.Stamina = 500;
@@ -546,28 +562,29 @@ public class Player : ICharacterInterface
     public void UseHealthPack()
     {
         if (this.Health < 100)
+        {
             this.Health = 100;
+        }
     }
 
     private GameObject InteractWithObject(GameObject item, List<GameObject> inArray, AudioClip clip)
     {
         var addedItem = invController.AddItem(item);
-        if (addedItem)
+
+        if(addedItem)
         {
             AudioSource.PlayClipAtPoint(clip, player.transform.position);
             inArray.Remove(item);
-            if (currentMeleeWeapon == null)
+
+            if(currentMeleeWeapon == null)
             {
-                if (item.name.Contains("Knife"))
+                if(item.name.Contains("Knife"))
                 {
                     MeleeWeapon = "Knife";
                 }
             }
+
             return item;
-        }
-        else if (!addedItem)
-        {
-            return null;
         }
 
         return null;
