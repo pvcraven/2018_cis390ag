@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Classes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : ICharacterInterface
 {
@@ -428,8 +429,13 @@ public class Player : ICharacterInterface
 
 	public void TakeDamage(int damage)
 	{
-		this.health = this.health - damage;
+		this.health -= damage;
 		this.player.GetComponent<StatusBarLogic>().SetHealth();
+        if(this.Health <= 0)
+        {
+            Debug.Log("die");
+            this.Die();
+        }
 	}
 
     public void AdjustStamina(float stamina)
@@ -517,9 +523,10 @@ public class Player : ICharacterInterface
 
     public void Die() 
 	{
-		this.StopMoving ();
+        this.StopMoving ();
 		player.GetComponent<Animator> ().SetBool ("dying", true);
 		player.GetComponent<Animator> ().Play ("Tory_Dying");
+        SceneManager.LoadScene("Dead");
 	}
 
     public void ConsumeEdibleItem()
