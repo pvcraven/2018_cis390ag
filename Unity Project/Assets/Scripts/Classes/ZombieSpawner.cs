@@ -12,7 +12,7 @@ public class ZombieSpawner : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        zombieNumber = rand.Next(0, 60);
+        zombieNumber = rand.Next(0, 250);
 
         //If we add more animations to the other zombie we can have different kinds of zombies spawn
 
