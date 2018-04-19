@@ -451,6 +451,8 @@ public class Player : ICharacterInterface
 			this.player.GetComponent<PlayerController>().EndOnGround.position,
 			1 << LayerMask.NameToLayer("Ground"));
 
+        Debug.Log(this.IsGrounded);
+
 		if (this.IsGrounded)
 		{
 			player.GetComponent<Animator>().SetBool("OnGround", this.IsGrounded);
@@ -460,7 +462,6 @@ public class Player : ICharacterInterface
 		{
 			player.GetComponent<Animator>().SetFloat("vSpeed", player.GetComponent<Rigidbody2D>().velocity.y);
 			player.GetComponent<Animator>().SetBool("OnGround", this.IsGrounded);
-			player.GetComponent<Animator>().Play("Jump/Fall");
 		}
 	}
 
@@ -481,7 +482,6 @@ public class Player : ICharacterInterface
 		float MeleeAttackHitBox = 0;
 
 		player.GetComponent<Animator>().SetBool("stabbing", true);
-		player.GetComponent<Animator>().Play("Tory_Stabbing");
 
 		int position = 0;
 		Collider2D collidingObject;
@@ -525,7 +525,6 @@ public class Player : ICharacterInterface
 	{
         this.StopMoving ();
 		player.GetComponent<Animator> ().SetBool ("dying", true);
-		player.GetComponent<Animator> ().Play ("Tory_Dying");
         SceneManager.LoadScene("Dead");
 	}
 
