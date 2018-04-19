@@ -127,7 +127,7 @@ public class Player : ICharacterInterface
 	private bool isGrounded = false;
 	private int jumpForce = 500;
 	private int walkForce = 15;
-	private int sprintForce = 8;
+	private int sprintForce = 20;
 	private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
@@ -219,19 +219,19 @@ public class Player : ICharacterInterface
 		Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y);
 
 		// If the player is moving faster than walkforce, their velocity gets reset to walkforce.
+        // walkForce also functions as the player's maximum possible walk speed.
 		if (rb.velocity.x < -walkForce)
             walkVector.x = -walkForce;
 		else if (rb.velocity.x > walkForce)
             walkVector.x = walkForce;
 
 		// The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
-        
 		if (this.isGrounded)
 		{
 			if (rb.velocity.y == 0)
                 walkVector.x *= 1.2f;
 			else if (rb.velocity.y > 0.01f)
-                walkVector.x *= 1.8f;
+                walkVector.x *= 1.5f;
 		}
         
 		rb.AddForce(walkVector);
@@ -255,20 +255,22 @@ public class Player : ICharacterInterface
 		CheckDirection(direction);
 		this.Walking = true;
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-
-		// Reduce the friction so we can move faster.
-		rb.drag = 1f;
 		Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y);
 
 		// If the player moves faster than sprintforce, their velocity gets reset to sprintforce.
-		if (rb.velocity.x < -sprintForce) walkVector.x = -sprintForce;
-		else if (rb.velocity.x > sprintForce) walkVector.x = sprintForce;
+        // sprintForce also functions as the player's maxmimum possible sprint speed.
+		if (rb.velocity.x < -sprintForce)
+            walkVector.x = -sprintForce;
+		else if (rb.velocity.x > sprintForce)
+            walkVector.x = sprintForce;
 
 		// The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
 		if (this.isGrounded)
 		{
-			if (rb.velocity.y == 0) walkVector.x *= 1.2f;
-			else if (rb.velocity.y > 0.01f) walkVector.x *= 1.5f;
+			if (rb.velocity.y == 0)
+                walkVector.x *= 1.2f;
+			else if (rb.velocity.y > 0.01f)
+                walkVector.x *= 1.5f;
 		}
 
 		rb.AddForce(walkVector);
@@ -524,6 +526,9 @@ public class Player : ICharacterInterface
     public void Die() 
 	{
         this.StopMoving ();
+        this.sprintForce = 0;
+        this.walkForce = 0;
+        this.dead = true;
 		player.GetComponent<Animator> ().SetBool ("dying", true);
 		player.GetComponent<Animator> ().Play ("Tory_Dying");
         SceneManager.LoadScene("Dead");
