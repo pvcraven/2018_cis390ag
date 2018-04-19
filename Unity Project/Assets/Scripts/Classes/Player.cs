@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Classes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : ICharacterInterface
 {
@@ -101,7 +102,13 @@ public class Player : ICharacterInterface
 		set { currentAttackType = value; }
 	}
 
-	public IDictionary<string, string> GetStatusBarInformation
+    public bool Stabbing
+    {
+        get { return stabbing; }
+        set { stabbing = value; }
+    }
+
+    public IDictionary<string, string> GetStatusBarInformation
 	{
 		get
 		{
@@ -114,6 +121,8 @@ public class Player : ICharacterInterface
 		}
 	}
 
+
+
 	#endregion
 
 	#region VariablesstartOnPlayer
@@ -124,9 +133,10 @@ public class Player : ICharacterInterface
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
-	private int jumpForce = 350;
-	private int walkForce = 6;
-	private int sprintForce = 8;
+	private int jumpForce = 450;
+	private int walkForce = 15;
+	private int sprintForce = 20;
+    private bool stabbing = false;
 	private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
@@ -199,12 +209,12 @@ public class Player : ICharacterInterface
 			// Apply force to jump
 			Vector2 jumpVelocity = new Vector2(0, jumpForce);
 			rb.AddForce(jumpVelocity);
-		}
+            rb.drag = 1;
+        }
 	}
 
 	public void Walk(float direction, float paceDistance = 0)
 	{
-		//Debug.Log("Walk2");
 
 		// Check and see if we are paused
 		if (Time.timeScale == 0)
@@ -215,29 +225,33 @@ public class Player : ICharacterInterface
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 
 		// Reduce the friction so we can move faster.
-		rb.drag = 1f;
-		Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y);
+		Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y + 10.0f);
 
-		// If the player is moving faster than walkforce, their velocity gets reset to walkforce.
-		if (rb.velocity.x < -walkForce) walkVector.x = -walkForce;
-		else if (rb.velocity.x > walkForce) walkVector.x = walkForce;
 
-		// The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
-		if (this.isGrounded)
-		{
-			if (rb.velocity.y == 0) walkVector.x *= 1.2f;
-			else if (rb.velocity.y > 0.01f) walkVector.x *= 1.8f;
-		}
 
-		rb.AddForce(walkVector);
+        if (!walkingToFast())
+        {
+            rb.AddForce(walkVector);
+        }
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
 
-	public void StopMoving()
+    private bool walkingToFast()
+    {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        return Mathf.Abs(rb.velocity.x) > 3;
+    }
+     
+    private bool runningToFast()
+    {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        return Mathf.Abs(rb.velocity.x) > 5;
+    }
+
+    public void StopMoving()
 	{
 		this.Walking = false;
-		player.GetComponent<Rigidbody2D>().drag = 5;
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
 
@@ -250,23 +264,12 @@ public class Player : ICharacterInterface
 		CheckDirection(direction);
 		this.Walking = true;
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+		Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y+20.0f);
 
-		// Reduce the friction so we can move faster.
-		rb.drag = 1f;
-		Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y);
-
-		// If the player moves faster than sprintforce, their velocity gets reset to sprintforce.
-		if (rb.velocity.x < -sprintForce) walkVector.x = -sprintForce;
-		else if (rb.velocity.x > sprintForce) walkVector.x = sprintForce;
-
-		// The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
-		if (this.isGrounded)
-		{
-			if (rb.velocity.y == 0) walkVector.x *= 1.2f;
-			else if (rb.velocity.y > 0.01f) walkVector.x *= 1.5f;
-		}
-
-		rb.AddForce(walkVector);
+        if (!runningToFast())
+        {
+            rb.AddForce(walkVector);
+        }
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
@@ -277,14 +280,16 @@ public class Player : ICharacterInterface
 		{
 			if (currentAttackType == "ranged")
 			{
-				RangedAttack();
-				Debug.Log("Ranged attack");
+                this.RangedWeapon = "Gun"; //Ideally, if we had more than one type of ranged or melee weapon we would change these in the inventory.
+                RangedAttack();
+				//Debug.Log("Ranged attack"); 
 			}
 			else
 			{
-				MeleeAttack();
-				Debug.Log("Melee attack");
-			}
+                this.MeleeWeapon = "Knife";
+                MeleeAttack();
+				//Debug.Log("Melee attack");
+            }
 		}
 	}
 
@@ -297,7 +302,6 @@ public class Player : ICharacterInterface
 		{
 			case "Knife":
 				this.strength = 10;
-				Stab(strength);
 				break;
 		}
 	}
@@ -306,7 +310,7 @@ public class Player : ICharacterInterface
 	{
 		if (invController.AbleToSwitchWeapons())
 		{
-			Debug.Log("SwitchWeapon");
+			//Debug.Log("SwitchWeapon");
 			if (currentAttackType == "melee")
 			{
 				currentAttackType = "ranged";
@@ -424,8 +428,13 @@ public class Player : ICharacterInterface
 
 	public void TakeDamage(int damage)
 	{
-		this.health = this.health - damage;
+		this.health -= damage;
 		this.player.GetComponent<StatusBarLogic>().SetHealth();
+        if(this.Health <= 0)
+        {
+            //Debug.Log("Die");
+            this.Die();
+        }
 	}
 
     public void AdjustStamina(float stamina)
@@ -450,7 +459,6 @@ public class Player : ICharacterInterface
 		{
 			player.GetComponent<Animator>().SetFloat("vSpeed", player.GetComponent<Rigidbody2D>().velocity.y);
 			player.GetComponent<Animator>().SetBool("OnGround", this.IsGrounded);
-			player.GetComponent<Animator>().Play("Jump/Fall");
 		}
 	}
 
@@ -466,62 +474,72 @@ public class Player : ICharacterInterface
 		yield return new WaitForSeconds(0.1F);
 	}
 
-	private void Stab(int damage)
-	{
-		float MeleeAttackHitBox = 0;
+    
+    //WAAAAAAY to complicated for what we are doing... I can't read this to I can't fix it.
 
-		player.GetComponent<Animator>().SetBool("stabbing", true);
-		player.GetComponent<Animator>().Play("Tory_Stabbing");
+	//private void Stab(int damage)
+	//{
+	//	float MeleeAttackHitBox = 0;
 
-		int position = 0;
-		Collider2D collidingObject;
-		playerCC = player.GetComponent<CapsuleCollider2D>();
-		if (facingRight)
-		{
-			MeleeAttackHitBox = playerCC.attachedRigidbody.position.x + 1;
-		}
-		else
-		{
-			MeleeAttackHitBox = playerCC.attachedRigidbody.position.x - 1;
-		}
+ //       this.Stabbing = true;
 
-		Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(
-			new Vector2(MeleeAttackHitBox, playerCC.attachedRigidbody.position.y),
-			new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
-		while (position < overlappingObjects.GetLength(0))
-		{
-			collidingObject = overlappingObjects[position];
-			if (collidingObject.CompareTag("Enemy"))
-			{
-				ZombieController zombie = collidingObject.gameObject.GetComponent<ZombieController>();
-				zombie.TakeDamage(damage);
+	//	player.GetComponent<Animator>().SetBool("stabbing", true);
 
-			}
+	//	int position = 0;
+	//	Collider2D collidingObject;
+	//	playerCC = player.GetComponent<CapsuleCollider2D>();
+	//	if (facingRight)
+	//	{
+	//		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x + 1;
+	//	}
+	//	else
+	//	{
+	//		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x - 1;
+	//	}
 
-			position++;
-		}
+	//	Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(
+	//		new Vector2(MeleeAttackHitBox, playerCC.attachedRigidbody.position.y),
+	//		new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
+	//	while (position < overlappingObjects.GetLength(0))
+	//	{
+	//		collidingObject = overlappingObjects[position];
+	//		if (collidingObject.CompareTag("Zombie"))
+	//		{
+	//			Zombie zombie = collidingObject.gameObject.GetComponent<Zombie>();
+	//			zombie.TakeDamage(damage);
 
-        PlayerController script = player.GetComponent<PlayerController>();
-        script.MeleeAnimationDelay();
+	//		}
 
-    }
-	
-    public void SetAnimationFalse()
+	//		position++;
+	//	}
+
+ //       PlayerController script = player.GetComponent<PlayerController>();
+ //       script.MeleeAnimationDelay();
+
+ //       this.Stabbing = false;
+
+ //   }
+   public void SetAnimationFalse()
     {
         player.GetComponent<Animator>().SetBool("stabbing", false);
-    }
+    }	
+ 
 
     public void Die() 
 	{
-		this.StopMoving ();
-		player.GetComponent<Animator> ().SetBool ("dying", true);
-		player.GetComponent<Animator> ().Play ("Tory_Dying");
+        this.StopMoving ();
+        this.sprintForce = 0;
+        this.walkForce = 0;
+		player.GetComponent<Animator>().SetBool ("dying", true);
+        SceneManager.LoadScene("Dead");
 	}
 
     public void ConsumeEdibleItem()
     {
         if (this.Stamina < 400)
+        {
             this.Stamina += 100;
+        }
         else if(this.Stamina < 500)
         {
             this.Stamina = 500;
@@ -531,28 +549,29 @@ public class Player : ICharacterInterface
     public void UseHealthPack()
     {
         if (this.Health < 100)
+        {
             this.Health = 100;
+        }
     }
 
     private GameObject InteractWithObject(GameObject item, List<GameObject> inArray, AudioClip clip)
     {
         var addedItem = invController.AddItem(item);
-        if (addedItem)
+
+        if(addedItem)
         {
             AudioSource.PlayClipAtPoint(clip, player.transform.position);
             inArray.Remove(item);
-            if (currentMeleeWeapon == null)
+
+            if(currentMeleeWeapon == null)
             {
-                if (item.name.Contains("Knife"))
+                if(item.name.Contains("Knife"))
                 {
                     MeleeWeapon = "Knife";
                 }
             }
+
             return item;
-        }
-        else if (!addedItem)
-        {
-            return null;
         }
 
         return null;
