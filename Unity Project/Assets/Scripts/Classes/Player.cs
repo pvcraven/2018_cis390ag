@@ -124,8 +124,8 @@ public class Player : ICharacterInterface
 	private int strength = 10;
 	private int speed = 2;
 	private bool isGrounded = false;
-	private int jumpForce = 350;
-	private int walkForce = 6;
+	private int jumpForce = 500;
+	private int walkForce = 15;
 	private int sprintForce = 8;
 	private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
@@ -215,20 +215,24 @@ public class Player : ICharacterInterface
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 
 		// Reduce the friction so we can move faster.
-		rb.drag = 0f;
 		Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y);
 
 		// If the player is moving faster than walkforce, their velocity gets reset to walkforce.
-		if (rb.velocity.x < -walkForce) walkVector.x = -walkForce;
-		else if (rb.velocity.x > walkForce) walkVector.x = walkForce;
+		if (rb.velocity.x < -walkForce)
+            walkVector.x = -walkForce;
+		else if (rb.velocity.x > walkForce)
+            walkVector.x = walkForce;
 
 		// The ground slows Tory due to friction. This makes them slightly faster. Same for ramps.
+        
 		if (this.isGrounded)
 		{
-			if (rb.velocity.y == 0) walkVector.x *= 1.2f;
-			else if (rb.velocity.y > 0.01f) walkVector.x *= 1.8f;
+			if (rb.velocity.y == 0)
+                walkVector.x *= 1.2f;
+			else if (rb.velocity.y > 0.01f)
+                walkVector.x *= 1.8f;
 		}
-
+        
 		rb.AddForce(walkVector);
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
