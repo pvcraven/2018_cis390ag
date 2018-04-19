@@ -229,7 +229,7 @@ public class Player : ICharacterInterface
 
 
 
-        if (!walkingToFast())
+        if (!walkingTooFast())
         {
             rb.AddForce(walkVector);
         }
@@ -237,7 +237,7 @@ public class Player : ICharacterInterface
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
 
-    private bool walkingToFast()
+    private bool walkingTooFast()
     {
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         return Mathf.Abs(rb.velocity.x) > 3;
