@@ -499,7 +499,7 @@ public class Player : ICharacterInterface
             // This isn't great, because you should only stab the direction
             // you are facing. And this code doesn't care about that. But
             // we just need to get something down.
-            if (Vector2.Distance(e.transform.position, rb.position) < 1)
+            if (Vector2.Distance(e.transform.position, rb.position) < 1.25f)
             {
                 // Debug.Log("Zombie is close");
                 // An enemy is in your radius
