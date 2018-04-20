@@ -47,6 +47,7 @@ public class StatusBarLogic : MonoBehaviour
     void Update()
     {
         statusBarInformation = GetComponent<PlayerController>().tory.GetStatusBarInformation;
+        SetHealth();
     }
 
     public void SetHealth()
@@ -65,7 +66,7 @@ public class StatusBarLogic : MonoBehaviour
         //Currently, it does not.
 
         float max_health = 100; // This should be a member of something... but it is just "100" everywhere 
-        float new_width_of_panel = -( (1-(health / max_health)) * 160);
+        float new_width_of_panel = -( (1-(health / max_health)) * 220);
 
         healthPanel.offsetMax = new Vector2(new_width_of_panel, -0); // new Vector2(-right, -top);
     }
@@ -77,7 +78,7 @@ public class StatusBarLogic : MonoBehaviour
         float.TryParse(statusBarStamina, out stamina);
 
         float max_stamina = 500; // This should be a member of something... but it is just "500" everywhere 
-        float new_width_of_panel = -((1 - (stamina / max_stamina)) * 160);
+        float new_width_of_panel = -((1 - (stamina / max_stamina)) * 220);
         stausPanel.offsetMax = new Vector2(new_width_of_panel, -0); // new Vector2(-right, -top);
     }
 
