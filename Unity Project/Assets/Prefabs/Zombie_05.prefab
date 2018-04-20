@@ -208,13 +208,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 912a6c3707af443efb3c74a58922c894, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.16
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 140
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -321,6 +321,7 @@ MonoBehaviour:
   sightEnd: {fileID: 4510802463489478}
   StartOnZombie: {fileID: 4768057514797038}
   EndOnGround: {fileID: 4740431070629038}
+  jumpForce: 150
 --- !u!212 &212675618319839080
 SpriteRenderer:
   m_ObjectHideFlags: 1
