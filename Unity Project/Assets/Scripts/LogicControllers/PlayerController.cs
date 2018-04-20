@@ -182,8 +182,7 @@ public class PlayerController : MonoBehaviour {
             other.gameObject.CompareTag("Bandit"))
         {
             StartCoroutine(tory.FlashColor());
-            tory.TakeDamage(10);
-            Debug.Log("You're Taking Damage! Health: " + tory.Health);
+            tory.TakeDamage(7);
         }
         
         if (other.gameObject.CompareTag("Stone"))
