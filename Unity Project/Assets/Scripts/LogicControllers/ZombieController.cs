@@ -11,6 +11,7 @@ public class ZombieController : MonoBehaviour {
     private System.Random rand = new System.Random();
     private bool isTouchingAnotherZombie = false;
     public int jumpForce = 150;
+    private int health = 20;
 
     // Use this for initialization
     void Start () {
@@ -75,5 +76,15 @@ public class ZombieController : MonoBehaviour {
     {
         get { return z; }
         set { z = value; }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+
+        if (health <= 0)
+        {
+            Destroy(zombie);
+        }
     }
 }

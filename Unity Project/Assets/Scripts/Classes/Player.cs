@@ -475,57 +475,42 @@ public class Player : ICharacterInterface
         anim.SetBool("stabbing", true);
 
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+
+        // Loop through each bandit. 
+        // This needs to be refactored so it works for ANY enemy and
+        // not duplicate this code for each type of enemy.
         foreach (BanditEnemyController e in UnityEngine.Object.FindObjectsOfType<BanditEnemyController>())
         {
+            // This isn't great, because you should only stab the direction
+            // you are facing. And this code doesn't care about that. But
+            // we just need to get something down.
             if (Vector2.Distance(e.transform.position, rb.position) < 1)
             {
-                Debug.Log("Bandit is close");
                 // An enemy is in your radius
-                e.TakeDamage(10); // Hit the enemy for example
+                e.TakeDamage(10);
+            }
+        }
+
+        // Loop through each zombie. 
+        // This needs to be refactored so it works for ANY enemy and
+        // not duplicate this code for each type of enemy.
+        foreach (ZombieController e in UnityEngine.Object.FindObjectsOfType<ZombieController>())
+        {
+            // This isn't great, because you should only stab the direction
+            // you are facing. And this code doesn't care about that. But
+            // we just need to get something down.
+            if (Vector2.Distance(e.transform.position, rb.position) < 1)
+            {
+                // Debug.Log("Zombie is close");
+                // An enemy is in your radius
+                e.TakeDamage(10);
             }
             else
             {
-                Debug.Log("Bandit is not close: "+ Vector2.Distance(e.transform.position, rb.position));
-
+                // Debug.Log("Zombie is not close: " + Vector2.Distance(e.transform.position, rb.position));
             }
         }
-        //	float MeleeAttackHitBox = 0;
-
-        //this.Stabbing = true;
-
-        //	int position = 0;
-        //	Collider2D collidingObject;
-        //	playerCC = player.GetComponent<CapsuleCollider2D>();
-        //	if (facingRight)
-        //	{
-        //		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x + 1;
-        //	}
-        //	else
-        //	{
-        //		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x - 1;
-        //	}
-
-        //	Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(
-        //		new Vector2(MeleeAttackHitBox, playerCC.attachedRigidbody.position.y),
-        //		new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
-        //	while (position < overlappingObjects.GetLength(0))
-        //	{
-        //		collidingObject = overlappingObjects[position];
-        //		if (collidingObject.CompareTag("Zombie"))
-        //		{
-        //			Zombie zombie = collidingObject.gameObject.GetComponent<Zombie>();
-        //			zombie.TakeDamage(damage);
-
-        //		}
-
-        //		position++;
-        //	}
-
-        //PlayerController script = player.GetComponent<PlayerController>();
-        //script.MeleeAnimationDelay();
-
-        //this.Stabbing = false;
-
+        // Debug.Log("Done processing hits");
     }
     public void SetAnimationFalse()
     {
