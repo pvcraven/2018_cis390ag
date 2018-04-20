@@ -131,7 +131,6 @@ public class Player : ICharacterInterface
 	private int walkForce = 15;
 	private int sprintForce = 20;
     Animator anim;
-    int stabHash = Animator.StringToHash("Tory_Stabbing");
     private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
@@ -295,9 +294,6 @@ public class Player : ICharacterInterface
 		switch (this.MeleeWeapon)
 		{
 			case "Knife":
-				this.strength = 10;
-                anim = player.GetComponent<Animator>();
-                anim.SetTrigger(stabHash);
                 Stab(this.strength);
 				break;
 		}
@@ -474,39 +470,41 @@ public class Player : ICharacterInterface
     
 	private void Stab(int damage)
 	{
-	//	float MeleeAttackHitBox = 0;
+        this.strength = 10;
+        anim = player.GetComponent<Animator>();
+        anim.SetBool("stabbing", true);
+
+        //	float MeleeAttackHitBox = 0;
 
         //this.Stabbing = true;
 
-		player.GetComponent<Animator>().SetBool("stabbing", true);
+        //	int position = 0;
+        //	Collider2D collidingObject;
+        //	playerCC = player.GetComponent<CapsuleCollider2D>();
+        //	if (facingRight)
+        //	{
+        //		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x + 1;
+        //	}
+        //	else
+        //	{
+        //		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x - 1;
+        //	}
 
-	//	int position = 0;
-	//	Collider2D collidingObject;
-	//	playerCC = player.GetComponent<CapsuleCollider2D>();
-	//	if (facingRight)
-	//	{
-	//		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x + 1;
-	//	}
-	//	else
-	//	{
-	//		MeleeAttackHitBox = playerCC.attachedRigidbody.position.x - 1;
-	//	}
+        //	Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(
+        //		new Vector2(MeleeAttackHitBox, playerCC.attachedRigidbody.position.y),
+        //		new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
+        //	while (position < overlappingObjects.GetLength(0))
+        //	{
+        //		collidingObject = overlappingObjects[position];
+        //		if (collidingObject.CompareTag("Zombie"))
+        //		{
+        //			Zombie zombie = collidingObject.gameObject.GetComponent<Zombie>();
+        //			zombie.TakeDamage(damage);
 
-	//	Collider2D[] overlappingObjects = Physics2D.OverlapCapsuleAll(
-	//		new Vector2(MeleeAttackHitBox, playerCC.attachedRigidbody.position.y),
-	//		new Vector2(playerCC.size.x + .05f, playerCC.size.y), playerCC.direction, 0);
-	//	while (position < overlappingObjects.GetLength(0))
-	//	{
-	//		collidingObject = overlappingObjects[position];
-	//		if (collidingObject.CompareTag("Zombie"))
-	//		{
-	//			Zombie zombie = collidingObject.gameObject.GetComponent<Zombie>();
-	//			zombie.TakeDamage(damage);
+        //		}
 
-	//		}
-
-	//		position++;
-	//	}
+        //		position++;
+        //	}
 
         //PlayerController script = player.GetComponent<PlayerController>();
         //script.MeleeAnimationDelay();
@@ -514,7 +512,7 @@ public class Player : ICharacterInterface
         //this.Stabbing = false;
 
     }
-   public void SetAnimationFalse()
+    public void SetAnimationFalse()
     {
         player.GetComponent<Animator>().SetBool("stabbing", false);
     }	
