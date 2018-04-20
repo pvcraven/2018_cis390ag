@@ -135,6 +135,10 @@ public class Zombie : ICharacterInterface
 
     public void FlipDirection()
     {
+        // Check and see if we are paused
+        if (Time.timeScale == 0)
+            return;
+
         this.FacingRight = !this.FacingRight;
         Vector2 scale = zombie.transform.localScale;
         scale.x *= -1;
@@ -176,8 +180,11 @@ public class Zombie : ICharacterInterface
 
     public void Walk(float direction = 1, float paceDistance = 0)
     {
+        // Check and see if we are paused
+        if (Time.timeScale == 0)
+            return;
 
-            //Debug.Log("C");
+        //Debug.Log("C");
 
         if (!facingRight)
         {
