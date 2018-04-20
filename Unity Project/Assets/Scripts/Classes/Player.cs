@@ -102,12 +102,6 @@ public class Player : ICharacterInterface
 		set { currentAttackType = value; }
 	}
 
-    public bool Stabbing
-    {
-        get { return stabbing; }
-        set { stabbing = value; }
-    }
-
     public IDictionary<string, string> GetStatusBarInformation
 	{
 		get
@@ -136,8 +130,9 @@ public class Player : ICharacterInterface
 	private int jumpForce = 450;
 	private int walkForce = 15;
 	private int sprintForce = 20;
-    private bool stabbing = false;
-	private int fallMultiplier = 3;
+    Animator anim;
+    int stabHash = Animator.StringToHash("Tory_Stabbing");
+    private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
 	private bool walking = false;
@@ -293,7 +288,6 @@ public class Player : ICharacterInterface
 		}
 	}
 
-
 	public void MeleeAttack()
 	{
 		//Debug.Log("MeleeAttack with "+ this.MeleeWeapon);
@@ -302,6 +296,9 @@ public class Player : ICharacterInterface
 		{
 			case "Knife":
 				this.strength = 10;
+                anim = player.GetComponent<Animator>();
+                anim.SetTrigger(stabHash);
+                Stab(this.strength);
 				break;
 		}
 	}
@@ -475,15 +472,13 @@ public class Player : ICharacterInterface
 	}
 
     
-    //WAAAAAAY to complicated for what we are doing... I can't read this to I can't fix it.
-
-	//private void Stab(int damage)
-	//{
+	private void Stab(int damage)
+	{
 	//	float MeleeAttackHitBox = 0;
 
- //       this.Stabbing = true;
+        //this.Stabbing = true;
 
-	//	player.GetComponent<Animator>().SetBool("stabbing", true);
+		player.GetComponent<Animator>().SetBool("stabbing", true);
 
 	//	int position = 0;
 	//	Collider2D collidingObject;
@@ -513,12 +508,12 @@ public class Player : ICharacterInterface
 	//		position++;
 	//	}
 
- //       PlayerController script = player.GetComponent<PlayerController>();
- //       script.MeleeAnimationDelay();
+        //PlayerController script = player.GetComponent<PlayerController>();
+        //script.MeleeAnimationDelay();
 
- //       this.Stabbing = false;
+        //this.Stabbing = false;
 
- //   }
+    }
    public void SetAnimationFalse()
     {
         player.GetComponent<Animator>().SetBool("stabbing", false);
