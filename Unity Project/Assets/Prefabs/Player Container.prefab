@@ -79,7 +79,6 @@ GameObject:
   - component: {fileID: 95204153325148070}
   - component: {fileID: 82203970412758874}
   - component: {fileID: 81255442996017722}
-  - component: {fileID: 114982857166748036}
   - component: {fileID: 114723079216801208}
   m_Layer: 13
   m_Name: Player
@@ -333,7 +332,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377632775304484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.37, y: 6.32, z: -10.925503}
+  m_LocalPosition: {x: 0.019515172, y: 0, z: -0.9255029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4857875647038306}
@@ -346,7 +345,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1270749830176946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.37, y: 6.32, z: -0.9255029}
+  m_LocalPosition: {x: -3.1, y: 4, z: -0.9255029}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 4777189863969172}
@@ -362,7 +361,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1946912833650078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.37, y: 6.32, z: -10.925503}
+  m_LocalPosition: {x: -3.1, y: 4, z: -10.925503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4643356535960128}
@@ -414,8 +413,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1572423539252428}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38, y: -7.5, z: 0.9255029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.019515172, y: 0, z: 0.9255029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4324409836364732}
@@ -446,7 +445,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -473,8 +472,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 5
+  m_Mass: 1.5
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -923,14 +922,14 @@ MonoBehaviour:
   StartOnPlayer: {fileID: 4763194070322316}
   EndOnGround: {fileID: 4104615564674150}
   statusBar: {fileID: 1339919976171178}
-  attackDelay: 0
   drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
   pickupSound: {fileID: 8300000, guid: 5fc27d263ebd13c409e6399e3fc2fc46, type: 3}
   walkAudio:
   - {fileID: 8300000, guid: 0b980312ea3413144ad9f6b2d2208e61, type: 3}
   - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
   - {fileID: 8300000, guid: ca77a9b60e3e080459d53a7895544b9f, type: 3}
-  jumpSound: {fileID: 8300000, guid: b5ad655837c624570a06b57fb07dda80, type: 3}
+  jumpSound: {fileID: 8300000, guid: 35854a33cbba86b408bc501d9305a4dd, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: bda536a092c011b41becbe526196904b, type: 3}
 --- !u!114 &114660273004531466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1013,61 +1012,6 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 100
---- !u!114 &114982857166748036
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1270749830176946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99376de1b5853a44cb6a2bb36c4fa2e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialog_box: {fileID: 0}
-  list_of_dialog_events:
-  - x_position: -3.700000047683716
-    messages:
-    - Use 'W', 'A', 'S', or 'D' to move!
-    current_message: 0
-  - x_position: 70
-    messages:
-    - This is Normal
-    - '*BOLD* This Is Bold'
-    - '*ITALIC* This Is Italic'
-    - '*BIG* This Is Big'
-    - '*BOLD**BIG* Bold and Big'
-    - 'This is normal again '
-    current_message: 0
-  - x_position: 1.2000000476837158
-    messages:
-    - Press 'R' to pick up items!
-    current_message: 0
-  - x_position: 6.5
-    messages:
-    - Press 'Space' to jump!
-    current_message: 0
-  - x_position: 18
-    messages:
-    - Use 'Left Control' to switch between weapons!
-    current_message: 0
-  - x_position: 20
-    messages:
-    - Use 'TAB' to view your inventory!
-    current_message: 0
-  - x_position: 25
-    messages:
-    - Press 'F' to use your knife!
-    current_message: 0
-  - x_position: 30
-    messages:
-    - Press 'Shift' to sprint!
-    current_message: 0
-  - x_position: 35
-    messages:
-    - Press 'X' to interact with characters!
-    current_message: 0
-  PausedControlObject: {fileID: 0}
 --- !u!124 &124838883623786084
 Behaviour:
   m_ObjectHideFlags: 1

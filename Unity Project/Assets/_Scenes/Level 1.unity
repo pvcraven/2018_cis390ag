@@ -83144,55 +83144,7 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -0.9255029
       objectReference: {fileID: 0}
-    - target: {fileID: 114618731280287424, guid: 859f9ecdd407a214689d25a5103d1a6d,
-        type: 2}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 35854a33cbba86b408bc501d9305a4dd, type: 3}
-    - target: {fileID: 114618731280287424, guid: 859f9ecdd407a214689d25a5103d1a6d,
-        type: 2}
-      propertyPath: gameOverMusic
-      value: 
-      objectReference: {fileID: 8300000, guid: bda536a092c011b41becbe526196904b, type: 3}
-    - target: {fileID: 4324409836364732, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4324409836364732, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4475109029806880, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4475109029806880, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 50069340320420560, guid: 859f9ecdd407a214689d25a5103d1a6d,
-        type: 2}
-      propertyPath: m_LinearDrag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50069340320420560, guid: 859f9ecdd407a214689d25a5103d1a6d,
-        type: 2}
-      propertyPath: m_Mass
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114982857166748036, guid: 859f9ecdd407a214689d25a5103d1a6d,
-        type: 2}
-      propertyPath: PausedControlObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114982857166748036, guid: 859f9ecdd407a214689d25a5103d1a6d,
-        type: 2}
-      propertyPath: dialog_box
-      value: 
-      objectReference: {fileID: 1507311064563606, guid: af9a3d23aa9b0a842aaf0952ea17712e,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 114982857166748036, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1944031455
