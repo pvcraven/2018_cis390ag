@@ -225,7 +225,7 @@ public class Zombie : ICharacterInterface
 
         this.Walking = true;
 
-        zombie.GetComponent<Animator>().SetBool("walking", this.Walking);
+        //zombie.GetComponent<Animator>().SetBool("walking", this.Walking);
     }
     bool CheckForPlayer()
     {
