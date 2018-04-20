@@ -121,16 +121,9 @@ public class Zombie : ICharacterInterface
         }
     }
 
-    public IEnumerator FlashColor()
+    public void FlashColor()
     {
-        var spriteRenderer = zombie.GetComponent<SpriteRenderer>();
-        var normalColor = spriteRenderer.material.color;
 
-        spriteRenderer.material.color = Color.red;
-        yield return new WaitForSeconds(0.25F);
-
-        spriteRenderer.material.color = normalColor;
-        yield return new WaitForSeconds(0.1F);
     }
 
     public void FlipDirection()

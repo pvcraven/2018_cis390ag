@@ -86,7 +86,8 @@ public class PlayerController : MonoBehaviour {
         {
             tory.AdjustStamina(-10);
         }
-        
+
+        tory.FlashColor(); // Done every frame now to prevent staying on red
     }
 
 
@@ -181,7 +182,7 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Zombie") || 
             other.gameObject.CompareTag("Bandit"))
         {
-            StartCoroutine(tory.FlashColor());
+            tory.color_flash_timer = 0.25f;
             tory.TakeDamage(7);
         }
         

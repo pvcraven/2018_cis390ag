@@ -140,6 +140,7 @@ public class Player : ICharacterInterface
 	private string currentAttackType = "melee";
 	private IDictionary<string, string> statusBarInformation = new Dictionary<string, string>();
 	private Weapon weapon = new Weapon();
+    public float color_flash_timer = 0;
 
 	#endregion
 
@@ -455,16 +456,18 @@ public class Player : ICharacterInterface
 		}
 	}
 
-	public IEnumerator FlashColor()
-	{
-		var spriteRenderer = player.GetComponent<SpriteRenderer>();
-		var normalColor = spriteRenderer.material.color;
-
-		spriteRenderer.material.color = Color.red;
-		yield return new WaitForSeconds(0.25F);
-
-		spriteRenderer.material.color = normalColor;
-		yield return new WaitForSeconds(0.1F);
+    public void FlashColor()
+    {
+        var spriteRenderer = player.GetComponent<SpriteRenderer>();
+        if (color_flash_timer > 0)
+        {
+            spriteRenderer.material.color = Color.red;
+            color_flash_timer -= Time.deltaTime;
+        }
+        else
+        {
+            spriteRenderer.material.color = Color.white;
+        }
 	}
 
     
