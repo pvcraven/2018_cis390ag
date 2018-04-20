@@ -82594,7 +82594,7 @@ Prefab:
         type: 2}
       propertyPath: PausedControlObject
       value: 
-      objectReference: {fileID: 145011696}
+      objectReference: {fileID: 0}
     - target: {fileID: 114982857166748036, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}
       propertyPath: dialog_box
