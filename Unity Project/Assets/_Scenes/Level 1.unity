@@ -1408,6 +1408,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &145011696 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1911555630135914, guid: bf9398f2aea03434dbfa6b9c9e62f24e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1757551881}
 --- !u!1 &149411546
 GameObject:
   m_ObjectHideFlags: 0
@@ -82602,19 +82607,19 @@ Prefab:
     - target: {fileID: 20069429745885972, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}
       propertyPath: orthographic size
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.019515172
+      value: 5.335388
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4126008722621398, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.9255029
+      value: -10.925503
       objectReference: {fileID: 0}
     - target: {fileID: 114618731280287424, guid: 859f9ecdd407a214689d25a5103d1a6d,
         type: 2}
@@ -82652,6 +82657,17 @@ Prefab:
       propertyPath: m_Mass
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114982857166748036, guid: 859f9ecdd407a214689d25a5103d1a6d,
+        type: 2}
+      propertyPath: PausedControlObject
+      value: 
+      objectReference: {fileID: 145011696}
+    - target: {fileID: 114982857166748036, guid: 859f9ecdd407a214689d25a5103d1a6d,
+        type: 2}
+      propertyPath: dialog_box
+      value: 
+      objectReference: {fileID: 1507311064563606, guid: af9a3d23aa9b0a842aaf0952ea17712e,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 859f9ecdd407a214689d25a5103d1a6d, type: 2}
   m_IsPrefabParent: 0
