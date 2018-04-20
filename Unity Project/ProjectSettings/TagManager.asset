@@ -20,6 +20,7 @@ TagManager:
   - Dirt
   - Zombie
   - Bandit
+  - KillBlock
   layers:
   - Default
   - TransparentFX

@@ -203,6 +203,11 @@ public class PlayerController : MonoBehaviour {
             audioSource.clip = walkAudio[2];
             audioSource.volume = 0.05f;
         }
+
+        if (other.gameObject.CompareTag("KillBlock"))
+        {
+            tory.TakeDamage(100);
+        }
     }
 
 	private void OnCollisionExit(Collision other)
