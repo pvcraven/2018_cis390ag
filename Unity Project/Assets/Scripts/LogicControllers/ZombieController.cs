@@ -49,15 +49,12 @@ public class ZombieController : MonoBehaviour {
         {
             Destroy(other.gameObject);
             z.TakeDamage(50);
-            StartCoroutine(z.FlashColor());
         }
 
         //Doesn't work YET! We have to redo the stab method first.
         if(other.gameObject.CompareTag("Player")) //&& other.gameObject.GetComponent<PlayerController>().Stabbing == true) <-- Adding this functionality -CW
         {
             z.TakeDamage(50);
-            StartCoroutine(z.FlashColor());
-            Debug.Log("Ouch!");
         }
 
         if (other.gameObject.CompareTag("Zombie"))
