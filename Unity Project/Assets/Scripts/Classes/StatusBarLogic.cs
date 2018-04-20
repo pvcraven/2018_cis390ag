@@ -64,7 +64,6 @@ public class StatusBarLogic : MonoBehaviour
         //Unless you can get the current method to actually run out of the health bar in the correct amount of hits to kill you, we need to adapt the equation below to match something similar.
         //Currently, it does not.
 
-        health = 0;
         float max_health = 100; // This should be a member of something... but it is just "100" everywhere 
         float new_width_of_panel = -( (1-(health / max_health)) * 220);
 
