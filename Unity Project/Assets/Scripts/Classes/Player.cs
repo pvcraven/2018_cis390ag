@@ -243,7 +243,7 @@ public class Player : ICharacterInterface
         return Mathf.Abs(rb.velocity.x) > 3;
     }
      
-    private bool runningToFast()
+    private bool runningTooFast()
     {
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         return Mathf.Abs(rb.velocity.x) > 5;
@@ -266,7 +266,7 @@ public class Player : ICharacterInterface
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 		Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y+20.0f);
 
-        if (!runningToFast())
+        if (!runningTooFast())
         {
             rb.AddForce(walkVector);
         }
