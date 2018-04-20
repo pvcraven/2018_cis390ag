@@ -545,6 +545,7 @@ public class Player : ICharacterInterface
         {
             this.Health = 100;
         }
+        this.player.GetComponent<StatusBarLogic>().SetHealth();
     }
 
     private GameObject InteractWithObject(GameObject item, List<GameObject> inArray, AudioClip clip)
