@@ -474,6 +474,21 @@ public class Player : ICharacterInterface
         anim = player.GetComponent<Animator>();
         anim.SetBool("stabbing", true);
 
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        foreach (BanditEnemyController e in UnityEngine.Object.FindObjectsOfType<BanditEnemyController>())
+        {
+            if (Vector2.Distance(e.transform.position, rb.position) < 1)
+            {
+                Debug.Log("Bandit is close");
+                // An enemy is in your radius
+                e.TakeDamage(10); // Hit the enemy for example
+            }
+            else
+            {
+                Debug.Log("Bandit is not close: "+ Vector2.Distance(e.transform.position, rb.position));
+
+            }
+        }
         //	float MeleeAttackHitBox = 0;
 
         //this.Stabbing = true;
