@@ -43,6 +43,12 @@ public class Zombie : ICharacterInterface
             this.strength = value;
         }
     }
+
+    public bool IsGrounded
+    {
+        get { return isGrounded; }
+        set { isGrounded = value; }
+    }
     public bool FacingRight
     {
         get { return facingRight; }
@@ -67,7 +73,9 @@ public class Zombie : ICharacterInterface
     private int speed = 8;
     private int strength = 10;
     private bool facingRight = true;
+    private bool isGrounded = false;
     private bool walking = false;
+    public int jumpForce = 150;
     private Vector2 initialPosition;
     private bool characterFound = false;
     private System.Random rand = new System.Random();
@@ -78,6 +86,7 @@ public class Zombie : ICharacterInterface
     private GameObject zombie;
 
     public Transform sightStart, sightEnd;
+
     #endregion
 
     #region Constructor
@@ -89,6 +98,7 @@ public class Zombie : ICharacterInterface
         this.Strength = 10;
         this.FacingRight = true;
         this.zombie = zombie;
+        this.IsGrounded = true;
         this.initialPosition = zombie.GetComponent<Rigidbody2D>().position;
         this.characterFound = false;
         this.sightStart = zombie.GetComponentInChildren<Transform>();
@@ -136,8 +146,33 @@ public class Zombie : ICharacterInterface
     {
         this.health = this.health - damage;
         FlashColor();
-        //Debug.Log("Zombie hit");
     }
+
+    public void Jump()
+    {
+
+        // Check and see if we are paused
+        if (Time.timeScale == 0)
+            return;
+
+        // Check and see if we are on the ground
+
+        Rigidbody2D rb = this.zombie.GetComponent<Rigidbody2D>();
+        if (this.IsGrounded)
+        {
+            // Apply force to jump
+            Vector2 jumpVelocity = new Vector2(0, jumpForce);
+            rb.AddForce(jumpVelocity);
+        }
+    }
+
+    public void GroundCheck()
+    {
+
+        this.IsGrounded = Physics2D.Linecast(this.zombie.GetComponent<ZombieController>().StartOnZombie.position, 
+            this.zombie.GetComponent<ZombieController>().EndOnGround.position, 1 << LayerMask.NameToLayer("Ground"));
+    }
+
 
     public void Walk(float direction = 1, float paceDistance = 0)
     {

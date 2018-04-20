@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1130869140717262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.07, y: -0.66, z: 0}
+  m_LocalPosition: {x: 70.428474, y: -8.766632, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,7 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombiePrefab:
   - {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
-  - {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
-  - {fileID: 1996174909829988, guid: 25dc1019d8824f54b966744e81cef76d, type: 2}
+  - {fileID: 1245839734819524, guid: 9dbc5397bb5acca49a28e6f9a0821e95, type: 2}
+  - {fileID: 1426506717933390, guid: 2cedae1d4ad2b004da8a1c48ffe99803, type: 2}
+  - {fileID: 1496703200486198, guid: fad124646b1943c4686484e7ace23661, type: 2}
+  - {fileID: 1910447030721820, guid: 7c47dca345abcfb49b940e0e3ececea9, type: 2}
   zombieSpawner: {fileID: 4926557391164316}
   zombieNumber: 0
