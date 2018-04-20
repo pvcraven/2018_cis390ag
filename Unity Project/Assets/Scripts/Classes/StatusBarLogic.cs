@@ -47,6 +47,7 @@ public class StatusBarLogic : MonoBehaviour
     void Update()
     {
         statusBarInformation = GetComponent<PlayerController>().tory.GetStatusBarInformation;
+        SetHealth();
     }
 
     public void SetHealth()
