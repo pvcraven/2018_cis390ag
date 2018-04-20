@@ -83,5 +83,9 @@ public class BanditEnemyController : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         this.health -= damage;
+        if (health <= 0)
+        {
+            Destroy(rb.gameObject);
+        }
     }
 }
