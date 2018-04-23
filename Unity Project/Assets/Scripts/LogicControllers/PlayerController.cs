@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip[] walkAudio;
 	public AudioClip jumpSound;
 	public AudioClip gameOverMusic;
+	public float soundEffectVolumeLevel = 0.10f;
 
     void Start() {
 
@@ -188,20 +189,18 @@ public class PlayerController : MonoBehaviour {
         
         if (other.gameObject.CompareTag("Stone"))
         {
-            audioSource.clip = walkAudio[0];
-            audioSource.volume = 0.10f;
+			GroundSound(0);
         }
 
-        if (other.gameObject.CompareTag("Dirt"))
+        else if (other.gameObject.CompareTag("Dirt"))
         {
-            audioSource.clip = walkAudio[1];
-            audioSource.volume = 0.05f;
+			GroundSound(1);
         }
 
-        if (other.gameObject.CompareTag("Grass"))
+        else if (other.gameObject.CompareTag("Grass"))
         {
-            audioSource.clip = walkAudio[2];
-            audioSource.volume = 0.05f;
+			GroundSound(2);
+
         }
 
         if (other.gameObject.CompareTag("KillBlock"))
@@ -209,6 +208,12 @@ public class PlayerController : MonoBehaviour {
             tory.TakeDamage(100);
         }
     }
+
+	private void GroundSound(int groundType)
+	{
+		audioSource.clip = walkAudio[groundType];
+		audioSource.volume = soundEffectVolumeLevel;
+	}
 
 	private void OnCollisionExit(Collision other)
 	{
