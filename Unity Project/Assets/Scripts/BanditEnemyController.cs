@@ -77,6 +77,7 @@ public class BanditEnemyController : MonoBehaviour {
         if (other.gameObject.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
+            TakeDamage(25);
         }
     }
 
