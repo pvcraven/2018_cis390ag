@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour {
             //pauseCode
         }
 
-        if(Input.GetKeyDown(jumpKey))
+		if(Input.GetKeyDown(jumpKey))
         {
 			tory.GroundCheck();
 			tory.Jump();
