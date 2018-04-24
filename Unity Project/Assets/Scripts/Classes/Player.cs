@@ -269,7 +269,7 @@ public class Player : ICharacterInterface
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
 
-	public void Attack()
+	public void Attack(AudioClip clip)
 	{
 		if (invController.WeaponIsInInventory())
 		{
@@ -277,7 +277,9 @@ public class Player : ICharacterInterface
 			{
                 this.RangedWeapon = "Gun"; //Ideally, if we had more than one type of ranged or melee weapon we would change these in the inventory.
                 RangedAttack();
+                AudioSource.PlayClipAtPoint(clip, player.transform.position, 0.25f);
 				//Debug.Log("Ranged attack"); 
+
 			}
 			else
 			{
