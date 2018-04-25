@@ -218,16 +218,13 @@ public class Player : ICharacterInterface
 		CheckDirection(direction);
 		this.Walking = true;
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+		Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y);
 
-		// Reduce the friction so we can move faster.
-		Vector2 walkVector = new Vector2(direction * walkForce, rb.velocity.y + 10.0f);
-
-
+        if (this.IsGrounded && rb.velocity.y > 0.01f)
+            walkVector.x *= 1.2f;
 
         if (!walkingTooFast())
-        {
             rb.AddForce(walkVector);
-        }
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
@@ -259,12 +256,13 @@ public class Player : ICharacterInterface
 		CheckDirection(direction);
 		this.Walking = true;
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-		Vector2 walkVector = new Vector2(direction * sprintForce, rb.velocity.y+20.0f);
+		Vector2 sprintVector = new Vector2(direction * sprintForce, rb.velocity.y);
+
+        if (this.IsGrounded && rb.velocity.y > 0.01f)
+            sprintVector.x *= 1.2f;
 
         if (!runningTooFast())
-        {
-            rb.AddForce(walkVector);
-        }
+            rb.AddForce(sprintVector);
 
 		player.GetComponent<Animator>().SetBool("walking", this.Walking);
 	}
