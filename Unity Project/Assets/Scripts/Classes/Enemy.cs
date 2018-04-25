@@ -49,9 +49,6 @@ namespace Classes
         #region Components
 
         public GameObject enemy;
-        private Rigidbody2D rb2d;
-        private Animator anim;
-        private Collider2D coll2D;
         
         #endregion
         
@@ -86,10 +83,6 @@ namespace Classes
         #region Methods
 
         private void InitializeComponents() {
-            this.rb2d = this.enemy.GetComponent<Rigidbody2D>();
-            this.anim = this.enemy.GetComponent<Animator>();
-            this.coll2D = this.enemy.GetComponent<Collider2D>();
-            
         }
 
         public void Attack() {
