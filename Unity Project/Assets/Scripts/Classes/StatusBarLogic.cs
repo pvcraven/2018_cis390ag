@@ -52,7 +52,7 @@ public class StatusBarLogic : MonoBehaviour
 
     public void SetHealth()
     {
-        Debug.Log("Setting Health");
+        // Debug.Log("Setting Health");
         statusBarInformation.TryGetValue("Health", out statusBarHealth);
 
         int.TryParse(statusBarHealth, out health);
