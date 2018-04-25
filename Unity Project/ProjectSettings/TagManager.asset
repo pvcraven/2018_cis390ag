@@ -37,7 +37,7 @@ TagManager:
   - Text
   - Player
   - Stone
-  - 
+  - Background Art
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background Art
+    uniqueID: 3513099815
+    locked: 0
   - name: Background
     uniqueID: 3007235109
     locked: 0
