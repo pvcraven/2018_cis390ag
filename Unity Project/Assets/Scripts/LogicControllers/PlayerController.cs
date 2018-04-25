@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
     public AudioClip pickupSound;
+    public AudioClip gunshotSound;
     public AudioClip[] walkAudio;
 	public AudioClip jumpSound;
 	public AudioClip gameOverMusic;
@@ -118,7 +119,7 @@ public class PlayerController : MonoBehaviour {
             //pauseCode
         }
 
-        if(Input.GetKeyDown(jumpKey))
+		if(Input.GetKeyDown(jumpKey))
         {
 			tory.GroundCheck();
 			tory.Jump();
@@ -163,7 +164,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(attack))
         {
-            tory.Attack();
+            tory.Attack(gunshotSound);
         }
         if (Input.GetKeyDown(interactKey))
         {

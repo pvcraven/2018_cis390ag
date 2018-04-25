@@ -924,12 +924,14 @@ MonoBehaviour:
   statusBar: {fileID: 1339919976171178}
   drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
   pickupSound: {fileID: 8300000, guid: 5fc27d263ebd13c409e6399e3fc2fc46, type: 3}
+  gunshotSound: {fileID: 8300000, guid: b5e4b1941b60a46029a8bbc66aca1c97, type: 3}
   walkAudio:
   - {fileID: 8300000, guid: 0b980312ea3413144ad9f6b2d2208e61, type: 3}
   - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
   - {fileID: 8300000, guid: ca77a9b60e3e080459d53a7895544b9f, type: 3}
   jumpSound: {fileID: 8300000, guid: 35854a33cbba86b408bc501d9305a4dd, type: 3}
   gameOverMusic: {fileID: 8300000, guid: bda536a092c011b41becbe526196904b, type: 3}
+  soundEffectVolumeLevel: 0.1
 --- !u!114 &114660273004531466
 MonoBehaviour:
   m_ObjectHideFlags: 1
