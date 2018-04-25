@@ -130,7 +130,7 @@ public class Player : ICharacterInterface
 	private int jumpForce = 450;
 	private int walkForce = 15;
 	private int sprintForce = 20;
-    Animator anim;
+    private Animator anim;
     private int fallMultiplier = 3;
 	private int lowJumpMultiplier = 2;
 	private bool facingRight = true;
@@ -331,6 +331,7 @@ public class Player : ICharacterInterface
 		{
 			case "Gun":
 				this.strength = 50;
+                Shoot();
 
 				//This needs to work with a Bullet or Gun Class rather than the previously existing way.
 				//Reason: It will only work with a gun, the previously existing way prohibits any future ranged weapons.
@@ -478,6 +479,8 @@ public class Player : ICharacterInterface
         this.strength = 10;
         anim = player.GetComponent<Animator>();
         anim.SetBool("stabbing", true);
+        anim.Play("Tory_Stabbing");
+        anim.SetBool("stabbing", false);
 
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 
@@ -517,9 +520,19 @@ public class Player : ICharacterInterface
         }
         // Debug.Log("Done processing hits");
     }
+
+    public void Shoot()
+    {
+        anim = player.GetComponent<Animator>();
+        anim.SetBool("shooting", true);
+        anim.Play("Tory_Shooting");
+        anim.SetBool("shooting", false);
+    }
+
     public void SetAnimationFalse()
     {
-        player.GetComponent<Animator>().SetBool("stabbing", false);
+        //player.GetComponent<Animator>().SetBool("stabbing", false);
+        //player.GetComponent<Animator>().SetBool("shooting", false);
     }	
  
 
