@@ -108,10 +108,18 @@ TextureImporter:
         width: 64
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
+      physicsShape:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_1
@@ -122,10 +130,20 @@ TextureImporter:
         width: 64
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -25, y: 27}
+        - {x: -32, y: 26}
+        - {x: -32, y: -27}
+        - {x: 32, y: -27}
+        - {x: 32, y: 27}
+      physicsShape:
+      - - {x: -25, y: 27}
+        - {x: -32, y: 26}
+        - {x: -32, y: -27}
+        - {x: 32, y: -27}
+        - {x: 32, y: 27}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_2
@@ -136,10 +154,20 @@ TextureImporter:
         width: 64
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -31, y: 26.5}
+        - {x: -32, y: 24.5}
+        - {x: -32, y: -26.5}
+        - {x: 32, y: -26.5}
+        - {x: 32, y: 26.5}
+      physicsShape:
+      - - {x: -31, y: 26.5}
+        - {x: -32, y: 24.5}
+        - {x: -32, y: -26.5}
+        - {x: 32, y: -26.5}
+        - {x: 32, y: 26.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_3
@@ -150,10 +178,18 @@ TextureImporter:
         width: 64
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
+      physicsShape:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_4
@@ -164,10 +200,18 @@ TextureImporter:
         width: 64
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
+      physicsShape:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_5
@@ -178,10 +222,18 @@ TextureImporter:
         width: 64
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
+      physicsShape:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_6
@@ -192,10 +244,20 @@ TextureImporter:
         width: 64
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -25, y: 27}
+        - {x: -32, y: 26}
+        - {x: -32, y: -27}
+        - {x: 32, y: -27}
+        - {x: 32, y: 27}
+      physicsShape:
+      - - {x: -25, y: 27}
+        - {x: -32, y: 26}
+        - {x: -32, y: -27}
+        - {x: 32, y: -27}
+        - {x: 32, y: 27}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_7
@@ -206,10 +268,20 @@ TextureImporter:
         width: 64
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -31, y: 26.5}
+        - {x: -32, y: 24.5}
+        - {x: -32, y: -26.5}
+        - {x: 32, y: -26.5}
+        - {x: 32, y: 26.5}
+      physicsShape:
+      - - {x: -31, y: 26.5}
+        - {x: -32, y: 24.5}
+        - {x: -32, y: -26.5}
+        - {x: 32, y: -26.5}
+        - {x: 32, y: 26.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_8
@@ -220,10 +292,18 @@ TextureImporter:
         width: 64
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
+      physicsShape:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_9
@@ -234,10 +314,18 @@ TextureImporter:
         width: 64
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
+      physicsShape:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_10
@@ -248,10 +336,20 @@ TextureImporter:
         width: 64
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -25, y: 27}
+        - {x: -32, y: 26}
+        - {x: -32, y: -27}
+        - {x: 32, y: -27}
+        - {x: 32, y: 27}
+      physicsShape:
+      - - {x: -25, y: 27}
+        - {x: -32, y: 26}
+        - {x: -32, y: -27}
+        - {x: 32, y: -27}
+        - {x: 32, y: 27}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_11
@@ -262,10 +360,20 @@ TextureImporter:
         width: 64
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -31, y: 26.5}
+        - {x: -32, y: 24.5}
+        - {x: -32, y: -26.5}
+        - {x: 32, y: -26.5}
+        - {x: 32, y: 26.5}
+      physicsShape:
+      - - {x: -31, y: 26.5}
+        - {x: -32, y: 24.5}
+        - {x: -32, y: -26.5}
+        - {x: 32, y: -26.5}
+        - {x: 32, y: 26.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_12
@@ -276,10 +384,18 @@ TextureImporter:
         width: 64
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
+      physicsShape:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_13
@@ -290,10 +406,18 @@ TextureImporter:
         width: 64
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
+      physicsShape:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_14
@@ -304,10 +428,18 @@ TextureImporter:
         width: 64
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
+      physicsShape:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_15
@@ -318,10 +450,20 @@ TextureImporter:
         width: 64
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -25, y: 27}
+        - {x: -32, y: 26}
+        - {x: -32, y: -27}
+        - {x: 32, y: -27}
+        - {x: 32, y: 27}
+      physicsShape:
+      - - {x: -25, y: 27}
+        - {x: -32, y: 26}
+        - {x: -32, y: -27}
+        - {x: 32, y: -27}
+        - {x: 32, y: 27}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_16
@@ -332,10 +474,20 @@ TextureImporter:
         width: 64
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -31, y: 26.5}
+        - {x: -32, y: 24.5}
+        - {x: -32, y: -26.5}
+        - {x: 32, y: -26.5}
+        - {x: 32, y: 26.5}
+      physicsShape:
+      - - {x: -31, y: 26.5}
+        - {x: -32, y: 24.5}
+        - {x: -32, y: -26.5}
+        - {x: 32, y: -26.5}
+        - {x: 32, y: 26.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_17
@@ -346,10 +498,18 @@ TextureImporter:
         width: 64
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
+      physicsShape:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_18
@@ -360,10 +520,18 @@ TextureImporter:
         width: 64
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
+      physicsShape:
+      - - {x: -32, y: 27.5}
+        - {x: -32, y: -27.5}
+        - {x: 32, y: -27.5}
+        - {x: 32, y: 27.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: Water Sprite Sheet_no fish_19
@@ -374,10 +542,18 @@ TextureImporter:
         width: 64
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
+      physicsShape:
+      - - {x: -32, y: 26}
+        - {x: -32, y: -26}
+        - {x: 32, y: -26}
+        - {x: 32, y: 26}
       tessellationDetail: 0
     outline: []
     physicsShape: []
