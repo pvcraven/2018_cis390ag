@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 76722065}
   - component: {fileID: 76722064}
   m_Layer: 0
-  m_Name: End Credits Trigger
+  m_Name: End Level Trigger
   m_TagString: End Level Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

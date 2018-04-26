@@ -229,22 +229,12 @@ public class PlayerController : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name.Equals("End Training Level Trigger"))
+        if (other.name.Equals("End Level Trigger"))
         {
-            SceneManager.LoadScene("Training-Level 1 Transition");
+            PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
+
+            SceneManager.LoadScene("TransitionSelection");
         }
-        else if (other.name.Equals("End Level 1 Trigger"))
-        {
-            SceneManager.LoadScene("Level2New");
-        }
-		else if (other.name.Equals("Enter Apartment Trigger"))
-		{
-			SceneManager.LoadScene("Apartment");
-		}
-		else if (other.name.Equals("End Credits Trigger"))
-		{
-			SceneManager.LoadScene("endCredits");
-		}
     }
 
     #region Sound Code
