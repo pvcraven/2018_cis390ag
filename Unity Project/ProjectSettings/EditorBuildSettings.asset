@@ -29,3 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Main Menu.unity
     guid: 2a8919a68334a1e41b086a90b6b26a4e
+  - enabled: 1
+    path: Assets/_Scenes/Dialog scenes/Training-Level 1 Transition.unity
+    guid: e7b76a7f8e5eb482e986348cc97af266
