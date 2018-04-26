@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ca5feba724d30ac4a9f65afd22d5a27a
-timeCreated: 1524755486
+timeCreated: 1524767143
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -98,12 +98,12 @@ TextureImporter:
       name: jhovey_rat_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -112,12 +112,12 @@ TextureImporter:
       name: jhovey_rat_1
       rect:
         serializedVersion: 2
-        x: 66
+        x: 64
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,12 +126,12 @@ TextureImporter:
       name: jhovey_rat_2
       rect:
         serializedVersion: 2
-        x: 129
+        x: 128
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +140,12 @@ TextureImporter:
       name: jhovey_rat_3
       rect:
         serializedVersion: 2
-        x: 196
+        x: 192
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,12 +154,12 @@ TextureImporter:
       name: jhovey_rat_4
       rect:
         serializedVersion: 2
-        x: 262
+        x: 256
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: jhovey_rat_5
       rect:
         serializedVersion: 2
-        x: 332
+        x: 320
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +182,12 @@ TextureImporter:
       name: jhovey_rat_6
       rect:
         serializedVersion: 2
-        x: 401
+        x: 384
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,12 +196,12 @@ TextureImporter:
       name: jhovey_rat_7
       rect:
         serializedVersion: 2
-        x: 465
+        x: 448
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: jhovey_rat_8
       rect:
         serializedVersion: 2
-        x: 529
+        x: 512
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: jhovey_rat_9
       rect:
         serializedVersion: 2
-        x: 587
+        x: 576
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,12 +238,12 @@ TextureImporter:
       name: jhovey_rat_10
       rect:
         serializedVersion: 2
-        x: 646
+        x: 640
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: jhovey_rat_11
       rect:
         serializedVersion: 2
-        x: 708
+        x: 704
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -266,12 +266,12 @@ TextureImporter:
       name: jhovey_rat_12
       rect:
         serializedVersion: 2
-        x: 769
+        x: 768
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -280,12 +280,12 @@ TextureImporter:
       name: jhovey_rat_13
       rect:
         serializedVersion: 2
-        x: 834
+        x: 832
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -294,12 +294,12 @@ TextureImporter:
       name: jhovey_rat_14
       rect:
         serializedVersion: 2
-        x: 898
+        x: 896
         y: 4
-        width: 59
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 60
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
