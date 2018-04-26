@@ -1,10 +1,45 @@
 fileFormatVersion: 2
 guid: b6bbe9e0f30104777833a65dc01dd1fd
-timeCreated: 1524755708
+timeCreated: 1524757330
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Drew_Death_Screen_0
+    21300002: Drew_Death_Screen_1
+    21300004: Drew_Death_Screen_2
+    21300006: Drew_Death_Screen_3
+    21300008: Drew_Death_Screen_4
+    21300010: Drew_Death_Screen_5
+    21300012: Drew_Death_Screen_6
+    21300014: Drew_Death_Screen_7
+    21300016: Drew_Death_Screen_8
+    21300018: Drew_Death_Screen_9
+    21300020: Drew_Death_Screen_10
+    21300022: Drew_Death_Screen_11
+    21300024: Drew_Death_Screen_12
+    21300026: Drew_Death_Screen_13
+    21300028: Drew_Death_Screen_14
+    21300030: Drew_Death_Screen_15
+    21300032: Drew_Death_Screen_16
+    21300034: Drew_Death_Screen_17
+    21300036: Drew_Death_Screen_18
+    21300038: Drew_Death_Screen_19
+    21300040: Drew_Death_Screen_20
+    21300042: Drew_Death_Screen_21
+    21300044: Drew_Death_Screen_22
+    21300046: Drew_Death_Screen_23
+    21300048: Drew_Death_Screen_24
+    21300050: Drew_Death_Screen_25
+    21300052: Drew_Death_Screen_26
+    21300054: Drew_Death_Screen_27
+    21300056: Drew_Death_Screen_28
+    21300058: Drew_Death_Screen_29
+    21300060: Drew_Death_Screen_30
+    21300062: Drew_Death_Screen_31
+    21300064: Drew_Death_Screen_32
+    21300066: Drew_Death_Screen_33
+    21300068: Drew_Death_Screen_34
+    21300070: Drew_Death_Screen_35
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -79,7 +114,511 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Drew_Death_Screen_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_1
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_2
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_3
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_4
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_5
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_6
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_7
+      rect:
+        serializedVersion: 2
+        x: 1757
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_8
+      rect:
+        serializedVersion: 2
+        x: 2008
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_9
+      rect:
+        serializedVersion: 2
+        x: 2259
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_10
+      rect:
+        serializedVersion: 2
+        x: 2510
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_11
+      rect:
+        serializedVersion: 2
+        x: 2761
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_12
+      rect:
+        serializedVersion: 2
+        x: 3012
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_13
+      rect:
+        serializedVersion: 2
+        x: 3263
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_14
+      rect:
+        serializedVersion: 2
+        x: 3514
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_15
+      rect:
+        serializedVersion: 2
+        x: 3765
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_16
+      rect:
+        serializedVersion: 2
+        x: 4016
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_17
+      rect:
+        serializedVersion: 2
+        x: 4267
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_18
+      rect:
+        serializedVersion: 2
+        x: 4518
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_19
+      rect:
+        serializedVersion: 2
+        x: 4769
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_20
+      rect:
+        serializedVersion: 2
+        x: 5020
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_21
+      rect:
+        serializedVersion: 2
+        x: 5271
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_22
+      rect:
+        serializedVersion: 2
+        x: 5522
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_23
+      rect:
+        serializedVersion: 2
+        x: 5773
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_24
+      rect:
+        serializedVersion: 2
+        x: 6024
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_25
+      rect:
+        serializedVersion: 2
+        x: 6275
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_26
+      rect:
+        serializedVersion: 2
+        x: 6526
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_27
+      rect:
+        serializedVersion: 2
+        x: 6777
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_28
+      rect:
+        serializedVersion: 2
+        x: 7028
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_29
+      rect:
+        serializedVersion: 2
+        x: 7279
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_30
+      rect:
+        serializedVersion: 2
+        x: 7530
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_31
+      rect:
+        serializedVersion: 2
+        x: 7781
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_32
+      rect:
+        serializedVersion: 2
+        x: 8032
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_33
+      rect:
+        serializedVersion: 2
+        x: 8283
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_34
+      rect:
+        serializedVersion: 2
+        x: 8534
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Drew_Death_Screen_35
+      rect:
+        serializedVersion: 2
+        x: 8785
+        y: 5
+        width: 251
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
