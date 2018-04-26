@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip drinksound;
     public AudioClip pickupSound;
     public AudioClip gunshotSound;
+	public AudioClip knifeSwipe;
     public AudioClip[] walkAudio;
 	public AudioClip jumpSound;
 	public AudioClip gameOverMusic;
@@ -164,7 +165,12 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(attack))
         {
-            tory.Attack(gunshotSound);
+			if (tory.CurrentAttackType == "ranged") {
+				tory.Attack (gunshotSound);
+			} 
+			else {
+				tory.Attack (knifeSwipe);
+			}
         }
         if (Input.GetKeyDown(interactKey))
         {

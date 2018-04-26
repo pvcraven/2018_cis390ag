@@ -273,7 +273,7 @@ public class Player : ICharacterInterface
 			{
                 this.RangedWeapon = "Gun"; //Ideally, if we had more than one type of ranged or melee weapon we would change these in the inventory.
                 RangedAttack();
-                AudioSource.PlayClipAtPoint(clip, player.transform.position, 0.25f);
+				AudioSource.PlayClipAtPoint(clip, player.transform.position, 0.25f);
 				//Debug.Log("Ranged attack"); 
 
 			}
@@ -281,6 +281,7 @@ public class Player : ICharacterInterface
 			{
                 this.MeleeWeapon = "Knife";
                 MeleeAttack();
+				AudioSource.PlayClipAtPoint(clip, player.transform.position, 0.25f);
 				//Debug.Log("Melee attack");
             }
 		}

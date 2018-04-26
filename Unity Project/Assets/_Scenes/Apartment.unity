@@ -603,6 +603,8 @@ MonoBehaviour:
   statusBar: {fileID: 4615778}
   drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
   pickupSound: {fileID: 8300000, guid: 5fc27d263ebd13c409e6399e3fc2fc46, type: 3}
+  gunshotSound: {fileID: 0}
+  knifeSwipe: {fileID: 8300000, guid: b517335a479737843879d650fd9d6807, type: 3}
   walkAudio:
   - {fileID: 8300000, guid: 0b980312ea3413144ad9f6b2d2208e61, type: 3}
   - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
