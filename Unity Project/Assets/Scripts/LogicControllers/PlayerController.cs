@@ -229,11 +229,11 @@ public class PlayerController : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name.Equals("End Level 1 Trigger"))
+        if (other.name.Equals("End Training Level Trigger"))
         {
-            SceneManager.LoadScene("Level 1");
+            SceneManager.LoadScene("Training-Level 1 Transition");
         }
-        else if (other.name.Equals("End Level 2 Trigger"))
+        else if (other.name.Equals("End Level 1 Trigger"))
         {
             SceneManager.LoadScene("Level2New");
         }
