@@ -333,7 +333,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377632775304484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.33491123, y: 3.7999976, z: -10.925503}
+  m_LocalPosition: {x: 0.561, y: 3.7999976, z: -10.925503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4857875647038306}
@@ -940,7 +940,7 @@ MonoBehaviour:
   drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
   pickupSound: {fileID: 8300000, guid: 5fc27d263ebd13c409e6399e3fc2fc46, type: 3}
   gunshotSound: {fileID: 8300000, guid: b5e4b1941b60a46029a8bbc66aca1c97, type: 3}
-  knifeSwipe: {fileID: 0}
+  knifeSwipe: {fileID: 8300000, guid: b517335a479737843879d650fd9d6807, type: 3}
   walkAudio:
   - {fileID: 8300000, guid: 0b980312ea3413144ad9f6b2d2208e61, type: 3}
   - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
