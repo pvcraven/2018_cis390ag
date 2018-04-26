@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour {
 	    
         //Why Enemy? Do we have objects with this tag?
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Zombie") || 
-            other.gameObject.CompareTag("Bandit"))
+			other.gameObject.CompareTag("Bandit") || other.gameObject.CompareTag("Spike"))
         {
             tory.color_flash_timer = 0.25f;
             tory.TakeDamage(7);

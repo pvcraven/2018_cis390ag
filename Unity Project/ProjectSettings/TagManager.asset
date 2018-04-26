@@ -21,6 +21,7 @@ TagManager:
   - Zombie
   - Bandit
   - KillBlock
+  - Spike
   layers:
   - Default
   - TransparentFX
