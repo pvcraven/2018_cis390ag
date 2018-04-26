@@ -225,9 +225,9 @@ GameObject:
   m_Component:
   - component: {fileID: 58125739}
   - component: {fileID: 58125740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +239,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 58125738}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.4147625, y: -9.07, z: 0.07809478}
+  m_LocalPosition: {x: 5.4147625, y: -8.96, z: 0.07809478}
   m_LocalScale: {x: 39, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 689620931}
@@ -266,7 +266,7 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
@@ -409,7 +409,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 636954710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.86, y: -3.95, z: -0.9255029}
+  m_LocalPosition: {x: -0.86, y: -8.05, z: -0.9255029}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_Children:
   - {fileID: 235751585}
@@ -603,6 +603,7 @@ MonoBehaviour:
   statusBar: {fileID: 4615778}
   drinksound: {fileID: 8300000, guid: 914031c8bb72845a3b279f32414247fe, type: 3}
   pickupSound: {fileID: 8300000, guid: 5fc27d263ebd13c409e6399e3fc2fc46, type: 3}
+  gunshotSound: {fileID: 0}
   walkAudio:
   - {fileID: 8300000, guid: 0b980312ea3413144ad9f6b2d2208e61, type: 3}
   - {fileID: 8300000, guid: 774a5ccba3ff44379baeb53bbf584539, type: 3}
@@ -795,8 +796,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1430551151
-  m_SortingLayer: -3
+  m_SortingLayerID: -1287732187
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: edd55d53e1ee24447b352a4358f96afe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
