@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class SaveGame : MonoBehaviour
@@ -29,9 +27,6 @@ public class SaveGame : MonoBehaviour
 	public void ExitProgram()
 	{
 		SaveGameSettings();
-		
-		// Closes Unity game in editor
-		EditorApplication.isPlaying = false;
 		
 		// Closes Unity game if it's a full application
 		Application.Quit();

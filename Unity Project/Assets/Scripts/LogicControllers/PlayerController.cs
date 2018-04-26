@@ -26,16 +26,22 @@ public class PlayerController : MonoBehaviour {
 
     private SpriteRenderer spriteRend;
     private float direction = 0;
-    public float attackDelay;
 
-    private float attackCooldown = -1;
-    private bool animationDelay = false;
+    //private float attackDelay = 20;
+    //private bool updatedDelay = false;
+    //private float attackCooldown = -1;
+    //private bool animationDelay = false;
+
     private bool step = true;
     private bool sprintKeyDown = false;
     public AudioClip drinksound;
     public AudioClip pickupSound;
+    public AudioClip gunshotSound;
+	public AudioClip knifeSwipe;
     public AudioClip[] walkAudio;
 	public AudioClip jumpSound;
+	public AudioClip gameOverMusic;
+	public float soundEffectVolumeLevel = 0.10f;
 
     void Start() {
 
@@ -46,19 +52,28 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 
+        //Why do we have a tory.Dead? It's redundant. If his health is <= 0 he is already dead.
         if (tory.Health <= 0)
         {
-			tory.Dead = true;
 			tory.Die ();
+
+            AudioSource bgMusic = GameObject.Find("Background Music").GetComponent<AudioSource>();
+            bgMusic.clip = gameOverMusic;
+            bgMusic.Play();
         }
 	    
-        if (attackCooldown >= 0)
-        {
-            attackCooldown--;
-        }
-        if (animationDelay) animationDelay = MeleeAnimationDelay(animationDelay);
+        //if (attackCooldown >= 0)
+        //{
+        //    attackCooldown--;
+        //}
+        //if (animationDelay)
+        //{
+        //    updatedDelay = MeleeAnimationDelay(animationDelay);
+        //}
+        //animationDelay = updatedDelay;
 
-        CheckforInput();
+        if(tory.Dead == false)
+            CheckforInput();
 
         if (Input.GetKey(sprintKey) && walk && tory.Stamina > 1)
         {
@@ -74,7 +89,8 @@ public class PlayerController : MonoBehaviour {
         {
             tory.AdjustStamina(-10);
         }
-        
+
+        tory.FlashColor(); // Done every frame now to prevent staying on red
     }
 
 
@@ -91,19 +107,6 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    void StepSound()
-    {
-        audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
-        audioSource.Play();
-    }
-
-    IEnumerator StepWait(float delay)
-    {
-        step = false;
-        yield return new WaitForSeconds(delay);
-        step = true;
-    }
-
     void CheckforInput(){
 
 		#region Setup Information for Input Checks
@@ -117,7 +120,7 @@ public class PlayerController : MonoBehaviour {
             //pauseCode
         }
 
-        if(Input.GetKeyDown(jumpKey))
+		if(Input.GetKeyDown(jumpKey))
         {
 			tory.GroundCheck();
 			tory.Jump();
@@ -160,9 +163,14 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(attack) && attackCooldown < 0)
+        if (Input.GetKeyDown(attack))
         {
-            tory.Attack();
+			if (tory.CurrentAttackType == "ranged") {
+				tory.Attack (gunshotSound);
+			} 
+			else {
+				tory.Attack (knifeSwipe);
+			}
         }
         if (Input.GetKeyDown(interactKey))
         {
@@ -178,32 +186,41 @@ public class PlayerController : MonoBehaviour {
     {
 	    tory.Weapon.IsInMeleeRange = true;
 	    
+        //Why Enemy? Do we have objects with this tag?
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Zombie") || 
-            other.gameObject.CompareTag("Bandit"))
+			other.gameObject.CompareTag("Bandit") || other.gameObject.CompareTag("Spike"))
         {
-            StartCoroutine(tory.FlashColor());
-            tory.TakeDamage(10);
-            Debug.Log("You're Taking Damage! Health: " + tory.Health);
+            tory.color_flash_timer = 0.25f;
+            tory.TakeDamage(7);
         }
         
         if (other.gameObject.CompareTag("Stone"))
         {
-            audioSource.clip = walkAudio[0];
-            audioSource.volume = 0.10f;
+			GroundSound(0);
         }
 
-        if (other.gameObject.CompareTag("Dirt"))
+        else if (other.gameObject.CompareTag("Dirt"))
         {
-            audioSource.clip = walkAudio[1];
-            audioSource.volume = 0.05f;
+			GroundSound(1);
         }
 
-        if (other.gameObject.CompareTag("Grass"))
+        else if (other.gameObject.CompareTag("Grass"))
         {
-            audioSource.clip = walkAudio[2];
-            audioSource.volume = 0.05f;
+			GroundSound(2);
+
+        }
+
+        if (other.gameObject.CompareTag("KillBlock"))
+        {
+            tory.TakeDamage(100);
         }
     }
+
+	private void GroundSound(int groundType)
+	{
+		audioSource.clip = walkAudio[groundType];
+		audioSource.volume = soundEffectVolumeLevel;
+	}
 
 	private void OnCollisionExit(Collision other)
 	{
@@ -214,23 +231,43 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.name.Equals("End Level 1 Trigger"))
         {
-            SceneManager.LoadScene(MainMenuController.LEVEL_1_NAME);
+            SceneManager.LoadScene("Level 1");
         }
         else if (other.name.Equals("End Level 2 Trigger"))
         {
-            //TODO: Add code to connect level 2 with the next level
+            SceneManager.LoadScene("Level 2");
         }
+		else if (other.name.Equals("Enter Apartment Trigger"))
+		{
+			SceneManager.LoadScene("Apartment");
+		}
     }
 
-    public bool MeleeAnimationDelay(bool b)
+    #region Sound Code
+    void StepSound()
     {
-        tory.SetAnimationFalse();
-        return false;
+        audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
+        audioSource.Play();
     }
 
-    public void MeleeAnimationDelay()
+    IEnumerator StepWait(float delay)
     {
-        attackCooldown = attackDelay;
-        animationDelay = true;
+        step = false;
+        yield return new WaitForSeconds(delay);
+        step = true;
     }
+    #endregion
+
+    //Did you just add bool b so you could you the same method name? This is bad overloading. What does this do?
+    //public bool MeleeAnimationDelay(bool b)
+    //{
+    //    tory.SetAnimationFalse();
+    //    return false;
+    //}
+
+    //public void MeleeAnimationDelay()
+    //{
+    //    attackCooldown = attackDelay;
+    //    animationDelay = true;
+    //}
 }

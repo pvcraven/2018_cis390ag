@@ -1,9 +1,29 @@
 fileFormatVersion: 2
 guid: 04d65773d7aa47942a32e52867c711e8
-timeCreated: 1523475140
+timeCreated: 1524106119
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: dietrich_Tory_dying_animation_0
+    21300002: dietrich_Tory_dying_animation_1
+    21300004: dietrich_Tory_dying_animation_2
+    21300006: dietrich_Tory_dying_animation_3
+    21300008: dietrich_Tory_dying_animation_4
+    21300010: dietrich_Tory_dying_animation_5
+    21300012: dietrich_Tory_dying_animation_6
+    21300014: dietrich_Tory_dying_animation_7
+    21300016: dietrich_Tory_dying_animation_8
+    21300018: dietrich_Tory_dying_animation_9
+    21300020: dietrich_Tory_dying_animation_10
+    21300022: dietrich_Tory_dying_animation_11
+    21300024: dietrich_Tory_dying_animation_12
+    21300026: dietrich_Tory_dying_animation_13
+    21300028: dietrich_Tory_dying_animation_14
+    21300030: dietrich_Tory_dying_animation_15
+    21300032: dietrich_Tory_dying_animation_16
+    21300034: dietrich_Tory_dying_animation_17
+    21300036: dietrich_Tory_dying_animation_18
+    21300038: dietrich_Tory_dying_animation_19
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -40,7 +60,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -66,9 +86,502 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 29.375, y: 64}
+        - {x: 15.625, y: 33.882355}
+        - {x: 15.625, y: -26.352942}
+        - {x: 33.125, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31.125002, y: 64}
+        - {x: 17.375002, y: 36.39216}
+        - {x: 17.375002, y: -13.803922}
+        - {x: 28.625002, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 28.500004, y: 64}
+        - {x: 17.250004, y: 43.92157}
+        - {x: 17.250004, y: -43.92157}
+        - {x: 27.250004, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.125015, y: -35.137257}
+        - {x: 22.125015, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+        - {x: 30.875015, y: 64}
+        - {x: 17.125015, y: 37.64706}
+      - - {x: 40.875015, y: -52.705883}
+        - {x: 43.375015, y: -47.686275}
+        - {x: 43.375015, y: -53.960785}
+        - {x: 42.125015, y: -55.215687}
+        - {x: 43.375015, y: -55.215687}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.375008, y: 64}
+        - {x: 15.125008, y: 38.901962}
+        - {x: 15.125008, y: -47.686275}
+        - {x: 22.625008, y: -62.7451}
+        - {x: 26.375008, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 27.607843}
+        - {x: 55.125008, y: 64}
+      - - {x: 41.375008, y: -51.45098}
+        - {x: 43.875008, y: -48.941177}
+        - {x: 43.875008, y: -46.431374}
+        - {x: 46.375008, y: -43.92157}
+        - {x: 45.125008, y: -38.901962}
+        - {x: 45.125008, y: -55.215687}
+        - {x: 45.125008, y: -53.960785}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64, y: -64}
+        - {x: 64, y: -41.411766}
+        - {x: 59.375, y: 37.64706}
+        - {x: 56.875, y: 64}
+        - {x: 28.125, y: 64}
+        - {x: 13.125, y: 38.901962}
+        - {x: 13.125, y: -25.09804}
+        - {x: 15.625, y: -55.215687}
+        - {x: 18.125, y: -62.7451}
+        - {x: 23.125, y: -64}
+        - {x: 39.375, y: -64}
+        - {x: 39.375, y: -55.215687}
+        - {x: 39.375, y: -57.72549}
+        - {x: 41.875, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16.12503, y: 64}
+        - {x: 13.6250305, y: 36.39216}
+        - {x: 13.6250305, y: -45.17647}
+        - {x: 17.37503, y: -60.235294}
+        - {x: 22.37503, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -2.509804}
+        - {x: 62.37503, y: 37.64706}
+        - {x: 51.12503, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43.499985, y: -45.17647}
+        - {x: 44.749985, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -15.058824}
+        - {x: 62.249985, y: 38.901962}
+        - {x: 44.749985, y: 64}
+        - {x: 17.249985, y: 64}
+        - {x: 10.999985, y: 37.64706}
+        - {x: 10.999985, y: -38.901962}
+        - {x: 18.499985, y: -64}
+        - {x: 40.999985, y: -64}
+        - {x: 42.249985, y: -55.215687}
+        - {x: 43.499985, y: -38.901962}
+        - {x: 43.499985, y: -35.137257}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7.1250153, y: -47.686275}
+        - {x: 10.875015, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -26.352942}
+        - {x: 48.375015, y: 64}
+        - {x: 14.625015, y: 64}
+        - {x: 7.1250153, y: 55.215687}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_9
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64, y: 1.254902}
+        - {x: 62.625046, y: 41.411766}
+        - {x: 35.125046, y: 62.7451}
+        - {x: 11.375046, y: 62.7451}
+        - {x: 6.375046, y: 55.215687}
+        - {x: 6.375046, y: -17.568628}
+        - {x: 17.625046, y: -64}
+        - {x: 41.375046, y: -64}
+        - {x: 41.375046, y: -58.980392}
+        - {x: 45.125046, y: -64}
+        - {x: 64, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_10
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43.125, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -36.39216}
+        - {x: 46.875, y: 50.19608}
+        - {x: 31.875, y: 61.490196}
+        - {x: 16.875, y: 61.490196}
+        - {x: 11.875, y: 57.72549}
+        - {x: 3.125, y: 35.137257}
+        - {x: 3.125, y: 6.27451}
+        - {x: 5.625, y: -27.607843}
+        - {x: 20.625, y: -64}
+        - {x: 40.625, y: -64}
+        - {x: 40.625, y: -46.431374}
+      - - {x: 40.625, y: -37.64706}
+        - {x: 39.375, y: -38.901962}
+        - {x: 39.375, y: -43.92157}
+        - {x: 40.625, y: -43.92157}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_11
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6.3749695, y: 53.960785}
+        - {x: -6.3749695, y: -7.529412}
+        - {x: 13.6250305, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -12.54902}
+        - {x: 59.87503, y: 25.09804}
+        - {x: 19.87503, y: 53.960785}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_12
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 49.75006, y: -64}
+        - {x: 59.75006, y: -64}
+        - {x: 64, y: -62.7451}
+        - {x: 64, y: -28.862745}
+        - {x: 16.000061, y: 51.45098}
+        - {x: -16.499939, y: 51.45098}
+        - {x: -16.499939, y: 12.54902}
+        - {x: 1.000061, y: -43.92157}
+        - {x: 24.750061, y: -64}
+        - {x: 46.00006, y: -64}
+        - {x: 46.00006, y: -61.490196}
+        - {x: 41.00006, y: -55.215687}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_13
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3.3750916, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -41.411766}
+        - {x: 29.625092, y: 35.137257}
+        - {x: 8.375092, y: 40.156864}
+        - {x: -34.12491, y: 40.156864}
+        - {x: -34.12491, y: -10.039216}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_14
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41.12503, y: 32.627453}
+        - {x: -41.12503, y: -10.039216}
+        - {x: 7.6249695, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -37.64706}
+        - {x: 55.12497, y: 0}
+        - {x: -4.8750305, y: 32.627453}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_15
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50.625, y: 22.588236}
+        - {x: -50.625, y: -36.39216}
+        - {x: 8.125, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -22.588236}
+        - {x: 5.625, y: 22.588236}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_16
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.1249695, y: -1.254902}
+        - {x: -13.8749695, y: 1.254902}
+        - {x: -35.12497, y: 5.019608}
+        - {x: -45.12497, y: 5.019608}
+        - {x: -56.37497, y: -2.509804}
+        - {x: -56.37497, y: -17.568628}
+        - {x: -48.87497, y: -42.666668}
+        - {x: 1.1250305, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -36.39216}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_17
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 59.75006, y: -64}
+        - {x: 64, y: -57.72549}
+        - {x: 64, y: -32.627453}
+        - {x: 47.25006, y: -32.627453}
+        - {x: 38.50006, y: -30.117647}
+        - {x: 24.750061, y: -25.09804}
+        - {x: 4.750061, y: -25.09804}
+        - {x: -5.249939, y: -22.588236}
+        - {x: -13.999939, y: -20.078432}
+        - {x: -30.249939, y: -20.078432}
+        - {x: -40.24994, y: -22.588236}
+        - {x: -50.24994, y: -23.843138}
+        - {x: -57.74994, y: -27.607843}
+        - {x: -58.99994, y: -31.37255}
+        - {x: -58.99994, y: -43.92157}
+        - {x: -55.24994, y: -47.686275}
+        - {x: -51.49994, y: -47.686275}
+        - {x: -45.24994, y: -55.215687}
+        - {x: -36.49994, y: -60.235294}
+        - {x: -26.499939, y: -64}
+        - {x: 26.000061, y: -64}
+        - {x: 27.250061, y: -62.7451}
+        - {x: 31.000061, y: -62.7451}
+        - {x: 37.25006, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_18
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50.37491, y: -25.09804}
+        - {x: -57.87491, y: -37.64706}
+        - {x: -57.87491, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: -27.607843}
+        - {x: 48.37509, y: -25.09804}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dietrich_Tory_dying_animation_19
+      rect:
+        serializedVersion: 2
+        x: 2432
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31.37497, y: -25.09804}
+        - {x: -42.37503, y: -25.09804}
+        - {x: -57.37503, y: -32.627453}
+        - {x: -57.37503, y: -64}
+        - {x: 63.87497, y: -64}
+        - {x: 64, y: -60.235294}
+        - {x: 64, y: -46.431374}
+        - {x: 56.37497, y: -37.64706}
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

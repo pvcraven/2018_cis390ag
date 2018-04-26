@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56312bd3e98ca4641bc756c07db9721b, type: 3}
+  m_Name: SolidWaterRule
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 21300000, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+  m_DefaultColliderType: 1
+  m_TilingRules:
+  - m_Neighbors: 0000000000000000000000000000000000000000000000000000000000000000
+    m_Sprites:
+    - {fileID: 21300000, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    - {fileID: 21300002, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    - {fileID: 21300004, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    - {fileID: 21300006, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    - {fileID: 21300008, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    - {fileID: 21300010, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    - {fileID: 21300012, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    - {fileID: 21300014, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    - {fileID: 21300016, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    - {fileID: 21300018, guid: 294a4b78a1914e646aac1aa092239441, type: 3}
+    m_AnimationSpeed: 8
+    m_PerlinScale: 0.5
+    m_RuleTransform: 0
+    m_Output: 2
+    m_ColliderType: 1
+    m_RandomTransform: 0

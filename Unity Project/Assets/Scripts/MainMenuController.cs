@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -56,9 +55,6 @@ public class MainMenuController : MonoBehaviour
 	
 	public void ExitProgram()
 	{
-		// Closes Unity game in editor
-		EditorApplication.isPlaying = false;
-		
 		// Closes Unity game if it's a full application
 		Application.Quit();
 	}

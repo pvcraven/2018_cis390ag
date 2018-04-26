@@ -8,11 +8,9 @@ public class AlertSystem : MonoBehaviour
 	public Text textBox;
 	public List<GameEvent> events;
 	private List<bool> eventsHappened;
-	private Rigidbody2D rb;
 
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody2D>();
 		eventsHappened = new List<bool>();
 		for(int i = 0; i < events.Count; i++)
 		{
