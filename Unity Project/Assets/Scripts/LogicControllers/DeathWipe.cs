@@ -13,8 +13,8 @@ public class DeathWipe : MonoBehaviour
     {
         continueButton = GetComponent<Button>();
 
-        PlayerPrefs.SetInt("PreviousScene", 3);
+        PlayerPrefs.DeleteAll();
 
-        continueButton.onClick.AddListener(() => SceneManager.LoadScene(3));
+        continueButton.onClick.AddListener(() => SceneManager.LoadScene(0));
     }
 }
