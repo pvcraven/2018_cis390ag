@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: 33a2625f6e9fc53458f6252dcb68518f
-timeCreated: 1524716455
+guid: 39d07bc57976b8a40a8aed10f568e645
+timeCreated: 1524758897
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: level 2 background_0
-    21300002: level 2 background_1
+    21300000: Tauer_LZombie2_Animation_0
+    21300002: Tauer_LZombie2_Animation_1
+    21300004: Tauer_LZombie2_Animation_2
+    21300006: Tauer_LZombie2_Animation_3
+    21300008: Tauer_LZombie2_Animation_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -82,13 +85,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: level 2 background_0
+      name: Tauer_LZombie2_Animation_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1430
-        height: 700
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -96,13 +99,55 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: level 2 background_1
+      name: Tauer_LZombie2_Animation_1
       rect:
         serializedVersion: 2
-        x: 1430
+        x: 96
         y: 0
-        width: 1430
-        height: 700
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tauer_LZombie2_Animation_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tauer_LZombie2_Animation_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tauer_LZombie2_Animation_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

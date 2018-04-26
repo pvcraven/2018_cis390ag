@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: 33a2625f6e9fc53458f6252dcb68518f
-timeCreated: 1524716455
+guid: 4e2f82626d5a2cd4d87602a9ba2437af
+timeCreated: 1524758893
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: level 2 background_0
-    21300002: level 2 background_1
+    21300000: Tauer_TZombie3_Animation_0
+    21300002: Tauer_TZombie3_Animation_1
+    21300004: Tauer_TZombie3_Animation_2
+    21300006: Tauer_TZombie3_Animation_3
+    21300008: Tauer_TZombie3_Animation_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -82,13 +85,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: level 2 background_0
+      name: Tauer_TZombie3_Animation_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1430
-        height: 700
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -96,13 +99,55 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: level 2 background_1
+      name: Tauer_TZombie3_Animation_1
       rect:
         serializedVersion: 2
-        x: 1430
+        x: 128
         y: 0
-        width: 1430
-        height: 700
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tauer_TZombie3_Animation_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tauer_TZombie3_Animation_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tauer_TZombie3_Animation_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
