@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class DeathWipe : MonoBehaviour {
+public class DeathWipe : MonoBehaviour
+{
 
     public Button continueButton;
 

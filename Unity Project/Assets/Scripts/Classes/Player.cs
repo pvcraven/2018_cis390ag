@@ -357,7 +357,10 @@ public class Player : ICharacterInterface
 				shotRB.AddForce(new Vector2(-500, 0));
 			}
 
-			UnityEngine.Object.Destroy(shot, 3.0f);
+            if (Time.timeScale == 0)
+                return;
+            else
+                UnityEngine.Object.Destroy(shot, 3.0f);
 		}
 	}
 
