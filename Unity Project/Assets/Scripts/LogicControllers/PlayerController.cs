@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if (other.name.Equals("End Level 2 Trigger"))
         {
-            SceneManager.LoadScene("Level 2");
+            SceneManager.LoadScene("Level2New");
         }
 		else if (other.name.Equals("Enter Apartment Trigger"))
 		{
