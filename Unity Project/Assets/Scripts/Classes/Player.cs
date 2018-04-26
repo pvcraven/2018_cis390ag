@@ -339,28 +339,30 @@ public class Player : ICharacterInterface
 
 		if (this.RangedWeapon != null)
 		{
-			GameObject shot = UnityEngine.Object.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);
-			Rigidbody2D shotRB = shot.GetComponent<Rigidbody2D>();
-
-			//Potentially move to class
-			if (this.FacingRight)
-			{
-				Vector2 scale = shot.transform.localScale;
-				scale.x *= -1;
-				shot.transform.localScale = scale;
-				shotRB = shot.GetComponent<Rigidbody2D>();
-				shotRB.AddForce(new Vector2(500, 0));
-			}
-			else
-			{
-				shotRB = shot.GetComponent<Rigidbody2D>();
-				shotRB.AddForce(new Vector2(-500, 0));
-			}
-
             if (Time.timeScale == 0)
                 return;
             else
+            {
+                GameObject shot = UnityEngine.Object.Instantiate(rangedAmmunition, rangedSpawner.position, Quaternion.identity);
+                Rigidbody2D shotRB = shot.GetComponent<Rigidbody2D>();
+
+                //Potentially move to class
+                if (this.FacingRight)
+                {
+                    Vector2 scale = shot.transform.localScale;
+                    scale.x *= -1;
+                    shot.transform.localScale = scale;
+                    shotRB = shot.GetComponent<Rigidbody2D>();
+                    shotRB.AddForce(new Vector2(500, 0));
+                }
+                else
+                {
+                    shotRB = shot.GetComponent<Rigidbody2D>();
+                    shotRB.AddForce(new Vector2(-500, 0));
+                }
+
                 UnityEngine.Object.Destroy(shot, 3.0f);
+            }
 		}
 	}
 
