@@ -12,6 +12,6 @@ public class DeathWipe : MonoBehaviour {
     {
         continueButton = GetComponent<Button>();
 
-        continueButton.onClick.AddListener(() => SceneManager.LoadScene(4));
+        continueButton.onClick.AddListener(() => SceneManager.LoadScene(3));
     }
 }
