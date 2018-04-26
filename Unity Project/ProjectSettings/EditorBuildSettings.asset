@@ -11,8 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Level 1.unity
     guid: 98f03b73974748b429e1e0b1d2f61c62
-  - enabled: 1
-    path: Assets/_Scenes/Level2New.unity
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/0de5b71db86cc0f4c85747e5c1a4536d
     guid: 0de5b71db86cc0f4c85747e5c1a4536d
   - enabled: 1
     path: Assets/_Scenes/Dead.unity
@@ -20,3 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Apartment.unity
     guid: f51f13f756de144519caaac402a9f848
+  - enabled: 1
+    path: Assets/_Scenes/endCredits.unity
+    guid: b66134b696b1c47c7835397464a458b0

@@ -241,6 +241,10 @@ public class PlayerController : MonoBehaviour {
 		{
 			SceneManager.LoadScene("Apartment");
 		}
+		else if (other.name.Equals("End Credits Trigger"))
+		{
+			SceneManager.LoadScene("endCredits");
+		}
     }
 
     #region Sound Code
