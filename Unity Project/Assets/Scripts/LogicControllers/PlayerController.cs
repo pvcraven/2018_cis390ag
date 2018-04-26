@@ -231,6 +231,10 @@ public class PlayerController : MonoBehaviour {
         {
             SceneManager.LoadScene("Level 2");
         }
+		else if (other.name.Equals("Enter Apartment Trigger"))
+		{
+			SceneManager.LoadScene("Apartment");
+		}
     }
 
     #region Sound Code

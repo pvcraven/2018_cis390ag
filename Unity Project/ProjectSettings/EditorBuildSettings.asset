@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Dead.unity
     guid: 04c2121efff258148ac4f938ca382f3b
+  - enabled: 1
+    path: Assets/_Scenes/Apartment.unity
+    guid: f51f13f756de144519caaac402a9f848
