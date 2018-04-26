@@ -1,9 +1,24 @@
 fileFormatVersion: 2
 guid: ca5feba724d30ac4a9f65afd22d5a27a
-timeCreated: 1523301712
+timeCreated: 1524745529
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: jhovey_rat_0
+    21300002: jhovey_rat_1
+    21300004: jhovey_rat_2
+    21300006: jhovey_rat_3
+    21300008: jhovey_rat_4
+    21300010: jhovey_rat_5
+    21300012: jhovey_rat_6
+    21300014: jhovey_rat_7
+    21300016: jhovey_rat_8
+    21300018: jhovey_rat_9
+    21300020: jhovey_rat_10
+    21300022: jhovey_rat_11
+    21300024: jhovey_rat_12
+    21300026: jhovey_rat_13
+    21300028: jhovey_rat_14
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -40,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -66,9 +81,229 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: jhovey_rat_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 4
+        width: 58
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 4
+        width: 58
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_2
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 4
+        width: 59
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_3
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 4
+        width: 57
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_4
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 4
+        width: 56
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_5
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 4
+        width: 51
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_6
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 4
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_7
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 4
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_8
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 4
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_9
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 4
+        width: 51
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_10
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 4
+        width: 56
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_11
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 4
+        width: 57
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_12
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 4
+        width: 59
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_13
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 4
+        width: 58
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: jhovey_rat_14
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 4
+        width: 58
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
